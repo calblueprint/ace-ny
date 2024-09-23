@@ -1,0 +1,8 @@
+.github/
+.vscode/
+.next/
+
+README.md
+package-lock.json
+next-env.d.ts
+postcss.config.js
