@@ -1,0 +1,34 @@
+{
+  "name": "web-app-template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "tsc": "pnpm exec tsc --noEmit",
+    "prettier": "pnpm exec prettier --check .",
+    "prettier:fix": "pnpm exec prettier --write .",
+    "prepare": "husky",
+    "pre-commit": "(pnpm run tsc || true) && (pnpm run lint || true) && pnpm run prettier"
+  },
+  "dependencies": {
+    "next": "14.2.8",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
+    "@types/node": "^20.16.5",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.8",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.1.5",
+    "prettier": "^3.3.3",
+    "typescript": "^5",
+    "yarnhook": "^0.6.2"
+  }
+}
