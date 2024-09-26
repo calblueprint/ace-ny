@@ -37,7 +37,7 @@ Additional resources:
    1. Clone this repo
       - using SSH (recommended)
         ```bash
-        git clone [git@insert-project-ssh]
+        git clone git@github.com:calblueprint/ace-ny.git
         ```
       - using HTTPS
         ```bash
@@ -53,8 +53,8 @@ Additional resources:
       ```
 
 2. Set up secrets:
-   1. In the project's root directory (`[insert-project-repo]/`), create a new file named `.env.local`
-   2. Copy the credentials from [Blueprint's internal Notion](https://www.notion.so/calblueprint/Environment-Setup-6fb1e251cdca4393b9dd47a3436abc11?pvs=4#9c2ff603f7a44348835c97e96d521d2d) (access is required) and paste them into the `.env.local` file.
+   1. In the project's root directory (`ace-ny/`), create a new file named `.env.local`
+   2. Copy the credentials from [Blueprint's internal Notion](https://www.notion.so/calblueprint/Welcome-Gift-for-Devs-62579b8d14fb4a56860184ff7fc33f39) (access is required) and paste them into the `.env.local` file.
 
 **Helpful resources**
 
