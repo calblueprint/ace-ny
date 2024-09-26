@@ -62,7 +62,7 @@ Additional resources:
 ### Development environment
 
 - **[VSCode](https://code.visualstudio.com/) (recommended)**
-  1. Open the `[insert-project-repo]` project in VSCode.
+  1. Open the ace-ny project in VSCode.
   2. Install recommended workspace VSCode extensions. You should see a pop-up on the bottom right to "install the recommended extensions for this repository".
 
 ### Running the app
