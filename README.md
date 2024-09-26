@@ -1,4 +1,4 @@
-# \Alliance for Clean Energy New York (ACE NY)
+# Alliance for Clean Energy New York (ACE NY)
 
 This template also has variants with pre-configured setup for styling libraries:
 - [Tailwind CSS](https://github.com/calblueprint/web-app-template/tree/tailwind)
