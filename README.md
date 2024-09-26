@@ -41,11 +41,11 @@ Additional resources:
         ```
       - using HTTPS
         ```bash
-        git clone [insert.project.link]
+        git clone https://github.com/calblueprint/ace-ny.git
         ```
    2. Enter the cloned directory
       ```bash
-      cd [insert-project-repo]
+      cd ace-ny
       ```
    3. Install project dependencies. This command installs all packages from [`package.json`](package.json).
       ```bash
