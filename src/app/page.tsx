@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { CSSProperties, useEffect } from 'react';
 import Image from 'next/image';
@@ -6,10 +6,9 @@ import BPLogo from '@/assets/images/bp-logo.png';
 import queryProjects from './queries/query';
 
 export default function Home() {
-
   useEffect(() => {
-    queryProjects().then((response) => console.log(response))
-  }, [])
+    queryProjects();
+  }, []);
 
   return (
     <main style={mainStyles}>
