@@ -14,7 +14,7 @@
     "pre-commit": "(pnpm run tsc || true) && (pnpm run lint || true) && pnpm run prettier"
   },
   "dependencies": {
-    "next": "14.2.8",
+    "next": "^14.2.13",
     "react": "^18",
     "react-dom": "^18"
   },
