@@ -7,11 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "tsc": "pnpm exec tsc --noEmit",
-    "prettier": "pnpm exec prettier --check .",
-    "prettier:fix": "pnpm exec prettier --write .",
+    "tsc": "npx tsc --noEmit",
+    "prettier": "npx prettier --check .",
+    "prettier:fix": "npx prettier --write .",
     "prepare": "husky",
-    "pre-commit": "(pnpm run tsc || true) && (pnpm run lint || true) && pnpm run prettier"
+    "pre-commit": "(npm run tsc || true) && (npm run lint || true) && npm run prettier"
   },
   "dependencies": {
     "next": "^14.2.13",
