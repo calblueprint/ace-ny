@@ -6,11 +6,9 @@ const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default async function queryProjects() {
-  const { data: Projects, error } = await supabase
-    .from('Projects')
-    .select('id, project_name');
+  const { data: projects, error } = await supabase.from('Projects').select('*');
 
-  console.log('PROJECTS', Projects, 'ERROR', error)
+  console.log('PROJECTS', projects, 'ERROR', error);
 
-  return { Projects, error };
+  return { projects, error };
 }
