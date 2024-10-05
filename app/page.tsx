@@ -1,16 +1,10 @@
 'use client';
 
-import { CSSProperties, useEffect } from 'react';
+import { CSSProperties } from 'react';
 import Image from 'next/image';
 import BPLogo from '@/assets/images/bp-logo.png';
-import queryProjects from '../src/queries/query';
 
-// TODO: build some sort of testing page
 export default function Home() {
-  useEffect(() => {
-    queryProjects();
-  }, []);
-
   return (
     <main style={mainStyles}>
       <Image style={imageStyles} src={BPLogo} alt="Blueprint Logo" />
