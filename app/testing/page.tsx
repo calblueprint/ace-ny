@@ -3,7 +3,7 @@
 import { CSSProperties, useEffect, useState } from 'react';
 import Image from 'next/image';
 import BPLogo from '@/assets/images/bp-logo.png';
-import queryProjects from '../../queries/query';
+import queryProjects from '../../src/queries/query';
 
 interface Project {
   id: string;
