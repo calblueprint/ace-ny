@@ -2,27 +2,45 @@
 
 import { useState } from 'react';
 import Modal from 'react-modal';
+import * as styles from './styles';
 
-// interface ProjectModalProps {
-//   id?: bigint;
-//   project_name?: string;
-//   energy_category?: string;
-//   size?: bigint;
-//   developer?: string;
-//   longitude?: bigint;
-//   latitude?: bigint;
-//   project_status?: string;
-//   county?: string;
-//   town?: string;
-//   region?: string;
-//   state_senate_district?: string;
-//   assembly_district?: string;
-//   project_image?: string;
-//   additional_info?: string;
-//   key_development_milestone?: string;
-// }
+interface ProjectModalProps {
+  id?: bigint;
+  project_name?: string;
+  energy_category?: string;
+  size?: string;
+  developer?: string;
+  longitude?: bigint;
+  latitude?: bigint;
+  project_status?: string;
+  county?: string;
+  town?: string;
+  region?: string;
+  state_senate_district?: string;
+  assembly_district?: string;
+  project_image?: string;
+  additional_info?: string;
+  key_development_milestone?: string;
+}
 
-export default function ProjectModal() {
+export default function ProjectModal({
+  // id,
+  project_name,
+  // energy_category,
+  size,
+  developer,
+  // longitude,
+  // latitude,
+  // project_status,
+  // county,
+  // town,
+  // region,
+  // state_senate_district,
+  // assembly_district,
+  // project_image,
+  additional_info,
+  // key_development_milestone,
+}: ProjectModalProps) {
   const [isOpen, setOpen] = useState(false);
 
   const toggleModal = () => {
@@ -34,11 +52,22 @@ export default function ProjectModal() {
       <button onClick={toggleModal}>Open</button>
       <Modal
         isOpen={isOpen}
-        onAfterOpen={toggleModal}
-        onAfterClose={toggleModal}
+        style={{
+          overlay: styles.modalOverlayStyles,
+          content: styles.modalContentStyles,
+        }}
       >
-        meow
-        <button onClick={toggleModal}>Close</button>
+        <div style={styles.searchBarStyles}>Search</div>
+        <div style={styles.projectNameStyles}>
+          <div style={styles.developerStyles}>
+            {developer}
+            <button onClick={toggleModal}>Close</button>
+          </div>
+          <div>{project_name}</div>
+        </div>
+        <div>{size}</div>
+        DETAILS
+        <div>{additional_info}</div>
       </Modal>
     </div>
   );

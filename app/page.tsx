@@ -7,7 +7,12 @@ export default function Home() {
   return (
     <main style={mainStyles}>
       <Image style={imageStyles} src={BPLogo} alt="Blueprint Logo" />
-      <ProjectModal></ProjectModal>
+      <ProjectModal
+        project_name="RIPTIDE STORAGE"
+        developer="ACE DevCo NC, LLC"
+        size="1,200 MW/Mo"
+        additional_info="lorem ipsum blah blah"
+      ></ProjectModal>
     </main>
   );
 }
