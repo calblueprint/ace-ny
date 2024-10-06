@@ -1,6 +1,4 @@
 import { CSSProperties } from 'react';
-import Image from 'next/image';
-import BPLogo from '@/assets/images/bp-logo.png';
 import Map from './components/map';
 
 export default function Home() {
@@ -20,10 +18,4 @@ const mainStyles: CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-};
-
-const imageStyles: CSSProperties = {
-  width: '80px',
-  height: '80px',
-  marginBottom: '0.5rem',
 };
