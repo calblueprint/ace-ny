@@ -66,8 +66,11 @@ export default function ProjectModal({
           <div>{project_name}</div>
         </div>
         <div>{size}</div>
-        DETAILS
-        <div>{additional_info}</div>
+        <div style={styles.additionalInfoStyles}>
+          DETAILS
+          <br></br>
+          {additional_info}
+        </div>
       </Modal>
     </div>
   );

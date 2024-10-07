@@ -1,12 +1,18 @@
 import { CSSProperties } from 'react';
 
 export const modalOverlayStyles: CSSProperties = {
-  ///
+  width: '310px',
+  height: '100%',
 };
 
 export const modalContentStyles: CSSProperties = {
   display: 'flex',
   width: '360px',
+  height: '100%',
+  top: '0',
+  bottom: '0',
+  left: '0',
+  right: '0',
   flexShrink: 0,
   flexDirection: 'column',
   alignItems: 'center',
@@ -39,4 +45,8 @@ export const projectNameStyles: CSSProperties = {
 export const developerStyles: CSSProperties = {
   display: 'flex',
   justifyContent: 'space-between',
+};
+
+export const additionalInfoStyles: CSSProperties = {
+  width: '315px',
 };
