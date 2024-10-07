@@ -1,6 +1,6 @@
 'use client';
 
-import { CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 import Image from 'next/image';
 import BPLogo from '@/assets/images/bp-logo.png';
 
