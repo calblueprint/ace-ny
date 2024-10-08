@@ -1,7 +1,7 @@
 export type Project = {
   id: string;
   project_name: string;
-  energy_category: string;
+  energy_technology: string;
   size: number;
   developer: string;
   longitude: number;
@@ -15,4 +15,6 @@ export type Project = {
   project_image: string | null;
   additional_information: string | null;
   key_development_milestones: object | null;
+  proposed_cod: Date;
+  approved: boolean;
 };
