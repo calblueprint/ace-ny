@@ -2,6 +2,7 @@ import { CSSProperties } from 'react';
 import Image from 'next/image';
 import BPLogo from '@/assets/images/bp-logo.png';
 import ProjectModal from '@/components/ProjectModal';
+import Map from './components/map';
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
         size="1,200 MW/Mo"
         additional_info="lorem ipsum blah blah"
       ></ProjectModal>
+      <Map />
     </main>
   );
 }
@@ -26,10 +28,4 @@ const mainStyles: CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-};
-
-const imageStyles: CSSProperties = {
-  width: '80px',
-  height: '80px',
-  marginBottom: '0.5rem',
 };
