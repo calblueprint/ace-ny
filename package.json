@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@types/react-modal": "^3.16.3",
-    "react-modal": "^3.16.1"
+    "react-modal": "^3.16.1",
     "@googlemaps/markerclusterer": "^2.5.3",
     "@react-google-maps/api": "^2.19.3",
     "@supabase/supabase-js": "^2.45.4",
