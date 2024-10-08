@@ -14,7 +14,9 @@
     "pre-commit": "(pnpm run tsc || true) && (pnpm run lint || true) && pnpm run prettier"
   },
   "dependencies": {
-    "next": "^14.2.10",
+    "@supabase/supabase-js": "^2.45.4",
+    "dotenv": "^16.4.5",
+    "next": "^14.2.13",
     "react": "^18",
     "react-dom": "^18",
     "styled-components": "^6.1.13"
