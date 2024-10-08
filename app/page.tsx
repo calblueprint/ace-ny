@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
+import Map from '@/components/Map/map';
 import ProjectModal from '@/components/ProjectModal';
-import Map from './components/map';
 
 export default function Home() {
   return (
