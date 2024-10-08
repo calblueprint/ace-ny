@@ -1,14 +1,10 @@
-'use client';
-
-import React, { CSSProperties } from 'react';
-import Image from 'next/image';
-import BPLogo from '@/assets/images/bp-logo.png';
+import { CSSProperties } from 'react';
+import Map from './components/map';
 
 export default function Home() {
   return (
     <main style={mainStyles}>
-      <Image style={imageStyles} src={BPLogo} alt="Blueprint Logo" />
-      <p>Open up app/page.tsx to get started!</p>
+      <Map />
     </main>
   );
 }
@@ -22,10 +18,4 @@ const mainStyles: CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-};
-
-const imageStyles: CSSProperties = {
-  width: '80px',
-  height: '80px',
-  marginBottom: '0.5rem',
 };
