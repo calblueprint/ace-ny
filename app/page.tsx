@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import Map from '@/components/Map/map';
+// import Map from '@/components/Map/map';
 import ProjectModal from '@/components/ProjectModal';
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
         size="1,200 MW/Mo"
         additional_info="lorem ipsum blah blah"
       ></ProjectModal>
-      <Map />
+      {/* <Map /> */}
     </main>
   );
 }

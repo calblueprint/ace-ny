@@ -1,7 +1,9 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { GoogleMap, Marker, useJsApiLoader } from '@react-google-maps/api';
+import addMarker from '../../api/maps/addMarker';
+import { Project } from '../../types/helper';
 
 const containerStyle = {
   width: '700px',
@@ -15,7 +17,7 @@ const center = {
 
 const zoom = 7;
 
-export default function Map() {
+export default function Map(props: { projects: Project[] | null }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
@@ -34,12 +36,17 @@ export default function Map() {
     setMap(null);
   }, []);
 
+  console.log('hiii: ', props.projects);
+
   return isLoaded ? (
     <GoogleMap
       mapContainerStyle={containerStyle}
       onLoad={onLoad}
       onUnmount={onUnmount}
-    ></GoogleMap>
+    >
+      {addMarker(props.projects)}
+      <Marker position={{ lat: 40.7128, lng: -74.006 }}></Marker>
+    </GoogleMap>
   ) : (
     <></>
   );
