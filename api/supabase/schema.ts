@@ -1,12 +1,12 @@
 export type Project = {
-  id: string;
+  id: number;
   project_name: string;
-  energy_technology: string;
+  renewable_energy_technology: string;
   size: number;
   developer: string;
   longitude: number;
   latitude: number;
-  project_statues: string;
+  project_status: string;
   county: string;
   town: string;
   region: string;
