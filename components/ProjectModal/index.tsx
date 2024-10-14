@@ -14,7 +14,7 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
     querySpecificProject(project_id).then(data => {
       setProject(data);
     });
-  });
+  }, [project_id]);
 
   const {
     // id,
