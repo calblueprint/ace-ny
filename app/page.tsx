@@ -5,12 +5,7 @@ import ProjectModal from '@/components/ProjectModal';
 export default function Home() {
   return (
     <main style={mainStyles}>
-      <ProjectModal
-        project_name="RIPTIDE STORAGE"
-        developer="ACE DevCo NC, LLC"
-        size="1,200 MW/Mo"
-        additional_info="lorem ipsum blah blah"
-      ></ProjectModal>
+      <ProjectModal project_id={1}></ProjectModal>
       <Map />
     </main>
   );
