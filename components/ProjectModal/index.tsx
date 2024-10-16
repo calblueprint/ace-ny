@@ -61,13 +61,15 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
           <div style={styles.projectNameStyles}>
             <div style={styles.developerStyles}>
               Developer - {developer}
-              <button onClick={toggleModal}>Close</button>
+              <button onClick={toggleModal} style={styles.closeButtonStyles}>
+                Close
+              </button>
             </div>
             <div>{project_name}</div>
+            <div>{project_status}</div>
+            <div>{renewable_energy_technology}</div>
           </div>
         </div>
-        <div>{project_status}</div>
-        <div>{renewable_energy_technology}</div>
 
         <div>{size}</div>
         <div style={styles.additionalInfoStyles}>
