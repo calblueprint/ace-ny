@@ -9,7 +9,7 @@ export async function queryProjects() {
   return { projects, error };
 }
 
-export async function querySpecificProject(id: number): Promise<Project> {
+export async function queryProjectbyId(id: number): Promise<Project> {
   const { data: project, error } = await supabase
     .from('Projects')
     .select('*')
