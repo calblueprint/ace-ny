@@ -1,7 +1,5 @@
 import requests
 import json
-import pandas as pd
-from io import BytesIO
 from utils.scraper_utils import check_status, geocode_lat_long
 
 '''
