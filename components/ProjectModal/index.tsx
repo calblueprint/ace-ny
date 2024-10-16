@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { queryProjectbyId } from '../../api/supabase/queries/query';
-import { Project } from '../../api/supabase/schema';
+import { Project } from '../../types/schema';
 import * as styles from './styles';
 
 export default function ProjectModal({ project_id }: { project_id: number }) {
