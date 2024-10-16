@@ -1,5 +1,5 @@
 import supabase from '../createClient';
-import { Project } from '../schema';
+import { Project } from '../../../types/schema';
 
 export async function queryProjects() {
   const { data: projects, error } = await supabase.from('Projects').select('*');
