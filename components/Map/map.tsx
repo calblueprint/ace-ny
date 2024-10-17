@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 import addMarker from '../../api/maps/addMarker';
-import { Project } from '../../types/helper';
+import { Project } from '../../types/schema';
 
 const containerStyle = {
   width: '700px',

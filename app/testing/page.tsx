@@ -5,7 +5,25 @@ import Image from 'next/image';
 import BPLogo from '@/assets/images/bp-logo.png';
 import queryProjects from '../../api/supabase/queries/query';
 import Map from '../../components/Map/map';
-import { Project } from '../../types/helper';
+
+interface Project {
+  id: string;
+  project_name: string;
+  energy_category: string;
+  size: number;
+  developer: string;
+  longitude: number;
+  latitude: number;
+  project_statues: string;
+  county: string;
+  town: string;
+  region: string;
+  state_senate_district: number;
+  assembly_district: number;
+  project_image: string | null;
+  additional_information: string | null;
+  key_development_milestones: object | null;
+}
 
 export default function Home() {
   const [projects, setProjects] = useState<Project[] | null>(null);
