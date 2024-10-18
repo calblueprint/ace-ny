@@ -9,3 +9,4 @@ pnpm-lock.yaml
 
 api/webscraper/nyserda_large.json
 api/webscraper/nyserda_small.json
+api/webscraper/database.json
