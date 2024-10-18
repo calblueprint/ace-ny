@@ -11,14 +11,14 @@ load_dotenv('.env.local')
 google_maps_api_key = os.environ.get('NEXT_PUBLIC_GOOGLE_MAPS_API_KEY')
 
 def check_status(status):
-    if status is None:
-        return 'Proposed'
-    elif status.lower() == 'cancelled':
+    if status.lower() == 'cancelled':
         return 'Cancelled'
     elif status.lower() == 'operational' or status.lower() == 'completed':
         return 'Operational'
-    else:
+    elif status.lower() == 'under development':
         return 'Proposed'
+    else:
+        return status # if status is None, we will return None
 
 def geocode_lat_long(address):
     parameters = urllib.parse.quote_plus(address)

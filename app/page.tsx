@@ -1,12 +1,28 @@
-import { CSSProperties } from 'react';
+'use client';
+
+import { CSSProperties, useEffect, useState } from 'react';
 import Map from '@/components/Map/map';
 import ProjectModal from '@/components/ProjectModal';
+import queryProjects from '../api/supabase/queries/query';
+import { Project } from '../types/schema';
 
 export default function Home() {
+  const [projects, setProjects] = useState<Project[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    queryProjects()
+      .then(data => {
+        setProjects(data.projects);
+      })
+      .catch(err => setError(err));
+  }, []);
+
   return (
     <main style={mainStyles}>
       <ProjectModal project_id={1}></ProjectModal>
-      <Map />
+      {error ? <div style={errorStyles}>{error}</div> : null}
+      {projects ? <Map projects={projects} /> : null}
     </main>
   );
 }
@@ -20,4 +36,8 @@ const mainStyles: CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+};
+
+const errorStyles: CSSProperties = {
+  color: '#D22B2B',
 };
