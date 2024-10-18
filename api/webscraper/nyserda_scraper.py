@@ -78,7 +78,7 @@ def query_nyserda_large():
   response = requests.get('https://data.ny.gov/resource/dprp-55ye.json')
   data = response.json()
   filtered_list = []
-  for item in large_data:
+  for item in data:
     if check_status(item.get('project_status', None)) != 'Cancelled':
       project_dict = {'project_name': item.get('project_name', None),
                       'project_status': check_status(item.get('project_status', None)), 
