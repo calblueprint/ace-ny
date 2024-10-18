@@ -70,11 +70,10 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
             <div>{renewable_energy_technology}</div>
           </div>
         </div>
-
         <div>{size}</div>
         <div style={styles.additionalInfoStyles}>
           DETAILS
-          <br />
+          <br></br>
           {additional_information}
         </div>
       </Modal>

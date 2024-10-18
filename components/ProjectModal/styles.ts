@@ -26,7 +26,6 @@ export const projectContainerStyles: CSSProperties = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  //  justifyContent: 'center', // Center items vertically if needed
 };
 
 export const projectImageStyles: CSSProperties = {
@@ -54,15 +53,14 @@ export const searchBarStyles: CSSProperties = {
 export const projectNameStyles: CSSProperties = {
   width: '315px',
   height: '135px',
-  marginTop: '140px',
+  marginTop: '152px',
   flexShrink: '0',
   borderRadius: '8px',
   background: 'var(--WorldPeas-White, #FFF)',
   boxShadow:
     '0px 2px 6px 0px rgba(77, 87, 114, 0.08), 0px -2px 5px 0px rgba(255, 255, 255, 0.10)',
   position: 'relative',
-  padding: '10px', // Add padding for space around text
-  // marginTop: '60px', // Move it down from the search bar
+  padding: '10px',
 };
 
 export const developerStyles: CSSProperties = {
