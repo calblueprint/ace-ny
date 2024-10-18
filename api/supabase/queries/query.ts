@@ -1,8 +1,11 @@
 import { Project } from '../../../types/schema';
 import supabase from '../createClient';
 
-export async function queryProjects() {
-  const { data: projects, error } = await supabase.from('Projects').select('*');
+export default async function queryProjects() {
+  const { data: projects, error } = await supabase
+    .from('Projects')
+    .select('*')
+    .eq('approved', true);
 
   console.log('PROJECTS', projects, 'ERROR', error);
 
