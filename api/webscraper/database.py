@@ -40,7 +40,7 @@ def nyserda_large_to_database():
         print(exception)
     else:
       if (project.get('latitude', None) is not None) and (project.get('longitude', None) is not None):
-        geocodio_result = geocodio.reverse((project.get('latitude'), project.get('longitude')), fields=['cd', 'stateleg']).get('results', None)
+        geocodio_result = geocodio.reverse((project.get('latitude'), project.get('longitude')), fields=['stateleg']).get('results', None)
         if geocodio_result is not None:
           location = geocodio_result[0]
           state_senate_district = int(location['fields']['state_legislative_districts']['senate'][0]['district_number'])
@@ -72,7 +72,7 @@ def nyserda_solar_to_database():
         print(exception)
     else:
       if (project.get('latitude', None) is not None) and (project.get('longitude', None) is not None):
-        geocodio_result = geocodio.reverse((project.get('latitude'), project.get('longitude')), fields=['cd', 'stateleg']).get('results', None)
+        geocodio_result = geocodio.reverse((project.get('latitude'), project.get('longitude')), fields=['stateleg']).get('results', None)
         if geocodio_result is not None:
           location = geocodio_result[0]
           state_senate_district = int(location['fields']['state_legislative_districts']['senate'][0]['district_number'])
