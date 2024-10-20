@@ -88,7 +88,6 @@ def nyserda_solar_to_database():
       except Exception as exception:
         print(exception)
 
-# TODO: dict of renewable energy technologies
 def nyiso_to_database():
   database = []
   database.extend(query_nyiso())
@@ -101,6 +100,8 @@ def nyiso_to_database():
       except Exception as exception:
         print(exception)
       project['proposed_cod'] = ymd
+    if project.get('renewable_energy_technology', None) in renewable_energy_map.keys():
+      project['renewable_energy_technology'] = renewable_energy_map[project.get('renewable_energy_technology')] # maps NYISO acronym to readable renewable energy tech
     existing_project = supabase.table("Projects_duplicate").select("*").eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
     if len(existing_project.data) > 0:
       # TODO: define what fields we want to update
@@ -119,6 +120,6 @@ def nyiso_to_database():
 '''
 For testing
 '''
-nyserda_large_to_database()
+# nyserda_large_to_database()
 # nyserda_solar_to_database()
 # nyiso_to_database()
