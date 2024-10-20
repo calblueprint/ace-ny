@@ -18,6 +18,23 @@ export const modalContentStyles: CSSProperties = {
   alignItems: 'center',
 };
 
+export const projectContainerStyles: CSSProperties = {
+  position: 'relative',
+  width: '360px',
+  height: '300px',
+  overflow: 'hidden',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+};
+
+export const projectImageStyles: CSSProperties = {
+  position: 'absolute',
+  width: '359px',
+  height: '269px',
+  objectFit: 'cover',
+};
+
 export const searchBarStyles: CSSProperties = {
   width: '310px',
   height: '50px',
@@ -29,6 +46,8 @@ export const searchBarStyles: CSSProperties = {
   boxShadow: '0px 4px 5px 0px rgba(255, 255, 255, 0.25)',
   alignItems: 'center',
   justifyContent: 'center',
+  zIndex: 2,
+  position: 'relative',
 };
 
 export const projectNameStyles: CSSProperties = {
@@ -40,11 +59,21 @@ export const projectNameStyles: CSSProperties = {
   background: 'var(--WorldPeas-White, #FFF)',
   boxShadow:
     '0px 2px 6px 0px rgba(77, 87, 114, 0.08), 0px -2px 5px 0px rgba(255, 255, 255, 0.10)',
+  position: 'relative',
+  padding: '10px',
 };
 
 export const developerStyles: CSSProperties = {
   display: 'flex',
   justifyContent: 'space-between',
+  zIndex: 2,
+};
+
+export const closeButtonStyles: CSSProperties = {
+  position: 'absolute',
+  top: '10px',
+  right: '10px',
+  zIndex: 3,
 };
 
 export const additionalInfoStyles: CSSProperties = {
