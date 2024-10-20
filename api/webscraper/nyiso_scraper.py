@@ -8,7 +8,7 @@ def query_nyiso():
   nyiso_data = nyiso.content
   nyiso_df = pd.read_excel(BytesIO(nyiso_data))
   nyiso_df.dropna(subset=['Project Name'], inplace=True) # drops rows of xlsx that don't correspond to project data
-  nyiso_df.fillna('', inplace=True) # replaces NaN values with empty strings
+  nyiso_df.fillna(None, inplace=True) # replaces NaN values with empty strings
   nyiso_df.replace(to_replace=['', 'N/A', 'n/a', 'NAN', 'n/a'], value=None, inplace=True)
   nyiso_list = nyiso_df.to_dict(orient='records')
 
