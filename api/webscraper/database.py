@@ -24,7 +24,6 @@ supabase: Client = create_client(url, key)
 geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
 geocodio = GeocodioClient(geocode_api)
 
-# TODO: dict of renewable energy technologies
 def nyserda_large_to_database():
   database = []
   database.extend(query_nyserda_large())
@@ -40,16 +39,17 @@ def nyserda_large_to_database():
       except Exception as exception:
         print(exception)
     else:
-      geocodio_result = geocodio.reverse((project.get('latitude'), project.get('longitude')), fields=['cd', 'stateleg']).get('results', None)
-      if geocodio_result is not None:
-        location = geocodio_result[0]
-        state_senate_district = int(location['fields']['state_legislative_districts']['senate'][0]['district_number'])
-        assembly_district = int(location['fields']['state_legislative_districts']['house'][0]['district_number'])
-        town = location['address_components']['city']
+      if (project.get('latitude', None) is not None) and (project.get('longitude', None) is not None):
+        geocodio_result = geocodio.reverse((project.get('latitude'), project.get('longitude')), fields=['cd', 'stateleg']).get('results', None)
+        if geocodio_result is not None:
+          location = geocodio_result[0]
+          state_senate_district = int(location['fields']['state_legislative_districts']['senate'][0]['district_number'])
+          assembly_district = int(location['fields']['state_legislative_districts']['house'][0]['district_number'])
+          town = location['address_components']['city']
 
-        project['state_senate_district'] = state_senate_district
-        project['assembly_district'] = assembly_district
-        project['town'] = town
+          project['state_senate_district'] = state_senate_district
+          project['assembly_district'] = assembly_district
+          project['town'] = town
       try:
         response = supabase.table("Projects_duplicate").insert(project).execute()
         print('INSERT', response, '\n')
@@ -71,16 +71,45 @@ def nyserda_solar_to_database():
       except Exception as exception:
         print(exception)
     else:
-      geocodio_result = geocodio.reverse((project.get('latitude'), project.get('longitude')), fields=['cd', 'stateleg']).get('results', None)
-      if geocodio_result is not None:
-        location = geocodio_result[0]
-        state_senate_district = int(location['fields']['state_legislative_districts']['senate'][0]['district_number'])
-        assembly_district = int(location['fields']['state_legislative_districts']['house'][0]['district_number'])
-        town = location['address_components']['city']
+      if (project.get('latitude', None) is not None) and (project.get('longitude', None) is not None):
+        geocodio_result = geocodio.reverse((project.get('latitude'), project.get('longitude')), fields=['cd', 'stateleg']).get('results', None)
+        if geocodio_result is not None:
+          location = geocodio_result[0]
+          state_senate_district = int(location['fields']['state_legislative_districts']['senate'][0]['district_number'])
+          assembly_district = int(location['fields']['state_legislative_districts']['house'][0]['district_number'])
+          town = location['address_components']['city']
 
-        project['state_senate_district'] = state_senate_district
-        project['assembly_district'] = assembly_district
-        project['town'] = town
+          project['state_senate_district'] = state_senate_district
+          project['assembly_district'] = assembly_district
+          project['town'] = town
+      try:
+        response = supabase.table("Projects_duplicate").insert(project).execute()
+        print('INSERT', response, '\n')
+      except Exception as exception:
+        print(exception)
+
+# TODO: dict of renewable energy technologies
+def nyiso_to_database():
+  database = []
+  database.extend(query_nyiso())
+  for project in database:
+    if project.get('proposed_cod', None) is not None:
+      try:
+        ymd = datetime.strptime(project.get('proposed_cod'), '%m-%Y').strftime('%Y-%m-%d')
+      except Exception as exception:
+        ymd = datetime.strptime(project.get('proposed_cod'), '%m/%Y').strftime('%Y-%m-%d')
+      except Exception as exception:
+        print(exception)
+      project['proposed_cod'] = ymd
+    existing_project = supabase.table("Projects_duplicate").select("*").eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
+    if len(existing_project.data) > 0:
+      # TODO: define what fields we want to update
+      try:
+        response= supabase.table("Projects_duplicate").update(project).eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
+        print('UPDATE', response, '\n')
+      except Exception as exception:
+        print(exception)
+    else:
       try:
         response = supabase.table("Projects_duplicate").insert(project).execute()
         print('INSERT', response, '\n')
@@ -90,11 +119,6 @@ def nyserda_solar_to_database():
 '''
 For testing
 '''
-# nyserda_large_to_database()
+nyserda_large_to_database()
 # nyserda_solar_to_database()
-
-# # nyiso_response = query_nyiso()
-
-# # with open('api/webscraper/database.json', 'w') as file:
-# #   json.dump(database, file, indent=4)
-# #   file.write('\n')
+# nyiso_to_database()
