@@ -1,7 +1,7 @@
 'use client';
 
 import { APIProvider, Map as GoogleMap } from '@vis.gl/react-google-maps';
-import addMarker from '../../api/maps/addMarker';
+import addMarkers from '../../api/maps/AddMarkers';
 import { Project } from '../../types/schema';
 
 const containerStyle = {
@@ -27,7 +27,7 @@ export default function Map(props: { projects: Project[] | null }) {
         disableDefaultUI={true}
         mapId={mapId}
       >
-        {addMarker({ projects: props.projects })}
+        {addMarkers({ projects: props.projects })}
       </GoogleMap>
     </APIProvider>
   );

@@ -7,12 +7,16 @@ import {
 
 export const MarkerInfoWindow = ({
   position,
+  projectId,
   projectName,
   projectDev,
+  onMarkerClick,
 }: {
   position: { lat: number; lng: number };
+  projectId: number;
   projectName: string;
   projectDev: string;
+  onMarkerClick: (projectId: number) => void;
 }) => {
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [infoWindowShown, setInfoWindowShown] = useState(false);
@@ -33,6 +37,7 @@ export const MarkerInfoWindow = ({
         position={position}
         onMouseEnter={handleMarkerEnter}
         onMouseLeave={handleClose}
+        onClick={() => onMarkerClick(projectId)}
       />
 
       {infoWindowShown && (
