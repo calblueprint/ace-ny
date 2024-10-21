@@ -11,15 +11,15 @@ importers:
       '@googlemaps/markerclusterer':
         specifier: ^2.5.3
         version: 2.5.3
-      '@react-google-maps/api':
-        specifier: ^2.19.3
-        version: 2.19.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@supabase/supabase-js':
         specifier: ^2.45.4
         version: 2.45.4
       '@types/react-modal':
         specifier: ^3.16.3
         version: 3.16.3
+      '@vis.gl/react-google-maps':
+        specifier: ^1.3.0
+        version: 1.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
@@ -180,9 +180,6 @@ packages:
     resolution: {integrity: sha512-d9zaMRSTIKDLhctzH12MtXvJKSSUhaHcjV+2Z+GK+EEY7XKpP5yR4x+N3TAcHTcu963nIr+TMcCb4DBCYX1z6Q==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  '@googlemaps/js-api-loader@1.16.2':
-    resolution: {integrity: sha512-psGw5u0QM6humao48Hn4lrChOM2/rA43ZCm3tKK9qQsEj1/VzqkCqnvGfEOshDbBQflydfaRovbKwZMF4AyqbA==}
-
   '@googlemaps/markerclusterer@2.5.3':
     resolution: {integrity: sha512-x7lX0R5yYOoiNectr10wLgCBasNcXFHiADIBdmn7jQllF2B5ENQw5XtZK+hIw4xnV0Df0xhN4LN98XqA5jaiOw==}
 
@@ -309,18 +306,6 @@ packages:
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
     engines: {node: '>=14'}
-
-  '@react-google-maps/api@2.19.3':
-    resolution: {integrity: sha512-jiLqvuOt5lOowkLeq7d077AByTyJp+s6hZVlLhlq7SBacBD37aUNpXBz2OsazfeR6Aw4a+9RRhAEjEFvrR1f5A==}
-    peerDependencies:
-      react: ^16.8 || ^17 || ^18
-      react-dom: ^16.8 || ^17 || ^18
-
-  '@react-google-maps/infobox@2.19.2':
-    resolution: {integrity: sha512-6wvBqeJsQ/eFSvoxg+9VoncQvNoVCdmxzxRpLvmjPD+nNC6mHM0vJH1xSqaKijkMrfLJT0nfkTGpovrF896jwg==}
-
-  '@react-google-maps/marker-clusterer@2.19.2':
-    resolution: {integrity: sha512-x9ibmsP0ZVqzyCo1Pitbw+4b6iEXRw/r1TCy3vOUR3eKrzWLnHYZMR325BkZW2r8fnuWE/V3Fp4QZOP9qYORCw==}
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
@@ -458,6 +443,12 @@ packages:
 
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
+
+  '@vis.gl/react-google-maps@1.3.0':
+    resolution: {integrity: sha512-+sKgw0mVphSihGc5ktbbUCNjJANeolEVq11z72mNIwsQbtgmKTDKACDJtqRBuUWipIhcj6VmzUs9g8IBe6+Adw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -1061,9 +1052,6 @@ packages:
   internal-slot@1.0.7:
     resolution: {integrity: sha512-NGnrKwXzSms2qUUih/ILZ5JBqNTSa1+ZmP6flaIp6KmSElgE9qdndzS3cqjrDovwFdmwsGsLdeFgB6suw+1e9g==}
     engines: {node: '>= 0.4'}
-
-  invariant@2.2.4:
-    resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
 
   is-arguments@1.1.1:
     resolution: {integrity: sha512-8Q7EARjzEnKpt/PCD7e1cgUS0a6X8u5tdSiMqXhojOdoV9TsMsiO+9VLC5vAmO8N7/GmXn7yjR8qnA6bVAEzfA==}
@@ -1961,10 +1949,6 @@ snapshots:
 
   '@eslint/js@8.57.1': {}
 
-  '@googlemaps/js-api-loader@1.16.2':
-    dependencies:
-      fast-deep-equal: 3.1.3
-
   '@googlemaps/markerclusterer@2.5.3':
     dependencies:
       fast-deep-equal: 3.1.3
@@ -2069,21 +2053,6 @@ snapshots:
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
-
-  '@react-google-maps/api@2.19.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@googlemaps/js-api-loader': 1.16.2
-      '@googlemaps/markerclusterer': 2.5.3
-      '@react-google-maps/infobox': 2.19.2
-      '@react-google-maps/marker-clusterer': 2.19.2
-      '@types/google.maps': 3.55.2
-      invariant: 2.2.4
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-
-  '@react-google-maps/infobox@2.19.2': {}
-
-  '@react-google-maps/marker-clusterer@2.19.2': {}
 
   '@rtsao/scc@1.1.0': {}
 
@@ -2271,6 +2240,13 @@ snapshots:
       eslint-visitor-keys: 3.4.3
 
   '@ungap/structured-clone@1.2.0': {}
+
+  '@vis.gl/react-google-maps@1.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+    dependencies:
+      '@types/google.maps': 3.55.2
+      fast-deep-equal: 3.1.3
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
 
   acorn-jsx@5.3.2(acorn@8.12.1):
     dependencies:
@@ -3081,10 +3057,6 @@ snapshots:
       es-errors: 1.3.0
       hasown: 2.0.2
       side-channel: 1.0.6
-
-  invariant@2.2.4:
-    dependencies:
-      loose-envify: 1.4.0
 
   is-arguments@1.1.1:
     dependencies:

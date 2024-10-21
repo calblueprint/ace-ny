@@ -2,7 +2,6 @@
 
 import { CSSProperties, useEffect, useState } from 'react';
 import Map from '@/components/Map/map';
-import ProjectModal from '@/components/ProjectModal';
 import queryProjects from '../api/supabase/queries/query';
 import { Project } from '../types/schema';
 
@@ -20,7 +19,6 @@ export default function Home() {
 
   return (
     <main style={mainStyles}>
-      <ProjectModal project_id={1}></ProjectModal>
       {error ? <div style={errorStyles}>{error}</div> : null}
       {projects ? <Map projects={projects} /> : null}
     </main>
