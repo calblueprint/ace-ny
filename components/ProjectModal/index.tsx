@@ -6,8 +6,10 @@ import { Project } from '../../types/schema';
 import * as styles from './styles';
 import {
   AdditionalInfo,
+  AdditionalText,
   CloseButton,
   Developer,
+  Divider,
   ModalContent,
   ModalOverlay,
   ProjectDetails,
@@ -15,6 +17,7 @@ import {
   ProjectFilters,
   ProjectName,
   ProjectOverview,
+  ProjectSize,
   ProjectStatus,
   ProjectTechnology,
   SearchBar,
@@ -87,11 +90,13 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
                   </ProjectTechnology>
                 </ProjectFilters>
               </ProjectOverview>
-              <div>{size}</div>
+              <ProjectSize>{size}</ProjectSize>
+              <Divider />
               <AdditionalInfo>
                 DETAILS
-                <br />
-                {additional_information}
+                <AdditionalText>
+                  HIIIIIII{/* {additional_information} */}
+                </AdditionalText>
               </AdditionalInfo>
             </ProjectDetails>
           </ProjectDetailsBorder>

@@ -94,7 +94,6 @@ export const Developer = styled.div`
   justify-content: space-between;
   z-index: 2;
   color: ${COLORS.grey};
-  font-family: 'CoinbaseMono';
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
@@ -105,18 +104,18 @@ export const ProjectName = styled.div`
   overflow: hidden;
   color: ${COLORS.navy};
   text-overflow: ellipsis;
-  font-family: 'CoinbaseMono';
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  padding-top: 7px;
 `;
 
 export const ProjectFilters = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 30px;
   gap: 8px;
 `;
 
@@ -133,7 +132,6 @@ export const ProjectStatus = styled.div`
 
 export const ProjectTechnology = styled.div`
   color: ${COLORS.navy};
-  font-family: 'CoinbaseMono';
   font-size: 10px;
   font-style: normal;
   font-weight: 300;
@@ -144,12 +142,52 @@ export const ProjectTechnology = styled.div`
 `;
 
 export const CloseButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 3;
+  //position: absolute;
+  box-shadow: none;
+  background: none;
+  border: none;
+`;
+
+export const ProjectSize = styled.div`
+  overflow: hidden;
+  color: rgba(46, 58, 89, 0.85);
+  text-overflow: ellipsis;
+  // /* Accent Text 1 */
+  // font-family: SansPlomb_TRIAL;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-top: 20px;
+`;
+
+export const Divider = styled.hr`
+  width: 260.002px;
+  border: 0;
+  height: 1px;
+  background-color: rgba(46, 58, 89, 0.2); /* Adjust color as needed */
+  margin: 10px 0; /* Add space above and below */
+  background: ${COLORS.lightGrey};
 `;
 
 export const AdditionalInfo = styled.div`
-  width: 315px;
+  width: 260px;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 12px */
+  color: ${COLORS.grey};
+  padding: 20px;
+  font-family: 'Coinbase Mono';
+`;
+
+export const AdditionalText = styled.div`
+  padding-top: 15px;
+  color: ${COLORS.navy};
+  font-family: 'Coinbase Sans';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 130%;
+  letter-spacing: 0.25px;
 `;
