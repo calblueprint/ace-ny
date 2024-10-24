@@ -74,7 +74,7 @@ export const projectImageStyles: CSSProperties = {
   borderRadius: '8px 8px 0px 0px',
 };
 
-export const ProjectName = styled.div`
+export const ProjectOverview = styled.div`
   width: 316px;
   height: 129px;
   margin-top: 152px;
@@ -93,14 +93,54 @@ export const Developer = styled.div`
   display: flex;
   justify-content: space-between;
   z-index: 2;
-
-  color: ${COLORS.lightGrey}; //rgba(46, 58, 89, 0.65);
-  /* Body Text 1 */
-  font-family: 'Coinbase Mono';
+  color: ${COLORS.grey};
+  font-family: 'CoinbaseMono';
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 12px */
+`;
+
+export const ProjectName = styled.div`
+  overflow: hidden;
+  color: ${COLORS.navy};
+  text-overflow: ellipsis;
+  font-family: 'CoinbaseMono';
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const ProjectFilters = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+  gap: 8px;
+`;
+
+export const ProjectStatus = styled.div`
+  color: ${COLORS.navy};
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  border-radius: 100px;
+  border: 0.5px solid rgba(46, 58, 89, 0.25);
+  padding: 3px 10px;
+`;
+
+export const ProjectTechnology = styled.div`
+  color: ${COLORS.navy};
+  font-family: 'CoinbaseMono';
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  border-radius: 100px;
+  border: 0.5px solid rgba(46, 58, 89, 0.25);
+  padding: 3px 10px;
 `;
 
 export const CloseButton = styled.button`

@@ -12,7 +12,11 @@ import {
   ModalOverlay,
   ProjectDetails,
   ProjectDetailsBorder,
+  ProjectFilters,
   ProjectName,
+  ProjectOverview,
+  ProjectStatus,
+  ProjectTechnology,
   SearchBar,
 } from './styles';
 
@@ -70,15 +74,19 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
                 alt="Project Image"
                 style={styles.projectImageStyles}
               />
-              <ProjectName>
+              <ProjectOverview>
                 <Developer>
                   Developer - {developer}
                   <CloseButton onClick={toggleModal}>X</CloseButton>
                 </Developer>
-                <div>{project_name}</div>
-                <div>{project_status}</div>
-                <div>{renewable_energy_technology}</div>
-              </ProjectName>
+                <ProjectName>{project_name}</ProjectName>
+                <ProjectFilters>
+                  <ProjectStatus>{project_status}</ProjectStatus>
+                  <ProjectTechnology>
+                    {renewable_energy_technology}
+                  </ProjectTechnology>
+                </ProjectFilters>
+              </ProjectOverview>
               <div>{size}</div>
               <AdditionalInfo>
                 DETAILS
@@ -92,45 +100,3 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
     </div>
   );
 }
-
-//   return (
-//     <div>
-//       <button onClick={toggleModal}>Open</button>
-//       <Modal
-//         isOpen={isOpen}
-//         style={{
-//           overlay: {},
-//           content: {},
-//         }}
-//       >
-//            <ModalOverlay>
-//           <ModalContent>
-//   <ProjectContainer>
-// <img
-//   src={project_image ? project_image : ''}
-//   alt="Project Image"
-//   style={styles.projectImageStyles}
-// />
-// <SearchBar>Search</SearchBar>
-//     <ProjectName>
-//       <Developer>
-//         Developer - {developer}
-//         <CloseButton onClick={toggleModal}>Close</CloseButton>
-//       </Developer>
-//       <div>{project_name}</div>
-//       <div>{project_status}</div>
-//       <div>{renewable_energy_technology}</div>
-//     </ProjectName>
-//   </ProjectContainer>
-//   <div>{size}</div>
-//   <AdditionalInfo>
-//     DETAILS
-//     <br />
-//     {additional_information}
-//   </AdditionalInfo>
-//           </ModalContent>
-//         </ModalOverlay>
-//       </Modal>
-//     </div>
-//   );
-// }
