@@ -1,10 +1,20 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Modal from 'react-modal';
 import { queryProjectbyId } from '../../api/supabase/queries/query';
 import { Project } from '../../types/schema';
 import * as styles from './styles';
+import {
+  AdditionalInfo,
+  CloseButton,
+  Developer,
+  ModalContent,
+  ModalOverlay,
+  ProjectDetails,
+  ProjectDetailsBorder,
+  ProjectName,
+  SearchBar,
+} from './styles';
 
 export default function ProjectModal({ project_id }: { project_id: number }) {
   const [isOpen, setOpen] = useState(false);
@@ -44,39 +54,83 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
   return (
     <div>
       <button onClick={toggleModal}>Open</button>
-      <Modal
+      <ModalContent
         isOpen={isOpen}
         style={{
-          overlay: styles.modalOverlayStyles,
-          content: styles.modalContentStyles,
+          overlay: {},
+          content: {},
         }}
       >
-        <div style={styles.projectContainerStyles}>
-          <img
-            src={project_image ? project_image : ''}
-            alt="Project Image"
-            style={styles.projectImageStyles}
-          />
-          <div style={styles.searchBarStyles}>Search</div>
-          <div style={styles.projectNameStyles}>
-            <div style={styles.developerStyles}>
-              Developer - {developer}
-              <button onClick={toggleModal} style={styles.closeButtonStyles}>
-                Close
-              </button>
-            </div>
-            <div>{project_name}</div>
-            <div>{project_status}</div>
-            <div>{renewable_energy_technology}</div>
-          </div>
-        </div>
-        <div>{size}</div>
-        <div style={styles.additionalInfoStyles}>
-          DETAILS
-          <br></br>
-          {additional_information}
-        </div>
-      </Modal>
+        <ModalOverlay>
+          <SearchBar>Search</SearchBar>
+          <ProjectDetailsBorder>
+            <ProjectDetails>
+              <img
+                src={project_image ? project_image : ''}
+                alt="Project Image"
+                style={styles.projectImageStyles}
+              />
+              <ProjectName>
+                <Developer>
+                  Developer - {developer}
+                  <CloseButton onClick={toggleModal}>Close</CloseButton>
+                </Developer>
+                <div>{project_name}</div>
+                <div>{project_status}</div>
+                <div>{renewable_energy_technology}</div>
+              </ProjectName>
+              <div>{size}</div>
+              <AdditionalInfo>
+                DETAILS
+                <br />
+                {additional_information}
+              </AdditionalInfo>
+            </ProjectDetails>
+          </ProjectDetailsBorder>
+        </ModalOverlay>
+      </ModalContent>
     </div>
   );
 }
+
+//   return (
+//     <div>
+//       <button onClick={toggleModal}>Open</button>
+//       <Modal
+//         isOpen={isOpen}
+//         style={{
+//           overlay: {},
+//           content: {},
+//         }}
+//       >
+//            <ModalOverlay>
+//           <ModalContent>
+//   <ProjectContainer>
+// <img
+//   src={project_image ? project_image : ''}
+//   alt="Project Image"
+//   style={styles.projectImageStyles}
+// />
+// <SearchBar>Search</SearchBar>
+//     <ProjectName>
+//       <Developer>
+//         Developer - {developer}
+//         <CloseButton onClick={toggleModal}>Close</CloseButton>
+//       </Developer>
+//       <div>{project_name}</div>
+//       <div>{project_status}</div>
+//       <div>{renewable_energy_technology}</div>
+//     </ProjectName>
+//   </ProjectContainer>
+//   <div>{size}</div>
+//   <AdditionalInfo>
+//     DETAILS
+//     <br />
+//     {additional_information}
+//   </AdditionalInfo>
+//           </ModalContent>
+//         </ModalOverlay>
+//       </Modal>
+//     </div>
+//   );
+// }
