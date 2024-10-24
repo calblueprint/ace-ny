@@ -7,5 +7,4 @@ package-lock.json
 next-env.d.ts
 pnpm-lock.yaml
 
-api/webscraper/nyserda_large.json
-api/webscraper/nyserda_small.json
+api/webscraper/*.json
