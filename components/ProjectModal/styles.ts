@@ -85,12 +85,22 @@ export const ProjectName = styled.div`
     0px 2px 6px rgba(77, 87, 114, 0.08),
     0px -2px 5px rgba(255, 255, 255, 0.1);
   position: relative;
+  padding: 20px; /* Add padding here */
+  box-sizing: border-box; /* Include padding in the width and height */
 `;
 
 export const Developer = styled.div`
   display: flex;
   justify-content: space-between;
   z-index: 2;
+
+  color: ${COLORS.lightGrey}; //rgba(46, 58, 89, 0.65);
+  /* Body Text 1 */
+  font-family: 'Coinbase Mono';
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 12px */
 `;
 
 export const CloseButton = styled.button`

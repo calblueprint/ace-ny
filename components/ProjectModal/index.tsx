@@ -73,7 +73,7 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
               <ProjectName>
                 <Developer>
                   Developer - {developer}
-                  <CloseButton onClick={toggleModal}>Close</CloseButton>
+                  <CloseButton onClick={toggleModal}>X</CloseButton>
                 </Developer>
                 <div>{project_name}</div>
                 <div>{project_status}</div>
