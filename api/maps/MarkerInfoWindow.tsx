@@ -41,7 +41,11 @@ export const MarkerInfoWindow = ({
       />
 
       {infoWindowShown && (
-        <InfoWindow anchor={marker} onClose={handleClose} disableAutoPan={true}>
+        <InfoWindow
+          anchor={marker}
+          onClose={handleClose}
+          disableAutoPan={false}
+        >
           <h2>{projectName}</h2>
           <p>Developer: {projectDev}</p>
         </InfoWindow>

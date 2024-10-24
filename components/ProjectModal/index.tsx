@@ -8,11 +8,9 @@ import * as styles from './styles';
 
 export default function ProjectModal({
   project_id,
-  closeModal,
   openFirst,
 }: {
   project_id: number;
-  closeModal: () => void;
   openFirst: boolean;
 }) {
   const [project, setProject] = useState<Project | null>(null);
@@ -55,10 +53,7 @@ export default function ProjectModal({
       >
         <div style={styles.searchBarStyles}>Search</div>
         <div style={styles.projectNameStyles}>
-          <div style={styles.developerStyles}>
-            Developer - {developer}
-            <button onClick={closeModal}>Close</button>
-          </div>
+          <div style={styles.developerStyles}>Developer - {developer}</div>
           <div>{project_name}</div>
           <div>{project_status}</div>
           <div>{renewable_energy_technology}</div>

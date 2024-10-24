@@ -10,14 +10,10 @@ export default function AddMarker({
 }) {
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
-  ); // track currently open modal
+  );
 
   const handleMarkerClick = (projectId: number) => {
     setSelectedProjectId(prevId => (prevId === projectId ? null : projectId)); // close modal if same, open if different
-  };
-
-  const closeModal = () => {
-    setSelectedProjectId(null); // close modal
   };
 
   return (
@@ -39,11 +35,7 @@ export default function AddMarker({
       })}
 
       {selectedProjectId && (
-        <ProjectModal
-          project_id={selectedProjectId}
-          closeModal={closeModal}
-          openFirst={true}
-        />
+        <ProjectModal project_id={selectedProjectId} openFirst={true} />
       )}
     </>
   );
