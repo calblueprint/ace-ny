@@ -1,10 +1,9 @@
 'use client';
 
 import { CSSProperties, useEffect, useState } from 'react';
-import Image from 'next/image';
-import BPLogo from '@/assets/images/bp-logo.png';
 import queryProjects from '../../api/supabase/queries/query';
 import Map from '../../components/Map/map';
+import { SubHeading1 } from '../../styles/texts';
 import { Project } from '../../types/schema';
 
 export default function Home() {
@@ -21,7 +20,7 @@ export default function Home() {
 
   return (
     <main style={mainStyles}>
-      <Image style={imageStyles} src={BPLogo} alt="Blueprint Logo" />
+      <SubHeading1>memamo</SubHeading1>
       <p>Open up app/page.tsx to get started!</p>
       <p>
         <b>Projects:</b>
@@ -48,12 +47,6 @@ const mainStyles: CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-};
-
-const imageStyles: CSSProperties = {
-  width: '80px',
-  height: '80px',
-  marginBottom: '0.5rem',
 };
 
 const errorStyles: CSSProperties = {
