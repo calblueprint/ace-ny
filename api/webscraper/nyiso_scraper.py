@@ -63,21 +63,12 @@ def query_nyiso():
     return filtered_list
 
 
-# print(query_nyiso())
-
-
 def write_nyiso_to_json():
     data = query_nyiso()
     # print(data)
     with open("api/webscraper/nyiso.json", "w") as file:
         json.dump(data, file, indent=4)
         file.write("\n")
-
-
-"""
-For testing
-"""
-# write_nyiso_to_json()
 
 
 def filter_nyiso_list(project_list, sheet_name):
@@ -87,6 +78,12 @@ def filter_nyiso_list(project_list, sheet_name):
     else:
         project_status = "Proposed"
     for item in project_list:
+        if sheet_name == "Interconnection Queue" and item.get("State") != "NY":
+            continue
+        elif sheet_name == "Cluster Projects" and item.get("State", None) != "New York":
+            continue
+        elif sheet_name == "In Service" and item.get("State", None) != "NY":
+            continue
         if item.get("Type/ Fuel", None) not in renewable_energy_map.keys():
             continue
         project_dict = {
@@ -153,12 +150,29 @@ def filter_nyiso_in_service_sheet():
     in_service_key = sheet_names[-1]
 
     in_service_df = all_sheets[in_service_key]  # In Service
+
+    # These functions clean and parse the headers from the In Service Sheet
+    # The In Service sheet has headers on both row 1 and row 2
+    in_service_df.columns = [
+        (
+            f"{col} {in_service_df.iloc[0].iloc[i]}"
+            if col.find("Unnamed") == -1
+            else in_service_df.iloc[0].iloc[i]
+        )
+        for i, col in enumerate(in_service_df.columns)
+    ]
+    in_service_df = in_service_df[1:]
+
+    print(in_service_df)
     in_service_df = clean_df_data(in_service_df)
     in_service_dict = in_service_df.to_dict(orient="records")
     filtered_list = filter_nyiso_list(in_service_dict, "In Service")
     return filtered_list
 
 
-# filter_nyiso_cluster_sheet()
-
-print(filter_nyiso_cluster_sheet()[-10:])
+"""
+For testing
+"""
+# write_nyiso_to_json()
+print(filter_nyiso_in_service_sheet())
+# print(filter_nyiso_cluster_sheet())
