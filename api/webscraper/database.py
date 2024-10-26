@@ -33,7 +33,7 @@ geocodio = GeocodioClient(geocode_api)
 
 def nyserda_large_to_database():
     database = []
-    database.extend(query_nyserda_large())  # for testing
+    database.extend(query_nyserda_large())
     for project in database:
         if project.get("proposed_cod", None) is not None:
             ymd = datetime.strptime(project.get("proposed_cod"), "%Y").strftime(
