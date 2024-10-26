@@ -2,6 +2,7 @@ import requests
 import urllib
 from dotenv import load_dotenv
 import os
+import pandas as pd
 
 load_dotenv('.env.local')
 
@@ -36,3 +37,17 @@ def create_update_object(existing_project, new_project):
         if value is None and new_project.get(key, None) is not None:
             update_object [key] = new_project[key]
     return update_object
+
+def clean_df_data(df):
+    df.dropna(subset=['Project Name'], inplace=True) # drops rows of xlsx that don't correspond to project data
+    df = df.where(pd.notna(df), None) # replaces NaN values with None
+    df.replace(to_replace=['', 'N/A', 'n/a', 'NAN', 'n/a'], value=None, inplace=True)
+    return df
+
+def standardize_label(renewable_energy_technology):
+    substrings = renewable_energy_technology.split('-')
+    if len(substrings) == 1:
+        return renewable_energy_technology
+    else:
+        label = substrings[0].strip() + ' ' + substrings[1][0].upper() + substrings[1][1:].strip()
+        return label

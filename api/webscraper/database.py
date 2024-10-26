@@ -105,8 +105,9 @@ def nyiso_to_database():
       project['renewable_energy_technology'] = renewable_energy_map[project.get('renewable_energy_technology')] # maps NYISO acronym to readable renewable energy tech
     existing_project = supabase.table("Projects_duplicate").select("*").eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
     if len(existing_project.data) > 0:
+      # This helper function creates a dict of only fields that the existing project is missing
+      # but the NYISO data has
       update_object = create_update_object(existing_project.data[0], project)
-      print(update_object)
       try:
         response= supabase.table("Projects_duplicate").update(update_object).eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
         print('UPDATE', response, '\n')
