@@ -6,8 +6,8 @@ from geocodio import GeocodioClient
 
 from nyserda_scraper import query_nyserda_large, query_nyserda_solar
 from nyiso_scraper import query_nyiso
-from utils.scraper_utils import create_update_object
-from database_constants import renewable_energy_map, renewable_energy_set
+from utils.scraper_utils import create_update_object, update_kdm
+from database_constants import renewable_energy_map, renewable_energy_set, initial_kdm_dict
 
 url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
@@ -92,11 +92,29 @@ def nyiso_to_database():
       except Exception as exception:
         print(exception)
       project['proposed_cod'] = ymd
-    existing_project = supabase.table("Projects_duplicate").select("*").eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
-    if len(existing_project.data) > 0:
+    existing_data = supabase.table("Projects_duplicate").select("*").eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
+    if len(existing_data.data) > 0:
+      existing_project = existing_data.data[0]
+
       # This helper function creates a dict of only fields that the existing project is missing
       # but the NYISO data has
-      update_object = create_update_object(existing_project.data[0], project)
+      update_object = create_update_object(existing_project, project)
+      if existing_project['key_development_milestones'] is None or len(existing_project['key_development_milestones']) < 0:
+        update_object['key_development_milestones'] = initial_kdm_dict
+      else:
+        update_object['key_development_milestones'] = existing_project['key_development_milestones']
+
+      # updating kdms
+      # TODO: check if current date > date_of_ir
+      if project.get('date_of_ir', None) is not None:
+        entry_date = project.get('date_of_ir')
+        entry_date = entry_date.strftime('%Y-%m-%d')
+        update_object['key_development_milestones'] = update_kdm(milestoneTitle='Entry to NYISO Queue', completed=True, date=entry_date, kdm=update_object['key_development_milestones'])
+      if project.get('ia_tender_date', None) is not None:
+        ia_date = project.get('ia_tender_date')
+        ia_date = ia_date.strftime('%Y-%m-%d')
+        update_object['key_development_milestones'] = update_kdm(milestoneTitle='Execution of an Interconnection Agreement (IA)', completed=True, date=ia_date, kdm=update_object['key_development_milestones'])
+      
       try:
         response= supabase.table("Projects_duplicate").update(update_object).eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
         print('UPDATE', response, '\n')
@@ -114,4 +132,4 @@ For testing
 '''
 # nyserda_large_to_database()
 # nyserda_solar_to_database()
-# nyiso_to_database()
+nyiso_to_database()

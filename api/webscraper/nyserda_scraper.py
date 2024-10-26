@@ -1,7 +1,7 @@
 import requests
 import json
 from utils.scraper_utils import check_status, geocode_lat_long, standardize_label
-from database_constants import renewable_energy_set
+from database_constants import renewable_energy_set, initial_kdm_dict
 
 '''
 This scrapes data from the NYSERDA Large-scale Renewable Projects database.
@@ -31,7 +31,7 @@ def query_nyserda_large():
                         # 'data_through_date': item.get('data_through_date', None),
                         'permit_process': item.get('permit_process', None),
                         'interconnection_queue_number': item.get('interconnection_queue_number', None),
-                        'key_development_milestones': None,
+                        'key_development_milestones': initial_kdm_dict,
                         'project_image': None,
                         'approved': False
         }
@@ -40,7 +40,6 @@ def query_nyserda_large():
 
 def write_large_to_json():
   nyserda_large_filtered_list = query_nyserda_large()
-  print(nyserda_large_filtered_list)
 
   with open('api/webscraper/nyserda_large.json', 'w') as file:
     json.dump(nyserda_large_filtered_list, file, indent=4)
@@ -91,7 +90,7 @@ def query_nyserda_solar(offset=0, limit=1000):
                         'latitude': lat,
                         'longitude': long,
                         # 'data_through_date': item.get('data_through_date', None),
-                        'key_development_milestones': None,
+                        'key_development_milestones': initial_kdm_dict,
                         'project_image': None,
                         'approved': False
         }

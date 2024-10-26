@@ -12,7 +12,38 @@
         "longitude": -74.9769299,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -29,7 +60,38 @@
         "longitude": -73.6512797,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -46,7 +108,38 @@
         "longitude": -79.3314108,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -63,7 +156,38 @@
         "longitude": -76.31729,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -80,7 +204,38 @@
         "longitude": -79.1521007,
         "permit_process": "SEQR",
         "interconnection_queue_number": "505",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -97,7 +252,38 @@
         "longitude": -77.4950907,
         "permit_process": "Article 10",
         "interconnection_queue_number": "396",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -114,7 +300,38 @@
         "longitude": -75.47048,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -131,7 +348,38 @@
         "longitude": -75.333972,
         "permit_process": "SEQR",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -148,7 +396,38 @@
         "longitude": -73.715033,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -165,7 +444,38 @@
         "longitude": -78.253621,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -182,7 +492,38 @@
         "longitude": -75.644797,
         "permit_process": "Article 10",
         "interconnection_queue_number": "579",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -199,7 +540,38 @@
         "longitude": -73.511362,
         "permit_process": "SEQR",
         "interconnection_queue_number": "731",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -216,7 +588,38 @@
         "longitude": -75.0758675,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -233,7 +636,38 @@
         "longitude": -75.0758675,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -250,7 +684,38 @@
         "longitude": -78.7235772,
         "permit_process": "SEQR",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -267,7 +732,38 @@
         "longitude": null,
         "permit_process": "Article 7",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -284,7 +780,38 @@
         "longitude": -74.07472,
         "permit_process": "SEQR",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -301,7 +828,38 @@
         "longitude": -74.07472,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -318,7 +876,38 @@
         "longitude": -77.4773356,
         "permit_process": "SEQR",
         "interconnection_queue_number": "1003",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -335,7 +924,38 @@
         "longitude": -73.5827569,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -352,7 +972,38 @@
         "longitude": -73.818161,
         "permit_process": "Article 10",
         "interconnection_queue_number": "570",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -369,7 +1020,38 @@
         "longitude": -77.4950907,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -386,7 +1068,38 @@
         "longitude": -77.4950907,
         "permit_process": "SEQR",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -403,7 +1116,38 @@
         "longitude": -77.4950907,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -420,7 +1164,38 @@
         "longitude": -74.9389189,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -437,7 +1212,38 @@
         "longitude": -73.5967811,
         "permit_process": "SEQR",
         "interconnection_queue_number": "730",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -454,7 +1260,38 @@
         "longitude": -77.4950907,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -471,7 +1308,38 @@
         "longitude": -77.4950907,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -488,7 +1356,38 @@
         "longitude": -75.333972,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -505,7 +1404,38 @@
         "longitude": -74.9749749,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -522,7 +1452,38 @@
         "longitude": -74.603306,
         "permit_process": "Article 10",
         "interconnection_queue_number": "619",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -539,7 +1500,38 @@
         "longitude": -75.333972,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -556,7 +1548,38 @@
         "longitude": -77.675323,
         "permit_process": "Article 10",
         "interconnection_queue_number": "422",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -573,7 +1596,38 @@
         "longitude": -73.9692387,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -590,7 +1644,38 @@
         "longitude": -73.6960985,
         "permit_process": "SEQR",
         "interconnection_queue_number": "735",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -607,7 +1692,38 @@
         "longitude": null,
         "permit_process": "Article 7",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -624,7 +1740,38 @@
         "longitude": -73.8398928,
         "permit_process": "Article 10",
         "interconnection_queue_number": "637",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -641,7 +1788,38 @@
         "longitude": -76.406518,
         "permit_process": "SEQR",
         "interconnection_queue_number": "583",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -658,7 +1836,38 @@
         "longitude": -76.406518,
         "permit_process": "SEQR",
         "interconnection_queue_number": "583",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -675,7 +1884,38 @@
         "longitude": -75.9170143,
         "permit_process": "SEQR",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -692,7 +1932,38 @@
         "longitude": -76.794758,
         "permit_process": "ORES",
         "interconnection_queue_number": "1236",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -709,7 +1980,38 @@
         "longitude": -73.8398928,
         "permit_process": "Article 10",
         "interconnection_queue_number": "570",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -726,7 +2028,38 @@
         "longitude": -73.8398928,
         "permit_process": "Article 10",
         "interconnection_queue_number": "570",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -743,7 +2076,38 @@
         "longitude": -74.3814093,
         "permit_process": "SEQR",
         "interconnection_queue_number": "682",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -760,7 +2124,38 @@
         "longitude": -74.9742171,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -777,7 +2172,38 @@
         "longitude": -74.9742171,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -794,7 +2220,38 @@
         "longitude": -77.8427071,
         "permit_process": "SEQR",
         "interconnection_queue_number": "932",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -811,7 +2268,38 @@
         "longitude": -78.388157,
         "permit_process": "ORES",
         "interconnection_queue_number": "950",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -828,7 +2316,38 @@
         "longitude": -76.9921937,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -845,7 +2364,38 @@
         "longitude": null,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -862,7 +2412,38 @@
         "longitude": -74.1810872,
         "permit_process": "Article 10",
         "interconnection_queue_number": "618",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -879,7 +2460,38 @@
         "longitude": -78.4480215,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -896,7 +2508,38 @@
         "longitude": -74.9389189,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -913,7 +2556,38 @@
         "longitude": -74.9389189,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -930,7 +2604,38 @@
         "longitude": -77.579011,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -947,7 +2652,38 @@
         "longitude": -77.579011,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -964,7 +2700,38 @@
         "longitude": -77.579011,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -981,7 +2748,38 @@
         "longitude": -75.9434966,
         "permit_process": "SEQR",
         "interconnection_queue_number": "768",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -998,7 +2796,38 @@
         "longitude": -74.07472,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1015,7 +2844,38 @@
         "longitude": -75.398914,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1032,7 +2892,38 @@
         "longitude": -75.431568,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1049,7 +2940,38 @@
         "longitude": -73.9692387,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1066,7 +2988,38 @@
         "longitude": -77.5036746,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1083,7 +3036,38 @@
         "longitude": -73.6960985,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1100,7 +3084,38 @@
         "longitude": -76.5645831,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1117,7 +3132,38 @@
         "longitude": -78.226377,
         "permit_process": "Other",
         "interconnection_queue_number": "1080",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1134,7 +3180,38 @@
         "longitude": -75.3626234,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1151,7 +3228,38 @@
         "longitude": -77.8752587,
         "permit_process": "ORES",
         "interconnection_queue_number": "717",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1168,7 +3276,38 @@
         "longitude": -78.2846414,
         "permit_process": "SEQR",
         "interconnection_queue_number": "592",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1185,7 +3324,38 @@
         "longitude": -74.9749749,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1202,7 +3372,38 @@
         "longitude": -76.5645831,
         "permit_process": "SEQR",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1219,7 +3420,38 @@
         "longitude": -74.992384,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1236,7 +3468,38 @@
         "longitude": -75.431568,
         "permit_process": "Article 10",
         "interconnection_queue_number": "531",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1253,7 +3516,38 @@
         "longitude": -78.138607,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1270,7 +3564,38 @@
         "longitude": -76.406518,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1287,7 +3612,38 @@
         "longitude": -74.117419,
         "permit_process": "SEQR",
         "interconnection_queue_number": "638",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1304,7 +3660,38 @@
         "longitude": -74.5635816,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1321,7 +3708,38 @@
         "longitude": -75.8360078,
         "permit_process": "SEQR",
         "interconnection_queue_number": "775",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1338,7 +3756,38 @@
         "longitude": -74.9749749,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1355,7 +3804,38 @@
         "longitude": -74.374646,
         "permit_process": "SEQR",
         "interconnection_queue_number": "748",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1372,7 +3852,38 @@
         "longitude": -74.808956,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1389,7 +3900,38 @@
         "longitude": -76.128326,
         "permit_process": "ORES",
         "interconnection_queue_number": "882",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1406,7 +3948,38 @@
         "longitude": -75.469133,
         "permit_process": "SEQR",
         "interconnection_queue_number": "546",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1423,7 +3996,38 @@
         "longitude": -73.7142716,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1440,7 +4044,38 @@
         "longitude": -73.6762877,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1457,7 +4092,38 @@
         "longitude": -78.5478034,
         "permit_process": "ORES",
         "interconnection_queue_number": "1079",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1474,7 +4140,38 @@
         "longitude": -73.8419354,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1491,7 +4188,38 @@
         "longitude": -78.825699,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1508,7 +4236,38 @@
         "longitude": -78.825699,
         "permit_process": "SEQR",
         "interconnection_queue_number": "234",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1525,7 +4284,38 @@
         "longitude": -78.825699,
         "permit_process": "SEQR",
         "interconnection_queue_number": "234",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1542,7 +4332,38 @@
         "longitude": -73.8419354,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1559,7 +4380,38 @@
         "longitude": -73.8419354,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1576,7 +4428,38 @@
         "longitude": -74.88606,
         "permit_process": "ORES",
         "interconnection_queue_number": "1229",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1593,7 +4476,38 @@
         "longitude": -73.758181,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1610,7 +4524,38 @@
         "longitude": null,
         "permit_process": "Article 7",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1627,7 +4572,38 @@
         "longitude": -74.808956,
         "permit_process": "SEQR",
         "interconnection_queue_number": "696",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1644,7 +4620,38 @@
         "longitude": -75.2496682,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1661,7 +4668,38 @@
         "longitude": -75.6175465,
         "permit_process": "SEQR",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1678,7 +4716,38 @@
         "longitude": -75.333972,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1695,7 +4764,38 @@
         "longitude": -73.6512797,
         "permit_process": "ORES",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1712,7 +4812,38 @@
         "longitude": -78.253621,
         "permit_process": "ORES",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1729,7 +4860,38 @@
         "longitude": -73.9692387,
         "permit_process": "ORES",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1746,7 +4908,38 @@
         "longitude": -73.9692387,
         "permit_process": "ORES",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1763,7 +4956,38 @@
         "longitude": -73.9692387,
         "permit_process": "ORES",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1780,7 +5004,38 @@
         "longitude": -78.1587123,
         "permit_process": "ORES",
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1797,7 +5052,38 @@
         "longitude": -73.896442,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1814,7 +5100,38 @@
         "longitude": -78.1587123,
         "permit_process": null,
         "interconnection_queue_number": null,
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     },
@@ -1831,7 +5148,38 @@
         "longitude": -77.8601678,
         "permit_process": "ORES",
         "interconnection_queue_number": "777",
-        "key_development_milestones": null,
+        "key_development_milestones": [
+            {
+                "milestoneTitle": "Entry to NYISO Queue",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Application for permit to ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Issuance of permit from ORES",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Winning a contract award from NYSERDA",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Execution of an Interconnection Agreement (IA)",
+                "completed": false,
+                "date": null
+            },
+            {
+                "milestoneTitle": "Start of operations",
+                "completed": false,
+                "date": null
+            }
+        ],
         "project_image": null,
         "approved": false
     }
