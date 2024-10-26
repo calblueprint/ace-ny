@@ -2,6 +2,7 @@ import { CSSProperties } from 'react';
 import Modal from 'react-modal';
 import styled from 'styled-components';
 import COLORS from '../../styles/colors';
+import { AccentText1, Heading1 } from '../../styles/texts';
 
 export const ModalOverlay = styled.div`
   width: 310px;
@@ -78,14 +79,14 @@ export const ProjectOverview = styled.div`
   width: 316px;
   height: 129px;
   margin-top: 152px;
-  flex-shrink: 0;
+  // flex-shrink: 0;
   border-radius: 8px;
   background: ${COLORS.white};
   box-shadow:
     0px 2px 6px rgba(77, 87, 114, 0.08),
     0px -2px 5px rgba(255, 255, 255, 0.1);
   position: relative;
-  padding: 20px; /* Add padding here */
+  padding: 15px; /* Add padding here */
   box-sizing: border-box; /* Include padding in the width and height */
 `;
 
@@ -94,51 +95,46 @@ export const Developer = styled.div`
   justify-content: space-between;
   z-index: 2;
   color: ${COLORS.grey};
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%; /* 12px */
+  // font-size: 10px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: 120%; /* 12px */
 `;
 
 export const ProjectName = styled.div`
   overflow: hidden;
   color: ${COLORS.navy};
   text-overflow: ellipsis;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  padding-top: 7px;
+  // font-size: 22px;
+  // font-style: normal;
+  // font-weight: 400;
+  //line-height: normal;
+  padding-bottom: 15px;
+
+  ${Heading1} {
+    //display: inline;
+    margin: 0;
+  }
 `;
 
-export const ProjectFilters = styled.div`
+export const ProjectFilterWrapper = styled.div`
   display: flex;
   align-items: center;
-  width: 100%;
-  margin-top: 30px;
   gap: 8px;
 `;
 
-export const ProjectStatus = styled.div`
+export const ProjectFilter = styled.div`
   color: ${COLORS.navy};
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
   border-radius: 100px;
   border: 0.5px solid rgba(46, 58, 89, 0.25);
+  display: inline-flex;
+  height: 22px;
   padding: 3px 10px;
-`;
-
-export const ProjectTechnology = styled.div`
-  color: ${COLORS.navy};
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-  border-radius: 100px;
-  border: 0.5px solid rgba(46, 58, 89, 0.25);
-  padding: 3px 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 `;
 
 export const CloseButton = styled.button`
@@ -154,11 +150,15 @@ export const ProjectSize = styled.div`
   text-overflow: ellipsis;
   // /* Accent Text 1 */
   // font-family: SansPlomb_TRIAL;
-  font-size: 56px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  // font-size: 56px;
+  // font-style: normal;
+  // font-weight: 400;
+  // line-height: normal;
   padding-top: 20px;
+
+  ${AccentText1} {
+    margin: 0;
+  }
 `;
 
 export const Divider = styled.hr`

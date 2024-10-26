@@ -2,6 +2,12 @@
 
 import React, { useEffect, useState } from 'react';
 import { queryProjectbyId } from '../../api/supabase/queries/query';
+import {
+  AccentText1,
+  BodyText1,
+  BodyText2,
+  Heading1,
+} from '../../styles/texts';
 import { Project } from '../../types/schema';
 import * as styles from './styles';
 import {
@@ -14,12 +20,11 @@ import {
   ModalOverlay,
   ProjectDetails,
   ProjectDetailsBorder,
-  ProjectFilters,
+  ProjectFilter,
+  ProjectFilterWrapper,
   ProjectName,
   ProjectOverview,
   ProjectSize,
-  ProjectStatus,
-  ProjectTechnology,
   SearchBar,
 } from './styles';
 
@@ -61,13 +66,7 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
   return (
     <div>
       <button onClick={toggleModal}>Open</button>
-      <ModalContent
-        isOpen={isOpen}
-        style={{
-          overlay: {},
-          content: {},
-        }}
-      >
+      <ModalContent isOpen={isOpen}>
         <ModalOverlay>
           <SearchBar>Search</SearchBar>
           <ProjectDetailsBorder>
@@ -79,23 +78,31 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
               />
               <ProjectOverview>
                 <Developer>
-                  Developer - {developer}
+                  <BodyText1>Developer - {developer}</BodyText1>
                   <CloseButton onClick={toggleModal}>X</CloseButton>
                 </Developer>
-                <ProjectName>{project_name}</ProjectName>
-                <ProjectFilters>
-                  <ProjectStatus>{project_status}</ProjectStatus>
-                  <ProjectTechnology>
-                    {renewable_energy_technology}
-                  </ProjectTechnology>
-                </ProjectFilters>
+                <ProjectName>
+                  <Heading1>{project_name}</Heading1>
+                </ProjectName>
+                <ProjectFilterWrapper>
+                  <ProjectFilter>
+                    <BodyText1>{project_status}</BodyText1>
+                  </ProjectFilter>
+                  <ProjectFilter>
+                    <BodyText1>{renewable_energy_technology}</BodyText1>
+                  </ProjectFilter>
+                </ProjectFilterWrapper>
               </ProjectOverview>
-              <ProjectSize>{size}</ProjectSize>
+              <ProjectSize>
+                <AccentText1>{size}</AccentText1>
+              </ProjectSize>
               <Divider />
               <AdditionalInfo>
-                DETAILS
+                <BodyText1>DETAILS</BodyText1>
                 <AdditionalText>
-                  HIIIIIII{/* {additional_information} */}
+                  <BodyText1>
+                    HIIIIIII{/* {additional_information} */}
+                  </BodyText1>
                 </AdditionalText>
               </AdditionalInfo>
             </ProjectDetails>
