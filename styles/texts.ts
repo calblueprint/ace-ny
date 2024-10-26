@@ -1,31 +1,59 @@
-import styled from 'styled-components';
+'use client';
 
-export const Heading1 = styled.h1`
-  font-family: 'Public Sans', sans-serif;
+import styled, { css } from 'styled-components';
+import COLORS from './colors';
+import { CoinbaseMono, CoinbaseSans } from './fonts';
+
+interface TextProps {
+  $color?: string;
+  $fontWeight?: number | string;
+  $align?: 'left' | 'right' | 'center' | 'end' | 'justify' | 'start';
+}
+
+const TextStylesCoinbaseMono = css<TextProps>`
+  ${CoinbaseMono.style}
+  font-weight: ${({ $fontWeight }) => $fontWeight || '700'};
+  color: ${({ $color }) => $color || 'black'};
+  text-align: ${({ $align }) => $align};
+  margin: 0;
+`;
+
+const TextStylesCoinbaseSans = css<TextProps>`
+  ${CoinbaseSans.style}
+  font-weight: ${({ $fontWeight }) => $fontWeight || '700'};
+  color: ${({ $color }) => $color || 'black'};
+  text-align: ${({ $align }) => $align};
+  margin: 0;
+`;
+
+export const Heading1 = styled.h1<TextProps>`
+  ${TextStylesCoinbaseMono}
+  font-weight: 300;
+  color: ${COLORS.grey};
   font-size: 1.375rem;
   font-style: normal;
-  font-weight: 400;
   line-height: normal;
 `;
 
-export const SubHeading1 = styled.h2`
-  font-family: 'Public Sans', sans-serif;
+export const SubHeading1 = styled.h2<TextProps>`
+  ${TextStylesCoinbaseSans}
   font-size: 0.875rem;
+  color: ${COLORS.grey};
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 `;
 
-export const BodyText1 = styled.p`
-  font-family: 'Public Sans', sans-serif;
+export const BodyText1 = styled.p<TextProps>`
+  ${TextStylesCoinbaseMono}
   font-size: 0.625rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 120%;
 `;
 
-export const BodyText2 = styled.p`
-  font-family: 'Public Sans', sans-serif;
+export const BodyText2 = styled.p<TextProps>`
+  ${TextStylesCoinbaseSans}
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 300;
@@ -33,19 +61,19 @@ export const BodyText2 = styled.p`
   letter-spacing: 0.25px;
 `;
 
-export const AccentText1 = styled.h4`
-  font-family: SansPlomb_TRIAL;
+export const AccentText1 = styled.h4<TextProps>`
+  ${TextStylesCoinbaseSans}
   font-size: 3.5rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 `;
 
-export const AccentText2 = styled.h4`
-  font-family: 'Public Sans', sans-serif;
+export const AccentText2 = styled.h4<TextProps>`
+  ${TextStylesCoinbaseMono}
   font-size: 0.875rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: normal;
 `;
 
