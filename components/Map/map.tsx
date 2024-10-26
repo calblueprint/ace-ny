@@ -3,6 +3,7 @@
 import { APIProvider, Map as GoogleMap } from '@vis.gl/react-google-maps';
 import addMarkers from '../../api/maps/AddMarkers';
 import { Project } from '../../types/schema';
+import './styles.css';
 
 const containerStyle = {
   width: '700px',
