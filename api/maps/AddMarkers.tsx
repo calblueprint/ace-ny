@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
+import { MarkerClusterer } from '@googlemaps/markerclusterer';
+import { useMap } from '@vis.gl/react-google-maps';
 import ProjectModal from '@/components/ProjectModal';
 import { Project } from '../../types/schema';
 import { MarkerInfoWindow } from './MarkerInfoWindow';
@@ -20,6 +22,14 @@ export default function AddMarker({
     setSelectedProjectId(null); // close modal
   };
 
+  const map = useMap();
+
+  const clusterer = useMemo(() => {
+    if (!map) return null;
+
+    return new MarkerClusterer({ map });
+  }, [map]);
+
   return (
     <>
       {projects?.map((project: Project) => {
@@ -34,6 +44,7 @@ export default function AddMarker({
             projectDev={project.developer}
             projectId={project.id}
             onMarkerClick={handleMarkerClick}
+            clusterer={clusterer}
           />
         );
       })}

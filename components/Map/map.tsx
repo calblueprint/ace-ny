@@ -1,7 +1,7 @@
 'use client';
 
 import { APIProvider, Map as GoogleMap } from '@vis.gl/react-google-maps';
-import addMarkers from '../../api/maps/AddMarkers';
+import AddMarkers from '../../api/maps/AddMarkers';
 import { Project } from '../../types/schema';
 import './styles.css';
 
@@ -28,7 +28,8 @@ export default function Map(props: { projects: Project[] | null }) {
         disableDefaultUI={true}
         mapId={mapId}
       >
-        {addMarkers({ projects: props.projects })}
+        <AddMarkers projects={props.projects} />
+        {/* // add clustered markers here */}
       </GoogleMap>
     </APIProvider>
   );
