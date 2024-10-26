@@ -126,6 +126,7 @@ def filter_nyiso_iq_sheet():
     iq_df = all_sheets[iq_key]  # Interconnection Queue
     iq_df = clean_df_data(iq_df)
     iq_list = iq_df.to_dict(orient="records")
+
     filtered_list = filter_nyiso_list(iq_list, "Interconnection Queue")
     return filtered_list
 
@@ -133,13 +134,12 @@ def filter_nyiso_iq_sheet():
 def filter_nyiso_cluster_sheet():
     all_sheets = query_nyiso_excel()
     sheet_names = list(all_sheets.keys())
-    print(sheet_names[1])
-    print(all_sheets[sheet_names[1]])
     cluster_projects_key = sheet_names[1]
 
     cluster_projects_df = all_sheets[cluster_projects_key]  # Cluster Projects
     cluster_projects_df = clean_df_data(cluster_projects_df)
     cluster_projects_list = cluster_projects_df.to_dict(orient="records")
+
     filtered_list = filter_nyiso_list(cluster_projects_list, "Cluster Project")
     return filtered_list
 
@@ -163,7 +163,6 @@ def filter_nyiso_in_service_sheet():
     ]
     in_service_df = in_service_df[1:]
 
-    print(in_service_df)
     in_service_df = clean_df_data(in_service_df)
     in_service_dict = in_service_df.to_dict(orient="records")
     filtered_list = filter_nyiso_list(in_service_dict, "In Service")
@@ -174,5 +173,5 @@ def filter_nyiso_in_service_sheet():
 For testing
 """
 # write_nyiso_to_json()
-print(filter_nyiso_in_service_sheet())
+# print(filter_nyiso_in_service_sheet())
 # print(filter_nyiso_cluster_sheet())

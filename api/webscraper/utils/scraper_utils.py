@@ -3,6 +3,7 @@ import urllib
 from dotenv import load_dotenv
 import os
 import pandas as pd
+from datetime import datetime
 
 load_dotenv(".env.local")
 
@@ -58,11 +59,11 @@ def create_update_object(existing_project, new_project):
 
 def clean_df_data(df):
     df = df.copy()
-    df = df.infer_objects()
     df.dropna(
         subset=["Project Name"], inplace=True
     )  # drops rows of xlsx that don't correspond to project data
-    df = df.fillna("").infer_objects(copy=False)
+    with pd.option_context("future.no_silent_downcasting", True):
+        df = df.fillna("").infer_objects(copy=False)
     df = df.where(pd.notna(df), None)  # replaces NaN values with None
     df = df.replace({pd.NaT: None})
     df.replace(to_replace=["", "N/A", "n/a", "NAN", "n/a"], value=None, inplace=True)
@@ -89,5 +90,14 @@ def update_kdm(milestoneTitle, completed, date, kdm):
     updated_kdm = [
         milestone if m["milestoneTitle"] == milestoneTitle else m for m in kdm
     ]
-    print("new kdm", updated_kdm)
+
     return updated_kdm
+
+
+def turn_timestamp_to_string(timestamp):
+    return timestamp.to_pydatetime().strftime("%Y-%m-%d")
+
+
+# commands for creating requirements.txt file
+# python -m pipreqs.pipreqs --savepath=requirements.in && pip-compile
+# python -m piptools compile requirements.in

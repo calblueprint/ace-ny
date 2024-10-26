@@ -45,7 +45,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "Altona",
@@ -93,7 +94,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "Arkwright Summit",
@@ -141,7 +143,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2020"
     },
     {
         "project_name": "Baldwinsville",
@@ -189,7 +192,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2021"
     },
     {
         "project_name": "Ball Hill",
@@ -237,7 +241,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2023"
     },
     {
         "project_name": "Baron Winds I",
@@ -285,7 +290,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2023"
     },
     {
         "project_name": "Bear Creek",
@@ -333,7 +339,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2006"
     },
     {
         "project_name": "Belfort Unit 3",
@@ -381,7 +388,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2016"
     },
     {
         "project_name": "Black Brook",
@@ -429,7 +437,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2011"
     },
     {
         "project_name": "Bliss",
@@ -477,7 +486,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "Bluestone Wind",
@@ -525,7 +535,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2023"
     },
     {
         "project_name": "Branscomb Solar",
@@ -573,7 +584,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2022"
     },
     {
         "project_name": "Browns Falls",
@@ -621,7 +633,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "Browns Falls*",
@@ -669,7 +682,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2006"
     },
     {
         "project_name": "Burt Dam Incremental Hydro",
@@ -717,7 +731,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2016"
     },
     {
         "project_name": "Champlain Hudson Power Express (CHPE)",
@@ -765,7 +780,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2026"
     },
     {
         "project_name": "Chasm Falls",
@@ -813,7 +829,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2022"
     },
     {
         "project_name": "Chateaugay Wind Farm",
@@ -861,7 +878,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "Clear View Solar",
@@ -909,7 +927,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2025"
     },
     {
         "project_name": "Clinton Wind",
@@ -957,7 +976,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "Coeymans Solar",
@@ -1005,7 +1025,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2024"
     },
     {
         "project_name": "Cohocton",
@@ -1053,7 +1074,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "Cohocton Wind Project",
@@ -1101,7 +1123,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2022"
     },
     {
         "project_name": "Cohocton*",
@@ -1149,7 +1172,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "Colton",
@@ -1197,7 +1221,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "Darby Solar",
@@ -1245,7 +1270,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2023"
     },
     {
         "project_name": "Dutch Hill",
@@ -1293,7 +1319,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "Dutch Hill*",
@@ -1341,7 +1368,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "Eagle",
@@ -1389,7 +1417,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "East Norfolk",
@@ -1437,7 +1466,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "East Point Energy Center",
@@ -1485,7 +1515,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2024"
     },
     {
         "project_name": "Effley",
@@ -1533,7 +1564,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "Eight Point Wind",
@@ -1581,7 +1613,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2023"
     },
     {
         "project_name": "Ellenburg",
@@ -1629,7 +1662,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "ELP Stillwater Solar",
@@ -1677,7 +1711,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2023"
     },
     {
         "project_name": "Empire Wind 1",
@@ -1725,7 +1760,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2026"
     },
     {
         "project_name": "Flint Mine Solar",
@@ -1773,7 +1809,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2026"
     },
     {
         "project_name": "Fulton Unit 1",
@@ -1821,7 +1858,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2018"
     },
     {
         "project_name": "Fulton Unit 2",
@@ -1869,7 +1907,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2018"
     },
     {
         "project_name": "Glen Park",
@@ -1917,7 +1956,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2016"
     },
     {
         "project_name": "Gravel Road Solar",
@@ -1965,7 +2005,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2026"
     },
     {
         "project_name": "Greene County 1",
@@ -2013,7 +2054,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2025"
     },
     {
         "project_name": "Greene County 2",
@@ -2061,7 +2103,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2025"
     },
     {
         "project_name": "Grissom Solar",
@@ -2109,7 +2152,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2023"
     },
     {
         "project_name": "Hardscrabble",
@@ -2157,7 +2201,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2011"
     },
     {
         "project_name": "Hardscrabble Wind Energy Project",
@@ -2205,7 +2250,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2011"
     },
     {
         "project_name": "Hatchery Solar",
@@ -2253,7 +2299,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2025"
     },
     {
         "project_name": "Hemlock Ridge Solar",
@@ -2301,7 +2348,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2025"
     },
     {
         "project_name": "Henkel US Operations Corp - Geneva Facility",
@@ -2349,7 +2397,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2013"
     },
     {
         "project_name": "High Falls",
@@ -2397,7 +2446,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "High River Energy Center",
@@ -2445,7 +2495,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2024"
     },
     {
         "project_name": "High Sheldon",
@@ -2493,7 +2544,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2012"
     },
     {
         "project_name": "Higley Falls",
@@ -2541,7 +2593,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "Higley Falls*",
@@ -2589,7 +2642,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2006"
     },
     {
         "project_name": "Howard",
@@ -2637,7 +2691,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2012"
     },
     {
         "project_name": "Howard (Expansion)",
@@ -2685,7 +2740,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2013"
     },
     {
         "project_name": "Howard*",
@@ -2733,7 +2789,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2013"
     },
     {
         "project_name": "Janis Solar",
@@ -2781,7 +2838,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2023"
     },
     {
         "project_name": "Jericho Rise",
@@ -2829,7 +2887,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2019"
     },
     {
         "project_name": "Locust Ridge",
@@ -2877,7 +2936,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2012"
     },
     {
         "project_name": "Maple Ridge",
@@ -2925,7 +2985,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2006"
     },
     {
         "project_name": "Marble River",
@@ -2973,7 +3034,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2012"
     },
     {
         "project_name": "Marsh Hill",
@@ -3021,7 +3083,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2014"
     },
     {
         "project_name": "Mechanicville",
@@ -3069,7 +3132,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2011"
     },
     {
         "project_name": "Mill Street Dam",
@@ -3117,7 +3181,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2014"
     },
     {
         "project_name": "Mineral Basin Solar",
@@ -3165,7 +3230,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2028"
     },
     {
         "project_name": "Moose River Hydro",
@@ -3213,7 +3279,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2021"
     },
     {
         "project_name": "Morris Ridge Solar",
@@ -3261,7 +3328,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2025"
     },
     {
         "project_name": "Niagara Solar",
@@ -3309,7 +3377,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2025"
     },
     {
         "project_name": "Norfolk",
@@ -3357,7 +3426,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "North Division Street Dam Hydroelectric Facility",
@@ -3405,7 +3475,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2018"
     },
     {
         "project_name": "Norwood",
@@ -3453,7 +3524,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "Number Three Wind Farm",
@@ -3501,7 +3573,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2023"
     },
     {
         "project_name": "Orangeville",
@@ -3549,7 +3622,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2014"
     },
     {
         "project_name": "Oswego Falls",
@@ -3597,7 +3671,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "Pattersonville",
@@ -3645,7 +3720,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2024"
     },
     {
         "project_name": "Piercefield",
@@ -3693,7 +3769,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "Puckett Solar",
@@ -3741,7 +3818,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2022"
     },
     {
         "project_name": "Raymondville",
@@ -3789,7 +3867,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2008"
     },
     {
         "project_name": "Regan Solar",
@@ -3837,7 +3916,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2023"
     },
     {
         "project_name": "Rio",
@@ -3885,7 +3965,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2014"
     },
     {
         "project_name": "Riverside Solar",
@@ -3933,7 +4014,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2025"
     },
     {
         "project_name": "Roaring Brook Wind",
@@ -3981,7 +4063,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2021"
     },
     {
         "project_name": "School Street",
@@ -4029,7 +4112,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2011"
     },
     {
         "project_name": "Sherman Island",
@@ -4077,7 +4161,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "Somerset Solar",
@@ -4125,7 +4210,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2025"
     },
     {
         "project_name": "Spier Falls",
@@ -4173,7 +4259,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2006"
     },
     {
         "project_name": "Steel Winds II",
@@ -4221,7 +4308,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2012"
     },
     {
         "project_name": "Steel Winds Wind Farm",
@@ -4269,7 +4357,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2022"
     },
     {
         "project_name": "Steel Winds Wind Farm 2",
@@ -4317,7 +4406,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2021"
     },
     {
         "project_name": "Stewarts Bridge",
@@ -4365,7 +4455,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2013"
     },
     {
         "project_name": "Stewarts Bridge Hydro (Upgrade)",
@@ -4413,7 +4504,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2011"
     },
     {
         "project_name": "Stonewall Solar",
@@ -4461,7 +4553,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2026"
     },
     {
         "project_name": "Stuyvesant Falls",
@@ -4509,7 +4602,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2013"
     },
     {
         "project_name": "Sunrise Wind",
@@ -4557,7 +4651,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2026"
     },
     {
         "project_name": "Swinging Bridge",
@@ -4605,7 +4700,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2020"
     },
     {
         "project_name": "Talcville",
@@ -4653,7 +4749,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2021"
     },
     {
         "project_name": "Tannery Island - Tannery Island Hydro",
@@ -4701,7 +4798,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2016"
     },
     {
         "project_name": "Taylorville Hydro",
@@ -4749,7 +4847,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2011"
     },
     {
         "project_name": "Valcour Altona Windpark",
@@ -4797,7 +4896,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2028"
     },
     {
         "project_name": "Valcour Bliss Windpark",
@@ -4845,7 +4945,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2028"
     },
     {
         "project_name": "Valcour Chateaugay Windpark",
@@ -4893,7 +4994,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2028"
     },
     {
         "project_name": "Valcour Clinton Windpark",
@@ -4941,7 +5043,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2028"
     },
     {
         "project_name": "Valcour Ellenburg Windpark",
@@ -4989,7 +5092,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2028"
     },
     {
         "project_name": "Valcour Wethersfield Windpark",
@@ -5037,7 +5141,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2028"
     },
     {
         "project_name": "Wappingers Falls",
@@ -5085,7 +5190,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2011"
     },
     {
         "project_name": "Wethersfield",
@@ -5133,7 +5239,8 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2009"
     },
     {
         "project_name": "White Creek Solar, LLC",
@@ -5181,6 +5288,7 @@
             }
         ],
         "project_image": null,
-        "approved": false
+        "approved": false,
+        "year_of_delivery_start_date": "2026"
     }
 ]
