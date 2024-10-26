@@ -27,3 +27,12 @@ def geocode_lat_long(address):
         latitude = geocode_info['results'][0]['geometry']['location']['lat']
         longitude = geocode_info['results'][0]['geometry']['location']['lng']    
     return latitude, longitude
+
+project_fields = ['project_name', 'project_status', 'developer', 'county', 'region', 'size', 'latitude', 'longitude', 'key_development_milestones', 'project_image', 'interconnection_queue_number', 'approved']
+
+def create_update_object(existing_project, new_project):
+    update_object = {}
+    for key, value in existing_project.items():
+        if value is None and new_project.get(key, None) is not None:
+            update_object [key] = new_project[key]
+    return update_object

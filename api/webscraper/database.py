@@ -6,6 +6,7 @@ from geocodio import GeocodioClient
 
 from nyserda_scraper import query_nyserda_large, query_nyserda_solar
 from nyiso_scraper import query_nyiso
+from utils.scraper_utils import create_update_object
 
 renewable_energy_set = {'Hydroelectric', 'Land Based Wind', 'Offshore Wind', 'Solar', 'Geothermal', 'Energy Storage', 'Pumped Storage'}
 
@@ -104,9 +105,10 @@ def nyiso_to_database():
       project['renewable_energy_technology'] = renewable_energy_map[project.get('renewable_energy_technology')] # maps NYISO acronym to readable renewable energy tech
     existing_project = supabase.table("Projects_duplicate").select("*").eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
     if len(existing_project.data) > 0:
-      # TODO: define what fields we want to update
+      update_object = create_update_object(existing_project.data[0], project)
+      print(update_object)
       try:
-        response= supabase.table("Projects_duplicate").update(project).eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
+        response= supabase.table("Projects_duplicate").update(update_object).eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
         print('UPDATE', response, '\n')
       except Exception as exception:
         print(exception)
@@ -120,6 +122,6 @@ def nyiso_to_database():
 '''
 For testing
 '''
-nyserda_large_to_database()
+# nyserda_large_to_database()
 # nyserda_solar_to_database()
 # nyiso_to_database()
