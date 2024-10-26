@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
-import { querySpecificProject } from '../../api/supabase/queries/query';
+import { queryProjectbyId } from '../../api/supabase/queries/query';
 import { Project } from '../../types/schema';
 import * as styles from './styles';
 
@@ -18,7 +18,7 @@ export default function ProjectModal({
   const [project, setProject] = useState<Project | null>(null);
 
   useEffect(() => {
-    querySpecificProject(project_id).then(data => {
+    queryProjectbyId(project_id).then(data => {
       setProject(data);
     });
   }, [project_id]);
@@ -37,7 +37,7 @@ export default function ProjectModal({
     // region,
     // state_senate_district,
     // assembly_district,
-    // project_image,
+    project_image,
     additional_information,
     // key_development_milestones,
     // proposed_cod,
@@ -53,15 +53,24 @@ export default function ProjectModal({
           content: styles.modalContentStyles,
         }}
       >
-        <div style={styles.searchBarStyles}>Search</div>
-        <div style={styles.projectNameStyles}>
-          <div style={styles.developerStyles}>
-            Developer - {developer}
-            <button onClick={closeModal}>Close</button>
+        <div style={styles.projectContainerStyles}>
+          <img
+            src={project_image ? project_image : ''}
+            alt="Project Image"
+            style={styles.projectImageStyles}
+          />
+          <div style={styles.searchBarStyles}>Search</div>
+          <div style={styles.projectNameStyles}>
+            <div style={styles.developerStyles}>
+              Developer - {developer}
+              <button onClick={closeModal} style={styles.closeButtonStyles}>
+                Close
+              </button>
+            </div>
+            <div>{project_name}</div>
+            <div>{project_status}</div>
+            <div>{renewable_energy_technology}</div>
           </div>
-          <div>{project_name}</div>
-          <div>{project_status}</div>
-          <div>{renewable_energy_technology}</div>
         </div>
         <div>{size}</div>
         <div style={styles.additionalInfoStyles}>
