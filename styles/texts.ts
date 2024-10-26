@@ -46,6 +46,7 @@ export const SubHeading1 = styled.h2<TextProps>`
 
 export const BodyText1 = styled.p<TextProps>`
   ${TextStylesCoinbaseMono}
+  colors: ${COLORS.navy};
   font-size: 0.625rem;
   font-style: normal;
   font-weight: 300;
@@ -54,6 +55,7 @@ export const BodyText1 = styled.p<TextProps>`
 
 export const BodyText2 = styled.p<TextProps>`
   ${TextStylesCoinbaseSans}
+  colors: ${COLORS.navy};
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 300;
@@ -65,12 +67,14 @@ export const AccentText1 = styled.h4<TextProps>`
   ${TextStylesCoinbaseSans}
   font-size: 3.5rem;
   font-style: normal;
+  colors: ${COLORS.navy};
   font-weight: 400;
   line-height: normal;
 `;
 
 export const AccentText2 = styled.h4<TextProps>`
   ${TextStylesCoinbaseMono}
+  colors: ${COLORS.navy};
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 300;
