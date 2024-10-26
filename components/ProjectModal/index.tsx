@@ -6,8 +6,15 @@ import { queryProjectbyId } from '../../api/supabase/queries/query';
 import { Project } from '../../types/schema';
 import * as styles from './styles';
 
-export default function ProjectModal({ project_id }: { project_id: number }) {
-  const [isOpen, setOpen] = useState(false);
+export default function ProjectModal({
+  project_id,
+  closeModal,
+  openFirst,
+}: {
+  project_id: number;
+  closeModal: () => void;
+  openFirst: boolean;
+}) {
   const [project, setProject] = useState<Project | null>(null);
 
   useEffect(() => {
@@ -37,15 +44,10 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
     // approved
   } = project || {};
 
-  const toggleModal = () => {
-    setOpen(!isOpen);
-  };
-
   return (
     <div>
-      <button onClick={toggleModal}>Open</button>
       <Modal
-        isOpen={isOpen}
+        isOpen={openFirst}
         style={{
           overlay: styles.modalOverlayStyles,
           content: styles.modalContentStyles,
@@ -61,7 +63,7 @@ export default function ProjectModal({ project_id }: { project_id: number }) {
           <div style={styles.projectNameStyles}>
             <div style={styles.developerStyles}>
               Developer - {developer}
-              <button onClick={toggleModal} style={styles.closeButtonStyles}>
+              <button onClick={closeModal} style={styles.closeButtonStyles}>
                 Close
               </button>
             </div>

@@ -1,9 +1,9 @@
 'use client';
 
-import { useCallback, useState } from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import addMarker from '../../api/maps/addMarker';
+import { APIProvider, Map as GoogleMap } from '@vis.gl/react-google-maps';
+import addMarkers from '../../api/maps/AddMarkers';
 import { Project } from '../../types/schema';
+import './styles.css';
 
 const containerStyle = {
   width: '700px',
@@ -15,36 +15,21 @@ const center = {
   lng: -76.1474,
 };
 
-const zoom = 7;
+const mapId = '54eb1c7baba5a715'; // needed for AdvancedMarker
 
 export default function Map(props: { projects: Project[] | null }) {
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
-  });
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [map, setMap] = useState<google.maps.Map | null>(null);
-
-  const onLoad = useCallback((map: google.maps.Map) => {
-    map.setCenter(center);
-    map.setZoom(zoom);
-    setMap(map);
-  }, []);
-
-  const onUnmount = useCallback(() => {
-    setMap(null);
-  }, []);
-
-  return isLoaded ? (
-    <GoogleMap
-      mapContainerStyle={containerStyle}
-      onLoad={onLoad}
-      onUnmount={onUnmount}
-    >
-      {addMarker(props.projects)}
-    </GoogleMap>
-  ) : (
-    <></>
+  return (
+    <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
+      <GoogleMap
+        style={containerStyle}
+        defaultCenter={center}
+        defaultZoom={7}
+        gestureHandling={'greedy'}
+        disableDefaultUI={true}
+        mapId={mapId}
+      >
+        {addMarkers({ projects: props.projects })}
+      </GoogleMap>
+    </APIProvider>
   );
 }
