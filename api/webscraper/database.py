@@ -7,16 +7,7 @@ from geocodio import GeocodioClient
 from nyserda_scraper import query_nyserda_large, query_nyserda_solar
 from nyiso_scraper import query_nyiso
 from utils.scraper_utils import create_update_object
-
-renewable_energy_set = {'Hydroelectric', 'Land Based Wind', 'Offshore Wind', 'Solar', 'Geothermal', 'Energy Storage', 'Pumped Storage'}
-
-renewable_energy_map = {
-  'H': 'Hydroelectric',
-  'S': 'Solar',
-  'ES': 'Energy Storage',
-  'PS': 'Pumped Storage',
-  'OSW': 'Offshore Wind',
-}
+from database_constants import renewable_energy_map, renewable_energy_set
 
 url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
@@ -101,8 +92,6 @@ def nyiso_to_database():
       except Exception as exception:
         print(exception)
       project['proposed_cod'] = ymd
-    if project.get('renewable_energy_technology', None) in renewable_energy_map.keys():
-      project['renewable_energy_technology'] = renewable_energy_map[project.get('renewable_energy_technology')] # maps NYISO acronym to readable renewable energy tech
     existing_project = supabase.table("Projects_duplicate").select("*").eq("interconnection_queue_number", project['interconnection_queue_number']).execute()
     if len(existing_project.data) > 0:
       # This helper function creates a dict of only fields that the existing project is missing

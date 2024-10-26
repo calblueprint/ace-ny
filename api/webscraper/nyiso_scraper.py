@@ -3,16 +3,7 @@ import pandas as pd
 from io import BytesIO
 import json
 from utils.scraper_utils import clean_df_data
-
-renewable_energy_set = {'Hydroelectric', 'Land Based Wind', 'Offshore Wind', 'Solar', 'Geothermal', 'Energy Storage', 'Pumped Storage'}
-
-renewable_energy_map = {
-  'H': 'Hydroelectric',
-  'S': 'Solar',
-  'ES': 'Energy Storage',
-  'PS': 'Pumped Storage',
-  'OSW': 'Offshore Wind',
-}
+from database_constants import renewable_energy_map, renewable_energy_set
 
 def query_nyiso():
   nyiso = requests.get('https://www.nyiso.com/documents/20142/1407078/NYISO-Interconnection-Queue.xlsx')

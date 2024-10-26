@@ -1,16 +1,7 @@
 import requests
 import json
 from utils.scraper_utils import check_status, geocode_lat_long, standardize_label
-
-renewable_energy_set = {'Hydroelectric', 'Land Based Wind', 'Offshore Wind', 'Solar', 'Geothermal', 'Energy Storage', 'Pumped Storage'}
-
-renewable_energy_map = {
-  'H': 'Hydroelectric',
-  'S': 'Solar',
-  'ES': 'Energy Storage',
-  'PS': 'Pumped Storage',
-  'OSW': 'Offshore Wind',
-}
+from database_constants import renewable_energy_set
 
 '''
 This scrapes data from the NYSERDA Large-scale Renewable Projects database.
@@ -56,6 +47,7 @@ def write_large_to_json():
     file.write('\n')
 
 write_large_to_json()
+
 '''
 This scrapes data from the NYSERDA Statewide Distributed Solar Projects database.
 We filter for specific columns from the database's API and save them to a json file.
