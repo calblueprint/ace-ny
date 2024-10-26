@@ -31,7 +31,6 @@ geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
 geocodio = GeocodioClient(geocode_api)
 
 
-# TODO: kdms for inserts
 def nyserda_large_to_database():
     database = []
     database.extend(query_nyserda_large())  # for testing
