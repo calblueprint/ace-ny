@@ -31,9 +31,6 @@ def query_nyiso_excel():
         return all_sheets
 
 
-print(query_nyiso_excel())
-
-
 def query_nyiso():
     if nyiso_xlsx_href is None:
         print('ERROR: "View the Interconnection Queue" link not found')
