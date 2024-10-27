@@ -2,7 +2,7 @@ import { CSSProperties } from 'react';
 import Modal from 'react-modal';
 import styled from 'styled-components';
 import COLORS from '../../styles/colors';
-import { AccentText1, Heading1 } from '../../styles/texts';
+import { AccentText1, AccentText2, Heading1 } from '../../styles/texts';
 
 export const ModalOverlay = styled.div`
   width: 310px;
@@ -79,7 +79,6 @@ export const ProjectOverview = styled.div`
   width: 316px;
   height: 129px;
   margin-top: 152px;
-  // flex-shrink: 0;
   border-radius: 8px;
   background: ${COLORS.white};
   box-shadow:
@@ -94,21 +93,11 @@ export const Developer = styled.div`
   display: flex;
   justify-content: space-between;
   z-index: 2;
-  color: ${COLORS.grey};
-  // font-size: 10px;
-  // font-style: normal;
-  // font-weight: 400;
-  // line-height: 120%; /* 12px */
 `;
 
 export const ProjectName = styled.div`
   overflow: hidden;
-  color: ${COLORS.navy};
   text-overflow: ellipsis;
-  // font-size: 22px;
-  // font-style: normal;
-  // font-weight: 400;
-  //line-height: normal;
   padding-bottom: 15px;
 
   ${Heading1} {
@@ -121,10 +110,10 @@ export const ProjectFilterWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-bottom: 10px; /* Add margin to the bottom */
 `;
 
 export const ProjectFilter = styled.div`
-  color: ${COLORS.navy};
   border-radius: 100px;
   border: 0.5px solid rgba(46, 58, 89, 0.25);
   display: inline-flex;
@@ -138,56 +127,47 @@ export const ProjectFilter = styled.div`
 `;
 
 export const CloseButton = styled.button`
-  //position: absolute;
   box-shadow: none;
   background: none;
   border: none;
 `;
 
 export const ProjectSize = styled.div`
-  overflow: hidden;
-  color: rgba(46, 58, 89, 0.85);
-  text-overflow: ellipsis;
-  // /* Accent Text 1 */
-  // font-family: SansPlomb_TRIAL;
-  // font-size: 56px;
-  // font-style: normal;
-  // font-weight: 400;
-  // line-height: normal;
+  // display: flex; /* Use flexbox to arrange items in a row */
+  // align-items: center; /* Center items vertically */
+  // overflow: hidden;
+  // text-overflow: ellipsis;
+  display: flex; /* Use flexbox to align items in a row */
+  align-items: center; /* Center items vertically */
+  width: 260px;
   padding-top: 20px;
+  gap: 0.5rem;
 
-  ${AccentText1} {
-    margin: 0;
-  }
+  // ${AccentText1}, ${AccentText2} {
+  //   line-height: 1.2; /* Adjust as needed */
+  // }
 `;
 
 export const Divider = styled.hr`
-  width: 260.002px;
+  width: 260px;
   border: 0;
   height: 1px;
-  background-color: rgba(46, 58, 89, 0.2); /* Adjust color as needed */
-  margin: 10px 0; /* Add space above and below */
-  background: ${COLORS.lightGrey};
+  //background-color: rgba(46, 58, 89, 0.2); /* Adjust color as needed */
+  margin: 0px 0; /* Add space above and below */
+  background: rgba(46, 58, 89, 0.1);
 `;
 
 export const AdditionalInfo = styled.div`
   width: 260px;
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%; /* 12px */
-  color: ${COLORS.grey};
   padding: 20px;
-  font-family: 'Coinbase Mono';
+`;
+export const DetailsContainer = styled.div`
+  display: flex; /* Use flex to align items horizontally */
+  align-items: center; /* Center items vertically */
+  width: 100%; /* Take the full width */
+  gap: 0.5rem;
 `;
 
 export const AdditionalText = styled.div`
-  padding-top: 15px;
-  color: ${COLORS.navy};
-  font-family: 'Coinbase Sans';
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 130%;
-  letter-spacing: 0.25px;
+  padding-top: 20px;
 `;
