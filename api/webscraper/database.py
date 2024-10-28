@@ -15,11 +15,8 @@ from nyiso_scraper import (
 from utils.scraper_utils import (
     create_update_object,
     update_kdm,
-    turn_timestamp_to_string,
 )
 from database_constants import (
-    renewable_energy_map,
-    renewable_energy_set,
     initial_kdm_dict,
 )
 
@@ -35,6 +32,11 @@ def nyserda_large_to_database():
     database = []
     database.extend(query_nyserda_large())
     for project in database:
+        if project.get("proposed_cod", None) is not None:
+            ymd = datetime.strptime(project.get("proposed_cod"), "%Y").strftime(
+                "%Y-%m-%d"
+            )
+            project["proposed_cod"] = ymd
         existing_data = (
             supabase.table("Projects_duplicate")
             .select("*")
