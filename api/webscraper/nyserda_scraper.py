@@ -1,7 +1,7 @@
 import requests
 import json
 from utils.scraper_utils import check_status, geocode_lat_long, standardize_label
-from database_constants import renewable_energy_set, initial_kdm_dict
+from database_constants import renewable_energy_map, initial_kdm_dict
 
 """
 This scrapes data from the NYSERDA Large-scale Renewable Projects database.
@@ -28,16 +28,16 @@ def query_nyserda_large():
             )
             if (
                 check_status(item.get("project_status", None)) != "Cancelled"
-                and item.get("renewable_technology", None) in renewable_energy_set
+                and item.get("renewable_technology", None)
+                in renewable_energy_map.keys()
             ):
                 project_dict = {
                     "project_name": item.get("project_name", None),
                     "project_status": check_status(item.get("project_status", None)),
-                    "renewable_energy_technology": item.get(
-                        "renewable_technology", None
-                    ),
+                    "renewable_energy_technology": renewable_energy_map[
+                        item.get("renewable_technology")
+                    ],
                     "developer": item.get("developer_name", None),
-                    "proposed_cod": item.get("year_of_delivery_start_date", None),
                     "county": item.get("county_province", None),
                     "region": item.get("redc", None),
                     "zipcode": item.get("zip_code", None),

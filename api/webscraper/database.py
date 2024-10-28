@@ -15,11 +15,8 @@ from nyiso_scraper import (
 from utils.scraper_utils import (
     create_update_object,
     update_kdm,
-    turn_timestamp_to_string,
 )
 from database_constants import (
-    renewable_energy_map,
-    renewable_energy_set,
     initial_kdm_dict,
 )
 
