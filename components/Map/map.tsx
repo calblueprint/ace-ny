@@ -6,8 +6,8 @@ import { Project } from '../../types/schema';
 import './styles.css';
 
 const containerStyle = {
-  width: '700px',
-  height: '700px',
+  width: '100%',
+  height: '100%',
 };
 
 const center = {
@@ -27,6 +27,8 @@ export default function Map(props: { projects: Project[] | null }) {
         gestureHandling={'greedy'}
         disableDefaultUI={true}
         mapId={mapId}
+        mapTypeId={'roadmap'}
+        clickableIcons={false}
       >
         <AddMarkers projects={props.projects} />
       </GoogleMap>
