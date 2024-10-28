@@ -69,12 +69,12 @@ export default function ProjectModal({
                 </styles.ProjectName>
                 <styles.ProjectFilterWrapper>
                   <styles.ProjectFilter>
-                    <texts.BodyText2>{project_status}</texts.BodyText2>
+                    <texts.TagText1>{project_status}</texts.TagText1>
                   </styles.ProjectFilter>
                   <styles.ProjectFilter>
-                    <texts.BodyText2>
+                    <texts.TagText1>
                       {renewable_energy_technology}
-                    </texts.BodyText2>
+                    </texts.TagText1>
                   </styles.ProjectFilter>
                 </styles.ProjectFilterWrapper>
               </styles.ProjectOverview>
