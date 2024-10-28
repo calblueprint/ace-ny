@@ -70,6 +70,9 @@ export const projectImageStyles: CSSProperties = {
 };
 
 export const ProjectOverview = styled.div`
+  display: flex;
+  flex-direction: column;
+
   width: 316px;
   height: 129px;
   margin-top: 9.5rem;
@@ -79,13 +82,16 @@ export const ProjectOverview = styled.div`
     0px 2px 6px rgba(77, 87, 114, 0.08),
     0px -2px 5px rgba(255, 255, 255, 0.1);
   position: relative;
-  padding: 1.25rem;
   box-sizing: border-box;
+  padding: 1rem;
+  // gap: 5px;
 `;
 
 export const Developer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center; /* Aligns items vertically within the row */
+  //gap: 8px; /* Optional: Controls space between the text and button */
 `;
 
 export const ProjectName = styled.div`
@@ -119,9 +125,9 @@ export const CloseButton = styled.button`
 
 export const ProjectSize = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   width: 260px;
-  padding: 1.25rem;
+  padding-top: 1.2rem;
   gap: 0.5rem;
 `;
 
