@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { FiX, FiZap } from 'react-icons/fi';
-import Modal from 'react-modal';
 import { queryProjectbyId } from '../../api/supabase/queries/query';
 import * as texts from '../../styles/texts';
 import { Project } from '../../types/schema';
@@ -90,7 +89,7 @@ export default function ProjectModal({
               <styles.AdditionalInfo>
                 <styles.DetailsContainer>
                   <texts.BodyText1>DETAILS</texts.BodyText1>
-                  <styles.Divider /> {/* This is the new divider */}
+                  <styles.Divider />
                 </styles.DetailsContainer>
                 <styles.AdditionalText>
                   <texts.BodyText1>{additional_information}</texts.BodyText1>

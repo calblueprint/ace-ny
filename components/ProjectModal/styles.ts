@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import COLORS from '../../styles/colors';
 
 export const ModalOverlay = styled.div`
-  width: 310px; //always the same
+  width: 310px;
   height: 100%;
 `;
 
@@ -72,7 +72,6 @@ export const projectImageStyles: CSSProperties = {
 export const ProjectOverview = styled.div`
   display: flex;
   flex-direction: column;
-
   width: 316px;
   height: 129px;
   margin-top: 9.5rem;
@@ -84,14 +83,12 @@ export const ProjectOverview = styled.div`
   position: relative;
   box-sizing: border-box;
   padding: 1rem;
-  // gap: 5px;
 `;
 
 export const Developer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Aligns items vertically within the row */
-  //gap: 8px; /* Optional: Controls space between the text and button */
+  align-items: center;
 `;
 
 export const ProjectName = styled.div`
