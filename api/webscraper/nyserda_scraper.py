@@ -37,7 +37,6 @@ def query_nyserda_large():
                         "renewable_technology", None
                     ),
                     "developer": item.get("developer_name", None),
-                    "proposed_cod": item.get("year_of_delivery_start_date", None),
                     "county": item.get("county_province", None),
                     "region": item.get("redc", None),
                     "zipcode": item.get("zip_code", None),
