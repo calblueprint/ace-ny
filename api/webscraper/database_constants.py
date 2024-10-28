@@ -1,19 +1,19 @@
-renewable_energy_set = {
-    "Hydroelectric",
-    "Land Based Wind",
-    "Offshore Wind",
-    "Solar",
-    "Geothermal",
-    "Energy Storage",
-    "Pumped Storage",
+renewable_energy_map = {
+    "Hydroelectric": "Hydroelectric",
+    "Land Based Wind": "Land-Based Wind",
+    "Offshore Wind": "Offshore Wind",
+    "Solar": "Solar",
+    "Geothermal": "Geothermal",
+    "Energy Storage": "Energy Storage",
+    "Pumped Storage": "Pumped Storage",
 }
 
-renewable_energy_map = {
+renewable_energy_abbreviations = {
     "H": "Hydroelectric",
     "S": "Solar",
     "ES": "Energy Storage",
     "PS": "Pumped Storage",
-    "W": "Land Based Wind",
+    "W": "Land-Based Wind",
     "OSW": "Offshore Wind",
 }
 

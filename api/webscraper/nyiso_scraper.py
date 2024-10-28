@@ -4,9 +4,7 @@ from io import BytesIO
 import json
 from utils.scraper_utils import clean_df_data
 from database_constants import (
-    renewable_energy_map,
-    renewable_energy_set,
-    initial_kdm_dict,
+    renewable_energy_abbreviations,
 )
 
 from bs4 import BeautifulSoup
@@ -45,12 +43,15 @@ def query_nyiso():
 
         filtered_list = []
         for item in nyiso_list:
-            if item.get("Type/ Fuel", None) not in renewable_energy_map.keys():
+            if (
+                item.get("Type/ Fuel", None)
+                not in renewable_energy_abbreviations.keys()
+            ):
                 continue
             project_dict = {
                 "project_name": item.get("Project Name", None),
                 "project_status": "Proposed",  # TODO: update this based on which sheet it's from
-                "renewable_energy_technology": renewable_energy_map[
+                "renewable_energy_technology": renewable_energy_abbreviations[
                     item.get("Type/ Fuel")
                 ],  # map abbreviations into readable string
                 "size": item.get("SP (MW)", None),
@@ -98,12 +99,12 @@ def filter_nyiso_list(project_list, sheet_name):
             continue
         elif sheet_name == "In Service" and item.get("State", None) != "NY":
             continue
-        if item.get("Type/ Fuel", None) not in renewable_energy_map.keys():
+        if item.get("Type/ Fuel", None) not in renewable_energy_abbreviations.keys():
             continue
         project_dict = {
             "project_name": item.get("Project Name", None),
             "project_status": project_status,
-            "renewable_energy_technology": renewable_energy_map[
+            "renewable_energy_technology": renewable_energy_abbreviations[
                 item.get("Type/ Fuel")
             ],  # map abbreviations into readable string
             "size": item.get("SP (MW)", None),
