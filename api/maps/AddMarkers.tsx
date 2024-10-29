@@ -19,7 +19,7 @@ export default function AddMarker({
     position: { lat: number; lng: number },
   ) => {
     setSelectedProjectId(prevId => (prevId === projectId ? null : projectId)); // close modal if same, open if different
-    map && map.panTo(position); // change center of map to selected marker
+    map?.panTo(position); // change center of map to selected marker
   };
 
   const closeModal = () => {
