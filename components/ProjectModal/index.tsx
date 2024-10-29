@@ -32,7 +32,17 @@ import {
   ProjectName,
   ProjectOverview,
   ProjectSize,
+  AllKDMS,
+  KeyDevelopmentMilestone,
+  MilestoneIcon,
+  MilestoneLabel,
 } from './styles';
+
+interface Milestone {
+  milestoneTitle: string;
+  completed: boolean;
+  date: string;
+}
 
 export default function ProjectModal({
   project_id,
@@ -67,7 +77,7 @@ export default function ProjectModal({
     // assembly_district,
     project_image,
     additional_information,
-    // key_development_milestones,
+    key_development_milestones,
     // proposed_cod,
     // approved
   } = project || {};
