@@ -3,7 +3,7 @@
 import { CSSProperties, useEffect, useState } from 'react';
 import queryProjects from '../../api/supabase/queries/query';
 import Map from '../../components/Map/map';
-import { SubHeading1 } from '../../styles/texts';
+import { AccentText1, Heading1, SubHeading1 } from '../../styles/texts';
 import { Project } from '../../types/schema';
 
 export default function Home() {
@@ -20,7 +20,9 @@ export default function Home() {
 
   return (
     <main style={mainStyles}>
-      <SubHeading1>memamo</SubHeading1>
+      <Heading1>RIPTIDE STORAGE</Heading1>
+      <SubHeading1>RIPTIDE STORAGE</SubHeading1>
+      <AccentText1>1,200</AccentText1>
       <p>Open up app/page.tsx to get started!</p>
       <p>
         <b>Projects:</b>

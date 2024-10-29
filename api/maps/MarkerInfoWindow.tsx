@@ -18,7 +18,10 @@ export const MarkerInfoWindow = ({
   projectId: number;
   projectName: string;
   projectDev: string;
-  onMarkerClick: (projectId: number) => void;
+  onMarkerClick: (
+    projectId: number,
+    position: { lat: number; lng: number },
+  ) => void;
   clusterer: MarkerClusterer | null;
 }) => {
   const [markerRef, marker] = useAdvancedMarkerRef();
@@ -33,7 +36,7 @@ export const MarkerInfoWindow = ({
   const handleClose = useCallback(() => setInfoWindowShown(false), []);
 
   const handleMarkerClick = () => {
-    onMarkerClick(projectId);
+    onMarkerClick(projectId, position);
   };
 
   useEffect(() => {

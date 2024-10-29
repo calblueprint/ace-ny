@@ -14,7 +14,8 @@ export type Project = {
   assembly_district: number;
   project_image: string | null;
   additional_information: string | null;
-  key_development_milestones: object | null;
+  key_development_milestones: object[] | null;
+  permit_process: string | null;
   proposed_cod: Date;
   approved: boolean;
 };

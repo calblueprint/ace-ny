@@ -13,16 +13,19 @@ export default function AddMarker({
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
   ); // track currently open modal
+  const map = useMap();
 
-  const handleMarkerClick = (projectId: number) => {
+  const handleMarkerClick = (
+    projectId: number,
+    position: { lat: number; lng: number },
+  ) => {
     setSelectedProjectId(prevId => (prevId === projectId ? null : projectId)); // close modal if same, open if different
+    map && map.panTo(position); // change center of map to selected marker
   };
 
   const closeModal = () => {
     setSelectedProjectId(null); // close modal
   };
-
-  const map = useMap();
 
   const clusterer = useMemo(() => {
     if (!map) return null;

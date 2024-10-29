@@ -29,7 +29,6 @@ export default function Map(props: { projects: Project[] | null }) {
         mapId={mapId}
       >
         <AddMarkers projects={props.projects} />
-        {/* // add clustered markers here */}
       </GoogleMap>
     </APIProvider>
   );
