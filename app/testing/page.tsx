@@ -2,7 +2,7 @@
 
 import { CSSProperties, useEffect, useState } from 'react';
 import queryProjects from '../../api/supabase/queries/query';
-import Map from '../../components/Map/map';
+import Map from '../../components/Map';
 import { AccentText1, Heading1, SubHeading1 } from '../../styles/texts';
 import { Project } from '../../types/schema';
 
