@@ -9,6 +9,7 @@ import { FaBolt } from 'react-icons/fa6';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
 import { MdLightbulbOutline } from 'react-icons/md';
 import { FilterBar } from '../FilterBar';
+import { SearchBar } from '../SearchBar';
 
 interface Filter {
   id: string;
@@ -39,9 +40,14 @@ const handleFilterChange = (filter: Filter) => {
   console.log(filter);
 };
 
+const handleSearchChange = () => {
+  console.log('search');
+};
+
 export default function Map(props: { projects: Project[] | null }) {
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
+      <SearchBar onSearchChange={handleSearchChange} />
       <FilterBar filters={filters} onFilterChange={handleFilterChange} />
       <GoogleMap
         style={containerStyle}
