@@ -4,6 +4,7 @@ import { APIProvider, Map as GoogleMap } from '@vis.gl/react-google-maps';
 import AddMarkers from '../../api/maps/AddMarkers';
 import { Project } from '../../types/schema';
 import './styles.css';
+import { CSSProperties } from 'react';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { FaBolt } from 'react-icons/fa6';
 import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
@@ -17,9 +18,12 @@ interface Filter {
   icon: React.ReactNode;
 }
 
-const containerStyle = {
+const containerStyle: CSSProperties = {
   width: '100%',
   height: '100%',
+  position: 'absolute',
+  top: '0px',
+  left: '0px',
 };
 
 const center = {
@@ -40,14 +44,10 @@ const handleFilterChange = (filter: Filter) => {
   console.log(filter);
 };
 
-const handleSearchChange = () => {
-  console.log('search');
-};
-
 export default function Map(props: { projects: Project[] | null }) {
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
-      <SearchBar onSearchChange={handleSearchChange} />
+      <SearchBar />
       <FilterBar filters={filters} onFilterChange={handleFilterChange} />
       <GoogleMap
         style={containerStyle}

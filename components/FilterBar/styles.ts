@@ -5,7 +5,6 @@ export const filterBarStyles: CSSProperties = {
   position: 'absolute',
   top: '1.5%',
   right: '1.5%',
-  // alignItems: 'center',
   background:
     'var(--background-gradient, linear-gradient(180deg, rgba(250, 250, 250, 0.32) 0%, rgba(238, 238, 238, 0.65) 100%))',
   backdropFilter: 'blur(7.5px)',
@@ -18,7 +17,7 @@ export const filterBarStyles: CSSProperties = {
 
 export const filterButtonStyles: CSSProperties = {
   padding: '8px 8px',
-  background: '#f0f0f0',
+  background: '#FFF',
   border: 'none',
   borderRadius: '100px',
   cursor: 'pointer',
@@ -30,11 +29,4 @@ export const filterButtonStyles: CSSProperties = {
   alignItems: 'center',
   gap: '12px',
   fontFamily: '"Coinbase Sans", sans-serif',
-  // borderRight: "0.5px solid rgba(46, 58, 89, 0.10)",
-  // borderBottom: "1px solid rgba(46, 58, 89, 0.10)",
-  // borderLeft: "0.5px solid rgba(46, 58, 89, 0.10)",
-};
-
-export const filterButtonHoverStyles: CSSProperties = {
-  background: '#e0e0e0',
 };
