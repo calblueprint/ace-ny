@@ -83,7 +83,7 @@ export const ProjectFilter = styled.div`
   border: 0.5px solid rgba(46, 58, 89, 0.25);
   display: inline-flex;
   height: 22px;
-  padding: 0.1875rem 0.625rem;
+  padding: 0.1rem 0.625rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;

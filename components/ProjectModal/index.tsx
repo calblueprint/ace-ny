@@ -8,8 +8,8 @@ import {
   AccentText1,
   AccentText2,
   BodyText1,
-  BodyText2,
   Heading1,
+  TagText1,
 } from '../../styles/texts';
 import { Project } from '../../types/schema';
 import {
@@ -95,10 +95,10 @@ export default function ProjectModal({
             </ProjectName>
             <ProjectFilterWrapper>
               <ProjectFilter>
-                <BodyText2>{project_status}</BodyText2>
+                <TagText1>{project_status}</TagText1>
               </ProjectFilter>
               <ProjectFilter>
-                <BodyText2>{renewable_energy_technology}</BodyText2>
+                <TagText1>{renewable_energy_technology}</TagText1>
               </ProjectFilter>
             </ProjectFilterWrapper>
           </ProjectOverview>
