@@ -2,7 +2,7 @@
 
 import styled, { css } from 'styled-components';
 import COLORS from './colors';
-import { CoinbaseMono, CoinbaseSans } from './fonts';
+import { CoinbaseMono, CoinbaseSans, CoinbaseText } from './fonts';
 
 interface TextProps {
   $color?: string;
@@ -20,6 +20,14 @@ const TextStylesCoinbaseMono = css<TextProps>`
 
 const TextStylesCoinbaseSans = css<TextProps>`
   ${CoinbaseSans.style}
+  font-weight: ${({ $fontWeight }) => $fontWeight || '700'};
+  color: ${({ $color }) => $color || 'black'};
+  text-align: ${({ $align }) => $align};
+  margin: 0;
+`;
+
+const TextStylesCoinbaseText = css<TextProps>`
+  ${CoinbaseText.style}
   font-weight: ${({ $fontWeight }) => $fontWeight || '700'};
   color: ${({ $color }) => $color || 'black'};
   text-align: ${({ $align }) => $align};
@@ -76,6 +84,15 @@ export const AccentText2 = styled.h4<TextProps>`
   ${TextStylesCoinbaseMono}
   color: ${COLORS.navy};
   font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+`;
+
+export const TagText1 = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.navy};
+  font-size: 0.625rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
