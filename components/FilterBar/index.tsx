@@ -1,7 +1,7 @@
 import React from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import Filter from '../../types/helper';
-import * as styles from './styles';
+import { FilterBarStyles, FilterButtonStyles } from './styles';
 
 interface Filter {
   id: string;
@@ -17,20 +17,19 @@ export const FilterBar = ({
   onFilterChange: (filter: Filter) => void;
 }) => {
   return (
-    <div style={styles.filterBarStyles}>
+    <FilterBarStyles>
       {filters.map(filter => (
         <div key={filter.id}>
-          <button
+          <FilterButtonStyles
             key={filter.label}
             onClick={() => onFilterChange(filter)}
-            style={styles.filterButtonStyles}
           >
             {filter.icon}
             {filter.label}
             <RiArrowDropDownLine />
-          </button>
+          </FilterButtonStyles>
         </div>
       ))}
-    </div>
+    </FilterBarStyles>
   );
 };

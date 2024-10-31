@@ -1,19 +1,24 @@
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoIosSearch } from 'react-icons/io';
-import * as styles from './styles';
+import {
+  IconStyles,
+  SearchBarBackgroundStyles,
+  SearchBarPaddingStyles,
+  SearchBarStyles,
+} from './styles';
 
 export const SearchBar = () => {
   return (
-    <div style={styles.searchBarPaddingStyles}>
-      <div style={styles.searchBarBackgroundStyles}>
-        <IoIosSearch style={styles.iconStyles} />
-        <input
-          type="text"
-          placeholder="Search for a project"
-          style={styles.searchBarStyles}
-        />
-        <AiOutlineClose style={styles.iconStyles} />
-      </div>
-    </div>
+    <SearchBarPaddingStyles>
+      <SearchBarBackgroundStyles>
+        <IconStyles>
+          <IoIosSearch />
+        </IconStyles>
+        <SearchBarStyles type="text" placeholder="Search for a project" />
+        <IconStyles>
+          <AiOutlineClose />
+        </IconStyles>
+      </SearchBarBackgroundStyles>
+    </SearchBarPaddingStyles>
   );
 };
