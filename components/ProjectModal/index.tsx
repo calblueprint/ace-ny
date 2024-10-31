@@ -12,6 +12,7 @@ import {
   TagText1,
 } from '../../styles/texts';
 import { Project } from '../../types/schema';
+import KeyDevelopmentMilestone from '../KeyDevelopmentMilestone';
 import {
   AdditionalInfo,
   AdditionalText,
@@ -29,9 +30,6 @@ import {
   ProjectOverview,
   ProjectSize,
   AllKDMS,
-  KeyDevelopmentMilestone,
-  MilestoneIcon,
-  MilestoneLabel,
 } from './styles';
 
 interface Milestone {
@@ -78,6 +76,19 @@ export default function ProjectModal({
     // approved
   } = project || {};
 
+  // Map KDMs
+  const KDMs = key_development_milestones?.map(
+    (milestone: Milestone, i: number) => {
+      return (
+        <KeyDevelopmentMilestone
+          key={i}
+          milestoneTitle={milestone.milestoneTitle}
+          completed={milestone.completed}
+        ></KeyDevelopmentMilestone>
+      );
+    },
+  );
+
   return (
     <div>
       <Modal
@@ -119,6 +130,7 @@ export default function ProjectModal({
             </AccentText1>
             <AccentText2>MW / Mo</AccentText2>
           </ProjectSize>
+          <AllKDMS>{KDMs}</AllKDMS>
           <Divider />
           <AdditionalInfo>
             <DetailsContainer>
