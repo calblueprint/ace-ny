@@ -16,6 +16,7 @@ import {
   TagText1,
 } from '../../styles/texts';
 import { Project } from '../../types/schema';
+import KeyDevelopmentMilestone from '../KeyDevelopmentMilestone';
 import {
   AdditionalInfo,
   AdditionalText,
@@ -33,9 +34,6 @@ import {
   ProjectOverview,
   ProjectSize,
   AllKDMS,
-  KeyDevelopmentMilestone,
-  MilestoneIcon,
-  MilestoneLabel,
 } from './styles';
 
 interface Milestone {
@@ -54,12 +52,30 @@ export default function ProjectModal({
   openFirst: boolean;
 }) {
   const [project, setProject] = useState<Project | null>(null);
+  const [defaultImage, setDefaultImage] = useState<string | null>(null);
 
   useEffect(() => {
     queryProjectbyId(project_id).then(data => {
       setProject(data);
     });
   }, [project_id]);
+
+  useEffect(() => {
+      // Fetch default image when project data is available
+      const fetchDefaultImage = async () => {
+        if (!project?.project_image && project?.renewable_energy_technology) {
+          try {
+            const fetchedImage = await queryDefaultImages(
+              project.renewable_energy_technology,
+            );
+            setDefaultImage(fetchedImage.default_image);
+          } catch (error) {
+            console.error('Error fetching default image:', error);
+          }
+        }
+      };
+      fetchDefaultImage();
+    }, [project]);
 
   const {
     // id,
@@ -82,24 +98,18 @@ export default function ProjectModal({
     // approved
   } = project || {};
 
-  const [defaultImage, setDefaultImage] = useState<string | null>(null);
-
-  useEffect(() => {
-    // Fetch default image when project data is available
-    const fetchDefaultImage = async () => {
-      if (!project?.project_image && project?.renewable_energy_technology) {
-        try {
-          const fetchedImage = await queryDefaultImages(
-            project.renewable_energy_technology,
-          );
-          setDefaultImage(fetchedImage.default_image);
-        } catch (error) {
-          console.error('Error fetching default image:', error);
-        }
-      }
-    };
-    fetchDefaultImage();
-  }, [project]);
+  // Map KDMs
+  const KDMs = key_development_milestones?.map(
+    (milestone: Milestone, i: number) => {
+      return (
+        <KeyDevelopmentMilestone
+          key={i}
+          milestoneTitle={milestone.milestoneTitle}
+          completed={milestone.completed}
+        ></KeyDevelopmentMilestone>
+      );
+    },
+  );
 
   const getProjectImageSrc = () => {
     return project_image || defaultImage || '';
@@ -154,6 +164,7 @@ export default function ProjectModal({
             </AccentText1>
             <AccentText2>MW / Mo</AccentText2>
           </ProjectSize>
+          <AllKDMS>{KDMs}</AllKDMS>
           <Divider />
           <AdditionalInfo>
             <DetailsContainer>
