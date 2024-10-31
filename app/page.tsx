@@ -1,7 +1,7 @@
 'use client';
 
 import { CSSProperties, useEffect, useState } from 'react';
-import Map from '@/components/Map/map';
+import Map from '@/components/Map';
 import queryProjects from '../api/supabase/queries/query';
 import { Project } from '../types/schema';
 

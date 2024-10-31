@@ -50,4 +50,29 @@ const CoinbaseSans = localFont({
   ],
 });
 
-export { CoinbaseMono, CoinbaseSans };
+const CoinbaseText = localFont({
+  src: [
+    {
+      path: '../assets/CoinbaseFont/Coinbase-Text/Coinbase_Text-Light-web-1.32.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../assets/CoinbaseFont/Coinbase-Text/Coinbase_Text-Regular-web-1.32.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../assets/CoinbaseFont/Coinbase-Text/Coinbase_Text-Medium-web-1.32.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../assets/CoinbaseFont/Coinbase-Text/Coinbase_Text-Bold-web-1.32.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
+});
+
+export { CoinbaseMono, CoinbaseSans, CoinbaseText };

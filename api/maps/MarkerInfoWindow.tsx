@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
+import { MarkerClusterer } from '@googlemaps/markerclusterer';
 import {
   AdvancedMarker,
   InfoWindow,
@@ -11,6 +12,7 @@ export const MarkerInfoWindow = ({
   projectName,
   projectDev,
   onMarkerClick,
+  clusterer,
 }: {
   position: { lat: number; lng: number };
   projectId: number;
@@ -20,18 +22,28 @@ export const MarkerInfoWindow = ({
     projectId: number,
     position: { lat: number; lng: number },
   ) => void;
+  clusterer: MarkerClusterer | null;
 }) => {
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [infoWindowShown, setInfoWindowShown] = useState(false);
 
-  // clicking the marker will toggle the infowindow
-  const handleMarkerEnter = useCallback(
-    () => setInfoWindowShown(isShown => !isShown),
-    [],
-  );
+  // hovering over the marker will toggle the infowindow
+  const handleMarkerEnter = useCallback(() => {
+    setInfoWindowShown(isShown => !isShown);
+  }, []);
 
   // if the maps api closes the infowindow, we have to synchronize our state
   const handleClose = useCallback(() => setInfoWindowShown(false), []);
+
+  const handleMarkerClick = () => {
+    onMarkerClick(projectId, position);
+  };
+
+  useEffect(() => {
+    if (marker && clusterer) {
+      clusterer.addMarker(marker);
+    }
+  });
 
   return (
     <>
@@ -40,7 +52,7 @@ export const MarkerInfoWindow = ({
         position={position}
         onMouseEnter={handleMarkerEnter}
         onMouseLeave={handleClose}
-        onClick={() => onMarkerClick(projectId, position)}
+        onClick={handleMarkerClick}
       />
 
       {infoWindowShown && (
