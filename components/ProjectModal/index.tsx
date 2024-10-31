@@ -3,7 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { FiX, FiZap } from 'react-icons/fi';
 import Modal from 'react-modal';
-import { queryProjectbyId } from '../../api/supabase/queries/query';
+import Image from 'next/image';
+import {
+  queryDefaultImages,
+  queryProjectbyId,
+} from '../../api/supabase/queries/query';
 import {
   AccentText1,
   AccentText2,
@@ -68,6 +72,44 @@ export default function ProjectModal({
     // approved
   } = project || {};
 
+  // Helper function to determine the project image source
+  // const getProjectImageSrc = () => {
+  //   if (project_image) {
+  //     return project_image;
+  //   }
+  //   return queryDefaultImages(renewable_energy_technology)
+  //   // // Otherwise, provide a default image based on renewable_energy_technology
+  //   // switch (renewable_energy_technology) {
+  //   //   case 'Solar':
+  //   //     return '/images/default-solar.jpg';
+  //   //   case 'Offshore Wind':
+  //   //     return '/images/default-wind.jpg';
+  //   //   case 'Hydroelectric':
+  //   //     return '/images/default-hydro.jpg';
+  //   //   case 'Land Based Wind':
+  //   //     return '/images/default-hydro.jpg';
+  //   //   default:
+  //   //     return '/images/default-renewable.jpg';
+  //   // }
+  // };
+
+  // const [projects, setProjects] = useState<Project[] | null>(null);
+  // const [error, setError] = useState<string | null>(null);
+
+  // useEffect(() => {
+  //   queryDefaultImages(project?.renewable_energy_technology)
+  //     .then(data => {
+  //       setProjects(data.projects);
+  //     })
+  //     .catch(err => setError(err));
+  // }, []);
+
+  const getProjectImageSrc = () => {
+    return (
+      project?.project_image || queryDefaultImages(renewable_energy_technology)
+    );
+  };
+
   return (
     <div>
       <Modal
@@ -78,9 +120,11 @@ export default function ProjectModal({
         }}
       >
         <ProjectDetails>
-          <img
-            src={project_image ? project_image : ''}
+          <Image
+            src={getProjectImageSrc()}
             alt="Project Image"
+            width={340}
+            height={250}
             style={projectImageStyles}
           />
           <ProjectOverview>
