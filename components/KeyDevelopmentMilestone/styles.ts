@@ -35,12 +35,9 @@ export const Milestone = styled.div<{ completed: boolean }>`
 export const MilestoneLabel = styled.p<{ status: boolean }>`
   margin-top: 2px;
   margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   color: ${props =>
     props.status ? 'rgba(73, 116, 224, 0.45)' : 'rgba(46, 58, 89, 0.25)'};
-`;
-
-export const MilestoneIcon = styled.span<{ status: boolean }>`
-  color: ${props =>
-    props.status ? 'rgba(73, 116, 224, 0.45)' : 'rgba(46, 58, 89, 0.25)'};
-  margin-right: 6px;
 `;
