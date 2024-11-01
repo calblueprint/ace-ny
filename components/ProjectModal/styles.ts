@@ -2,6 +2,7 @@ import { CSSProperties } from 'react';
 import styled from 'styled-components';
 import COLORS from '@/styles/colors';
 
+// OLD CSS NEEDS TO BE CHANGED TO STYLED COMPONENTS
 export const modalOverlayStyles: CSSProperties = {
   width: '310px',
   height: '100%',
