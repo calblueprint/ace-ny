@@ -16,6 +16,7 @@ import KeyDevelopmentMilestone from '../KeyDevelopmentMilestone';
 import {
   AdditionalInfo,
   AdditionalText,
+  AllKDMS,
   CloseButton,
   DetailsContainer,
   Developer,
@@ -29,13 +30,12 @@ import {
   ProjectName,
   ProjectOverview,
   ProjectSize,
-  AllKDMS,
 } from './styles';
 
 interface Milestone {
   milestoneTitle: string;
   completed: boolean;
-  date: string;
+  date: string | null;
 }
 
 export default function ProjectModal({
@@ -82,8 +82,9 @@ export default function ProjectModal({
       return (
         <KeyDevelopmentMilestone
           key={i}
-          milestoneTitle={milestone.milestoneTitle}
+          index={i}
           completed={milestone.completed}
+          date={milestone.date}
         ></KeyDevelopmentMilestone>
       );
     },
@@ -130,8 +131,8 @@ export default function ProjectModal({
             </AccentText1>
             <AccentText2>MW / Mo</AccentText2>
           </ProjectSize>
-          <AllKDMS>{KDMs}</AllKDMS>
           <Divider />
+          <AllKDMS>{KDMs}</AllKDMS>
           <AdditionalInfo>
             <DetailsContainer>
               <BodyText1>DETAILS</BodyText1>

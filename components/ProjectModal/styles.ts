@@ -1,8 +1,7 @@
-import COLORS from '@/styles/colors';
 import { CSSProperties } from 'react';
 import styled from 'styled-components';
+import COLORS from '@/styles/colors';
 
-// OLD CSS NEEDS TO BE CHANGED TO STYLED COMPONENTS
 export const modalOverlayStyles: CSSProperties = {
   width: '310px',
   height: '100%',
@@ -134,5 +133,7 @@ export const AllKDMS = styled.div`
   flex-wrap: wrap;
   width: 266px;
   height: 132px;
+  margin-top: 30px;
+  margin-bottom: 20px;
   gap: 12px;
 `;

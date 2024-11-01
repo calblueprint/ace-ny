@@ -1,40 +1,32 @@
-import { Milestone, MilestoneIcon, MilestoneLabel } from './styles';
+import { Milestone, MilestoneLabel } from './styles';
 
 export default function KeyDevelopmentMilestone({
-  milestoneTitle,
   completed,
+  date,
+  index,
 }: {
-  milestoneTitle: string;
   completed: boolean;
+  date: string | null;
+  index: number;
 }) {
-  let milestoneLabel = '';
   let icon = <></>;
-  let kdmNumber = 0;
+  let statusLabel = '';
+  const milestoneLabels = [
+    'NYISO queue entered',
+    'ORES permit applied',
+    'ORES permit issued',
+    'NYSERDA contracted',
+    'IA executed',
+    'Operations begun',
+  ];
 
-  switch (milestoneTitle) {
-    case 'Entry to NYISO Queue':
-      milestoneLabel = 'NYISO queue entered';
-      kdmNumber = 1;
-      break;
-    case 'Application for permit to ORES':
-      milestoneLabel = 'ORES permit applied';
-      kdmNumber = 2;
-      break;
-    case 'Issuance of permit from ORES':
-      milestoneLabel = 'ORES permit issued';
-      kdmNumber = 3;
-      break;
-    case 'Winning a contract award from NYSERDA':
-      milestoneLabel = 'NYSERDA contracted';
-      kdmNumber = 4;
-      break;
-    case 'Execution of an Interconnection Agreement (IA)':
-      milestoneLabel = 'IA executed';
-      kdmNumber = 5;
-      break;
-    case 'Start of operations':
-      milestoneLabel = 'Operations begun';
-      kdmNumber = 6;
+  if (date) {
+    const year = date.slice(2, 4);
+    const month = date.slice(5, 7);
+    const day = date.slice(8, 10);
+    statusLabel = `${month}.${day}.${year}`;
+  } else {
+    statusLabel = 'Pending';
   }
 
   if (completed) {
@@ -73,10 +65,10 @@ export default function KeyDevelopmentMilestone({
 
   return (
     <Milestone completed={completed}>
-      {milestoneLabel}
+      {milestoneLabels[index]}
       <MilestoneLabel status={completed}>
-        <MilestoneIcon status={completed}>{icon}</MilestoneIcon>
-        KDM {kdmNumber}
+        {icon}
+        {statusLabel}
       </MilestoneLabel>
     </Milestone>
   );
