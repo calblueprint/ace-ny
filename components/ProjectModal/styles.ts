@@ -133,7 +133,7 @@ export const AllKDMS = styled.div`
   flex-wrap: wrap;
   width: 16.625rem;
   height: 8.25rem;
-  margin-top: 1.875rem;
+  margin-top: 1.9375rem;
   margin-bottom: 1.25rem;
   gap: 0.75rem;
 `;
