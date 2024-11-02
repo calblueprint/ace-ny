@@ -72,42 +72,28 @@ export default function ProjectModal({
     // approved
   } = project || {};
 
-  // Helper function to determine the project image source
-  // const getProjectImageSrc = () => {
-  //   if (project_image) {
-  //     return project_image;
-  //   }
-  //   return queryDefaultImages(renewable_energy_technology)
-  //   // // Otherwise, provide a default image based on renewable_energy_technology
-  //   // switch (renewable_energy_technology) {
-  //   //   case 'Solar':
-  //   //     return '/images/default-solar.jpg';
-  //   //   case 'Offshore Wind':
-  //   //     return '/images/default-wind.jpg';
-  //   //   case 'Hydroelectric':
-  //   //     return '/images/default-hydro.jpg';
-  //   //   case 'Land Based Wind':
-  //   //     return '/images/default-hydro.jpg';
-  //   //   default:
-  //   //     return '/images/default-renewable.jpg';
-  //   // }
-  // };
+  const [defaultImage, setDefaultImage] = useState<string | null>(null); // State for default image URL
 
-  // const [projects, setProjects] = useState<Project[] | null>(null);
-  // const [error, setError] = useState<string | null>(null);
+  useEffect(() => {
+    // Fetch default image when project data is available
+    const fetchDefaultImage = async () => {
+      if (!project?.project_image && project?.renewable_energy_technology) {
+        try {
+          const fetchedImage = await queryDefaultImages(
+            project.renewable_energy_technology,
+          );
+          setDefaultImage(fetchedImage.default_image); // Accessing the image URL from the fetched record
+        } catch (error) {
+          console.error('Error fetching default image:', error);
+        }
+      }
+    };
 
-  // useEffect(() => {
-  //   queryDefaultImages(project?.renewable_energy_technology)
-  //     .then(data => {
-  //       setProjects(data.projects);
-  //     })
-  //     .catch(err => setError(err));
-  // }, []);
+    fetchDefaultImage();
+  }, [project]);
 
   const getProjectImageSrc = () => {
-    return (
-      project?.project_image || queryDefaultImages(renewable_energy_technology)
-    );
+    return project?.project_image || defaultImage || '';
   };
 
   return (
