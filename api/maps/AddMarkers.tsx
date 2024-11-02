@@ -45,6 +45,7 @@ export default function AddMarker({
             }}
             projectName={project.project_name}
             projectDev={project.developer}
+            technology={project.renewable_energy_technology}
             projectId={project.id}
             onMarkerClick={handleMarkerClick}
             clusterer={clusterer}
