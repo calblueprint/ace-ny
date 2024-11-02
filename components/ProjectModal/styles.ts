@@ -131,9 +131,9 @@ export const AdditionalText = styled.div`
 export const AllKDMS = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 266px;
-  height: 132px;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  gap: 12px;
+  width: 16.625rem;
+  height: 8.25rem;
+  margin-top: 1.875rem;
+  margin-bottom: 1.25rem;
+  gap: 0.75rem;
 `;

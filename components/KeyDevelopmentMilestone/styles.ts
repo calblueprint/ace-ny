@@ -3,10 +3,10 @@ import COLORS from '../../styles/colors';
 import * as fonts from '../../styles/fonts';
 
 export const Milestone = styled.div<{ completed: boolean }>`
-  padding-top: 8px;
-  padding-left: 15px;
-  width: 111.5px;
-  height: 27.5px;
+  padding-top: 0.5rem;
+  padding-left: 0.9375rem;
+  width: 6.96875rem;
+  height: 1.71875rem;
   flex-shrink: 0;
   border-radius: 12px 4px 4px 4px;
   border-top: ${props =>
@@ -23,7 +23,7 @@ export const Milestone = styled.div<{ completed: boolean }>`
       : 'none'};
   color: ${props => (props.completed ? COLORS.blue : 'rgba(46, 58, 89, 0.45)')};
   font-family: ${fonts.CoinbaseSans};
-  font-size: 10px;
+  font-size: 0.625rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
@@ -33,11 +33,11 @@ export const Milestone = styled.div<{ completed: boolean }>`
 `;
 
 export const MilestoneLabel = styled.p<{ status: boolean }>`
-  margin-top: 2px;
+  margin-top: 0.125rem;
   margin-bottom: 0;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
   color: ${props =>
     props.status ? 'rgba(73, 116, 224, 0.45)' : 'rgba(46, 58, 89, 0.25)'};
 `;
