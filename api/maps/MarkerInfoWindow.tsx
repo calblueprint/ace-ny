@@ -35,7 +35,7 @@ export const MarkerInfoWindow = ({
     if (!infoWindowShown) {
       setInfoWindowShown(true);
     }
-  }, []);
+  }, [infoWindowShown]);
 
   // close infowindow when modal is closed
   const handleClose = useCallback(() => {
