@@ -29,18 +29,16 @@ export const MarkerInfoWindow = ({
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [infoWindowShown, setInfoWindowShown] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [hoveredProjectId, setHoveredProjectId] = useState<number | null>(null);
 
-  // hovering over the marker will toggle the infowindow
+  // open infowindow when marker is hovered and not already open
   const handleMarkerEnter = useCallback(() => {
     if (!infoWindowShown) {
       setInfoWindowShown(true);
     }
   }, []);
 
-  // if the maps api closes the infowindow, we have to synchronize our state
+  // close infowindow when modal is closed
   const handleClose = useCallback(() => {
-    console.log('modalOpen in close: ', modalOpen);
     if (!modalOpen) {
       setInfoWindowShown(false);
     }
@@ -49,6 +47,8 @@ export const MarkerInfoWindow = ({
   const handleMarkerClick = () => {
     onMarkerClick(projectId, position);
     setModalOpen(!modalOpen);
+
+    // toggle infowindow when marker is clicked
     if (!modalOpen) {
       setInfoWindowShown(true);
     } else {
@@ -57,13 +57,12 @@ export const MarkerInfoWindow = ({
   };
 
   useEffect(() => {
-    // Close InfoWindow if another marker is selected
+    // close infowindow and modal if new marker is clicked
     if (selectedProjectId !== projectId) {
       setInfoWindowShown(false);
+      setModalOpen(false);
     }
-    console.log(selectedProjectId, projectId);
-    console.log(infoWindowShown);
-  }, [selectedProjectId, projectId]);
+  }, [selectedProjectId]);
 
   useEffect(() => {
     if (marker && clusterer) {
