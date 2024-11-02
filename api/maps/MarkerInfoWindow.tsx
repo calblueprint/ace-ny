@@ -62,7 +62,7 @@ export const MarkerInfoWindow = ({
       setInfoWindowShown(false);
       setModalOpen(false);
     }
-  }, [selectedProjectId]);
+  }, [selectedProjectId, projectId]);
 
   useEffect(() => {
     if (marker && clusterer) {
