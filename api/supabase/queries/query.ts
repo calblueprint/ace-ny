@@ -27,10 +27,11 @@ export async function queryProjectbyId(id: number): Promise<Project> {
 }
 
 export async function queryDefaultImages(category: string) {
+  console.log('Fetching default image for category:', category);
   const { data: defaultImage, error } = await supabase
     .from('Renewable Energy Technology')
     .select('*')
-    .eq('category', category)
+    .eq('category', 'category')
     .single();
 
   if (error) {

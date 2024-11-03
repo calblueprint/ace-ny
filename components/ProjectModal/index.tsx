@@ -44,6 +44,7 @@ export default function ProjectModal({
   openFirst: boolean;
 }) {
   const [project, setProject] = useState<Project | null>(null);
+  const [defaultImage, setDefaultImage] = useState<string | null>(null); // State for default image URL
 
   useEffect(() => {
     queryProjectbyId(project_id).then(data => {
@@ -72,8 +73,6 @@ export default function ProjectModal({
     // approved
   } = project || {};
 
-  const [defaultImage, setDefaultImage] = useState<string | null>(null); // State for default image URL
-
   useEffect(() => {
     // Fetch default image when project data is available
     const fetchDefaultImage = async () => {
@@ -93,7 +92,12 @@ export default function ProjectModal({
   }, [project]);
 
   const getProjectImageSrc = () => {
-    return project?.project_image || defaultImage || '';
+    console.log('default image:', defaultImage);
+    return (
+      defaultImage ||
+      'https://jwa.org/sites/default/files/mediaobjects/elah_tuchsnieder.jpg'
+    );
+    //project_image ||
   };
 
   return (

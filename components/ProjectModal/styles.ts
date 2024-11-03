@@ -12,8 +12,9 @@ export const modalContentStyles: CSSProperties = {
   display: 'flex',
   top: '85px',
   left: '20px',
-  width: '356px',
-  height: '85%',
+  width: '90vw',
+  maxWidth: '356px',
+  height: '85vh',
   borderRadius: 'var(--Spacing-Small, 16px)',
   border: '0.75px solid var(--WorldPeas-White, #fff)',
   background:
@@ -24,8 +25,6 @@ export const modalContentStyles: CSSProperties = {
   boxSizing: 'border-box',
   flexDirection: 'column',
   alignItems: 'center',
-  overflowX: 'hidden',
-  overflowY: 'auto',
 };
 
 export const ProjectDetails = styled.div`
@@ -36,12 +35,11 @@ export const ProjectDetails = styled.div`
   height: 100%;
   background: ${COLORS.white};
   width: 340px;
+  overflow-y: auto;
 `;
 
 export const projectImageStyles: CSSProperties = {
-  position: 'absolute',
-  width: '340px',
-  height: '250px',
+  height: 'auto',
   objectFit: 'cover',
   borderRadius: '8px 8px 0px 0px',
 };
@@ -51,7 +49,7 @@ export const ProjectOverview = styled.div`
   flex-direction: column;
   width: 316px;
   height: 129px;
-  margin-top: 9.5rem;
+  margin-top: -6.5rem;
   border-radius: 8px;
   background: ${COLORS.white};
   box-shadow:
