@@ -31,7 +31,7 @@ export async function queryDefaultImages(category: string) {
   const { data: defaultImage, error } = await supabase
     .from('Renewable Energy Technology')
     .select('*')
-    .eq('category', 'category')
+    .eq('category', category)
     .single();
 
   if (error) {
