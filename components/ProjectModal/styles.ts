@@ -25,6 +25,7 @@ export const modalContentStyles: CSSProperties = {
   boxSizing: 'border-box',
   flexDirection: 'column',
   alignItems: 'center',
+  overflow: 'hidden',
 };
 
 export const ProjectDetails = styled.div`
