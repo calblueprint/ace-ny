@@ -39,7 +39,6 @@ export const ProjectDetails = styled.div`
 `;
 
 export const projectImageStyles: CSSProperties = {
-  height: 'auto',
   objectFit: 'cover',
   borderRadius: '8px 8px 0px 0px',
 };

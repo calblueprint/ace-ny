@@ -92,8 +92,14 @@ export default function ProjectModal({
   }, [project]);
 
   const getProjectImageSrc = () => {
-    return project_image || defaultImage || ' ';
+    return project_image || defaultImage || '';
   };
+
+  const projectImageAlt = project_image
+    ? `${project_name} project image`
+    : defaultImage
+      ? `${renewable_energy_technology} default image`
+      : 'No image available';
 
   return (
     <div>
@@ -107,7 +113,7 @@ export default function ProjectModal({
         <ProjectDetails>
           <Image
             src={getProjectImageSrc()}
-            alt="Project Image"
+            alt={projectImageAlt}
             width={340}
             height={250}
             style={projectImageStyles}
