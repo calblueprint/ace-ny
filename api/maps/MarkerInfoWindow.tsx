@@ -19,7 +19,7 @@ const technologyToPin: Record<string, string> = {
   'Energy Storage': energyStorage,
   Geothermal: geothermal,
   Hydroelectric: hydroelectric,
-  'Land Based Wind': landbased_wind,
+  'Land-Based Wind': landbased_wind,
   'Offshore Wind': offshore_wind,
   'Pumped Storage': pumped_storage,
   Solar: solarPower,
