@@ -61,21 +61,21 @@ export default function ProjectModal({
   }, [project_id]);
 
   useEffect(() => {
-      // Fetch default image when project data is available
-      const fetchDefaultImage = async () => {
-        if (!project?.project_image && project?.renewable_energy_technology) {
-          try {
-            const fetchedImage = await queryDefaultImages(
-              project.renewable_energy_technology,
-            );
-            setDefaultImage(fetchedImage.default_image);
-          } catch (error) {
-            console.error('Error fetching default image:', error);
-          }
+    // Fetch default image when project data is available
+    const fetchDefaultImage = async () => {
+      if (!project?.project_image && project?.renewable_energy_technology) {
+        try {
+          const fetchedImage = await queryDefaultImages(
+            project.renewable_energy_technology,
+          );
+          setDefaultImage(fetchedImage.default_image);
+        } catch (error) {
+          console.error('Error fetching default image:', error);
         }
-      };
-      fetchDefaultImage();
-    }, [project]);
+      }
+    };
+    fetchDefaultImage();
+  }, [project]);
 
   const {
     // id,
