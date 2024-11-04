@@ -79,6 +79,7 @@ export const MarkerInfoWindow = ({
           <Image
             src={technologyToPin[technology]}
             alt={`Marker pin for ${technology}`}
+            style={{ width: '75%' }}
           />
         ) : (
           <Pin />
