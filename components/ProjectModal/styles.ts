@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 import styled from 'styled-components';
-import COLORS from '../../styles/colors';
+import COLORS from '@/styles/colors';
 
 export const modalOverlayStyles: CSSProperties = {
   width: '310px',
@@ -126,4 +126,14 @@ export const DetailsContainer = styled.div`
 
 export const AdditionalText = styled.div`
   padding-top: 1.25rem;
+`;
+
+export const AllKDMS = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 16.625rem;
+  height: 8.25rem;
+  margin-top: 1.9375rem;
+  margin-bottom: 1.25rem;
+  gap: 0.75rem;
 `;

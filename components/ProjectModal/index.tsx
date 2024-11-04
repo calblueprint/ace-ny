@@ -16,9 +16,11 @@ import {
   TagText1,
 } from '../../styles/texts';
 import { Project } from '../../types/schema';
+import KeyDevelopmentMilestone from '../KeyDevelopmentMilestone';
 import {
   AdditionalInfo,
   AdditionalText,
+  AllKDMS,
   CloseButton,
   DetailsContainer,
   Developer,
@@ -34,6 +36,12 @@ import {
   ProjectSize,
 } from './styles';
 
+interface Milestone {
+  milestoneTitle: string;
+  completed: boolean;
+  date: string | null;
+}
+
 export default function ProjectModal({
   project_id,
   closeModal,
@@ -44,35 +52,13 @@ export default function ProjectModal({
   openFirst: boolean;
 }) {
   const [project, setProject] = useState<Project | null>(null);
+  const [defaultImage, setDefaultImage] = useState<string | null>(null);
 
   useEffect(() => {
     queryProjectbyId(project_id).then(data => {
       setProject(data);
     });
   }, [project_id]);
-
-  const {
-    // id,
-    project_name,
-    renewable_energy_technology,
-    size,
-    developer,
-    // longitude,
-    // latitude,
-    project_status,
-    // county,
-    // town,
-    // region,
-    // state_senate_district,
-    // assembly_district,
-    project_image,
-    additional_information,
-    // key_development_milestones,
-    // proposed_cod,
-    // approved
-  } = project || {};
-
-  const [defaultImage, setDefaultImage] = useState<string | null>(null);
 
   useEffect(() => {
     // Fetch default image when project data is available
@@ -90,6 +76,41 @@ export default function ProjectModal({
     };
     fetchDefaultImage();
   }, [project]);
+
+  const {
+    // id,
+    project_name,
+    renewable_energy_technology,
+    size,
+    developer,
+    // longitude,
+    // latitude,
+    project_status,
+    // county,
+    // town,
+    // region,
+    // state_senate_district,
+    // assembly_district,
+    project_image,
+    additional_information,
+    key_development_milestones,
+    // proposed_cod,
+    // approved
+  } = project || {};
+
+  // Map KDMs
+  const KDMs = key_development_milestones?.map(
+    (milestone: Milestone, i: number) => {
+      return (
+        <KeyDevelopmentMilestone
+          key={i}
+          index={i}
+          completed={milestone.completed}
+          date={milestone.date}
+        ></KeyDevelopmentMilestone>
+      );
+    },
+  );
 
   const getProjectImageSrc = () => {
     return project_image || defaultImage || '';
@@ -145,6 +166,7 @@ export default function ProjectModal({
             <AccentText2>MW / Mo</AccentText2>
           </ProjectSize>
           <Divider />
+          <AllKDMS>{KDMs}</AllKDMS>
           <AdditionalInfo>
             <DetailsContainer>
               <BodyText1>DETAILS</BodyText1>
