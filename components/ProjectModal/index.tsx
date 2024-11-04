@@ -3,7 +3,11 @@
 import React, { useEffect, useState } from 'react';
 import { FiX, FiZap } from 'react-icons/fi';
 import Modal from 'react-modal';
-import { queryProjectbyId } from '../../api/supabase/queries/query';
+import Image from 'next/image';
+import {
+  queryDefaultImages,
+  queryProjectbyId,
+} from '../../api/supabase/queries/query';
 import {
   AccentText1,
   AccentText2,
@@ -68,6 +72,35 @@ export default function ProjectModal({
     // approved
   } = project || {};
 
+  const [defaultImage, setDefaultImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Fetch default image when project data is available
+    const fetchDefaultImage = async () => {
+      if (!project?.project_image && project?.renewable_energy_technology) {
+        try {
+          const fetchedImage = await queryDefaultImages(
+            project.renewable_energy_technology,
+          );
+          setDefaultImage(fetchedImage.default_image);
+        } catch (error) {
+          console.error('Error fetching default image:', error);
+        }
+      }
+    };
+    fetchDefaultImage();
+  }, [project]);
+
+  const getProjectImageSrc = () => {
+    return project_image || defaultImage || '';
+  };
+
+  const projectImageAlt = project_image
+    ? `${project_name} project image`
+    : defaultImage
+      ? `${renewable_energy_technology} default image`
+      : 'No image available';
+
   return (
     <div>
       <Modal
@@ -78,9 +111,11 @@ export default function ProjectModal({
         }}
       >
         <ProjectDetails>
-          <img
-            src={project_image ? project_image : ''}
-            alt="Project Image"
+          <Image
+            src={getProjectImageSrc()}
+            alt={projectImageAlt}
+            width={340}
+            height={250}
             style={projectImageStyles}
           />
           <ProjectOverview>
