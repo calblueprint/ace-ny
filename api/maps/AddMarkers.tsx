@@ -13,6 +13,7 @@ export default function AddMarker({
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
   ); // track currently open modal
+
   const map = useMap();
 
   const handleMarkerClick = (
@@ -49,6 +50,7 @@ export default function AddMarker({
             projectId={project.id}
             onMarkerClick={handleMarkerClick}
             clusterer={clusterer}
+            selectedProjectId={selectedProjectId}
           />
         );
       })}
