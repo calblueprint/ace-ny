@@ -98,6 +98,16 @@ export const TagText1 = styled.p<TextProps>`
   line-height: normal;
 `;
 
+export const FilterFont = styled.p<TextProps>`
+  ${TextStylesCoinbaseSans}
+  color: ${COLORS.navy};
+  font-family: 'Coinbase Sans';
+  font-size: 0.875;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
 /*
 
 export const FilterFont = styled.h1`
