@@ -1,6 +1,6 @@
 import { CSSProperties } from 'react';
 import styled from 'styled-components';
-import COLORS from '../../styles/colors';
+import COLORS from '@/styles/colors';
 
 export const modalOverlayStyles: CSSProperties = {
   width: '310px',
@@ -12,8 +12,9 @@ export const modalContentStyles: CSSProperties = {
   display: 'flex',
   top: '85px',
   left: '20px',
-  width: '356px',
-  height: '85%',
+  width: '90vw',
+  maxWidth: '356px',
+  height: '85vh',
   borderRadius: 'var(--Spacing-Small, 16px)',
   border: '0.75px solid var(--WorldPeas-White, #fff)',
   background:
@@ -24,6 +25,7 @@ export const modalContentStyles: CSSProperties = {
   boxSizing: 'border-box',
   flexDirection: 'column',
   alignItems: 'center',
+  overflow: 'hidden',
 };
 
 export const ProjectDetails = styled.div`
@@ -34,12 +36,10 @@ export const ProjectDetails = styled.div`
   height: 100%;
   background: ${COLORS.white};
   width: 340px;
+  overflow-y: auto;
 `;
 
 export const projectImageStyles: CSSProperties = {
-  position: 'absolute',
-  width: '340px',
-  height: '250px',
   objectFit: 'cover',
   borderRadius: '8px 8px 0px 0px',
 };
@@ -49,7 +49,7 @@ export const ProjectOverview = styled.div`
   flex-direction: column;
   width: 316px;
   height: 129px;
-  margin-top: 9.5rem;
+  margin-top: -6.5rem;
   border-radius: 8px;
   background: ${COLORS.white};
   box-shadow:
@@ -126,4 +126,14 @@ export const DetailsContainer = styled.div`
 
 export const AdditionalText = styled.div`
   padding-top: 1.25rem;
+`;
+
+export const AllKDMS = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 16.625rem;
+  height: 8.25rem;
+  margin-top: 1.9375rem;
+  margin-bottom: 1.25rem;
+  gap: 0.75rem;
 `;
