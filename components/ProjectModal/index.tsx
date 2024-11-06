@@ -163,7 +163,7 @@ export default function ProjectModal({
               <FiZap size={42} />
               {size}
             </AccentText1>
-            <AccentText2>MW / Mo</AccentText2>
+            <AccentText2>Megawatts (MW)</AccentText2>
           </ProjectSize>
           <Divider />
           <AllKDMS>{KDMs}</AllKDMS>

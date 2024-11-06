@@ -1,5 +1,5 @@
-import { FilterHeadingUnused } from '@/styles/texts';
 import styled from 'styled-components';
+import { FilterHeadingUnused } from '@/styles/texts';
 
 export const FilterBarStyles = styled.div`
   display: flex;

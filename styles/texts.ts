@@ -140,40 +140,40 @@ export const FilterCategoryText1 = styled.p<TextProps>`
 `;
 
 export const MinMaxTextUnused = styled.p<TextProps>`
-${TextStylesCoinbaseText}
-color: ${COLORS.navy};
-font-size: 0.5625rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.navy};
+  font-size: 0.5625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const MinMaxTextInUse = styled.p<TextProps>`
-${TextStylesCoinbaseText}
-color: ${COLORS.electricBlue};
-font-size: 0.5625rem;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.electricBlue};
+  font-size: 0.5625rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 `;
 
 export const SearchBarTextUnused = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
-font-size: 0.85rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-opacity: 0.5;
-  color: ${COLORS.navy}
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.5;
+  color: ${COLORS.navy};
 `;
 
 export const SearchBarTextInUse = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
-font-size: 0.85rem;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-  color: ${COLORS.electricBlue}
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: ${COLORS.electricBlue};
 `;
 
 /*

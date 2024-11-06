@@ -21,7 +21,8 @@ export const Milestone = styled.div<{ completed: boolean }>`
     props.completed
       ? 'linear-gradient(0deg, rgba(73, 116, 224, 0.00) 0%, rgba(73, 116, 224, 0.08) 100%)'
       : 'none'};
-  color: ${props => (props.completed ? COLORS.electricBlue : 'rgba(46, 58, 89, 0.45)')};
+  color: ${props =>
+    props.completed ? COLORS.electricBlue : 'rgba(46, 58, 89, 0.45)'};
   font-family: ${fonts.CoinbaseSans};
   font-size: 0.625rem;
   font-style: normal;
