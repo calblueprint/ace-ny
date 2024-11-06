@@ -16,7 +16,7 @@ export default function KeyDevelopmentMilestone({
     'ORES permit applied',
     'ORES permit issued',
     'NYSERDA contracted',
-    'IA executed',
+    'IA tendered',
     'Operations begun',
   ];
 

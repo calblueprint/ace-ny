@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { FilterHeadingUnused } from '@/styles/texts';
 
 export const FilterBarStyles = styled.div`
   display: flex;
@@ -19,17 +20,14 @@ export const FilterBarStyles = styled.div`
 `;
 
 export const FilterButtonStyles = styled.button`
+  ${FilterHeadingUnused}
   padding: 0.5rem 0.5rem;
   background: #fff;
   border: none;
   border-radius: 6.25rem;
   cursor: pointer;
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
   line-height: normal;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-family: 'Coinbase Sans', sans-serif;
 `;

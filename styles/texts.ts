@@ -37,7 +37,7 @@ const TextStylesCoinbaseText = css<TextProps>`
 export const Heading1 = styled.h1<TextProps>`
   ${TextStylesCoinbaseMono}
   font-weight: 300;
-  color: ${COLORS.grey};
+  color: ${COLORS.navy};
   font-size: 1.375rem;
   font-style: normal;
   line-height: normal;
@@ -46,7 +46,7 @@ export const Heading1 = styled.h1<TextProps>`
 export const SubHeading1 = styled.h2<TextProps>`
   ${TextStylesCoinbaseSans}
   font-size: 0.875rem;
-  color: ${COLORS.grey};
+  color: ${COLORS.navy};
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -58,6 +58,7 @@ export const BodyText1 = styled.p<TextProps>`
   font-size: 0.625rem;
   font-style: normal;
   font-weight: 300;
+  opacity: 0.65;
   line-height: 120%;
 `;
 
@@ -76,6 +77,7 @@ export const AccentText1 = styled.h4<TextProps>`
   font-size: 3.5rem;
   font-style: normal;
   color: ${COLORS.navy};
+  opacity: 0.85;
   font-weight: 400;
   line-height: normal;
 `;
@@ -95,17 +97,83 @@ export const TagText1 = styled.p<TextProps>`
   font-size: 0.625rem;
   font-style: normal;
   font-weight: 300;
+  opacity: 0.75;
   line-height: normal;
 `;
 
-export const FilterFont = styled.p<TextProps>`
-  ${TextStylesCoinbaseSans}
+export const TagText2 = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
   color: ${COLORS.navy};
-  font-family: 'Coinbase Sans';
-  font-size: 0.875;
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+`;
+
+export const FilterHeadingUnused = styled.h3<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.navy};
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  opacity: 0.85;
+  line-height: normal;
+`;
+
+export const FilterHeadingInUse = styled.h3<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.electricBlue};
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+`;
+
+export const FilterCategoryText1 = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 300;
+  color: ${COLORS.navy};
+  opacity: 0.75;
+  line-height: normal;
+`;
+
+export const MinMaxTextUnused = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.navy};
+  font-size: 0.5625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
+export const MinMaxTextInUse = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.electricBlue};
+  font-size: 0.5625rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+`;
+
+export const SearchBarTextUnused = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  opacity: 0.5;
+  color: ${COLORS.navy};
+`;
+
+export const SearchBarTextInUse = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: ${COLORS.electricBlue};
 `;
 
 /*
