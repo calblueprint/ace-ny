@@ -49,5 +49,5 @@ export const IconStyles = styled.div`
   width: 1.1rem;
   height: 1.1rem;
   flex-shrink: 0;
-  color: ${COLORS.blue};
+  color: ${COLORS.electricBlue};
 `;
