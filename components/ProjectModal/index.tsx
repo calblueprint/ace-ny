@@ -17,6 +17,7 @@ import {
 } from '../../styles/texts';
 import { Project } from '../../types/schema';
 import KeyDevelopmentMilestone from '../KeyDevelopmentMilestone';
+import StatusTags from '../StatusTags';
 import {
   AdditionalInfo,
   AdditionalText,
@@ -151,7 +152,7 @@ export default function ProjectModal({
             </ProjectName>
             <ProjectFilterWrapper>
               <ProjectFilter>
-                <TagText1>{project_status}</TagText1>
+                <StatusTags projectStatus={project_status} cod={null} />
               </ProjectFilter>
               <ProjectFilter>
                 <TagText1>{renewable_energy_technology}</TagText1>
