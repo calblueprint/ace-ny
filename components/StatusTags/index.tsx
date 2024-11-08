@@ -4,6 +4,7 @@ import {
   GreyDotInProgressIcon,
 } from '../../assets/Status-Tag-Icons/icons';
 import { TagText1 } from '../../styles/texts';
+import { ProjectFilter } from './styles';
 
 export default function StatusTags({
   projectStatus,
@@ -12,5 +13,22 @@ export default function StatusTags({
   projectStatus: string | undefined;
   cod: string | null;
 }) {
-  return <TagText1>{projectStatus}</TagText1>;
+  return (
+    <div>
+      {projectStatus === 'Operational' && (
+        <>
+          <ProjectFilter>
+            <GreenDotOperationalIcon /> <TagText1>Operational</TagText1>
+          </ProjectFilter>
+        </>
+      )}
+      {projectStatus === 'Proposed' && (
+        <>
+          <ProjectFilter>
+            <GreyDotInProgressIcon /> <TagText1>Proposed {cod}</TagText1>
+          </ProjectFilter>
+        </>
+      )}
+    </div>
+  );
 }

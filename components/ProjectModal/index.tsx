@@ -151,9 +151,7 @@ export default function ProjectModal({
               <Heading1>{project_name?.toUpperCase()}</Heading1>
             </ProjectName>
             <ProjectFilterWrapper>
-              <ProjectFilter>
-                <StatusTags projectStatus={project_status} cod={null} />
-              </ProjectFilter>
+              <StatusTags projectStatus={project_status} cod={null} />
               <ProjectFilter>
                 <TagText1>{renewable_energy_technology}</TagText1>
               </ProjectFilter>
