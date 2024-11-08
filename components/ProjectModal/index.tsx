@@ -17,8 +17,8 @@ import {
 } from '../../styles/texts';
 import { Project } from '../../types/schema';
 import KeyDevelopmentMilestone from '../KeyDevelopmentMilestone';
-import StatusTags from '../StatusTags';
-import TechnologyTags from '../TechnologyTags';
+import StatusTags from '../StatusTag';
+import TechnologyTags from '../TechnologyTag';
 import {
   AdditionalInfo,
   AdditionalText,

@@ -8,9 +8,9 @@ import {
   SolarPowerIcon,
 } from '../../assets/Technology-Tag-Icons/icons';
 import { TagText1 } from '../../styles/texts';
-import { TechnologyTag } from './styles';
+import { TechnologyTagStyles } from './styles';
 
-export default function TechnologyTags({
+export default function TechnologyTag({
   technology,
 }: {
   technology: string | undefined;
@@ -19,51 +19,51 @@ export default function TechnologyTags({
     <div>
       {technology === 'Solar' && (
         <>
-          <TechnologyTag>
+          <TechnologyTagStyles>
             <SolarPowerIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTag>
+          </TechnologyTagStyles>
         </>
       )}
       {technology === 'Geothermal' && (
         <>
-          <TechnologyTag>
+          <TechnologyTagStyles>
             <GeothermalIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTag>
+          </TechnologyTagStyles>
         </>
       )}
       {technology === 'Offshore Wind' && (
         <>
-          <TechnologyTag>
+          <TechnologyTagStyles>
             <OffshoreWindIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTag>
+          </TechnologyTagStyles>
         </>
       )}
       {technology === 'Hydroelectric' && (
         <>
-          <TechnologyTag>
+          <TechnologyTagStyles>
             <HydroelectricIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTag>
+          </TechnologyTagStyles>
         </>
       )}
       {technology === 'Land-Based Wind' && (
         <>
-          <TechnologyTag>
+          <TechnologyTagStyles>
             <LandBasedWindIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTag>
+          </TechnologyTagStyles>
         </>
       )}
       {technology === 'Pumped Storage' && (
         <>
-          <TechnologyTag>
+          <TechnologyTagStyles>
             <PumpedStorageIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTag>
+          </TechnologyTagStyles>
         </>
       )}
       {technology === 'Battery Storage' && (
         <>
-          <TechnologyTag>
+          <TechnologyTagStyles>
             <EnergyStorageIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTag>
+          </TechnologyTagStyles>
         </>
       )}
     </div>
