@@ -13,7 +13,6 @@ import {
   AccentText2,
   BodyText1,
   Heading1,
-  TagText1,
 } from '../../styles/texts';
 import { Project } from '../../types/schema';
 import KeyDevelopmentMilestone from '../KeyDevelopmentMilestone';
@@ -30,7 +29,6 @@ import {
   modalContentStyles,
   modalOverlayStyles,
   ProjectDetails,
-  ProjectFilter,
   ProjectFilterWrapper,
   projectImageStyles,
   ProjectName,
