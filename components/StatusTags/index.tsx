@@ -1,5 +1,4 @@
 import {
-  CalendarIcon,
   GreenDotOperationalIcon,
   GreyDotInProgressIcon,
 } from '../../assets/Status-Tag-Icons/icons';
