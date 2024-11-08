@@ -17,6 +17,7 @@ import {
   SmallSizeIcon,
   SmallSolarPowerIcon,
 } from '@/assets/Icons/icons';
+import { TagText1, TagText2 } from '@/styles/texts';
 import { Project } from '@/types/schema';
 import ProjectModal from '../ProjectModal';
 import {
@@ -134,16 +135,16 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
         <ProjectName>{project_name?.toUpperCase()}</ProjectName>
         <ProjectStatus>
           <OperationalIcon />
-          {project_status}
+          <TagText1>{project_status}</TagText1>
         </ProjectStatus>
         <ProjectSizeAndType>
           <ProjectSize>
             <SmallSizeIcon />
-            {size} MW
+            <TagText2>{size} MW</TagText2>
           </ProjectSize>
           <ProjectType>
             {projectTypeIcon}
-            {renewable_energy_technology}
+            <TagText2>{renewable_energy_technology}</TagText2>
           </ProjectType>
         </ProjectSizeAndType>
       </ProjectInfo>
