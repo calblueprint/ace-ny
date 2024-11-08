@@ -15,7 +15,7 @@ import {
   Heading1,
   TagText1,
 } from '../../styles/texts';
-import { Project } from '../../types/schema';
+import { Milestone, Project } from '../../types/schema';
 import KeyDevelopmentMilestone from '../KeyDevelopmentMilestone';
 import {
   AdditionalInfo,
@@ -35,12 +35,6 @@ import {
   ProjectOverview,
   ProjectSize,
 } from './styles';
-
-interface Milestone {
-  milestoneTitle: string;
-  completed: boolean;
-  date: string | null;
-}
 
 export default function ProjectModal({
   project_id,

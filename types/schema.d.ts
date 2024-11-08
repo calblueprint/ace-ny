@@ -19,3 +19,9 @@ export type Project = {
   proposed_cod: Date;
   approved: boolean;
 };
+
+export type Milestone = {
+  milestoneTitle: string;
+  completed: boolean;
+  date: string | null;
+};
