@@ -15,18 +15,14 @@ export default function StatusTag({
   return (
     <div>
       {projectStatus === 'Operational' && (
-        <>
-          <StatusTagStyles>
-            <GreenDotOperationalIcon /> <TagText1>Operational</TagText1>
-          </StatusTagStyles>
-        </>
+        <StatusTagStyles>
+          <GreenDotOperationalIcon /> <TagText1>Operational</TagText1>
+        </StatusTagStyles>
       )}
       {projectStatus === 'Proposed' && (
-        <>
-          <StatusTagStyles>
-            <GreyDotInProgressIcon /> <TagText1>Proposed {cod}</TagText1>
-          </StatusTagStyles>
-        </>
+        <StatusTagStyles>
+          <GreyDotInProgressIcon /> <TagText1>Proposed {cod}</TagText1>
+        </StatusTagStyles>
       )}
     </div>
   );

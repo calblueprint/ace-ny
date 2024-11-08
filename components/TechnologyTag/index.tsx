@@ -15,56 +15,24 @@ export default function TechnologyTag({
 }: {
   technology: string | undefined;
 }) {
+  const iconMap: { [key: string]: JSX.Element } = {
+    Solar: <SolarPowerIcon />,
+    Geothermal: <GeothermalIcon />,
+    'Offshore Wind': <OffshoreWindIcon />,
+    Hydroelectric: <HydroelectricIcon />,
+    'Land-Based Wind': <LandBasedWindIcon />,
+    'Pumped Storage': <PumpedStorageIcon />,
+    'Battery Storage': <EnergyStorageIcon />,
+  };
+
+  const icon = technology ? iconMap[technology] : null;
+
   return (
     <div>
-      {technology === 'Solar' && (
-        <>
-          <TechnologyTagStyles>
-            <SolarPowerIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTagStyles>
-        </>
-      )}
-      {technology === 'Geothermal' && (
-        <>
-          <TechnologyTagStyles>
-            <GeothermalIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTagStyles>
-        </>
-      )}
-      {technology === 'Offshore Wind' && (
-        <>
-          <TechnologyTagStyles>
-            <OffshoreWindIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTagStyles>
-        </>
-      )}
-      {technology === 'Hydroelectric' && (
-        <>
-          <TechnologyTagStyles>
-            <HydroelectricIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTagStyles>
-        </>
-      )}
-      {technology === 'Land-Based Wind' && (
-        <>
-          <TechnologyTagStyles>
-            <LandBasedWindIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTagStyles>
-        </>
-      )}
-      {technology === 'Pumped Storage' && (
-        <>
-          <TechnologyTagStyles>
-            <PumpedStorageIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTagStyles>
-        </>
-      )}
-      {technology === 'Battery Storage' && (
-        <>
-          <TechnologyTagStyles>
-            <EnergyStorageIcon /> <TagText1>{technology}</TagText1>
-          </TechnologyTagStyles>
-        </>
+      {icon && (
+        <TechnologyTagStyles>
+          {icon} <TagText1>{technology}</TagText1>
+        </TechnologyTagStyles>
       )}
     </div>
   );
