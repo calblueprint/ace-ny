@@ -74,6 +74,7 @@ export default function ProjectModal({
         }
       }
     };
+    document.title = project?.project_name + '';
     fetchDefaultImage();
   }, [project]);
 

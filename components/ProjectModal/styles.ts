@@ -50,7 +50,7 @@ export const ProjectOverview = styled.div`
   display: flex;
   flex-direction: column;
   width: 19.75rem;
-  minHeight: 8.0625rem;
+  minheight: 8.0625rem;
   margin-top: -6.5rem;
   border-radius: 8px;
   background: ${COLORS.white};
@@ -60,7 +60,7 @@ export const ProjectOverview = styled.div`
   position: relative;
   box-sizing: border-box;
   padding: 1rem;
-  objectFit: cover;
+  objectfit: cover;
 `;
 
 export const Developer = styled.div`
