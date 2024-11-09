@@ -1,7 +1,11 @@
 import React from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import Filter from '../../types/helper';
-import { FilterBarStyles, FilterButtonStyles } from './styles';
+import {
+  FilterBackgroundStyles,
+  FilterButtonStyles,
+  FilterContainerStyles,
+} from './styles';
 
 interface Filter {
   id: string;
@@ -17,9 +21,9 @@ export const FilterBar = ({
   onFilterChange: (filter: Filter) => void;
 }) => {
   return (
-    <FilterBarStyles>
+    <FilterContainerStyles>
       {filters.map(filter => (
-        <div key={filter.id}>
+        <FilterBackgroundStyles key={filter.id}>
           <FilterButtonStyles
             key={filter.label}
             onClick={() => onFilterChange(filter)}
@@ -28,8 +32,8 @@ export const FilterBar = ({
             {filter.label}
             <RiArrowDropDownLine />
           </FilterButtonStyles>
-        </div>
+        </FilterBackgroundStyles>
       ))}
-    </FilterBarStyles>
+    </FilterContainerStyles>
   );
 };

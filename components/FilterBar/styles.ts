@@ -1,9 +1,17 @@
 import styled from 'styled-components';
 import { FilterHeadingUnused } from '@/styles/texts';
 
-export const FilterBarStyles = styled.div`
+export const FilterContainerStyles = styled.div`
   display: flex;
-  position: absolute;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 100%;
+  margin-right: 15%;
+  flex-wrap: wrap;
+`;
+
+export const FilterBackgroundStyles = styled.div`
+  margin-right: 2%;
   top: 1.5%;
   right: 1.5%;
   background: linear-gradient(
@@ -12,16 +20,15 @@ export const FilterBarStyles = styled.div`
     rgba(238, 238, 238, 0.65) 100%
   );
   backdrop-filter: blur(7.5px);
-  padding: 0.4rem 0.5rem;
+  padding: 0.35rem 0.35rem;
   border-radius: 6.25rem;
-  z-index: 1000;
+  z-index: 5;
   border: 0.05rem solid #fff;
   margin-top: 1.5%;
 `;
 
 export const FilterButtonStyles = styled.button`
   ${FilterHeadingUnused}
-  padding: 0.5rem 0.5rem;
   background: #fff;
   border: none;
   border-radius: 6.25rem;
@@ -30,4 +37,5 @@ export const FilterButtonStyles = styled.button`
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  padding: 0.5rem 0.8rem;
 `;
