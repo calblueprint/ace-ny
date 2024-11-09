@@ -15,10 +15,42 @@ interface Filter {
 
 export default function MapViewScreen(props: { projects: Project[] | null }) {
   const filters = [
-    { id: 'status', label: 'STATUS', icon: <IoIosCheckmarkCircleOutline /> },
-    { id: 'technology', label: 'TECHNOLOGY', icon: <FaBolt /> },
-    { id: 'projectSize', label: 'PROJECT SIZE', icon: <MdLightbulbOutline /> },
-    { id: 'location', label: 'LOCATION', icon: <FaMapMarkerAlt /> },
+    {
+      id: 'status',
+      label: 'STATUS',
+      icon: <IoIosCheckmarkCircleOutline />,
+      categories: [],
+    },
+    {
+      id: 'technology',
+      label: 'TECHNOLOGY',
+      icon: <FaBolt />,
+      categories: [
+        {
+          category: 'Source',
+          options: [
+            'Land-based Wind',
+            'Hydroelectric',
+            'Offshore Wind',
+            'Solar Power',
+            'Geothermal',
+          ],
+        },
+        { category: 'Storage', options: ['Energy Storage', 'Pumped Storage'] },
+      ],
+    },
+    {
+      id: 'projectSize',
+      label: 'PROJECT SIZE',
+      icon: <MdLightbulbOutline />,
+      categories: [],
+    },
+    {
+      id: 'location',
+      label: 'LOCATION',
+      icon: <FaMapMarkerAlt />,
+      categories: [],
+    },
   ];
 
   const handleFilterChange = (filter: Filter) => {
