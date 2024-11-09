@@ -9,7 +9,7 @@ import { Filter } from '@/types/schema';
 import { Project } from '../../types/schema';
 
 export default function MapViewScreen(props: { projects: Project[] | null }) {
-  const filters = [
+  const filters: Filter[] = [
     {
       id: 'status',
       label: 'STATUS',
