@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type Project = {
   id: number;
   project_name: string;
@@ -19,3 +21,10 @@ export type Project = {
   proposed_cod: Date;
   approved: boolean;
 };
+
+export interface Filter {
+  id: string;
+  label: string;
+  icon: React.ReactNode;
+  categories: { category: string; options: string[] }[];
+}

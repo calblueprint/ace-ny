@@ -5,13 +5,8 @@ import { MdLightbulbOutline } from 'react-icons/md';
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
 import { SearchBar } from '@/components/SearchBar';
+import { Filter } from '@/types/schema';
 import { Project } from '../../types/schema';
-
-interface Filter {
-  id: string;
-  label: string;
-  icon: React.ReactNode;
-}
 
 export default function MapViewScreen(props: { projects: Project[] | null }) {
   const filters = [

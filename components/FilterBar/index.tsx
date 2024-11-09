@@ -1,17 +1,11 @@
 import React from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
-import Filter from '../../types/helper';
+import { Filter } from '@/types/schema';
 import {
   FilterBackgroundStyles,
   FilterButtonStyles,
   FilterContainerStyles,
 } from './styles';
-
-interface Filter {
-  id: string;
-  label: string;
-  icon: React.ReactNode;
-}
 
 export const FilterBar = ({
   filters,
