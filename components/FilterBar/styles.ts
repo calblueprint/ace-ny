@@ -38,4 +38,5 @@ export const FilterButtonStyles = styled.button`
   align-items: center;
   gap: 0.75rem;
   padding: 0.5rem 0.8rem;
+  z-index: 6;
 `;
