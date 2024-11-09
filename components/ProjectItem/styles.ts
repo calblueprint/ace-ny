@@ -1,7 +1,5 @@
 import { CSSProperties } from 'react';
 import styled from 'styled-components';
-import COLORS from '@/styles/colors';
-import { CoinbaseSans } from '@/styles/fonts';
 
 export const StyledProjectItem = styled.button`
   display: flex;
@@ -40,13 +38,7 @@ export const ProjectInfo = styled.div`
 `;
 
 export const ProjectName = styled.div`
-  color: ${COLORS.navy};
-  font-family: ${CoinbaseSans};
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin-top: 1.75rem;
+  margin-top: 1.5rem;
   text-align: left;
 `;
 
@@ -55,13 +47,12 @@ export const ProjectStatus = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 0.3125rem;
-  margin-top: 0.3125rem;
 `;
 
 export const ProjectSizeAndType = styled.div`
   display: flex;
   gap: 0.5rem;
-  margin-top: 1.625rem;
+  margin-top: 1.5rem;
 `;
 
 export const ProjectSize = styled.div`

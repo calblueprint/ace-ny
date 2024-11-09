@@ -17,7 +17,7 @@ import {
   SmallSizeIcon,
   SmallSolarPowerIcon,
 } from '@/assets/Icons/icons';
-import { TagText1, TagText2 } from '@/styles/texts';
+import { Heading2, TagText1, TagText2 } from '@/styles/texts';
 import { Project } from '@/types/schema';
 import ProjectModal from '../ProjectModal';
 import {
@@ -132,7 +132,9 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
   return (
     <StyledProjectItem onClick={handleProjectClick}>
       <ProjectInfo>
-        <ProjectName>{project_name?.toUpperCase()}</ProjectName>
+        <Heading2>
+          <ProjectName>{project_name?.toUpperCase()}</ProjectName>
+        </Heading2>
         <ProjectStatus>
           <OperationalIcon />
           <TagText1>{project_status}</TagText1>

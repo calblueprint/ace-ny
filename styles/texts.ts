@@ -43,6 +43,15 @@ export const Heading1 = styled.h1<TextProps>`
   line-height: normal;
 `;
 
+export const Heading2 = styled.h2<TextProps>`
+  ${TextStylesCoinbaseSans}
+  font-size: 0.9375rem;
+  color: ${COLORS.navy};
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
+
 export const SubHeading1 = styled.h2<TextProps>`
   ${TextStylesCoinbaseSans}
   font-size: 0.875rem;
