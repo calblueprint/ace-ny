@@ -1,7 +1,7 @@
 'use client';
 
 import { CSSProperties, useEffect, useState } from 'react';
-import Map from '@/components/Map';
+import MapViewScreen from '@/components/MapViewScreen';
 import queryProjects from '../api/supabase/queries/query';
 import { Project } from '../types/schema';
 
@@ -20,7 +20,7 @@ export default function Home() {
   return (
     <main style={mainStyles}>
       {error ? <div style={errorStyles}>{error}</div> : null}
-      {projects ? <Map projects={projects} /> : null}
+      {projects ? <MapViewScreen projects={projects} /> : null}
     </main>
   );
 }
