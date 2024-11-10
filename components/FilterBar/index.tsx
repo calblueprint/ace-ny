@@ -44,20 +44,23 @@ export const FilterBar = ({
                 <div key={category.category}>
                   <h3>{category.category}</h3>
                   {category.options.map(option => (
-                    <label key={option}>
+                    <label key={option.option}>
                       <CheckboxStyles>
                         <input
                           type="checkbox"
-                          checked={selectedOptions.includes(option)}
+                          checked={selectedOptions.includes(option.option)}
                           onChange={() => {
                             setSelectedOptions(
-                              selectedOptions.includes(option)
-                                ? selectedOptions.filter(o => o !== option)
-                                : [...selectedOptions, option],
+                              selectedOptions.includes(option.option)
+                                ? selectedOptions.filter(
+                                    o => o !== option.option,
+                                  )
+                                : [...selectedOptions, option.option],
                             );
                           }}
                         />
-                        {option}
+                        {option.icon}
+                        {option.option}
                       </CheckboxStyles>
                     </label>
                   ))}

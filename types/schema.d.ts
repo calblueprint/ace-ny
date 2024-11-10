@@ -22,9 +22,14 @@ export type Project = {
   approved: boolean;
 };
 
+export interface Option {
+  option: string;
+  icon: React.ReactNode;
+}
+
 export interface Filter {
   id: string;
   label: string;
   icon: React.ReactNode;
-  categories: { category: string; options: string[] }[];
+  categories: { category: string; options: Option[] }[];
 }

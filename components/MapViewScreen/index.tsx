@@ -24,14 +24,20 @@ export default function MapViewScreen(props: { projects: Project[] | null }) {
         {
           category: 'Source',
           options: [
-            'Land-based Wind',
-            'Hydroelectric',
-            'Offshore Wind',
-            'Solar Power',
-            'Geothermal',
+            { option: 'Land-based Wind', icon: <FaBolt /> },
+            { option: 'Hydroelectric', icon: <FaBolt /> },
+            { option: 'Offshore Wind', icon: <FaBolt /> },
+            { option: 'Solar Power', icon: <FaBolt /> },
+            { option: 'Geothermal', icon: <FaBolt /> },
           ],
         },
-        { category: 'Storage', options: ['Energy Storage', 'Pumped Storage'] },
+        {
+          category: 'Storage',
+          options: [
+            { option: 'Energy Storage', icon: <FaBolt /> },
+            { option: 'Pumped Storage', icon: <FaBolt /> },
+          ],
+        },
       ],
     },
     {
