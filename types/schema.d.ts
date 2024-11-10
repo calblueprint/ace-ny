@@ -33,3 +33,8 @@ export interface Filter {
   icon: React.ReactNode;
   categories: { category: string; options: Option[] }[];
 }
+
+export interface SVGIconProps {
+  src: string;
+  alt: string;
+}

@@ -5,7 +5,9 @@ import { MdLightbulbOutline } from 'react-icons/md';
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
 import { SearchBar } from '@/components/SearchBar';
+import SVGIcon from '@/components/SVGIcon';
 import { Filter } from '@/types/schema';
+import PumpedStorage from '../../assets/DropdownIcons/PumpedStorage.svg';
 import { Project } from '../../types/schema';
 
 export default function MapViewScreen(props: { projects: Project[] | null }) {
@@ -35,7 +37,10 @@ export default function MapViewScreen(props: { projects: Project[] | null }) {
           category: 'Storage',
           options: [
             { title: 'Energy Storage', icon: <FaBolt /> },
-            { title: 'Pumped Storage', icon: <FaBolt /> },
+            {
+              title: 'Pumped Storage',
+              icon: <SVGIcon src={PumpedStorage} alt="Pumped Storage" />,
+            },
           ],
         },
       ],
