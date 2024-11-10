@@ -4,12 +4,13 @@ import { Filter } from '@/types/schema';
 import {
   ApplyButtonStyles,
   CategoryTitleStyles,
+  CheckboxContainer,
   CheckboxStyles,
   FilterBackgroundStyles,
   FilterButtonStyles,
   FilterContainerStyles,
   FilterDropdownStyles,
-  OptionTitleStyle,
+  OptionTitleStyles,
 } from './styles';
 
 export const FilterBar = ({
@@ -47,10 +48,10 @@ export const FilterBar = ({
                 <div key={category.category}>
                   <CategoryTitleStyles>{category.category}</CategoryTitleStyles>
                   {category.options.map(option => (
-                    <CheckboxStyles key={option.title}>
+                    <CheckboxContainer key={option.title}>
                       {option.icon}
-                      <OptionTitleStyle>{option.title}</OptionTitleStyle>
-                      <input
+                      <OptionTitleStyles>{option.title}</OptionTitleStyles>
+                      <CheckboxStyles
                         type="checkbox"
                         checked={selectedOptions.includes(option.title)}
                         onChange={() => {
@@ -61,7 +62,7 @@ export const FilterBar = ({
                           );
                         }}
                       />
-                    </CheckboxStyles>
+                    </CheckboxContainer>
                   ))}
                 </div>
               ))}

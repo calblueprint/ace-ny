@@ -47,12 +47,12 @@ export const FilterDropdownStyles = styled.div`
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
 `;
 
-export const CheckboxStyles = styled.div`
+export const CheckboxContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: -0.5rem;
-  margin-left: 0.5rem;
+  margin-bottom: -0.8rem;
+  margin-left: 1rem;
 `;
 
 export const CategoryTitleStyles = styled.p`
@@ -66,14 +66,19 @@ export const CategoryTitleStyles = styled.p`
   margin-bottom: 0.15rem;
 `;
 
-export const OptionTitleStyle = styled.p`
+export const OptionTitleStyles = styled.p`
   font-family: ${CoinbaseText};
   font-size: 0.75rem;
   color: rgba(46, 58, 89, 0.85);
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  margin-bottom: 0.5rem;
+`;
+
+export const CheckboxStyles = styled.input`
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 1rem;
 `;
 
 export const ApplyButtonStyles = styled.button`
