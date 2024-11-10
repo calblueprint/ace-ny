@@ -24,9 +24,7 @@ export const FilterBar = ({
   const [activeFilter, setActiveFilter] = useState<Filter | null>(null);
 
   const handleButtonClick = (filter: Filter) => {
-    console.log(activeFilter);
     setActiveFilter(activeFilter?.id === filter.id ? null : filter);
-    console.log(activeFilter);
     onFilterChange(filter);
   };
 
