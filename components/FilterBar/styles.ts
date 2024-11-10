@@ -45,6 +45,7 @@ export const FilterDropdownStyles = styled.div`
   position: absolute;
   background: #fff;
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+  width: 100%;
 `;
 
 export const CheckboxContainer = styled.div`
@@ -99,7 +100,7 @@ export const ApplyButtonStyles = styled.button`
   font-weight: 400;
   line-height: normal;
   border: none;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
   margin-bottom: 0.5rem;
+  width: 88%;
+  margin: 1rem auto 0.5rem auto;
 `;
