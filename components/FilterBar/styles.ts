@@ -39,3 +39,18 @@ export const FilterButtonStyles = styled.button`
   gap: 0.75rem;
   padding: 0.5rem 1rem;
 `;
+
+export const FilterDropdownStyles = styled.div`
+  position: absolute;
+  background: #fff;
+  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
+  margin-top: 0.5rem;
+  width: 100%;
+`;
+
+export const CheckboxStyles = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+`;
