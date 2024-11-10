@@ -23,7 +23,7 @@ export type Project = {
 };
 
 export interface Option {
-  option: string;
+  title: string;
   icon: React.ReactNode;
 }
 
