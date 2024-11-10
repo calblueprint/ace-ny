@@ -578,5 +578,5 @@ For testing
 # nyiso_to_database()
 # nyiso_in_service_to_database()
 # ores_noi_to_database()
-ores_under_review_to_database()
+# ores_under_review_to_database()
 # ores_permitted_to_database()
