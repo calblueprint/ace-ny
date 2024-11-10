@@ -30,7 +30,7 @@ export default function MapViewScreen(props: { projects: Project[] | null }) {
       icon: <FaBolt />,
       categories: [
         {
-          category: 'Source',
+          category: 'SOURCE',
           options: [
             {
               title: 'Land-based Wind',
@@ -55,7 +55,7 @@ export default function MapViewScreen(props: { projects: Project[] | null }) {
           ],
         },
         {
-          category: 'Storage',
+          category: 'STORAGE',
           options: [
             {
               title: 'Energy Storage',

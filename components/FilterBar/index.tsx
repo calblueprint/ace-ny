@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { RiArrowDropDownLine } from 'react-icons/ri';
 import { Filter } from '@/types/schema';
 import {
+  ApplyButtonStyles,
+  CategoryTitleStyles,
   CheckboxStyles,
   FilterBackgroundStyles,
   FilterButtonStyles,
   FilterContainerStyles,
   FilterDropdownStyles,
+  OptionTitleStyle,
 } from './styles';
 
 export const FilterBar = ({
@@ -42,11 +45,11 @@ export const FilterBar = ({
             <FilterDropdownStyles>
               {filter.categories.map(category => (
                 <div key={category.category}>
-                  <h3>{category.category}</h3>
+                  <CategoryTitleStyles>{category.category}</CategoryTitleStyles>
                   {category.options.map(option => (
                     <CheckboxStyles key={option.title}>
                       {option.icon}
-                      {option.title}
+                      <OptionTitleStyle>{option.title}</OptionTitleStyle>
                       <input
                         type="checkbox"
                         checked={selectedOptions.includes(option.title)}
@@ -62,6 +65,7 @@ export const FilterBar = ({
                   ))}
                 </div>
               ))}
+              <ApplyButtonStyles>APPLY</ApplyButtonStyles>
             </FilterDropdownStyles>
           )}
         </FilterBackgroundStyles>
