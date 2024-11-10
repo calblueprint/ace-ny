@@ -40,4 +40,14 @@ initial_kdm_dict = [
         "date": None,
     },
     {"milestoneTitle": "Start of operations", "completed": False, "date": None},
+    {
+        "milestoneTitle": "Application for permit to ORES",
+        "completed": False,
+        "date": None,
+    },
+    {
+        "milestoneTitle": "Issuance of permit from ORES",
+        "completed": False,
+        "date": None,
+    },
 ]

@@ -76,7 +76,7 @@ def write_large_to_json():
         file.write("\n")
 
 
-write_large_to_json()
+# write_large_to_json()
 
 """
 This scrapes data from the NYSERDA Statewide Distributed Solar Projects database.

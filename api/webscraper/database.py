@@ -12,6 +12,7 @@ from nyiso_scraper import (
     filter_nyiso_cluster_sheet,
     filter_nyiso_in_service_sheet,
 )
+from ores_scraper import query_ores_noi, query_ores_under_review, query_ores_permitted
 from utils.scraper_utils import (
     create_update_object,
     update_kdm,
@@ -413,6 +414,162 @@ def nyiso_in_service_to_database():
                 print(exception)
 
 
+def ores_noi_to_database():
+    database = []
+    database.extend(query_ores_noi())
+    for project in database:
+        existing_data = (
+            supabase.table("Projects_duplicate")
+            .select("*")
+            .eq("project_name", project["project_name"])
+            .execute()
+        )
+        if len(existing_data.data) > 0:
+            existing_project = existing_data.data[0]
+            update_object = create_update_object(existing_project, project)
+            try:
+                response = (
+                    supabase.table("Projects_duplicate")
+                    .update(update_object)
+                    .eq(
+                        "project_name",
+                        project["project_name"],
+                    )
+                    .execute()
+                )
+                print("UPDATE", response, "\n")
+            except Exception as exception:
+                print(exception)
+        else:
+            try:
+                response = (
+                    supabase.table("Projects_duplicate").insert(project).execute()
+                )
+                print("INSERT", response, "\n")
+            except Exception as exception:
+                print(exception)
+
+
+def ores_under_review_to_database():
+    database = []
+    database.extend(query_ores_under_review())
+    for project in database:
+        existing_data = (
+            supabase.table("Projects_duplicate")
+            .select("*")
+            .eq("project_name", project["project_name"])
+            .execute()
+        )
+        if len(existing_data.data) > 0:
+            existing_project = existing_data.data[0]
+            update_object = create_update_object(existing_project, project)
+            # if the existing project has no kdms, add the dict first
+            if (
+                existing_project["key_development_milestones"] is None
+                or len(existing_project["key_development_milestones"]) < 0
+            ):
+                update_object["key_development_milestones"] = initial_kdm_dict
+            else:
+                update_object["key_development_milestones"] = existing_project[
+                    "key_development_milestones"
+                ]
+
+            # update kdm for ores projects under review
+            update_object["key_development_milestones"] = update_kdm(
+                milestoneTitle="Application for permit to ORES",
+                completed=True,
+                date=None,
+                kdm=update_object["key_development_milestones"],
+            )
+            try:
+                response = (
+                    supabase.table("Projects_duplicate")
+                    .update(update_object)
+                    .eq(
+                        "project_name",
+                        project["project_name"],
+                    )
+                    .execute()
+                )
+                print("UPDATE", response, "\n")
+            except Exception as exception:
+                print(exception)
+        else:
+            project["key_development_milestones"] = update_kdm(
+                milestoneTitle="Application for permit to ORES",
+                completed=True,
+                date=None,
+                kdm=project["key_development_milestones"],
+            )
+            try:
+                response = (
+                    supabase.table("Projects_duplicate").insert(project).execute()
+                )
+                print("INSERT", response, "\n")
+            except Exception as exception:
+                print(exception)
+
+
+def ores_permitted_to_database():
+    database = []
+    database.extend(query_ores_permitted())
+    for project in database:
+        existing_data = (
+            supabase.table("Projects_duplicate")
+            .select("*")
+            .eq("project_name", project["project_name"])
+            .execute()
+        )
+        if len(existing_data.data) > 0:
+            existing_project = existing_data.data[0]
+            update_object = create_update_object(existing_project, project)
+            # if the existing project has no kdms, add the dict first
+            if (
+                existing_project["key_development_milestones"] is None
+                or len(existing_project["key_development_milestones"]) < 0
+            ):
+                update_object["key_development_milestones"] = initial_kdm_dict
+            else:
+                update_object["key_development_milestones"] = existing_project[
+                    "key_development_milestones"
+                ]
+
+            # update kdm for ores projects under review
+            update_object["key_development_milestones"] = update_kdm(
+                milestoneTitle="Issuance of permit from ORES",
+                completed=True,
+                date=None,
+                kdm=update_object["key_development_milestones"],
+            )
+            try:
+                response = (
+                    supabase.table("Projects_duplicate")
+                    .update(update_object)
+                    .eq(
+                        "project_name",
+                        project["project_name"],
+                    )
+                    .execute()
+                )
+                print("UPDATE", response, "\n")
+            except Exception as exception:
+                print(exception)
+        else:
+            project["key_development_milestones"] = update_kdm(
+                milestoneTitle="Issuance of permit from ORES",
+                completed=True,
+                date=None,
+                kdm=project["key_development_milestones"],
+            )
+            try:
+                response = (
+                    supabase.table("Projects_duplicate").insert(project).execute()
+                )
+                print("INSERT", response, "\n")
+            except Exception as exception:
+                print(exception)
+
+
 """
 For testing
 """
@@ -420,3 +577,6 @@ For testing
 # nyserda_solar_to_database()
 # nyiso_to_database()
 # nyiso_in_service_to_database()
+# ores_noi_to_database()
+ores_under_review_to_database()
+# ores_permitted_to_database()
