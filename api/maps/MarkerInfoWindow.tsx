@@ -7,6 +7,7 @@ import {
   Pin,
   useAdvancedMarkerRef,
 } from '@vis.gl/react-google-maps';
+import { TagText2 } from '@/styles/texts';
 import energyStorage from '../../assets/Custom-Markers/energy_storage.svg';
 import geothermal from '../../assets/Custom-Markers/geothermal.svg';
 import hydroelectric from '../../assets/Custom-Markers/hydroelectric.svg';
@@ -29,7 +30,6 @@ export const MarkerInfoWindow = ({
   position,
   projectId,
   projectName,
-  projectDev,
   technology,
   onMarkerClick,
   clusterer,
@@ -38,7 +38,6 @@ export const MarkerInfoWindow = ({
   position: { lat: number; lng: number };
   projectId: number;
   projectName: string;
-  projectDev: string;
   technology: string;
   onMarkerClick: (
     projectId: number,
@@ -112,8 +111,7 @@ export const MarkerInfoWindow = ({
       </AdvancedMarker>
       {infoWindowShown && (
         <InfoWindow anchor={marker} onClose={handleClose} disableAutoPan={true}>
-          <h2>{projectName}</h2>
-          <p>Developer: {projectDev}</p>
+          <TagText2>{projectName}</TagText2>
         </InfoWindow>
       )}
     </>

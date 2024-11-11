@@ -42,6 +42,7 @@ export const ProjectDetails = styled.div`
 export const projectImageStyles: CSSProperties = {
   objectFit: 'cover',
   width: '100%',
+  maxHeight: '15.625rem',
   height: '15.625rem',
   borderRadius: '8px 8px 0px 0px',
 };

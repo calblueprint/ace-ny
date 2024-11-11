@@ -74,7 +74,7 @@ export default function ProjectModal({
         }
       }
     };
-    document.title = project?.project_name + '';
+    document.title = 'Project - ' + project?.project_name;
     fetchDefaultImage();
   }, [project]);
 
