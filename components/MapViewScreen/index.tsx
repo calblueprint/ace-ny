@@ -1,34 +1,35 @@
-import { FaMapMarkerAlt } from 'react-icons/fa';
-import { FaBolt } from 'react-icons/fa6';
-import { IoIosCheckmarkCircleOutline } from 'react-icons/io';
-import { MdLightbulbOutline } from 'react-icons/md';
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
 import { SearchBar } from '@/components/SearchBar';
 import { Filter } from '@/types/schema';
+import Location from '../../assets/DropdownIcons/Location.svg';
+import ProjectSize from '../../assets/DropdownIcons/ProjectSize.svg';
+import Status from '../../assets/DropdownIcons/Status.svg';
+import Technology from '../../assets/DropdownIcons/Technology.svg';
 import { Project } from '../../types/schema';
+import SVGIcon from '../SVGIcon';
 
 export default function MapViewScreen(props: { projects: Project[] | null }) {
   const filters: Filter[] = [
     {
       id: 'status',
       label: 'STATUS',
-      icon: <IoIosCheckmarkCircleOutline />,
+      icon: <SVGIcon src={Status} alt="Status" />,
     },
     {
       id: 'technology',
       label: 'TECHNOLOGY',
-      icon: <FaBolt />,
+      icon: <SVGIcon src={Technology} alt="Technology" />,
     },
     {
       id: 'projectSize',
       label: 'PROJECT SIZE',
-      icon: <MdLightbulbOutline />,
+      icon: <SVGIcon src={ProjectSize} alt="Project Size" />,
     },
     {
       id: 'location',
       label: 'LOCATION',
-      icon: <FaMapMarkerAlt />,
+      icon: <SVGIcon src={Location} alt="Location" />,
     },
   ];
 

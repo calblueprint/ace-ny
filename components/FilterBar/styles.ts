@@ -107,3 +107,9 @@ export const ApplyButtonStyles = styled.button`
   width: 88%;
   margin: 1rem auto 0.5rem auto;
 `;
+
+export const IconStyle = styled.div`
+  align-self: center;
+  width: 0.8rem;
+  height: 0.8rem;
+`;

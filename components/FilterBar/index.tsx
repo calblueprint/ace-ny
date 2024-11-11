@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { RiArrowDropDownLine } from 'react-icons/ri';
 import TechnologyDropdown from '@/components/TechnologyDropdown.tsx';
 import { Filter, Filters } from '@/types/schema';
+import Drop from '../../assets/DropdownIcons/Drop.svg';
+import SVGIcon from '../SVGIcon';
 import {
   FilterBackgroundStyles,
   FilterButtonStyles,
   FilterContainerStyles,
+  IconStyle,
 } from './styles';
 
 export const FilterBar = ({
@@ -60,9 +62,9 @@ export const FilterBar = ({
             ) : null
           ) : (
             <FilterButtonStyles onClick={() => handleButtonClick(filter)}>
-              {filter.icon}
+              <IconStyle>{filter.icon}</IconStyle>
               {filter.label}
-              <RiArrowDropDownLine />
+              <SVGIcon src={Drop} alt="Dropdown" />
             </FilterButtonStyles>
           )}
         </FilterBackgroundStyles>
