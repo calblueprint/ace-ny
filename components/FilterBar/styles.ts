@@ -31,6 +31,7 @@ export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
 
 export const FilterButtonStyles = styled.button`
   ${FilterHeadingUnused}
+  position: relative;
   background: #fff;
   border: none;
   border-radius: 6.25rem;

@@ -4,7 +4,6 @@ import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
 export const FilterDropdownStyles = styled.div`
   position: relative;
   background: #fff;
-  box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
   width: 13rem;
   border-radius: 0.5rem;
   padding-bottom: 0.5rem;
