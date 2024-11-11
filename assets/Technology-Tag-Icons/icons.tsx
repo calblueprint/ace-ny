@@ -104,7 +104,7 @@ export const PumpedStorageIcon = () => (
     />
   </svg>
 );
-export const SolarPowerIcon = () => (
+export const SolarPvIcon = () => (
   <svg
     width="10"
     height="9"

@@ -94,7 +94,7 @@ export default function ProjectModal({
     project_image,
     additional_information,
     key_development_milestones,
-    // proposed_cod,
+    proposed_cod,
     // approved
   } = project || {};
 
@@ -150,7 +150,7 @@ export default function ProjectModal({
               <Heading1>{project_name?.toUpperCase()}</Heading1>
             </ProjectName>
             <ProjectFilterWrapper>
-              <StatusTags projectStatus={project_status} cod={null} />
+              <StatusTags projectStatus={project_status} cod={proposed_cod} />
               <TechnologyTags technology={renewable_energy_technology} />
             </ProjectFilterWrapper>
           </ProjectOverview>

@@ -10,7 +10,7 @@ export default function StatusTag({
   cod,
 }: {
   projectStatus: string | undefined;
-  cod: string | null;
+  cod: Date | undefined;
 }) {
   return (
     <div>

@@ -5,7 +5,7 @@ import {
   LandBasedWindIcon,
   OffshoreWindIcon,
   PumpedStorageIcon,
-  SolarPowerIcon,
+  SolarPvIcon,
 } from '../../assets/Technology-Tag-Icons/icons';
 import { TagText1 } from '../../styles/texts';
 import { TechnologyTagStyles } from './styles';
@@ -16,13 +16,13 @@ export default function TechnologyTag({
   technology: string | undefined;
 }) {
   const iconMap: { [key: string]: JSX.Element } = {
-    Solar: <SolarPowerIcon />,
+    'Solar PV': <SolarPvIcon />,
     Geothermal: <GeothermalIcon />,
     'Offshore Wind': <OffshoreWindIcon />,
     Hydroelectric: <HydroelectricIcon />,
     'Land-Based Wind': <LandBasedWindIcon />,
     'Pumped Storage': <PumpedStorageIcon />,
-    'Battery Storage': <EnergyStorageIcon />,
+    'Energy Storage': <EnergyStorageIcon />,
   };
 
   const icon = technology ? iconMap[technology] : null;
