@@ -53,6 +53,11 @@ const CoinbaseSans = localFont({
 const CoinbaseText = localFont({
   src: [
     {
+      path: '../assets/CoinbaseFont/Coinbase-Text/Coinbase_Text-Extra_Light-web-1.32.woff2',
+      weight: '200',
+      style: 'normal',
+    },
+    {
       path: '../assets/CoinbaseFont/Coinbase-Text/Coinbase_Text-Light-web-1.32.woff2',
       weight: '300',
       style: 'normal',

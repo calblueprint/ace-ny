@@ -74,6 +74,7 @@ export default function ProjectModal({
         }
       }
     };
+    document.title = 'Project - ' + project?.project_name;
     fetchDefaultImage();
   }, [project]);
 
@@ -159,7 +160,7 @@ export default function ProjectModal({
               <FiZap size={42} />
               {size}
             </AccentText1>
-            <AccentText2>Megawatts (MW)</AccentText2>
+            <AccentText2>Megawatts</AccentText2>
           </ProjectSize>
           <Divider />
           <AllKDMS>{KDMs}</AllKDMS>

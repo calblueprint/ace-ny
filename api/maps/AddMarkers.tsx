@@ -22,9 +22,13 @@ export default function AddMarker({
   ) => {
     setSelectedProjectId(prevId => (prevId === projectId ? null : projectId)); // close modal if same, open if different
     map?.panTo(position); // change center of map to selected marker
+    if (selectedProjectId === projectId) {
+      document.title = 'ACE NY';
+    }
   };
 
   const closeModal = () => {
+    document.title = 'ACE NY';
     setSelectedProjectId(null); // close modal
   };
 
@@ -45,7 +49,6 @@ export default function AddMarker({
               lng: project.longitude,
             }}
             projectName={project.project_name}
-            projectDev={project.developer}
             technology={project.renewable_energy_technology}
             projectId={project.id}
             onMarkerClick={handleMarkerClick}
