@@ -9,7 +9,7 @@ const sans = Inter({
 
 // site metadata - what shows up on embeds
 export const metadata: Metadata = {
-  title: 'Project Name',
+  title: 'ACE NY',
   description: 'Description of project',
 };
 
