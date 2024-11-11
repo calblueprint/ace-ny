@@ -7,6 +7,7 @@ import {
   queryProjectbyId,
 } from '@/api/supabase/queries/query';
 import {
+  InProgressIcon,
   OperationalIcon,
   SmallEnergyStorageIcon,
   SmallGeothermalIcon,
@@ -17,7 +18,7 @@ import {
   SmallSizeIcon,
   SmallSolarPowerIcon,
 } from '@/assets/Icons/icons';
-import { Heading2, TagText1, TagText2 } from '@/styles/texts';
+import { Heading2, TagText2 } from '@/styles/texts';
 import { Project } from '@/types/schema';
 import ProjectModal from '../ProjectModal';
 import {
@@ -84,6 +85,18 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
     return project_image || defaultImage || '';
   };
 
+  // Sets status label to "Operational" or "In Progress"
+  let projectStatus = project_status;
+  if (project_status !== 'Operational') {
+    projectStatus = 'In Progress';
+  }
+
+  // Sets status icon to OperationalIcon or InProgressIcon
+  let statusIcon = <OperationalIcon />;
+  if (project_status !== 'Operational') {
+    statusIcon = <InProgressIcon />;
+  }
+
   const projectImageAlt = project_image
     ? `${project_name} project image`
     : defaultImage
@@ -95,7 +108,7 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
     case 'Land-Based Wind':
       projectTypeIcon = <SmallLandBasedWindIcon />;
       break;
-    case 'Solar':
+    case 'Solar PV':
       projectTypeIcon = <SmallSolarPowerIcon />;
       break;
     case 'Hydroelectric':
@@ -136,8 +149,8 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
           <ProjectName>{project_name?.toUpperCase()}</ProjectName>
         </Heading2>
         <ProjectStatus>
-          <OperationalIcon />
-          <TagText1>{project_status}</TagText1>
+          {statusIcon}
+          <TagText2>{projectStatus}</TagText2>
         </ProjectStatus>
         <ProjectSizeAndType>
           <ProjectSize>
