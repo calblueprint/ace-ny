@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import TechnologyDropdown from '@/components/TechnologyDropdown.tsx';
+import TechnologyDropdown from '@/components/TechnologyDropdown';
 import { Filter, Filters } from '@/types/schema';
 import Drop from '../../assets/DropdownIcons/Drop.svg';
 import SVGIcon from '../SVGIcon';
