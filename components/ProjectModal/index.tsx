@@ -118,57 +118,59 @@ export default function ProjectModal({
       : 'No image available';
 
   return (
-    <div>
-      <Modal
-        isOpen={openFirst}
-        style={{
-          overlay: modalOverlayStyles,
-          content: modalContentStyles,
-        }}
-      >
-        <ProjectDetails>
-          <Image
-            src={getProjectImageSrc()}
-            alt={projectImageAlt}
-            width={340}
-            height={250}
-            style={projectImageStyles}
-          />
-          <ProjectOverview>
-            <Developer>
-              <BodyText1>Developer ‣ {developer}</BodyText1>
-              <CloseButton onClick={closeModal}>
-                <FiX size={20} color="#000" />
-              </CloseButton>
-            </Developer>
-            <ProjectName>
-              <Heading1>{project_name?.toUpperCase()}</Heading1>
-            </ProjectName>
-            <ProjectFilterWrapper>
-              <StatusTags projectStatus={project_status} cod={proposed_cod} />
-              <TechnologyTags technology={renewable_energy_technology} />
-            </ProjectFilterWrapper>
-          </ProjectOverview>
-          <ProjectSize>
-            <AccentText1>
-              <FiZap size={42} />
-              {size}
-            </AccentText1>
-            <AccentText2>Megawatts</AccentText2>
-          </ProjectSize>
-          <Divider />
-          <AllKDMS>{KDMs}</AllKDMS>
-          <AdditionalInfo>
-            <DetailsContainer>
-              <BodyText1>DETAILS</BodyText1>
-              <Divider />
-            </DetailsContainer>
-            <AdditionalText>
-              <BodyText1>{additional_information}</BodyText1>
-            </AdditionalText>
-          </AdditionalInfo>
-        </ProjectDetails>
-      </Modal>
-    </div>
+    <Modal
+      isOpen={openFirst}
+      style={{
+        overlay: modalOverlayStyles,
+        content: modalContentStyles,
+      }}
+    >
+      <ProjectDetails>
+        <Image
+          src={getProjectImageSrc()}
+          alt={projectImageAlt}
+          width={340}
+          height={250}
+          style={projectImageStyles}
+        />
+        <ProjectOverview>
+          <Developer>
+            <BodyText1>Developer ‣ {developer}</BodyText1>
+            <CloseButton onClick={closeModal}>
+              <FiX size={20} color="#000" />
+            </CloseButton>
+          </Developer>
+          <ProjectName>
+            <Heading1>{project_name?.toUpperCase()}</Heading1>
+          </ProjectName>
+          <ProjectFilterWrapper>
+            <ProjectFilter>
+              <TagText1>{project_status}</TagText1>
+            </ProjectFilter>
+            <ProjectFilter>
+              <TagText1>{renewable_energy_technology}</TagText1>
+            </ProjectFilter>
+          </ProjectFilterWrapper>
+        </ProjectOverview>
+        <ProjectSize>
+          <AccentText1>
+            <FiZap size={42} />
+            {size}
+          </AccentText1>
+          <AccentText2>MW</AccentText2>
+        </ProjectSize>
+        <Divider />
+        <AllKDMS>{KDMs}</AllKDMS>
+        <AdditionalInfo>
+          <DetailsContainer>
+            <BodyText1>DETAILS</BodyText1>
+            <Divider />
+          </DetailsContainer>
+          <AdditionalText>
+            <BodyText1>{additional_information}</BodyText1>
+          </AdditionalText>
+        </AdditionalInfo>
+      </ProjectDetails>
+    </Modal>
   );
 }

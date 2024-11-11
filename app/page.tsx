@@ -1,6 +1,7 @@
 'use client';
 
 import { CSSProperties, useEffect, useState } from 'react';
+import AllProjectsModal from '@/components/AllProjectsModal';
 import Map from '@/components/Map';
 import queryProjects from '../api/supabase/queries/query';
 import { Project } from '../types/schema';
@@ -21,6 +22,7 @@ export default function Home() {
     <main style={mainStyles}>
       {error ? <div style={errorStyles}>{error}</div> : null}
       {projects ? <Map projects={projects} /> : null}
+      <AllProjectsModal />
     </main>
   );
 }
