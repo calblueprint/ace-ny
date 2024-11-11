@@ -31,10 +31,19 @@ export interface Filter {
   id: string;
   label: string;
   icon: React.ReactNode;
-  categories: { category: string; options: Option[] }[];
 }
 
 export interface SVGIconProps {
   src: string;
   alt: string;
+}
+
+export interface Filters {
+  statusCompleted: boolean;
+  technology: string[];
+  projectSize: {
+    min: number;
+    max: number;
+  };
+  location: string[];
 }
