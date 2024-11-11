@@ -80,17 +80,7 @@ export const ProjectFilterWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-`;
-
-export const ProjectFilter = styled.div`
-  border-radius: 100px;
-  border: 0.5px solid rgba(46, 58, 89, 0.25);
-  display: inline-flex;
-  height: 1.375rem;
-  padding: 0.1rem 0.625rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  white-space: nowrap;
 `;
 
 export const CloseButton = styled.button`
