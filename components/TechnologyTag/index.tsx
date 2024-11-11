@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   EnergyStorageIcon,
   GeothermalIcon,
@@ -24,19 +23,11 @@ export default function TechnologyTag({
     'Energy Storage': (
       <EnergyStorageIcon fill={COLORS.teal} stroke={COLORS.white} />
     ),
-    Geothermal: (
-      <GeothermalIcon fill={COLORS.earthyGreen} stroke={COLORS.white} />
-    ),
-    Hydroelectric: (
-      <HydroelectricIcon fill={COLORS.frenchBlue} stroke={undefined} />
-    ),
-    'Land-Based Wind': (
-      <LandBasedWindIcon fill={COLORS.skyBlue} stroke={undefined} />
-    ),
-    'Pumped Storage': (
-      <PumpedStorageIcon fill={COLORS.cyanBlue} stroke={undefined} />
-    ),
-    'Solar PV': <SolarPvIcon fill={COLORS.yellow} stroke={undefined} />,
+    Geothermal: <GeothermalIcon fill={COLORS.earthyGreen} />,
+    Hydroelectric: <HydroelectricIcon fill={COLORS.frenchBlue} />,
+    'Land-Based Wind': <LandBasedWindIcon fill={COLORS.skyBlue} />,
+    'Pumped Storage': <PumpedStorageIcon fill={COLORS.cyanBlue} />,
+    'Solar PV': <SolarPvIcon fill={COLORS.yellow} />,
   };
 
   const icon = technology ? iconMap[technology] : null;
