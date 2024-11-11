@@ -1,4 +1,5 @@
 import SVGIcon from '@/components/SVGIcon';
+import { Filter } from '@/types/schema';
 import EnergyStorage from '../../assets/DropdownIcons/EnergyStorage.svg';
 import Geothermal from '../../assets/DropdownIcons/Geothermal.svg';
 import Hydroelectric from '../../assets/DropdownIcons/Hydroelectric.svg';
@@ -6,11 +7,15 @@ import LandbasedWind from '../../assets/DropdownIcons/LandbasedWind.svg';
 import OffshoreWind from '../../assets/DropdownIcons/OffshoreWind.svg';
 import PumpedStorage from '../../assets/DropdownIcons/PumpedStorage.svg';
 import SolarPower from '../../assets/DropdownIcons/SolarPower.svg';
+import X from '../../assets/DropdownIcons/X.svg';
 import {
   ApplyButtonStyles,
+  ButtonStyles,
+  ButtonWithIconStyles,
   CategoryTitleStyles,
   CheckboxContainer,
   CheckboxStyles,
+  ExitStyles,
   FilterDropdownStyles,
   OptionTitleStyles,
 } from './styles';
@@ -18,11 +23,19 @@ import {
 interface TechnologyDropdownProps {
   selectedTechnologies: string[];
   setSelectedTechnologies: (technologies: string[]) => void;
+  handleButtonClick: (filter: Filter) => void;
+  icon: React.ReactNode;
+  label: string;
+  currFilter: Filter;
 }
 
 export default function TechnologyDropdown({
   selectedTechnologies,
   setSelectedTechnologies,
+  handleButtonClick,
+  icon,
+  label,
+  currFilter,
 }: TechnologyDropdownProps) {
   const filter = {
     categories: [
@@ -68,6 +81,13 @@ export default function TechnologyDropdown({
   };
   return (
     <FilterDropdownStyles>
+      <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
+        {icon}
+        <ButtonStyles>{label}</ButtonStyles>
+        <ExitStyles>
+          <SVGIcon src={X} alt={'exit'} />
+        </ExitStyles>
+      </ButtonWithIconStyles>
       {filter.categories.map(category => (
         <div key={category.category}>
           <CategoryTitleStyles>{category.category}</CategoryTitleStyles>

@@ -11,7 +11,7 @@ export const FilterContainerStyles = styled.div`
   flex-wrap: wrap;
 `;
 
-export const FilterBackgroundStyles = styled.div`
+export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
   margin-right: 2%;
   top: 1.5%;
   right: 1.5%;
@@ -22,10 +22,12 @@ export const FilterBackgroundStyles = styled.div`
   );
   backdrop-filter: blur(7.5px);
   padding: 0.35rem 0.35rem;
-  border-radius: 6.25rem;
   z-index: 5;
   border: 0.05rem solid #fff;
   margin-top: 1.5%;
+  max-height: ${({ isActive }) => (isActive ? 'auto' : '2rem')};
+  border-radius: ${({ isActive }) => (isActive ? '0.5rem' : '6.25rem')};
+  transition: height 0.5s ease-in-out;
 `;
 
 export const FilterButtonStyles = styled.button`
@@ -46,6 +48,7 @@ export const FilterDropdownStyles = styled.div`
   background: #fff;
   box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.25);
   width: 100%;
+  margin-top: 0.25rem;
 `;
 
 export const CheckboxContainer = styled.div`

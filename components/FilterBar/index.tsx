@@ -53,7 +53,7 @@ export const FilterBar = ({
   console.log('Filters', filters);
   return (
     <FilterContainerStyles>
-      {filters.map(filter =>
+      {/* {filters.map(filter =>
         activeFilter?.id === filter.id ? null : (
           <FilterBackgroundStyles key={filter.label}>
             <FilterButtonStyles
@@ -66,15 +66,40 @@ export const FilterBar = ({
             </FilterButtonStyles>
           </FilterBackgroundStyles>
         ),
-      )}
-      {activeFilter?.id === 'technology' && (
+      )} */}
+      {filters.map(filter => (
+        <FilterBackgroundStyles
+          key={filter.label}
+          isActive={activeFilter?.id === filter.id}
+        >
+          {activeFilter?.id === filter.id ? (
+            filter.id === 'technology' ? (
+              <TechnologyDropdown
+                selectedTechnologies={selectedFilters.technology}
+                setSelectedTechnologies={handleTechnologyChange}
+                handleButtonClick={handleButtonClick}
+                icon={filter.icon}
+                label={filter.label}
+                currFilter={filter}
+              />
+            ) : null
+          ) : (
+            <FilterButtonStyles onClick={() => handleButtonClick(filter)}>
+              {filter.icon}
+              {filter.label}
+              <RiArrowDropDownLine />
+            </FilterButtonStyles>
+          )}
+        </FilterBackgroundStyles>
+      ))}
+      {/* {activeFilter?.id === 'technology' && (
         <div>
           <TechnologyDropdown
             selectedTechnologies={selectedFilters.technology}
             setSelectedTechnologies={handleTechnologyChange}
           />
         </div>
-      )}
+      )} */}
       {/* Add more filter components here */}
     </FilterContainerStyles>
   );
