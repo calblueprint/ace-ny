@@ -76,6 +76,7 @@ export const ProjectFilterWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  white-space: nowrap;
 `;
 
 export const CloseButton = styled.button`
