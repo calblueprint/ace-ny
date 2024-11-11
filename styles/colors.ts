@@ -1,5 +1,6 @@
 const COLORS = {
   navy: '#2E3A59',
+  navy75: '#626C83',
   electricBlue: '#4974E0',
   lightBlue: '#92ACED',
   green: '#0E7B30',

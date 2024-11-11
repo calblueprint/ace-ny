@@ -112,7 +112,7 @@ export const TagText1 = styled.p<TextProps>`
 
 export const TagText2 = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
-  color: ${COLORS.navy};
+  color: ${COLORS.navy75};
   font-size: 0.625rem;
   font-style: normal;
   font-weight: 300;
