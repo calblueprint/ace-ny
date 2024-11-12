@@ -13,10 +13,11 @@ import {
   AccentText2,
   BodyText1,
   Heading1,
-  TagText1,
 } from '../../styles/texts';
 import { Project } from '../../types/schema';
 import KeyDevelopmentMilestone from '../KeyDevelopmentMilestone';
+import StatusTags from '../StatusTag';
+import TechnologyTags from '../TechnologyTag';
 import {
   AdditionalInfo,
   AdditionalText,
@@ -28,7 +29,6 @@ import {
   modalContentStyles,
   modalOverlayStyles,
   ProjectDetails,
-  ProjectFilter,
   ProjectFilterWrapper,
   projectImageStyles,
   ProjectName,
@@ -74,6 +74,7 @@ export default function ProjectModal({
         }
       }
     };
+    document.title = 'Project - ' + project?.project_name;
     fetchDefaultImage();
   }, [project]);
 
@@ -94,7 +95,7 @@ export default function ProjectModal({
     project_image,
     additional_information,
     key_development_milestones,
-    // proposed_cod,
+    proposed_cod,
     // approved
   } = project || {};
 
@@ -150,12 +151,8 @@ export default function ProjectModal({
               <Heading1>{project_name?.toUpperCase()}</Heading1>
             </ProjectName>
             <ProjectFilterWrapper>
-              <ProjectFilter>
-                <TagText1>{project_status}</TagText1>
-              </ProjectFilter>
-              <ProjectFilter>
-                <TagText1>{renewable_energy_technology}</TagText1>
-              </ProjectFilter>
+              <StatusTags projectStatus={project_status} cod={proposed_cod} />
+              <TechnologyTags technology={renewable_energy_technology} />
             </ProjectFilterWrapper>
           </ProjectOverview>
           <ProjectSize>
@@ -163,7 +160,7 @@ export default function ProjectModal({
               <FiZap size={42} />
               {size}
             </AccentText1>
-            <AccentText2>MW</AccentText2>
+            <AccentText2>Megawatts</AccentText2>
           </ProjectSize>
           <Divider />
           <AllKDMS>{KDMs}</AllKDMS>
