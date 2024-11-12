@@ -49,7 +49,11 @@ export default function TechnologyDropdown({
             title: 'Land-based Wind',
             icon: (
               <IconStyles>
-                <LandBasedWindIcon fill={COLORS.grey} />
+                <LandBasedWindIcon
+                  fill={COLORS.grey}
+                  width={'10'}
+                  height={'13'}
+                />
               </IconStyles>
             ),
           },
@@ -57,7 +61,11 @@ export default function TechnologyDropdown({
             title: 'Hydroelectric',
             icon: (
               <IconStyles>
-                <HydroelectricIcon fill={COLORS.grey} />
+                <HydroelectricIcon
+                  fill={COLORS.grey}
+                  width={'14'}
+                  height={'10'}
+                />
               </IconStyles>
             ),
           },
@@ -68,6 +76,8 @@ export default function TechnologyDropdown({
                 <OffshoreWindIcon
                   fill={COLORS.grey}
                   stroke={COLORS.veryLightGrey}
+                  width={'12'}
+                  height={'14'}
                 />
               </IconStyles>
             ),
@@ -76,7 +86,7 @@ export default function TechnologyDropdown({
             title: 'Solar PV',
             icon: (
               <IconStyles>
-                <SolarPvIcon fill={COLORS.grey} />
+                <SolarPvIcon fill={COLORS.grey} width={'14'} height={'14'} />
               </IconStyles>
             ),
           },
@@ -84,7 +94,7 @@ export default function TechnologyDropdown({
             title: 'Geothermal',
             icon: (
               <IconStyles>
-                <GeothermalIcon fill={COLORS.grey} />
+                <GeothermalIcon fill={COLORS.grey} width={'14'} height={'12'} />
               </IconStyles>
             ),
           },
@@ -100,6 +110,8 @@ export default function TechnologyDropdown({
                 <EnergyStorageIcon
                   fill={COLORS.grey}
                   stroke={COLORS.veryLightGrey}
+                  width={'13'}
+                  height="9"
                 />
               </IconStyles>
             ),
@@ -108,7 +120,7 @@ export default function TechnologyDropdown({
             title: 'Pumped Storage',
             icon: (
               <IconStyles>
-                <PumpedStorageIcon fill={COLORS.grey} />
+                <PumpedStorageIcon fill={COLORS.grey} width="12" height="11" />
               </IconStyles>
             ),
           },

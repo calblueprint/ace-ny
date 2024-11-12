@@ -1,10 +1,12 @@
 export const OffshoreWindIcon = (props: {
   fill: string | undefined;
   stroke: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
 }) => (
   <svg
-    width="9"
-    height="11"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 9 11"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -30,10 +32,12 @@ export const OffshoreWindIcon = (props: {
 export const EnergyStorageIcon = (props: {
   fill: string | undefined;
   stroke: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
 }) => (
   <svg
-    width="13"
-    height="9"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 13 9"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -47,11 +51,15 @@ export const EnergyStorageIcon = (props: {
   </svg>
 );
 
-export const GeothermalIcon = (props: { fill: string | undefined }) => (
+export const GeothermalIcon = (props: {
+  fill: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="9"
-    height="9"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 9 9"
     fill="none"
   >
@@ -62,10 +70,14 @@ export const GeothermalIcon = (props: { fill: string | undefined }) => (
   </svg>
 );
 
-export const HydroelectricIcon = (props: { fill: string | undefined }) => (
+export const HydroelectricIcon = (props: {
+  fill: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
-    width="12"
-    height="9"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 12 9"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -79,10 +91,14 @@ export const HydroelectricIcon = (props: { fill: string | undefined }) => (
   </svg>
 );
 
-export const LandBasedWindIcon = (props: { fill: string | undefined }) => (
+export const LandBasedWindIcon = (props: {
+  fill: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
-    width="8"
-    height="11"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 8 11"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -94,10 +110,14 @@ export const LandBasedWindIcon = (props: { fill: string | undefined }) => (
   </svg>
 );
 
-export const PumpedStorageIcon = (props: { fill: string | undefined }) => (
+export const PumpedStorageIcon = (props: {
+  fill: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
-    width="12"
-    height="9"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 12 9"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -108,10 +128,14 @@ export const PumpedStorageIcon = (props: { fill: string | undefined }) => (
     />
   </svg>
 );
-export const SolarPvIcon = (props: { fill: string | undefined }) => (
+export const SolarPvIcon = (props: {
+  fill: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
-    width="10"
-    height="9"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 10 9"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
