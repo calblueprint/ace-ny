@@ -77,3 +77,18 @@ export const DropIcon = () => (
     />
   </svg>
 );
+
+export const ExitIcon = () => (
+  <svg
+    width="10"
+    height="10"
+    viewBox="0 0 10 10"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.99286 0L5 3.99286L1.00714 0L0 1.00714L3.99286 5L0 8.99286L1.00714 10L5 6.00714L8.99286 10L10 8.99286L6.00714 5L10 1.00714L8.99286 0Z"
+      fill="#2E3A59"
+    />
+  </svg>
+);

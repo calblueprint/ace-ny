@@ -1,13 +1,5 @@
-import SVGIcon from '@/components/SVGIcon';
 import { Filter } from '@/types/schema';
-import X from '../../assets/DropdownIcons/X.svg';
-// import EnergyStorage from '../../assets/DropdownIcons/EnergyStorage.svg';
-// import Geothermal from '../../assets/DropdownIcons/Geothermal.svg';
-// import Hydroelectric from '../../assets/DropdownIcons/Hydroelectric.svg';
-// import LandbasedWind from '../../assets/DropdownIcons/LandbasedWind.svg';
-// import OffshoreWind from '../../assets/DropdownIcons/OffshoreWind.svg';
-// import PumpedStorage from '../../assets/DropdownIcons/PumpedStorage.svg';
-// import SolarPower from '../../assets/DropdownIcons/SolarPower.svg';
+import { ExitIcon } from '../../assets/DropdownIcons/icons';
 import {
   EnergyStorageIcon,
   GeothermalIcon,
@@ -130,7 +122,7 @@ export default function TechnologyDropdown({
         {icon}
         <ButtonStyles>{label}</ButtonStyles>
         <ExitStyles>
-          <SVGIcon src={X} alt={'exit'} />
+          <ExitIcon />
         </ExitStyles>
       </ButtonWithIconStyles>
       {filter.categories.map(category => (
