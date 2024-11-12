@@ -1,4 +1,4 @@
-import { CheckmarkIcon, DotDotDotIcon } from '../../assets/KDM-Icons/icons';
+import { CheckmarkIcon, DotDotDotIcon } from '../../assets/Icons/icons';
 import { Milestone, MilestoneLabel } from './styles';
 
 export default function KeyDevelopmentMilestone({
