@@ -1,13 +1,23 @@
 import SVGIcon from '@/components/SVGIcon';
 import { Filter } from '@/types/schema';
-import EnergyStorage from '../../assets/DropdownIcons/EnergyStorage.svg';
-import Geothermal from '../../assets/DropdownIcons/Geothermal.svg';
-import Hydroelectric from '../../assets/DropdownIcons/Hydroelectric.svg';
-import LandbasedWind from '../../assets/DropdownIcons/LandbasedWind.svg';
-import OffshoreWind from '../../assets/DropdownIcons/OffshoreWind.svg';
-import PumpedStorage from '../../assets/DropdownIcons/PumpedStorage.svg';
-import SolarPower from '../../assets/DropdownIcons/SolarPower.svg';
 import X from '../../assets/DropdownIcons/X.svg';
+// import EnergyStorage from '../../assets/DropdownIcons/EnergyStorage.svg';
+// import Geothermal from '../../assets/DropdownIcons/Geothermal.svg';
+// import Hydroelectric from '../../assets/DropdownIcons/Hydroelectric.svg';
+// import LandbasedWind from '../../assets/DropdownIcons/LandbasedWind.svg';
+// import OffshoreWind from '../../assets/DropdownIcons/OffshoreWind.svg';
+// import PumpedStorage from '../../assets/DropdownIcons/PumpedStorage.svg';
+// import SolarPower from '../../assets/DropdownIcons/SolarPower.svg';
+import {
+  EnergyStorageIcon,
+  GeothermalIcon,
+  HydroelectricIcon,
+  LandBasedWindIcon,
+  OffshoreWindIcon,
+  PumpedStorageIcon,
+  SolarPvIcon,
+} from '../../assets/Technology-Tag-Icons/icons';
+import COLORS from '../../styles/colors';
 import {
   ApplyButtonStyles,
   ButtonStyles,
@@ -17,6 +27,7 @@ import {
   CheckboxStyles,
   ExitStyles,
   FilterDropdownStyles,
+  IconStyles,
   OptionTitleStyles,
 } from './styles';
 
@@ -44,23 +55,46 @@ export default function TechnologyDropdown({
         options: [
           {
             title: 'Land-based Wind',
-            icon: <SVGIcon src={LandbasedWind} alt="Land-based Wind" />,
+            icon: (
+              <IconStyles>
+                <LandBasedWindIcon fill={COLORS.grey} />
+              </IconStyles>
+            ),
           },
           {
             title: 'Hydroelectric',
-            icon: <SVGIcon src={Hydroelectric} alt="Hydroelectric" />,
+            icon: (
+              <IconStyles>
+                <HydroelectricIcon fill={COLORS.grey} />
+              </IconStyles>
+            ),
           },
           {
             title: 'Offshore Wind',
-            icon: <SVGIcon src={OffshoreWind} alt="Offshore Wind" />,
+            icon: (
+              <IconStyles>
+                <OffshoreWindIcon
+                  fill={COLORS.grey}
+                  stroke={COLORS.veryLightGrey}
+                />
+              </IconStyles>
+            ),
           },
           {
             title: 'Solar Power',
-            icon: <SVGIcon src={SolarPower} alt="Solar Power" />,
+            icon: (
+              <IconStyles>
+                <SolarPvIcon fill={COLORS.grey} />
+              </IconStyles>
+            ),
           },
           {
             title: 'Geothermal',
-            icon: <SVGIcon src={Geothermal} alt="Geothermal" />,
+            icon: (
+              <IconStyles>
+                <GeothermalIcon fill={COLORS.grey} />
+              </IconStyles>
+            ),
           },
         ],
       },
@@ -69,11 +103,22 @@ export default function TechnologyDropdown({
         options: [
           {
             title: 'Energy Storage',
-            icon: <SVGIcon src={EnergyStorage} alt="Energy Storage" />,
+            icon: (
+              <IconStyles>
+                <EnergyStorageIcon
+                  fill={COLORS.grey}
+                  stroke={COLORS.veryLightGrey}
+                />
+              </IconStyles>
+            ),
           },
           {
             title: 'Pumped Storage',
-            icon: <SVGIcon src={PumpedStorage} alt="Pumped Storage" />,
+            icon: (
+              <IconStyles>
+                <PumpedStorageIcon fill={COLORS.grey} />
+              </IconStyles>
+            ),
           },
         ],
       },

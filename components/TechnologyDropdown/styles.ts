@@ -94,3 +94,8 @@ export const ButtonWithIconStyles = styled.div`
   padding-top: 1rem;
   cursor: pointer;
 `;
+
+export const IconStyles = styled.div`
+  width: '1rem',
+  height: '3rem',
+`;
