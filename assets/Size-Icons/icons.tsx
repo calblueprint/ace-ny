@@ -9,9 +9,9 @@ export const SmallSizeIcon = () => (
     <path
       d="M0.590391 4.57726L4.22789 0.45262L3.63751 3.54051L5.60318 3.90278L1.96568 8.02742L2.55606 4.93954L0.590391 4.57726Z"
       stroke="#2E3A59"
-      stroke-opacity="0.5"
-      stroke-width="0.75"
-      stroke-linejoin="round"
+      strokeOpacity="0.5"
+      strokeWidth="0.75"
+      strokeLinejoin="round"
     />
   </svg>
 );
