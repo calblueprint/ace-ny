@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
 import { Filter, Filters } from '@/types/schema';
-import { DropIcon } from '../../assets/DropdownIcons/icons';
+import { DropIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   FilterBackgroundStyles,
   FilterButtonStyles,

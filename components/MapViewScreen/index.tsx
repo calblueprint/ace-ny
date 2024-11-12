@@ -3,7 +3,7 @@ import {
   ProjectSizeIcon,
   StatusIcon,
   TechnologyIcon,
-} from '@/assets/DropdownIcons/icons';
+} from '@/assets/Dropdown-Icons/icons';
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
 import { SearchBar } from '@/components/SearchBar';

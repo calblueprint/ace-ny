@@ -1,5 +1,5 @@
 import { Filter } from '@/types/schema';
-import { ExitIcon } from '../../assets/DropdownIcons/icons';
+import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
   GeothermalIcon,
