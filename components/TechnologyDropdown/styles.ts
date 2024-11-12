@@ -96,6 +96,6 @@ export const ButtonWithIconStyles = styled.div`
 `;
 
 export const IconStyles = styled.div`
-  width: '1rem',
+  width: '3rem',
   height: '3rem',
 `;

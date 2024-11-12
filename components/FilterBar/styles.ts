@@ -41,6 +41,7 @@ export const FilterButtonStyles = styled.button`
   align-items: center;
   gap: 0.75rem;
   padding: 0.5rem 1rem;
+  color: rgba(46, 58, 89, 0.85);
 `;
 
 export const IconStyle = styled.div`

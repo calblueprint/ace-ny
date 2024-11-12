@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
 import { Filter, Filters } from '@/types/schema';
-import Drop from '../../assets/DropdownIcons/Drop.svg';
-import SVGIcon from '../SVGIcon';
+import { DropIcon } from '../../assets/DropdownIcons/icons';
 import {
   FilterBackgroundStyles,
   FilterButtonStyles,
@@ -64,7 +63,7 @@ export const FilterBar = ({
             <FilterButtonStyles onClick={() => handleButtonClick(filter)}>
               <IconStyle>{filter.icon}</IconStyle>
               {filter.label}
-              <SVGIcon src={Drop} alt="Dropdown" />
+              <DropIcon />
             </FilterButtonStyles>
           )}
         </FilterBackgroundStyles>

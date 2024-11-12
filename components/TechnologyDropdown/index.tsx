@@ -81,7 +81,7 @@ export default function TechnologyDropdown({
             ),
           },
           {
-            title: 'Solar Power',
+            title: 'Solar PV',
             icon: (
               <IconStyles>
                 <SolarPvIcon fill={COLORS.grey} />
