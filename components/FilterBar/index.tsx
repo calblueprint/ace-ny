@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import TechnologyDropdown from '@/components/TechnologyDropdown';
-import { Filter, Filters } from '@/types/schema';
-import { DropIcon } from '../../assets/Dropdown-Icons/icons';
-import {
-  FilterBackgroundStyles,
-  FilterButtonStyles,
-  FilterContainerStyles,
-  IconStyle,
-} from './styles';
+import Filter from '@/components/Filter';
+import { Filters, FilterType } from '@/types/schema';
+import { FilterContainerStyles } from './styles';
 
 export const FilterBar = ({
   filters,
   onFilterChange,
 }: {
-  filters: Filter[];
-  onFilterChange: (filter: Filter) => void;
+  filters: FilterType[];
+  onFilterChange: (filter: FilterType) => void;
 }) => {
-  const [activeFilter, setActiveFilter] = useState<Filter | null>(null);
+  const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
   const [selectedFilters, setSelectedFilters] = useState<Filters>({
     statusCompleted: false,
@@ -25,7 +19,7 @@ export const FilterBar = ({
     location: [],
   });
 
-  const handleButtonClick = (filter: Filter) => {
+  const handleButtonClick = (filter: FilterType) => {
     setActiveFilter(activeFilter?.id === filter.id ? null : filter);
     onFilterChange(filter);
   };
@@ -43,30 +37,14 @@ export const FilterBar = ({
   return (
     <FilterContainerStyles>
       {filters.map(filter => (
-        <FilterBackgroundStyles
+        <Filter
           key={filter.label}
+          filter={filter}
           isActive={activeFilter?.id === filter.id}
-        >
-          {/* Create rest of filter dropdowns in here */}
-          {activeFilter?.id === filter.id ? (
-            filter.id === 'technology' ? (
-              <TechnologyDropdown
-                selectedTechnologies={selectedFilters.technology}
-                setSelectedTechnologies={handleTechnologyChange}
-                handleButtonClick={handleButtonClick}
-                icon={filter.icon}
-                label={filter.label}
-                currFilter={filter}
-              />
-            ) : null
-          ) : (
-            <FilterButtonStyles onClick={() => handleButtonClick(filter)}>
-              <IconStyle>{filter.icon}</IconStyle>
-              {filter.label}
-              <DropIcon />
-            </FilterButtonStyles>
-          )}
-        </FilterBackgroundStyles>
+          selectedFilters={selectedFilters}
+          onTechnologyChange={handleTechnologyChange}
+          handleButtonClick={handleButtonClick}
+        />
       ))}
     </FilterContainerStyles>
   );

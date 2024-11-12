@@ -1,4 +1,4 @@
-import { Filter } from '@/types/schema';
+import { FilterType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
@@ -26,10 +26,10 @@ import {
 interface TechnologyDropdownProps {
   selectedTechnologies: string[];
   setSelectedTechnologies: (technologies: string[]) => void;
-  handleButtonClick: (filter: Filter) => void;
+  handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
-  currFilter: Filter;
+  currFilter: FilterType;
 }
 
 export default function TechnologyDropdown({

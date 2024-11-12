@@ -27,7 +27,7 @@ export interface Option {
   icon: React.ReactNode;
 }
 
-export interface Filter {
+export interface FilterType {
   id: string;
   label: string;
   icon: React.ReactNode;

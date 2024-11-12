@@ -7,11 +7,11 @@ import {
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
 import { SearchBar } from '@/components/SearchBar';
-import { Filter } from '@/types/schema';
+import { FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
 
 export default function MapViewScreen(props: { projects: Project[] | null }) {
-  const filters: Filter[] = [
+  const filters: FilterType[] = [
     {
       id: 'status',
       label: 'STATUS',
@@ -34,7 +34,7 @@ export default function MapViewScreen(props: { projects: Project[] | null }) {
     },
   ];
 
-  const handleFilterChange = (filter: Filter) => {
+  const handleFilterChange = (filter: FilterType) => {
     console.log(filter);
   };
 
