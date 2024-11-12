@@ -42,3 +42,8 @@ export interface Filters {
   };
   location: string[];
 }
+export type Milestone = {
+  milestoneTitle: string;
+  completed: boolean;
+  date: string | null;
+};

@@ -45,7 +45,9 @@ export default function TechnologyTag({
     'Pumped Storage': (
       <PumpedStorageIcon fill={COLORS.cyanBlue} width={'12'} height={'9'} />
     ),
-    'Solar PV': <SolarPvIcon fill={COLORS.yellow} width={'10'} height={'9'} />,
+    'Solar PV': (
+      <SolarPvIcon fill={COLORS.solarYellow} width={'10'} height={'9'} />
+    ),
   };
 
   const icon = technology ? iconMap[technology] : null;
