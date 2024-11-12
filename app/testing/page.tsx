@@ -6,7 +6,7 @@ import ProjectItem from '@/components/ProjectItem';
 export default function Home() {
   return (
     <main style={mainStyles}>
-      <ProjectItem project_id={1}></ProjectItem>
+      <ProjectItem project_id={20}></ProjectItem>
     </main>
   );
 }

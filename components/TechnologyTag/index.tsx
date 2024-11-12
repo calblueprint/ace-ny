@@ -27,7 +27,7 @@ export default function TechnologyTag({
     Hydroelectric: <HydroelectricIcon fill={COLORS.frenchBlue} />,
     'Land-Based Wind': <LandBasedWindIcon fill={COLORS.skyBlue} />,
     'Pumped Storage': <PumpedStorageIcon fill={COLORS.cyanBlue} />,
-    'Solar PV': <SolarPvIcon fill={COLORS.yellow} />,
+    'Solar PV': <SolarPvIcon fill={COLORS.solarYellow} />,
   };
 
   const icon = technology ? iconMap[technology] : null;

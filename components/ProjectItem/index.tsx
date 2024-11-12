@@ -6,18 +6,21 @@ import {
   queryDefaultImages,
   queryProjectbyId,
 } from '@/api/supabase/queries/query';
+import { SmallSizeIcon } from '@/assets/Size-Icons/icons';
 import {
-  InProgressIcon,
-  OperationalIcon,
-  SmallEnergyStorageIcon,
-  SmallGeothermalIcon,
-  SmallHydroelectricIcon,
-  SmallLandBasedWindIcon,
-  SmallOffshoreWindIcon,
-  SmallPumpedStorage,
-  SmallSizeIcon,
-  SmallSolarPowerIcon,
-} from '@/assets/Icons/icons';
+  GreenDotOperationalIcon,
+  GreyDotInProgressIcon,
+} from '@/assets/Status-Tag-Icons/icons';
+import {
+  EnergyStorageIcon,
+  GeothermalIcon,
+  HydroelectricIcon,
+  LandBasedWindIcon,
+  OffshoreWindIcon,
+  PumpedStorageIcon,
+  SolarPvIcon,
+} from '@/assets/Technology-Tag-Icons/icons';
+import COLORS from '@/styles/colors';
 import { Heading2, TagText2 } from '@/styles/texts';
 import { Project } from '@/types/schema';
 import ProjectModal from '../ProjectModal';
@@ -92,9 +95,9 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
   }
 
   // Sets status icon to OperationalIcon or InProgressIcon
-  let statusIcon = <OperationalIcon />;
+  let statusIcon = <GreenDotOperationalIcon />;
   if (project_status !== 'Operational') {
-    statusIcon = <InProgressIcon />;
+    statusIcon = <GreyDotInProgressIcon />;
   }
 
   const projectImageAlt = project_image
@@ -103,30 +106,19 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
       ? `${renewable_energy_technology} default image`
       : 'No image available';
 
-  let projectTypeIcon = <></>;
-  switch (renewable_energy_technology) {
-    case 'Land-Based Wind':
-      projectTypeIcon = <SmallLandBasedWindIcon />;
-      break;
-    case 'Solar PV':
-      projectTypeIcon = <SmallSolarPowerIcon />;
-      break;
-    case 'Hydroelectric':
-      projectTypeIcon = <SmallHydroelectricIcon />;
-      break;
-    case 'Offshore Wind':
-      projectTypeIcon = <SmallOffshoreWindIcon />;
-      break;
-    case 'Geothermal':
-      projectTypeIcon = <SmallGeothermalIcon />;
-      break;
-    case 'Energy Storage':
-      projectTypeIcon = <SmallEnergyStorageIcon />;
-      break;
-    case 'Pumped Storage':
-      projectTypeIcon = <SmallPumpedStorage />;
-      break;
-  }
+  const energyTypeIconMap: { [key: string]: JSX.Element } = {
+    'Land-Based Wind': <LandBasedWindIcon fill={COLORS.skyBlue} />,
+    'Solar PV': <SolarPvIcon fill={COLORS.solarYellow} />,
+    Hydroelectric: <HydroelectricIcon fill={COLORS.frenchBlue} />,
+    'Offshore Wind': (
+      <OffshoreWindIcon fill={COLORS.electricBlue} stroke={COLORS.navy} />
+    ),
+    Geothermal: <GeothermalIcon fill={COLORS.earthyGreen} />,
+    'Energy Storage': (
+      <EnergyStorageIcon fill={COLORS.teal} stroke={COLORS.white} />
+    ),
+    'Pumped Storage': <PumpedStorageIcon fill={COLORS.cyanBlue} />,
+  };
 
   const handleProjectClick = () => {
     setModalOpen(true);
@@ -158,7 +150,7 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
             <TagText2>{size} MW</TagText2>
           </ProjectSize>
           <ProjectType>
-            {projectTypeIcon}
+            {energyTypeIconMap[renewable_energy_technology ?? '']}
             <TagText2>{renewable_energy_technology}</TagText2>
           </ProjectType>
         </ProjectSizeAndType>
