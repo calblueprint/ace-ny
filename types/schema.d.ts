@@ -33,11 +33,6 @@ export interface Filter {
   icon: React.ReactNode;
 }
 
-export interface SVGIconProps {
-  src: string;
-  alt: string;
-}
-
 export interface Filters {
   statusCompleted: boolean;
   technology: string[];
