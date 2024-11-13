@@ -21,7 +21,7 @@ import {
   SolarPvIcon,
 } from '@/assets/Technology-Tag-Icons/icons';
 import COLORS from '@/styles/colors';
-import { Heading2, TagText2 } from '@/styles/texts';
+import { Heading2, TagText1 } from '@/styles/texts';
 import { Project } from '@/types/schema';
 import ProjectModal from '../ProjectModal';
 import {
@@ -162,16 +162,16 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
         </Heading2>
         <ProjectStatus>
           {statusIcon}
-          <TagText2>{projectStatus}</TagText2>
+          <TagText1>{projectStatus}</TagText1>
         </ProjectStatus>
         <ProjectSizeAndType>
           <ProjectSize>
             <SmallSizeIcon />
-            <TagText2>{size} MW</TagText2>
+            <TagText1>{size} MW</TagText1>
           </ProjectSize>
           <ProjectType>
             {energyTypeIconMap[renewable_energy_technology ?? '']}
-            <TagText2>{renewable_energy_technology}</TagText2>
+            <TagText1>{renewable_energy_technology}</TagText1>
           </ProjectType>
         </ProjectSizeAndType>
       </ProjectInfo>

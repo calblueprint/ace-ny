@@ -1,5 +1,3 @@
-'use client';
-
 import styled, { css } from 'styled-components';
 import COLORS from './colors';
 import { CoinbaseMono, CoinbaseSans, CoinbaseText } from './fonts';
@@ -61,6 +59,16 @@ export const SubHeading1 = styled.h2<TextProps>`
   line-height: normal;
 `;
 
+export const SubHeading2 = styled.h2<TextProps>`
+  ${TextStylesCoinbaseMono}
+  font-size: 0.625rem;
+  color: ${COLORS.navy};
+  font-style: normal;
+  font-weight: 300;
+  opacity: 0.75;
+  line-height: 120%;
+`;
+
 export const BodyText1 = styled.p<TextProps>`
   ${TextStylesCoinbaseMono}
   color: ${COLORS.navy};
@@ -105,17 +113,8 @@ export const TagText1 = styled.p<TextProps>`
   color: ${COLORS.navy};
   font-size: 0.625rem;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 200;
   opacity: 0.75;
-  line-height: normal;
-`;
-
-export const TagText2 = styled.p<TextProps>`
-  ${TextStylesCoinbaseText}
-  color: ${COLORS.navy75};
-  font-size: 0.625rem;
-  font-style: normal;
-  font-weight: 300;
   line-height: normal;
 `;
 

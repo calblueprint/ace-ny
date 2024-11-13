@@ -1,6 +1,7 @@
 'use client';
 
 import { CSSProperties, useEffect, useState } from 'react';
+import AllProjectsModal from '@/components/AllProjectsModal';
 import MapViewScreen from '@/components/MapViewScreen';
 import queryProjects from '../api/supabase/queries/query';
 import { Project } from '../types/schema';
@@ -12,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     queryProjects()
       .then(data => {
-        setProjects(data.projects);
+        setProjects(data);
       })
       .catch(err => setError(err));
   }, []);
@@ -21,6 +22,7 @@ export default function Home() {
     <main style={mainStyles}>
       {error ? <div style={errorStyles}>{error}</div> : null}
       {projects ? <MapViewScreen projects={projects} /> : null}
+      <AllProjectsModal projects={projects} />
     </main>
   );
 }

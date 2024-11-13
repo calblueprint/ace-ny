@@ -6,7 +6,6 @@ const COLORS = {
   green: '#0E7B30',
   earthyGreen: '#4D8B31',
   navy: '#2E3A59',
-  navy75: '#626C83',
   electricBlue: '#4974E0',
   lightBlue: '#92ACED',
   teal: '#4896BC',

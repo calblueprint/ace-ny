@@ -1,15 +1,17 @@
 import { Project } from '../../../types/schema';
 import supabase from '../createClient';
 
-export default async function queryProjects() {
+export default async function queryProjects(): Promise<Project[]> {
   const { data: projects, error } = await supabase
     .from('Projects')
     .select('*')
     .eq('approved', true);
 
-  console.log('PROJECTS', projects, 'ERROR', error);
+  if (error) {
+    throw new Error(`Error fetching projects: ${error.message}`);
+  }
 
-  return { projects, error };
+  return projects;
 }
 
 export async function queryProjectbyId(id: number): Promise<Project> {

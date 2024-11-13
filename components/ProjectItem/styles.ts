@@ -1,5 +1,6 @@
 import { CSSProperties } from 'react';
 import styled from 'styled-components';
+import COLORS from '@/styles/colors';
 
 export const StyledProjectItem = styled.button`
   display: flex;
@@ -15,6 +16,13 @@ export const StyledProjectItem = styled.button`
   background: rgba(255, 255, 255, 0.9);
   padding-top: 0;
   padding-bottom: 0;
+  &:hover {
+    border: 1px solid rgba(46, 58, 89, 0.05);
+    background: ${COLORS.white};
+    box-shadow:
+      0px 1px 4px 0px rgba(77, 87, 114, 0.4),
+      0px -2px 6px 0px rgba(255, 255, 255, 0.1);
+  }
 `;
 
 export const projectImageStyles: CSSProperties = {
