@@ -6,12 +6,12 @@ export const FilterContainerStyles = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   width: 100%;
-  margin-right: 15%;
+  margin-right: 3rem;
   flex-wrap: wrap;
 `;
 
 export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
-  margin-right: 2%;
+  margin-right: 0.375rem;
   top: 1.5%;
   right: 1.5%;
   background: linear-gradient(
@@ -23,7 +23,7 @@ export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
   padding: 0.35rem 0.35rem;
   z-index: 5;
   border: 0.05rem solid #fff;
-  margin-top: 1.5%;
+  margin-top: 0.75rem;
   max-height: ${({ isActive }) => (isActive ? 'auto' : '2rem')};
   border-radius: ${({ isActive }) => (isActive ? '0.5rem' : '6.25rem')};
   transition: height 0.5s ease-in-out;
