@@ -27,14 +27,8 @@ export interface Option {
   icon: React.ReactNode;
 }
 
-export interface FilterType {
-  id: string;
-  label: string;
-  icon: React.ReactNode;
-}
-
 export interface Filters {
-  statusCompleted: boolean;
+  status: boolean;
   technology: string[];
   projectSize: {
     min: number;
@@ -42,8 +36,23 @@ export interface Filters {
   };
   location: string[];
 }
+
+export interface FilterType {
+  id: keyof Filters;
+  label: string;
+  icon: React.ReactNode;
+}
+
 export type Milestone = {
   milestoneTitle: string;
   completed: boolean;
   date: string | null;
+};
+
+type FilterHandlerArgs = {
+  [K in keyof Filters]: Filters[K];
+};
+
+export type FilterChangeHandlers = {
+  [K in keyof FilterHandlerArgs]: (args: FilterHandlerArgs[K]) => void;
 };

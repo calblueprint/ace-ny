@@ -1,6 +1,6 @@
 import React from 'react';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
-import { Filters, FilterType } from '@/types/schema';
+import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
 import { DropIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   FilterBackgroundStyles,
@@ -12,7 +12,7 @@ interface FilterProps {
   filter: FilterType;
   isActive: boolean;
   selectedFilters: Filters;
-  onTechnologyChange: (options: string[]) => void;
+  filterChangeHandlers: FilterChangeHandlers;
   handleButtonClick: (filter: FilterType) => void;
 }
 
@@ -20,7 +20,7 @@ export default function Filter({
   filter,
   isActive,
   selectedFilters,
-  onTechnologyChange,
+  filterChangeHandlers,
   handleButtonClick,
 }: FilterProps) {
   return (
@@ -29,7 +29,7 @@ export default function Filter({
         filter.id === 'technology' ? (
           <TechnologyDropdown
             selectedTechnologies={selectedFilters.technology}
-            setSelectedTechnologies={onTechnologyChange}
+            setSelectedTechnologies={filterChangeHandlers.technology}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
             label={filter.label}

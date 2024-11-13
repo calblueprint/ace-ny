@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Filter from '@/components/Filter';
-import { Filters, FilterType } from '@/types/schema';
+import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
 import { FilterContainerStyles } from './styles';
 
 export const FilterBar = ({
@@ -13,7 +13,7 @@ export const FilterBar = ({
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
   const [selectedFilters, setSelectedFilters] = useState<Filters>({
-    statusCompleted: false,
+    status: false,
     technology: [],
     projectSize: { min: 0, max: 0 },
     location: [],
@@ -24,16 +24,21 @@ export const FilterBar = ({
     onFilterChange(filter);
   };
 
-  useEffect(() => {
-    console.log(activeFilter);
-  }, [activeFilter]);
-
   const handleTechnologyChange = (options: string[]) => {
     setSelectedFilters(prevFilters => ({
       ...prevFilters,
       technology: options,
     }));
   };
+
+  const filterChangeHandlers: FilterChangeHandlers = {
+    // Add other filter change handlers here
+    status: () => {},
+    technology: handleTechnologyChange,
+    projectSize: () => {},
+    location: () => {},
+  };
+
   return (
     <FilterContainerStyles>
       {filters.map(filter => (
@@ -42,7 +47,7 @@ export const FilterBar = ({
           filter={filter}
           isActive={activeFilter?.id === filter.id}
           selectedFilters={selectedFilters}
-          onTechnologyChange={handleTechnologyChange}
+          filterChangeHandlers={filterChangeHandlers}
           handleButtonClick={handleButtonClick}
         />
       ))}
