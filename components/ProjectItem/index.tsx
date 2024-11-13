@@ -107,17 +107,37 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
       : 'No image available';
 
   const energyTypeIconMap: { [key: string]: JSX.Element } = {
-    'Land-Based Wind': <LandBasedWindIcon fill={COLORS.skyBlue} />,
-    'Solar PV': <SolarPvIcon fill={COLORS.solarYellow} />,
-    Hydroelectric: <HydroelectricIcon fill={COLORS.frenchBlue} />,
+    'Land-Based Wind': (
+      <LandBasedWindIcon fill={COLORS.skyBlue} width={'8'} height={'11'} />
+    ),
+    'Solar PV': (
+      <SolarPvIcon fill={COLORS.solarYellow} width={'10'} height={'9'} />
+    ),
+    Hydroelectric: (
+      <HydroelectricIcon fill={COLORS.frenchBlue} width={'12'} height={'9'} />
+    ),
     'Offshore Wind': (
-      <OffshoreWindIcon fill={COLORS.electricBlue} stroke={COLORS.navy} />
+      <OffshoreWindIcon
+        fill={COLORS.electricBlue}
+        stroke={COLORS.navy}
+        width={'9'}
+        height={'11'}
+      />
     ),
-    Geothermal: <GeothermalIcon fill={COLORS.earthyGreen} />,
+    Geothermal: (
+      <GeothermalIcon fill={COLORS.earthyGreen} width={'9'} height={'9'} />
+    ),
     'Energy Storage': (
-      <EnergyStorageIcon fill={COLORS.teal} stroke={COLORS.white} />
+      <EnergyStorageIcon
+        fill={COLORS.teal}
+        stroke={COLORS.white}
+        width={'13'}
+        height={'9'}
+      />
     ),
-    'Pumped Storage': <PumpedStorageIcon fill={COLORS.cyanBlue} />,
+    'Pumped Storage': (
+      <PumpedStorageIcon fill={COLORS.cyanBlue} width={'12'} height={'9'} />
+    ),
   };
 
   const handleProjectClick = () => {

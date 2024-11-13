@@ -1,10 +1,12 @@
 export const OffshoreWindIcon = (props: {
   fill: string | undefined;
   stroke: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
 }) => (
   <svg
-    width="9"
-    height="11"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 9 11"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -30,28 +32,42 @@ export const OffshoreWindIcon = (props: {
 export const EnergyStorageIcon = (props: {
   fill: string | undefined;
   stroke: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
 }) => (
   <svg
-    width="13"
-    height="9"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 13 9"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M11.9228 6.4H11.8228V6.5C11.8228 7.00391 11.6226 7.48718 11.2663 7.8435C10.91 8.19982 10.4267 8.4 9.92278 8.4H2.2085C1.70458 8.4 1.22131 8.19982 0.864993 7.8435C0.508674 7.48718 0.308496 7.00391 0.308496 6.5V2.5C0.308496 1.99609 0.508674 1.51282 0.864993 1.1565C1.22131 0.800178 1.70458 0.6 2.2085 0.6H9.92278C10.4267 0.6 10.91 0.800178 11.2663 1.1565C11.6226 1.51282 11.8228 1.99609 11.8228 2.5V2.6H11.9228C12.0731 2.6 12.2172 2.6597 12.3235 2.76597C12.4297 2.87224 12.4894 3.01638 12.4894 3.16667V5.83333C12.4894 5.98362 12.4297 6.12776 12.3235 6.23403C12.2172 6.3403 12.0731 6.4 11.9228 6.4ZM9.92278 1.73333H2.2085C2.00516 1.73333 1.81016 1.81411 1.66638 1.95789C1.5226 2.10166 1.44183 2.29667 1.44183 2.5V6.5C1.44183 6.70333 1.5226 6.89834 1.66638 7.04212C1.81016 7.18589 2.00516 7.26667 2.2085 7.26667H9.92278C10.1261 7.26667 10.3211 7.18589 10.4649 7.04212C10.6087 6.89834 10.6894 6.70333 10.6894 6.5V2.5C10.6894 2.29667 10.6087 2.10166 10.4649 1.95788C10.3211 1.81411 10.1261 1.73333 9.92278 1.73333Z"
+      d="M2.8001 6.2001C2.64097 6.2001 2.48836 6.13688 2.37583 6.02436C2.26331 5.91184 2.2001 5.75923 2.2001 5.6001V2.8001C2.2001 2.64097 2.26331 2.48836 2.37583 2.37583C2.48836 2.26331 2.64097 2.2001 2.8001 2.2001H6.9001V6.2001H2.8001Z"
       fill={props.fill}
+      fill-opacity="0.85"
       stroke={props.stroke}
-      strokeWidth="0.2"
+      stroke-width="0.2"
+    />
+    <path
+      d="M12.3 6.2H12.2V6.3C12.2 6.83043 11.9893 7.33914 11.6142 7.71421C11.2391 8.08929 10.7304 8.3 10.2 8.3H2.1C1.56957 8.3 1.06086 8.08929 0.685787 7.71421C0.310714 7.33914 0.1 6.83043 0.1 6.3V2.1C0.1 1.56957 0.310714 1.06086 0.685786 0.685786C1.06086 0.310714 1.56957 0.1 2.1 0.1H10.2C10.7304 0.1 11.2391 0.310714 11.6142 0.685786C11.9893 1.06086 12.2 1.56957 12.2 2.1V2.2H12.3C12.4591 2.2 12.6117 2.26321 12.7243 2.37574C12.8368 2.48826 12.9 2.64087 12.9 2.8V5.6C12.9 5.75913 12.8368 5.91174 12.7243 6.02426C12.6117 6.13679 12.4591 6.2 12.3 6.2ZM10.2 1.3H2.1C1.88783 1.3 1.68434 1.38429 1.53431 1.53431C1.38429 1.68434 1.3 1.88783 1.3 2.1V6.3C1.3 6.51217 1.38429 6.71566 1.53431 6.86568C1.68434 7.01571 1.88783 7.1 2.1 7.1H10.2C10.4122 7.1 10.6157 7.01571 10.7657 6.86568C10.9157 6.71566 11 6.51217 11 6.3V2.1C11 1.88783 10.9157 1.68434 10.7657 1.53431C10.6157 1.38429 10.4122 1.3 10.2 1.3Z"
+      fill="#2E3A59"
+      fill-opacity="0.85"
+      stroke="white"
+      stroke-width="0.2"
     />
   </svg>
 );
 
-export const GeothermalIcon = (props: { fill: string | undefined }) => (
+export const GeothermalIcon = (props: {
+  fill: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="9"
-    height="9"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 9 9"
     fill="none"
   >
@@ -62,10 +78,14 @@ export const GeothermalIcon = (props: { fill: string | undefined }) => (
   </svg>
 );
 
-export const HydroelectricIcon = (props: { fill: string | undefined }) => (
+export const HydroelectricIcon = (props: {
+  fill: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
-    width="12"
-    height="9"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 12 9"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -79,10 +99,14 @@ export const HydroelectricIcon = (props: { fill: string | undefined }) => (
   </svg>
 );
 
-export const LandBasedWindIcon = (props: { fill: string | undefined }) => (
+export const LandBasedWindIcon = (props: {
+  fill: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
-    width="8"
-    height="11"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 8 11"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -94,10 +118,14 @@ export const LandBasedWindIcon = (props: { fill: string | undefined }) => (
   </svg>
 );
 
-export const PumpedStorageIcon = (props: { fill: string | undefined }) => (
+export const PumpedStorageIcon = (props: {
+  fill: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
-    width="12"
-    height="9"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 12 9"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -108,10 +136,14 @@ export const PumpedStorageIcon = (props: { fill: string | undefined }) => (
     />
   </svg>
 );
-export const SolarPvIcon = (props: { fill: string | undefined }) => (
+export const SolarPvIcon = (props: {
+  fill: string | undefined;
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
-    width="10"
-    height="9"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 10 9"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

@@ -1,35 +1,56 @@
-import React from 'react';
-import { RiArrowDropDownLine } from 'react-icons/ri';
-import Filter from '../../types/helper';
-import { FilterBarStyles, FilterButtonStyles } from './styles';
-
-interface Filter {
-  id: string;
-  label: string;
-  icon: React.ReactNode;
-}
+import React, { useState } from 'react';
+import Filter from '@/components/Filter';
+import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
+import { FilterContainerStyles } from './styles';
 
 export const FilterBar = ({
   filters,
   onFilterChange,
 }: {
-  filters: Filter[];
-  onFilterChange: (filter: Filter) => void;
+  filters: FilterType[];
+  onFilterChange: (filter: FilterType) => void;
 }) => {
+  const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
+
+  const [selectedFilters, setSelectedFilters] = useState<Filters>({
+    status: false,
+    technology: [],
+    projectSize: { min: 0, max: 0 },
+    location: [],
+  });
+
+  const handleButtonClick = (filter: FilterType) => {
+    setActiveFilter(activeFilter?.id === filter.id ? null : filter);
+    onFilterChange(filter);
+  };
+
+  const handleTechnologyChange = (options: string[]) => {
+    setSelectedFilters(prevFilters => ({
+      ...prevFilters,
+      technology: options,
+    }));
+  };
+
+  const filterChangeHandlers: FilterChangeHandlers = {
+    // Add other filter change handlers here
+    status: () => {},
+    technology: handleTechnologyChange,
+    projectSize: () => {},
+    location: () => {},
+  };
+
   return (
-    <FilterBarStyles>
+    <FilterContainerStyles>
       {filters.map(filter => (
-        <div key={filter.id}>
-          <FilterButtonStyles
-            key={filter.label}
-            onClick={() => onFilterChange(filter)}
-          >
-            {filter.icon}
-            {filter.label}
-            <RiArrowDropDownLine />
-          </FilterButtonStyles>
-        </div>
+        <Filter
+          key={filter.label}
+          filter={filter}
+          isActive={activeFilter?.id === filter.id}
+          selectedFilters={selectedFilters}
+          filterChangeHandlers={filterChangeHandlers}
+          handleButtonClick={handleButtonClick}
+        />
       ))}
-    </FilterBarStyles>
+    </FilterContainerStyles>
   );
 };

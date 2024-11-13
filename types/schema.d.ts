@@ -1,3 +1,5 @@
+import React from 'react';
+
 export type Project = {
   id: number;
   project_name: string;
@@ -20,8 +22,37 @@ export type Project = {
   approved: boolean;
 };
 
+export interface Option {
+  title: string;
+  icon: React.ReactNode;
+}
+
+export interface Filters {
+  status: boolean;
+  technology: string[];
+  projectSize: {
+    min: number;
+    max: number;
+  };
+  location: string[];
+}
+
+export interface FilterType {
+  id: keyof Filters;
+  label: string;
+  icon: React.ReactNode;
+}
+
 export type Milestone = {
   milestoneTitle: string;
   completed: boolean;
   date: string | null;
+};
+
+type FilterHandlerArgs = {
+  [K in keyof Filters]: Filters[K];
+};
+
+export type FilterChangeHandlers = {
+  [K in keyof FilterHandlerArgs]: (args: FilterHandlerArgs[K]) => void;
 };
