@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { FilterHeadingUnused } from '@/styles/texts';
 
 export const FilterContainerStyles = styled.div`
   display: flex;
