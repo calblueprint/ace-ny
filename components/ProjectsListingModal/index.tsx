@@ -11,7 +11,7 @@ import {
   ProjectDetails,
 } from './styles';
 
-export default function AllProjectsModal({
+export default function ProjectsListingModal({
   projects,
 }: {
   projects: Project[] | null;
