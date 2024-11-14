@@ -12,7 +12,7 @@ export default function Home() {
   useEffect(() => {
     queryProjects()
       .then(data => {
-        setProjects(data.projects);
+        setProjects(data);
       })
       .catch(err => setError(err));
   }, []);

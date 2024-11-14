@@ -9,8 +9,13 @@ import Map from '@/components/Map';
 import { SearchBar } from '@/components/SearchBar';
 import { FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
+import ProjectsListingModal from '../ProjectsListingModal';
 
-export default function MapViewScreen(props: { projects: Project[] | null }) {
+export default function MapViewScreen({
+  projects,
+}: {
+  projects: Project[] | null;
+}) {
   const filters: FilterType[] = [
     {
       id: 'status',
@@ -42,7 +47,8 @@ export default function MapViewScreen(props: { projects: Project[] | null }) {
     <>
       <SearchBar />
       <FilterBar filters={filters} onFilterChange={handleFilterChange} />
-      <Map projects={props.projects} />
+      <Map projects={projects} />
+      <ProjectsListingModal projects={projects} />
     </>
   );
 }
