@@ -33,22 +33,6 @@ def geocode_lat_long(address):
     return latitude, longitude
 
 
-project_fields = [
-    "project_name",
-    "project_status",
-    "developer",
-    "county",
-    "region",
-    "size",
-    "latitude",
-    "longitude",
-    "key_development_milestones",
-    "project_image",
-    "interconnection_queue_number",
-    "approved",
-]
-
-
 def create_update_object(existing_project, new_project):
     update_object = {}
     for key, value in existing_project.items():

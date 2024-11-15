@@ -31,7 +31,7 @@ geocodio = GeocodioClient(geocode_api)
 
 def nyserda_large_to_database():
     database = []
-    database.extend(query_nyserda_large())
+    database.extend(query_nyserda_large()[:20])
     for project in database:
         if project.get("proposed_cod", None) is not None:
             ymd = datetime.strptime(project.get("proposed_cod"), "%Y").strftime(
@@ -58,18 +58,12 @@ def nyserda_large_to_database():
                 ]
 
             # update key development milestones
-            if project.get("year_of_delivery_start_date", None) is not None:
-                nyserda_contract_date = datetime.strptime(
-                    project.get("year_of_delivery_start_date"), "%Y"
-                )
-                completed = nyserda_contract_date < datetime.now()
-                nyserda_contract_date = nyserda_contract_date.strftime("%Y-%m-%d")
-                update_object["key_development_milestones"] = update_kdm(
-                    "Winning a contract award from NYSERDA",
-                    date=nyserda_contract_date,
-                    completed=completed,
-                    kdm=update_object["key_development_milestones"],
-                )
+            update_object["key_development_milestones"] = update_kdm(
+                "Winning a contract award from NYSERDA",
+                date=project.get("nyserda_contract_date"),
+                completed=True,
+                kdm=update_object["key_development_milestones"],
+            )
 
             try:
                 response = (
@@ -108,20 +102,12 @@ def nyserda_large_to_database():
                     project["town"] = town
 
             # append key development milestones
-            if project.get("year_of_delivery_start_date", None) is not None:
-                nyserda_contract_date = datetime.strptime(
-                    project.get("year_of_delivery_start_date"), "%Y"
-                )
-                completed = nyserda_contract_date < datetime.now()
-                nyserda_contract_date = nyserda_contract_date.strftime("%Y-%m-%d")
-                project["key_development_milestones"] = update_kdm(
-                    "Winning a contract award from NYSERDA",
-                    date=nyserda_contract_date,
-                    completed=False,
-                    kdm=initial_kdm_dict,
-                )
-            if "year_of_delivery_start_date" in project:
-                del project["year_of_delivery_start_date"]
+            project["key_development_milestones"] = update_kdm(
+                "Winning a contract award from NYSERDA",
+                date=project.get("nyserda_contract_date"),
+                completed=True,
+                kdm=initial_kdm_dict,
+            )
             try:
                 response = (
                     supabase.table("Projects_duplicate").insert(project).execute()
@@ -246,7 +232,7 @@ def nyiso_to_database():
                 completed = ia_date < current_date
                 ia_date = ia_date.strftime("%Y-%m-%d")
                 update_object["key_development_milestones"] = update_kdm(
-                    milestoneTitle="Execution of an Interconnection Agreement (IA)",
+                    milestoneTitle="Tendering of an Interconnection Agreement (IA)",
                     completed=completed,
                     date=ia_date,
                     kdm=update_object["key_development_milestones"],
@@ -282,7 +268,7 @@ def nyiso_to_database():
                 completed = ia_date < current_date
                 ia_date = ia_date.strftime("%Y-%m-%d")
                 project["key_development_milestones"] = update_kdm(
-                    milestoneTitle="Execution of an Interconnection Agreement (IA)",
+                    milestoneTitle="Tendering of an Interconnection Agreement (IA)",
                     completed=completed,
                     date=ia_date,
                     kdm=project["key_development_milestones"],
@@ -354,7 +340,7 @@ def nyiso_in_service_to_database():
                 completed = ia_date < current_date
                 ia_date = ia_date.strftime("%Y-%m-%d")
                 update_object["key_development_milestones"] = update_kdm(
-                    milestoneTitle="Execution of an Interconnection Agreement (IA)",
+                    milestoneTitle="Tendering of an Interconnection Agreement (IA)",
                     completed=completed,
                     date=ia_date,
                     kdm=update_object["key_development_milestones"],
@@ -390,7 +376,7 @@ def nyiso_in_service_to_database():
                 completed = ia_date < current_date
                 ia_date = ia_date.strftime("%Y-%m-%d")
                 project["key_development_milestones"] = update_kdm(
-                    milestoneTitle="Execution of an Interconnection Agreement (IA)",
+                    milestoneTitle="Tendering of an Interconnection Agreement (IA)",
                     completed=completed,
                     date=ia_date,
                     kdm=project["key_development_milestones"],

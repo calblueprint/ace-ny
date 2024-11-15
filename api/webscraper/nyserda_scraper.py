@@ -10,6 +10,17 @@ https://data.ny.gov/Energy-Environment/Large-scale-Renewable-Projects-Reported-b
 """
 
 
+def solicitation_name_to_date(solicitation_name):
+    if solicitation_name is None:
+        return None
+    if "-" not in solicitation_name:
+        return None
+    else:
+        parts = solicitation_name.split("-")
+        year = parts[0][-2::]
+        return f"%20{year}-%01-%01"
+
+
 def query_nyserda_large():
     nyserda_large_response = requests.get("https://data.ny.gov/resource/dprp-55ye.json")
     if nyserda_large_response.status_code != 200:
@@ -60,8 +71,8 @@ def query_nyserda_large():
                     "project_image": None,
                     "approved": False,
                     # used for updating the kdms
-                    "year_of_delivery_start_date": item.get(
-                        "year_of_delivery_start_date", None
+                    "nyserda_contract_date": solicitation_name_to_date(
+                        item.get("solicitation_name", None)
                     ),
                 }
                 filtered_list.append(project_dict)
