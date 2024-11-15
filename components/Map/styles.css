@@ -1,3 +1,17 @@
 .gm-ui-hover-effect {
   display: none !important;
 }
+
+.gm-style-iw {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(178, 178, 178, 0.6);
+  color: white !important;
+  text-align: center !important;
+  top: 0.9rem !important;
+}
+
+.gm-style .gm-style-iw-tc::after {
+  background: none;
+  box-shadow: none;
+}

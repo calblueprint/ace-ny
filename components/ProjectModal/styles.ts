@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import COLORS from '@/styles/colors';
 
 export const modalOverlayStyles: CSSProperties = {
-  width: '310px',
+  width: '21.25rem',
   height: '100%',
   backgroundColor: 'transparent',
 };
 
 export const modalContentStyles: CSSProperties = {
   display: 'flex',
-  top: '85px',
-  left: '20px',
+  top: '5.3125rem',
+  left: '1.25rem',
   width: '90vw',
-  maxWidth: '356px',
+  maxWidth: '22.25rem',
   height: '85vh',
   borderRadius: 'var(--Spacing-Small, 16px)',
   border: '0.75px solid var(--WorldPeas-White, #fff)',
@@ -35,20 +35,23 @@ export const ProjectDetails = styled.div`
   border-radius: var(--Spacing-Small, 16px);
   height: 100%;
   background: ${COLORS.white};
-  width: 340px;
+  width: 21.25rem;
   overflow-y: auto;
 `;
 
 export const projectImageStyles: CSSProperties = {
   objectFit: 'cover',
+  width: '100%',
+  maxHeight: '15.625rem',
+  height: '15.625rem',
   borderRadius: '8px 8px 0px 0px',
 };
 
 export const ProjectOverview = styled.div`
   display: flex;
   flex-direction: column;
-  width: 316px;
-  height: 129px;
+  width: 19.75rem;
+  minheight: 8.0625rem;
   margin-top: -6.5rem;
   border-radius: 8px;
   background: ${COLORS.white};
@@ -58,6 +61,7 @@ export const ProjectOverview = styled.div`
   position: relative;
   box-sizing: border-box;
   padding: 1rem;
+  objectfit: cover;
 `;
 
 export const Developer = styled.div`
@@ -67,7 +71,7 @@ export const Developer = styled.div`
 `;
 
 export const ProjectName = styled.div`
-  overflow: hidden;
+  overflow: visible;
   text-overflow: ellipsis;
   padding-bottom: 0.75rem;
 `;
@@ -76,17 +80,7 @@ export const ProjectFilterWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-`;
-
-export const ProjectFilter = styled.div`
-  border-radius: 100px;
-  border: 0.5px solid rgba(46, 58, 89, 0.25);
-  display: inline-flex;
-  height: 22px;
-  padding: 0.1rem 0.625rem;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  white-space: nowrap;
 `;
 
 export const CloseButton = styled.button`
@@ -99,13 +93,13 @@ export const CloseButton = styled.button`
 export const ProjectSize = styled.div`
   display: flex;
   align-items: baseline;
-  width: 260px;
+  width: 16.25rem;
   padding-top: 1.2rem;
   gap: 0.5rem;
 `;
 
 export const Divider = styled.hr`
-  width: 260px;
+  width: 16.25rem;
   border: 0;
   height: 1px;
   margin: 0px 0;
@@ -113,7 +107,7 @@ export const Divider = styled.hr`
 `;
 
 export const AdditionalInfo = styled.div`
-  width: 260px;
+  width: 16.25rem;
   padding: 1.25rem;
 `;
 
