@@ -1,38 +1,23 @@
 import styled from 'styled-components';
-import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
+import COLORS from '../../styles/colors';
 
 export const FilterDropdownStyles = styled.div`
   position: relative;
-  background: #fff;
+  background: ${COLORS.white};
   width: 11rem;
   border-radius: 0.5rem;
   padding-bottom: 0.5rem;
 `;
 
-export const CategoryTitleStyles = styled.p`
-  font-family: ${CoinbaseMono};
-  font-size: 0.625rem;
-  color: rgba(46, 58, 89, 0.85);
-  font-style: normal;
-  font-weight: 400;
-  margin-top: 1rem;
-  margin-left: 0.5rem;
-  margin-bottom: 0.15rem;
-`;
-
-export const OptionTitleStyles = styled.p`
-  font-family: ${CoinbaseText};
-  font-size: 0.75rem;
-  color: rgba(46, 58, 89, 0.85);
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
+export const OptionTitleStyles = styled.p<{ color: string }>`
+  background: ${({ color }) => `${color}15`};
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.4rem;
+  display: inline-block;
 `;
 
 export const CheckboxStyles = styled.input`
   cursor: pointer;
-  // margin-left: auto;
-  // margin-right: 1rem;
 `;
 
 export const ApplyButtonStyles = styled.button<{ isActive: boolean }>`
@@ -42,39 +27,28 @@ export const ApplyButtonStyles = styled.button<{ isActive: boolean }>`
   border-radius: 0.25rem;
   background: ${({ isActive }) =>
     isActive
-      ? '#4974e0'
+      ? COLORS.electricBlue
       : 'rgba(73, 116, 224, 0.50)'}; // Active vs Inactive color
+  margin-top: 1rem;
   margin-top: 1rem;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: ${({ isActive }) => (isActive ? 'pointer' : 'not-allowed')};
-  color: #fff;
-  font-family: ${CoinbaseText};
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
   border: none;
   margin-bottom: 0.5rem;
   width: 88%;
   margin: 1rem auto 0.5rem auto;
-  pointer-events: ${({ isActive }) =>
-    isActive ? 'auto' : 'none'}; // Disable clicking when inactive
+  pointer-events: ${({ isActive }) => (isActive ? 'auto' : 'none')};
 `;
 
 export const ButtonStyles = styled.button`
-  font-family: ${CoinbaseSans};
   color: rgba(46, 58, 89, 0.85);
-  font-size: 0.875rem;
-  background: #fff;
+  background: ${COLORS.white};
   border: none;
   border-radius: 6.25rem;
   display: flex;
   align-items: center;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
   cursor: pointer;
 `;
 

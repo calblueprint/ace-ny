@@ -1,6 +1,12 @@
 import React from 'react'; //REMOVE
 import { FilterType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
+import COLORS from '../../styles/colors';
+import {
+  ApplyFiltersText,
+  FilterNameText,
+  FilterOptionsText,
+} from '../../styles/texts';
 import {
   ApplyButtonStyles,
   ButtonStyles,
@@ -29,26 +35,28 @@ export default function StatusDropdown({
   label,
   currFilter,
 }: StatusDropdownProps) {
-  const filterOptions = [{ title: 'In Progress' }, { title: 'Operational' }];
+  const filterOptions = [
+    { title: 'In Progress', color: `${COLORS.ashGrey}` },
+    { title: 'Operational', color: `${COLORS.chateauGreen}` },
+  ];
 
-  // Function to handle status change, ensuring only one option can be selected
   const handleStatusChange = (status: string) => {
     setSelectedStatus(selectedStatus[0] === status ? [] : [status]);
   };
 
-  // Determine if any status is selected
   const isApplyButtonActive = selectedStatus.length > 0;
 
   return (
     <FilterDropdownStyles>
       <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-        {icon}
-        <ButtonStyles>{label}</ButtonStyles>
+        <FilterNameText>{icon}</FilterNameText>
+        <ButtonStyles>
+          <FilterNameText>{label}</FilterNameText>
+        </ButtonStyles>
         <ExitStyles>
           <ExitIcon />
         </ExitStyles>
       </ButtonWithIconStyles>
-
       <div>
         {filterOptions.map(option => (
           <CheckboxContainer key={option.title}>
@@ -57,14 +65,17 @@ export default function StatusDropdown({
               checked={selectedStatus.includes(option.title)}
               onChange={() => handleStatusChange(option.title)}
             />
-            <OptionTitleStyles>{option.title}</OptionTitleStyles>
+            <OptionTitleStyles color={option.color}>
+              <FilterOptionsText $color={option.color}>
+                {' '}
+                {option.title}
+              </FilterOptionsText>
+            </OptionTitleStyles>
           </CheckboxContainer>
         ))}
       </div>
-
-      {/* Apply Button with conditional styling */}
       <ApplyButtonStyles isActive={isApplyButtonActive}>
-        APPLY
+        <ApplyFiltersText>APPLY</ApplyFiltersText>
       </ApplyButtonStyles>
     </FilterDropdownStyles>
   );
