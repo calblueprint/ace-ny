@@ -1,4 +1,5 @@
 import React from 'react';
+import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
 import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
 import { DropIcon } from '../../assets/Dropdown-Icons/icons';
@@ -30,6 +31,15 @@ export default function Filter({
           <TechnologyDropdown
             selectedTechnologies={selectedFilters.technology}
             setSelectedTechnologies={filterChangeHandlers.technology}
+            handleButtonClick={handleButtonClick}
+            icon={filter.icon}
+            label={filter.label}
+            currFilter={filter}
+          />
+        ) : filter.id === 'status' ? (
+          <StatusDropdown
+            selectedStatus={selectedFilters.status}
+            setSelectedStatus={filterChangeHandlers.status}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
             label={filter.label}
