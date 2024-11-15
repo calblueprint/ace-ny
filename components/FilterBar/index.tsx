@@ -13,7 +13,7 @@ export const FilterBar = ({
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
   const [selectedFilters, setSelectedFilters] = useState<Filters>({
-    status: false,
+    status: [],
     technology: [],
     projectSize: { min: 0, max: 0 },
     location: [],
@@ -30,10 +30,16 @@ export const FilterBar = ({
       technology: options,
     }));
   };
+  const handleStatusChange = (options: string[]) => {
+    setSelectedFilters(prevFilters => ({
+      ...prevFilters,
+      status: options,
+    }));
+  };
 
   const filterChangeHandlers: FilterChangeHandlers = {
     // Add other filter change handlers here
-    status: () => {},
+    status: handleStatusChange,
     technology: handleTechnologyChange,
     projectSize: () => {},
     location: () => {},
