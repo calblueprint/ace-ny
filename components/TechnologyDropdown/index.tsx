@@ -14,7 +14,6 @@ import {
   ApplyButtonStyles,
   ButtonStyles,
   ButtonWithIconStyles,
-  CategoryDiv,
   CategoryTitleStyles,
   CheckboxContainer,
   CheckboxStyles,
@@ -141,7 +140,7 @@ export default function TechnologyDropdown({
           </ExitStyles>
         </ButtonWithIconStyles>
         {filter.categories.map(category => (
-          <CategoryDiv key={category.category}>
+          <div key={category.category}>
             <CategoryTitleStyles>{category.category}</CategoryTitleStyles>
             {category.options.map(option => (
               <CheckboxContainer key={option.title}>
@@ -160,7 +159,7 @@ export default function TechnologyDropdown({
                 />
               </CheckboxContainer>
             ))}
-          </CategoryDiv>
+          </div>
         ))}
         <ApplyButtonStyles>APPLY</ApplyButtonStyles>
       </FilterContentDiv>

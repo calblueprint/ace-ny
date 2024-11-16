@@ -12,8 +12,8 @@ export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
   padding: 0.25rem;
   z-index: 5;
   border: 0.05rem solid #fff;
-  margin-top: 0.75rem;
-  max-height: ${({ isActive }) => (isActive ? 'auto' : '2rem')};
+  margin-top: 1rem;
+  max-height: ${({ isActive }) => (isActive ? 'auto' : '2.2rem')};
   border-radius: ${({ isActive }) => (isActive ? '0.5rem' : '6.25rem')};
   transition: height 0.5s ease-in-out;
 `;
@@ -28,9 +28,10 @@ export const FilterButtonStyles = styled.button`
   line-height: normal;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   padding: 0.5rem 1rem;
   color: rgba(46, 58, 89, 0.85);
+  height: 2.2rem;
 `;
 
 export const IconStyle = styled.div`

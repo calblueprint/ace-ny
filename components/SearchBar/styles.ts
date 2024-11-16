@@ -4,7 +4,7 @@ import COLORS from '../../styles/colors';
 export const SearchBarPaddingStyles = styled.div`
   display: inline-flex;
   position: absolute;
-  top: 1.4rem;
+  top: 1.26rem;
   left: 1.25rem;
   background: linear-gradient(
     180deg,

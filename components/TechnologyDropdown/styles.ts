@@ -25,10 +25,6 @@ export const CheckboxContainer = styled.div`
   margin-bottom: -0.875rem;
 `;
 
-export const CategoryDiv = styled.div`
-  display: flex;
-`;
-
 export const CategoryTitleStyles = styled.p`
   display: flex;
   font-family: ${CoinbaseMono};
