@@ -51,10 +51,7 @@ export const ButtonStyles = styled.button`
 export const ExitStyles = styled.div`
   margin-left: auto;
   margin-right: 1.1rem;
-<<<<<<< HEAD
   margin-bottom: auto;
-=======
->>>>>>> 121ad826434c7326f879301446f7e309f1cf8476
 `;
 
 export const ButtonWithIconStyles = styled.div`
