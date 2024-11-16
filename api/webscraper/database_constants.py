@@ -75,4 +75,5 @@ project_fields = [
     "proposed_cod",
     "permit_process",
     "permit_application_number",
+    "last_updated",
 ]

@@ -11,6 +11,8 @@ google_maps_api_key = os.environ.get("NEXT_PUBLIC_GOOGLE_MAPS_API_KEY")
 
 
 def check_status(status):
+    if status is None:
+        return None
     if status.lower() == "cancelled":
         return "Cancelled"
     elif status.lower() == "operational" or status.lower() == "completed":
@@ -34,9 +36,18 @@ def geocode_lat_long(address):
 
 
 def create_update_object(existing_project, new_project):
+    """
+    Assumes that the new project has more recent data than the existing project
+    because this function only gets called by database.py after new_project's last_updated
+    field is checked against existing_project's last_updated field
+    """
     update_object = {}
     for key, value in existing_project.items():
+        # add field if existing project doesn't have it but new project does
         if value is None and new_project.get(key, None) is not None:
+            update_object[key] = new_project[key]
+        # add field if existing project's value differs from new project's value
+        elif value != new_project[key] and new_project.get(key, None) is not None:
             update_object[key] = new_project[key]
     return update_object
 

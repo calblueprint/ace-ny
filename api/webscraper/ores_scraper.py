@@ -30,7 +30,7 @@ All the descriptions of the ORES data describe the location of the project in th
 
 def parse_for_location(description):
     # finds index in the description where the phrase "Town of..." appears
-    town_index = description.find("Town")
+    town_index = description.lower().find("town")
     town_string = description[town_index:]
     # splits town_string by the comma
     town_split = town_string.split(",")
@@ -65,6 +65,7 @@ def filter_noi(data: list) -> list:
     filtered_list = []
     for row in data:
         town, county = parse_for_location(row["Description"])
+        # TODO: move this parsing to the database.py file
         lat, long = geocode_lat_long(f"{town}, NY")
         project_dict = {
             "permit_application_number": row.get("Permit Application Number", None),
@@ -76,7 +77,6 @@ def filter_noi(data: list) -> list:
             "key_development_milestones": initial_kdm_dict,
         }
         filtered_list.append(project_dict)
-
     return filtered_list
 
 
