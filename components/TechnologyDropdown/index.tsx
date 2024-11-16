@@ -1,3 +1,4 @@
+import { FilterCategoryLabel, FilterCategoryText1 } from '@/styles/texts';
 import { FilterType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import {
@@ -141,11 +142,15 @@ export default function TechnologyDropdown({
         </ButtonWithIconStyles>
         {filter.categories.map(category => (
           <div key={category.category}>
-            <CategoryTitleStyles>{category.category}</CategoryTitleStyles>
+            <CategoryTitleStyles>
+              <FilterCategoryLabel>{category.category}</FilterCategoryLabel>
+            </CategoryTitleStyles>
             {category.options.map(option => (
               <CheckboxContainer key={option.title}>
                 {option.icon}
-                <OptionTitleStyles>{option.title}</OptionTitleStyles>
+                <OptionTitleStyles>
+                  <FilterCategoryText1>{option.title}</FilterCategoryText1>
+                </OptionTitleStyles>
                 <CheckboxStyles
                   type="checkbox"
                   checked={selectedTechnologies.includes(option.title)}
