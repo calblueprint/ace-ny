@@ -4,50 +4,48 @@ import COLORS from '../../styles/colors';
 export const SearchBarPaddingStyles = styled.div`
   display: inline-flex;
   position: absolute;
-  top: 3%;
-  left: 1.7%;
+  top: 1.4rem;
+  left: 1.25rem;
   background: linear-gradient(
     180deg,
     rgba(250, 250, 250, 0.32) 0%,
     rgba(238, 238, 238, 0.65) 100%
   );
   backdrop-filter: blur(7.5px);
-  padding: 0.5rem;
+  padding: 0.3rem;
   align-items: center;
   gap: 0.4rem;
-  border-radius: 0.75rem;
+  border-radius: 6.25rem;
   border: 0.05rem solid #fff;
   z-index: 3;
 `;
 
 export const SearchBarBackgroundStyles = styled.div`
   display: flex;
-  width: 21.3rem;
-  height: 3.1rem;
+  width: 21.6rem;
+  height: 2.75rem;
   padding: 0.3rem 1.8rem;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
   gap: 0.5rem;
-  border-radius: 0.5rem;
-  background: #fff;
+  border-radius: 6.25rem;
+  background: ${COLORS.white};
   box-sizing: border-box;
 `;
 
 export const SearchBarStyles = styled.input`
+  padding-left: 0.75rem;
   border: none;
   outline: none;
   box-shadow: none;
-  width: 80%;
-  color: #4974e0;
-  font-size: 0.9rem;
-  font-family: CoinbaseText, sans-serif;
+  padding-right: 7rem;
 `;
 
-export const IconStyles = styled.div`
-  width: 1.1rem;
-  height: 1.1rem;
-  flex-shrink: 0;
-  color: ${COLORS.electricBlue};
+export const SearchBarDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 `;
