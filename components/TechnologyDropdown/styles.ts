@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import COLORS from '@/styles/colors';
-import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
+import { CoinbaseMono, CoinbaseText } from '@/styles/fonts';
+import { FilterHeadingUnused } from '@/styles/texts';
 
 export const FilterDropdownStyles = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ export const CheckboxContainer = styled.div`
   justify-content: center;
   align-self: center;
   column-gap: 0.875rem;
-  margin-bottom: -0.875rem;
+  margin-bottom: -1.1rem;
 `;
 
 export const CategoryTitleStyles = styled.p`
@@ -32,7 +33,7 @@ export const CategoryTitleStyles = styled.p`
   color: rgba(46, 58, 89, 0.85);
   font-style: normal;
   font-weight: 300;
-  margin-bottom: -0.2rem;
+  margin-bottom: -0.4rem;
   margin-top: 1.2rem;
 `;
 
@@ -68,21 +69,17 @@ export const ApplyButtonStyles = styled.button`
   font-weight: 500;
   line-height: normal;
   border: none;
-  margin: 1.1rem auto 0 auto;
+  margin: 1.3rem auto 0 auto;
 `;
 
 export const ButtonStyles = styled.button`
+  ${FilterHeadingUnused}
   display: flex;
-  font-family: ${CoinbaseSans};
   color: rgba(46, 58, 89, 0.85);
-  font-size: 0.875rem;
   background: ${COLORS.white};
   border: none;
   border-radius: 6.25rem;
   align-items: center;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
   cursor: pointer;
 `;
 
@@ -96,7 +93,7 @@ export const ButtonWithIconStyles = styled.div`
   align-items: center;
   gap: 0.5rem;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
   cursor: pointer;
 `;
 

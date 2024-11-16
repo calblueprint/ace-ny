@@ -137,6 +137,16 @@ export const FilterHeadingInUse = styled.h3<TextProps>`
   line-height: normal;
 `;
 
+export const FilterCategoryLabel = styled.h3<TextProps>`
+  ${TextStylesCoinbaseMono}
+  color: ${COLORS.navy};
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  opacity: 0.5;
+  line-height: normal;
+`;
+
 export const FilterCategoryText1 = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
   font-size: 0.75rem;
@@ -144,7 +154,6 @@ export const FilterCategoryText1 = styled.p<TextProps>`
   font-weight: 300;
   color: ${COLORS.navy};
   opacity: 0.75;
-  line-height: normal;
 `;
 
 export const MinMaxTextUnused = styled.p<TextProps>`
