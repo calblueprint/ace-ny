@@ -90,12 +90,12 @@ export const BodyText2 = styled.p<TextProps>`
 `;
 
 export const AccentText1 = styled.h4<TextProps>`
-  ${TextStylesCoinbaseSans}
+  ${TextStylesCoinbaseText}
   font-size: 3.3rem;
   font-style: normal;
   color: ${COLORS.navy};
   opacity: 0.85;
-  font-weight: 400;
+  font-weight: 300;
   line-height: normal;
 `;
 

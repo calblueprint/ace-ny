@@ -48,6 +48,11 @@ export const ProjectInfo = styled.div`
 export const ProjectName = styled.div`
   margin-top: 1.5rem;
   text-align: left;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 10.3rem;
 `;
 
 export const ProjectStatus = styled.div`

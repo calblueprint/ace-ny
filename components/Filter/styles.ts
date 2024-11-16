@@ -3,8 +3,6 @@ import { FilterHeadingUnused } from '@/styles/texts';
 
 export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
   margin-right: 0.375rem;
-  top: 1.5%;
-  right: 1.5%;
   background: linear-gradient(
     180deg,
     rgba(250, 250, 250, 0.32) 0%,

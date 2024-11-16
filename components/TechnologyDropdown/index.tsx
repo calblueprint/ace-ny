@@ -18,6 +18,7 @@ import {
   CheckboxContainer,
   CheckboxStyles,
   ExitStyles,
+  FilterContentDiv,
   FilterDropdownStyles,
   IconStyles,
   OptionTitleStyles,
@@ -130,36 +131,38 @@ export default function TechnologyDropdown({
   };
   return (
     <FilterDropdownStyles>
-      <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-        {icon}
-        <ButtonStyles>{label}</ButtonStyles>
-        <ExitStyles>
-          <ExitIcon />
-        </ExitStyles>
-      </ButtonWithIconStyles>
-      {filter.categories.map(category => (
-        <div key={category.category}>
-          <CategoryTitleStyles>{category.category}</CategoryTitleStyles>
-          {category.options.map(option => (
-            <CheckboxContainer key={option.title}>
-              {option.icon}
-              <OptionTitleStyles>{option.title}</OptionTitleStyles>
-              <CheckboxStyles
-                type="checkbox"
-                checked={selectedTechnologies.includes(option.title)}
-                onChange={() => {
-                  setSelectedTechnologies(
-                    selectedTechnologies.includes(option.title)
-                      ? selectedTechnologies.filter(o => o !== option.title)
-                      : [...selectedTechnologies, option.title],
-                  );
-                }}
-              />
-            </CheckboxContainer>
-          ))}
-        </div>
-      ))}
-      <ApplyButtonStyles>APPLY</ApplyButtonStyles>
+      <FilterContentDiv>
+        <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
+          {icon}
+          <ButtonStyles>{label}</ButtonStyles>
+          <ExitStyles>
+            <ExitIcon />
+          </ExitStyles>
+        </ButtonWithIconStyles>
+        {filter.categories.map(category => (
+          <div key={category.category}>
+            <CategoryTitleStyles>{category.category}</CategoryTitleStyles>
+            {category.options.map(option => (
+              <CheckboxContainer key={option.title}>
+                {option.icon}
+                <OptionTitleStyles>{option.title}</OptionTitleStyles>
+                <CheckboxStyles
+                  type="checkbox"
+                  checked={selectedTechnologies.includes(option.title)}
+                  onChange={() => {
+                    setSelectedTechnologies(
+                      selectedTechnologies.includes(option.title)
+                        ? selectedTechnologies.filter(o => o !== option.title)
+                        : [...selectedTechnologies, option.title],
+                    );
+                  }}
+                />
+              </CheckboxContainer>
+            ))}
+          </div>
+        ))}
+        <ApplyButtonStyles>APPLY</ApplyButtonStyles>
+      </FilterContentDiv>
     </FilterDropdownStyles>
   );
 }
