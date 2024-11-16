@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { MarkerClusterer } from '@googlemaps/markerclusterer';
+import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';
 import ProjectModal from '@/components/ProjectModal';
 import { Project } from '../../types/schema';
@@ -32,10 +32,36 @@ export default function AddMarker({
     setSelectedProjectId(null); // close modal
   };
 
+  const getMinZoom = function (numMarkers: number, mapZoom: number): number {
+    if (numMarkers === 2) {
+      return 10;
+    } else if (numMarkers === 3) {
+      return 9.5;
+    } else {
+      return mapZoom;
+    }
+  };
+
   const clusterer = useMemo(() => {
     if (!map) return null;
 
-    return new MarkerClusterer({ map });
+    const setClusterer = new MarkerClusterer({ map });
+
+    setClusterer.addListener('click', function (cluster: Cluster) {
+      const mapZoom = map.getZoom() ?? 0;
+      const minZoom = cluster.markers?.length
+        ? getMinZoom(cluster.markers?.length, mapZoom)
+        : 0;
+
+      if (mapZoom && mapZoom < minZoom) {
+        const idleListener = map.addListener('idle', function () {
+          map.setZoom(minZoom);
+          idleListener.remove();
+        });
+      }
+    });
+
+    return setClusterer;
   }, [map]);
 
   return (
