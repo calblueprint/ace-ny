@@ -44,25 +44,25 @@ export default function AddMarker({
     }
   };
 
-  const renderer = {
-    render(cluster: Cluster) {
-      const count = cluster.markers?.length ?? 0;
-      const position = cluster.position;
-
-      // create a container for the custom icon
-      const container = document.createElement('div');
-      const root = ReactDOM.createRoot(container);
-      root.render(<ClusterIcon count={count} />);
-
-      return new google.maps.marker.AdvancedMarkerElement({
-        position: position,
-        content: container,
-      });
-    },
-  };
-
   const clusterer = useMemo(() => {
     if (!map) return null;
+
+    const renderer = {
+      render(cluster: Cluster) {
+        const count = cluster.markers?.length ?? 0;
+        const position = cluster.position;
+
+        // create a container for the custom icon
+        const container = document.createElement('div');
+        const root = ReactDOM.createRoot(container);
+        root.render(<ClusterIcon count={count} />);
+
+        return new google.maps.marker.AdvancedMarkerElement({
+          position: position,
+          content: container,
+        });
+      },
+    };
 
     const setClusterer = new MarkerClusterer({ map, renderer });
 
