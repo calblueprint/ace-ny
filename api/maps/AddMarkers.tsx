@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
+import ReactDOM from 'react-dom/client';
 import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';
+import { ClusterIcon } from '@/assets/Clusters/icons';
 import ProjectModal from '@/components/ProjectModal';
 import { Project } from '../../types/schema';
 import { MarkerInfoWindow } from './MarkerInfoWindow';
@@ -42,13 +44,31 @@ export default function AddMarker({
     }
   };
 
+  const renderer = {
+    render(cluster: Cluster) {
+      const count = cluster.markers?.length ?? 0;
+      const position = cluster.position;
+
+      // create a container for the custom icon
+      const container = document.createElement('div');
+      const root = ReactDOM.createRoot(container);
+      root.render(<ClusterIcon count={count} />);
+
+      return new google.maps.marker.AdvancedMarkerElement({
+        position: position,
+        content: container,
+      });
+    },
+  };
+
   const clusterer = useMemo(() => {
     if (!map) return null;
 
-    const setClusterer = new MarkerClusterer({ map });
+    const setClusterer = new MarkerClusterer({ map, renderer });
 
     setClusterer.addListener('click', function (cluster: Cluster) {
       const mapZoom = map.getZoom() ?? 0;
+      console.log(cluster.markers);
       const minZoom = cluster.markers?.length
         ? getMinZoom(cluster.markers?.length, mapZoom)
         : 0;
