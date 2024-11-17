@@ -179,7 +179,3 @@ def write_small_to_json():
     with open("api/webscraper/nyserda_small.json", "w") as file:
         json.dump(project_list, file, indent=4)
         file.write("\n")
-
-
-test = query_nyserda_solar_repeat()
-print(test[-10:])

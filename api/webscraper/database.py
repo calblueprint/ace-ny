@@ -400,30 +400,30 @@ def nyiso_to_database() -> None:
     nyiso_to_database_helper(filter_nyiso_in_service_sheet(), "In Service")
 
 
-def check_withdrawn_nyiso_in_database() -> None:
-    """
-    This function uses projects queried from the Withdrawn and Cluster Projects-Withdrawn sheet of NYISO
-    to delete any currently stored projects in the databasethat have been withdrawn.
-    """
-    withdrawn_projects = filter_nyiso_withdrawn_sheets()
-    for project in withdrawn_projects:
-        existing_data = (
-            supabase.table(supabase_table)
-            .select("*")
-            .eq("project_name", project["project_name"])
-            .execute()
-        )
-        if len(existing_data.data) > 0:
-            try:
-                response = (
-                    supabase.table(supabase_table)
-                    .delete()
-                    .eq("project_name", project["project_name"])
-                    .execute()
-                )
-                print("DELETE", response, "\n")
-            except Exception as exception:
-                print(exception)
+# def check_withdrawn_nyiso_in_database() -> None:
+#     """
+#     This function uses projects queried from the Withdrawn and Cluster Projects-Withdrawn sheet of NYISO
+#     to delete any currently stored projects in the databasethat have been withdrawn.
+#     """
+#     withdrawn_projects = filter_nyiso_withdrawn_sheets()
+#     for project in withdrawn_projects:
+#         existing_data = (
+#             supabase.table(supabase_table)
+#             .select("*")
+#             .eq("project_name", project["project_name"])
+#             .execute()
+#         )
+#         if len(existing_data.data) > 0:
+#             try:
+#                 response = (
+#                     supabase.table(supabase_table)
+#                     .delete()
+#                     .eq("project_name", project["project_name"])
+#                     .execute()
+#                 )
+#                 print("DELETE", response, "\n")
+#             except Exception as exception:
+#                 print(exception)
 
 
 def ores_noi_to_database():
@@ -594,7 +594,7 @@ def ores_permitted_to_database() -> None:
 For testing
 """
 # nyserda_large_to_database()
-nyserda_solar_to_database()
+# nyserda_solar_to_database()
 # nyiso_to_database()
 # ores_noi_to_database()
 # ores_under_review_to_database()
