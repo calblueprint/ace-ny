@@ -68,7 +68,6 @@ export default function AddMarker({
 
     setClusterer.addListener('click', function (cluster: Cluster) {
       const mapZoom = map.getZoom() ?? 0;
-      console.log(cluster.markers);
       const minZoom = cluster.markers?.length
         ? getMinZoom(cluster.markers?.length, mapZoom)
         : 0;
