@@ -8,3 +8,7 @@ nyserda_scraper.py
 nyserda_small.json
 __init__.py
 scraper_utils.py
+ores_scraper.py
+nyiso_scraper.cpython-312.pyc
+nyserda_scraper.cpython-312.pyc
+database_constants.cpython-312.pyc

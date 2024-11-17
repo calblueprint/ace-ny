@@ -1,34 +1,44 @@
 import styled from 'styled-components';
-import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
+import COLORS from '@/styles/colors';
+import { CoinbaseMono, CoinbaseText } from '@/styles/fonts';
+import { FilterHeadingUnused } from '@/styles/texts';
 
 export const FilterDropdownStyles = styled.div`
-  position: relative;
+  display: flex;
   background: #fff;
-  width: 13rem;
+  width: 13.8rem;
   border-radius: 0.5rem;
-  padding-bottom: 0.5rem;
+`;
+
+export const FilterContentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0.625rem 1.5rem 0.9rem 1.5rem;
+  align-content: space-between;
 `;
 
 export const CheckboxContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: -0.8rem;
-  margin-left: 1rem;
+  justify-content: center;
+  align-self: center;
+  column-gap: 0.875rem;
+  margin-bottom: -1.1rem;
 `;
 
 export const CategoryTitleStyles = styled.p`
+  display: flex;
   font-family: ${CoinbaseMono};
   font-size: 0.625rem;
   color: rgba(46, 58, 89, 0.85);
   font-style: normal;
-  font-weight: 400;
-  margin-top: 1rem;
-  margin-left: 0.5rem;
-  margin-bottom: 0.15rem;
+  font-weight: 300;
+  margin-bottom: -0.4rem;
+  margin-top: 1.2rem;
 `;
 
 export const OptionTitleStyles = styled.p`
+  display: flex;
   font-family: ${CoinbaseText};
   font-size: 0.75rem;
   color: rgba(46, 58, 89, 0.85);
@@ -38,60 +48,52 @@ export const OptionTitleStyles = styled.p`
 `;
 
 export const CheckboxStyles = styled.input`
+  display: flex;
   cursor: pointer;
   margin-left: auto;
-  margin-right: 1rem;
 `;
 
 export const ApplyButtonStyles = styled.button`
-  width: 10.8125rem;
-  height: 1.5rem;
-  flex-shrink: 0;
-  border-radius: 0.25rem;
-  background: #4974e0;
-  margin-top: 1rem;
   display: flex;
+  width: 10.81rem;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+  background: ${COLORS.electricBlue};
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: #fff;
+  color: ${COLORS.white};
   font-family: ${CoinbaseText};
   font-size: 0.75rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 500;
   line-height: normal;
   border: none;
-  margin-bottom: 0.5rem;
-  width: 88%;
-  margin: 1rem auto 0.5rem auto;
+  margin: 1.3rem auto 0 auto;
 `;
 
 export const ButtonStyles = styled.button`
-  font-family: ${CoinbaseSans};
+  ${FilterHeadingUnused}
+  display: flex;
   color: rgba(46, 58, 89, 0.85);
-  font-size: 0.875rem;
-  background: #fff;
+  background: ${COLORS.white};
   border: none;
   border-radius: 6.25rem;
-  display: flex;
   align-items: center;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
   cursor: pointer;
 `;
 
 export const ExitStyles = styled.div`
-  margin-left: auto;
-  margin-right: 1.1rem;
+  display: flex;
+  padding-left: 1.5rem;
 `;
 
 export const ButtonWithIconStyles = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: 1rem;
-  padding-top: 1rem;
+  flex-direction: row;
+  justify-content: space-between;
   cursor: pointer;
 `;
 
