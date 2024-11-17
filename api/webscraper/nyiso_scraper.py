@@ -30,6 +30,11 @@ def query_nyiso_excel():
 
 
 def query_nyiso():
+    """
+    Queries for all the projects in the NYISO sheet and filters
+    Outdated - does not modify behavior based on which sheet the project is from (Interconnection Queue, Cluster Projects, In Service)
+    returns: list of dictionaries representing the projects
+    """
     if nyiso_xlsx_href is None:
         print('ERROR: "View the Interconnection Queue" link not found')
         return
@@ -50,7 +55,7 @@ def query_nyiso():
                 continue
             project_dict = {
                 "project_name": item.get("Project Name", None),
-                "project_status": "Proposed",  # TODO: update this based on which sheet it's from
+                "project_status": "Proposed",
                 "renewable_energy_technology": renewable_energy_abbreviations[
                     item.get("Type/ Fuel")
                 ],  # map abbreviations into readable string
@@ -95,7 +100,9 @@ def filter_nyiso_list(project_list, sheet_name):
     for item in project_list:
         if sheet_name == "Interconnection Queue" and item.get("State") != "NY":
             continue
-        elif sheet_name == "Cluster Projects" and item.get("State", None) != "New York":
+        elif sheet_name == "Cluster Projects" and not (
+            item.get("State", None) == "New York" or item.get("State", None) == "NY"
+        ):
             continue
         elif sheet_name == "In Service" and item.get("State", None) != "NY":
             continue
@@ -111,13 +118,22 @@ def filter_nyiso_list(project_list, sheet_name):
             "developer": item.get("Developer Name", None),
             "proposed_cod": item.get(
                 "Proposed COD", None
-            ),  # note: non-serializable into JSON --> can't directly write to file
+            ),  # NOTE: non-serializable into JSON --> can't directly write to file
             "county": item.get("County", None),
             "region": None,  # missing
             "zipcode": None,  # missing
             "latitude": None,
             "longitude": None,
-            # 'data_through_date': item.get('Last Updated Date', None),
+            "last_updated": (
+                item.get("Last Updated Date", None)  # NOTE: non-serializable into JSON
+                if (
+                    sheet_name == "Interconnection Queue"
+                    or sheet_name == "Cluster Projects"
+                )
+                else item.get(
+                    "Last Update NaT", None
+                )  # NOTE: the column header for the in-service sheet is called "Last Update NaT"
+            ),
             "key_development_milestones": None,
             "project_image": None,
             "interconnection_queue_number": item.get("Queue Pos.", None),
@@ -155,7 +171,7 @@ def filter_nyiso_cluster_sheet():
     cluster_projects_df = clean_df_data(cluster_projects_df)
     cluster_projects_list = cluster_projects_df.to_dict(orient="records")
 
-    filtered_list = filter_nyiso_list(cluster_projects_list, "Cluster Project")
+    filtered_list = filter_nyiso_list(cluster_projects_list, "Cluster Projects")
     return filtered_list
 
 
@@ -184,9 +200,37 @@ def filter_nyiso_in_service_sheet():
     return filtered_list
 
 
+def filter_nyiso_withdrawn_sheets():
+    """
+    Returns a list of objects containing the key: "project_name" of withdrawn projects
+    """
+    all_sheets = query_nyiso_excel()
+    sheet_names = list(all_sheets.keys())
+    withdrawn_key = sheet_names[2]  # gets the sheet named "Withdrawn"
+    cluster_withdrawn_key = sheet_names[3]  # gets the sheet named "Cluster Withdrawn"
+
+    withdrawn_df = all_sheets[withdrawn_key]
+    withdrawn_df = clean_df_data(withdrawn_df)
+    withdrawn_list = withdrawn_df.to_dict(orient="records")
+
+    cluster_withdrawn_df = all_sheets[cluster_withdrawn_key]
+    cluster_withdrawn_df = clean_df_data(cluster_withdrawn_df)
+    cluster_withdrawn_list = cluster_withdrawn_df.to_dict(orient="records")
+
+    withdrawn_list = withdrawn_list + cluster_withdrawn_list
+    filtered_list = [
+        {"project_name": item.get("Project Name", None)}
+        for item in withdrawn_list
+        if item.get("Project Name", None) is not None
+    ]
+    return filtered_list
+
+
 """
 For testing
 """
 # write_nyiso_to_json()
+# print(filter_nyiso_iq_sheet())
 # print(filter_nyiso_in_service_sheet())
 # print(filter_nyiso_cluster_sheet())
+# print(filter_nyiso_withdrawn_sheets())

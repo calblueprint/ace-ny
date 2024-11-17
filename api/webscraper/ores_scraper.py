@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from io import StringIO
-from utils.scraper_utils import geocode_lat_long, update_kdm
+from utils.scraper_utils import geocode_lat_long
 from database_constants import initial_kdm_dict
 
 # url = "https://dps.ny.gov/ores-permit-applications"
@@ -65,15 +65,13 @@ def filter_noi(data: list) -> list:
     filtered_list = []
     for row in data:
         town, county = parse_for_location(row["Description"])
-        # TODO: move this parsing to the database.py file
-        lat, long = geocode_lat_long(f"{town}, NY")
         project_dict = {
             "permit_application_number": row.get("Permit Application Number", None),
             "project_name": row.get("Project Name", None),
             "town": town if town else None,
             "county": county if county else None,
-            "latitude": lat if lat else None,
-            "longitude": long if long else None,
+            "latitude": None,  # geocoding for lat/long is handled when inserting into database
+            "longitude": None,
             "key_development_milestones": initial_kdm_dict,
         }
         filtered_list.append(project_dict)
@@ -90,22 +88,15 @@ def filter_under_review(data: list) -> list:
     filtered_list = []
     for row in data:
         town, county = parse_for_location(row["Description"])
-        lat, long = geocode_lat_long(f"{town}, NY")
         project_dict = {
             "permit_application_number": row.get("Permit Application Number", None),
             "project_name": row.get("Project Name", None),
             "town": town if town else None,
             "county": county if county else None,
-            "latitude": lat if lat else None,
-            "longitude": long if long else None,
-            "key_development_milestones": initial_kdm_dict,
+            "latitude": None,  # geocoding for lat/long is handled when inserting into database
+            "longitude": None,
+            "key_development_milestones": initial_kdm_dict,  # updating kdm for projects under review is handled in database.py
         }
-        project_dict["key_development_milestones"] = update_kdm(
-            "Application for permit to ORES",
-            date=None,
-            completed=True,
-            kdm=project_dict.get("key_development_milestones"),
-        )
         filtered_list.append(project_dict)
     return filtered_list
 
@@ -126,16 +117,10 @@ def filter_permitted(data):
             "project_name": row.get("Project Name", None),
             "town": town if town else None,
             "county": county if county else None,
-            "latitude": lat if lat else None,
-            "longitude": long if long else None,
-            "key_development_milestones": initial_kdm_dict,
+            "latitude": None,  # geocoding for lat/long is handled when inserting into database
+            "longitude": None,
+            "key_development_milestones": initial_kdm_dict,  # updating kdm for permitted projects is handled in database.py
         }
-        project_dict["key_development_milestones"] = update_kdm(
-            "Issuance of permit from ORES",
-            date=None,
-            completed=True,
-            kdm=project_dict.get("key_development_milestones"),
-        )
         filtered_list.append(project_dict)
     return filtered_list
 

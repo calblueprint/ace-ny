@@ -115,6 +115,10 @@ def query_nyserda_solar(offset=0, limit=1000):
 
             if size_in_mw is None or size_in_mw < 2:
                 continue
+            if (
+                item.get("project_id", None) is None
+            ):  # some projects have no project_id, so we skip them
+                continue
 
             if check_status(item.get("project_status", None)) != "Cancelled":
                 project_dict = {
@@ -175,3 +179,7 @@ def write_small_to_json():
     with open("api/webscraper/nyserda_small.json", "w") as file:
         json.dump(project_list, file, indent=4)
         file.write("\n")
+
+
+test = query_nyserda_solar_repeat()
+print(test[-10:])

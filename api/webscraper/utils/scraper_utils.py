@@ -47,7 +47,10 @@ def create_update_object(existing_project, new_project):
         if value is None and new_project.get(key, None) is not None:
             update_object[key] = new_project[key]
         # add field if existing project's value differs from new project's value
-        elif value != new_project[key] and new_project.get(key, None) is not None:
+        elif (
+            value != new_project.get(key, None)
+            and new_project.get(key, None) is not None
+        ):
             update_object[key] = new_project[key]
     return update_object
 
