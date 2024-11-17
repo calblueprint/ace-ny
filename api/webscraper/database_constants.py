@@ -19,7 +19,7 @@ renewable_energy_abbreviations = {
     "OSW": "Offshore Wind",
 }
 
-initial_kdm_dict = [
+initial_kdm = [
     {"milestoneTitle": "Entry to NYISO Queue", "completed": False, "date": None},
     {
         "milestoneTitle": "Application for permit to ORES",

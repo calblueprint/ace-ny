@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from dateutil import tz
 from supabase import create_client, Client
 from geocodio import GeocodioClient
 
@@ -15,20 +16,23 @@ from utils.scraper_utils import (
     geocode_lat_long,
     create_update_object,
     update_kdm,
+    update_last_updated,
 )
 from database_constants import (
-    initial_kdm_dict,
+    initial_kdm,
 )
 
 url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 supabase: Client = create_client(url, key)
 supabase_table: str = (
-    "Projects_user_testing"  # TODO: modify based on which table in supabase we want to edit
+    "Projects_duplicate"  # TODO: modify based on which table in supabase we want to edit
 )
 
 geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
 geocodio = GeocodioClient(geocode_api)
+
+nyt = tz.gettz("America/New_York")
 
 # NOTE: Supabase date objects follow the format YYYY-MM-DD
 
@@ -50,17 +54,22 @@ def nyserda_large_to_database() -> None:
         )
         if len(existing_data.data) > 0:
             existing_project = existing_data.data[0]
-            if existing_project.get("last_updated", None) is not None:
-                existing_last_updated = datetime.strptime(
-                    existing_project.get("last_updated"), "%Y-%m-%d"
+            if (
+                existing_project.get("last_updated", {}).get("NYSERDA_large_scale")
+                is not None
+            ):
+                last_nyserda_update = datetime.fromisoformat(
+                    existing_project["last_updated"]["NYSERDA_large_scale"]
                 )
             else:
-                existing_last_updated = None
+                last_nyserda_update = None
             # only update project if new project has newer data
             if (
-                existing_last_updated is None
-                or datetime.strptime(project.get("last_updated"), "%Y-%m-%d")
-                < existing_last_updated
+                last_nyserda_update is None
+                or datetime.strptime(
+                    project.get("data_through_date"), "%Y-%m-%d"
+                ).replace(tzinfo=nyt)
+                < last_nyserda_update
             ):
                 if (
                     project.get("project_status", None) is None
@@ -80,7 +89,7 @@ def nyserda_large_to_database() -> None:
                     existing_project["key_development_milestones"] is None
                     or len(existing_project["key_development_milestones"]) < 0
                 ):
-                    update_object["key_development_milestones"] = initial_kdm_dict
+                    update_object["key_development_milestones"] = initial_kdm
                 else:
                     update_object["key_development_milestones"] = existing_project[
                         "key_development_milestones"
@@ -88,9 +97,13 @@ def nyserda_large_to_database() -> None:
                 # update key development milestones
                 update_object["key_development_milestones"] = update_kdm(
                     "Winning a contract award from NYSERDA",
-                    date=datetime.strptime(
-                        project.get("nyserda_contract_date"), "%Y-%m-%d"
-                    ).isoformat(),
+                    date=(
+                        datetime.strptime(
+                            project.get("nyserda_contract_date"), "%Y-%m-%d"
+                        ).isoformat()
+                        if project.get("nyserda_contract_date", None)
+                        else None
+                    ),
                     completed=True,
                     kdm=update_object["key_development_milestones"],
                 )
@@ -105,6 +118,16 @@ def nyserda_large_to_database() -> None:
                     completed=True,
                     kdm=update_object["key_development_milestones"],
                 )
+                # set last updated for NYSERDA field to current date/time in est
+                # datestring will be in the format "YYYYMMDDTHH:MM:SS.SSSZ"
+                update_object["last_updated"] = update_last_updated(
+                    "NYSERDA_large_scale",
+                    datetime.now(tz=nyt),
+                    existing_project.get("last_updated", {}),
+                )
+                # delete data_through_date before pushing to supabase
+                if "data_through_date" in project:
+                    del project["data_through_date"]
                 try:
                     response = (
                         supabase.table(supabase_table)
@@ -118,9 +141,15 @@ def nyserda_large_to_database() -> None:
             # print statement in case project does not have newer data than what the database already has
             else:
                 print(
-                    f"No updates since last update on {existing_last_updated} for {project["project_name"]}"
+                    f"No updates since last update on {last_nyserda_update} for {project["project_name"]}"
                 )
         else:
+            # skip any projects that have been cancelled
+            if (
+                project.get("project_status", None) is None
+                or project.get("project_status", None) == "Cancelled"
+            ):
+                continue
             if (project.get("latitude", None) is not None) and (
                 project.get("longitude", None) is not None
             ):
@@ -153,11 +182,19 @@ def nyserda_large_to_database() -> None:
                     "nyserda_contract_date", None
                 ),  # small-scale solar projects don't have anything for this yet
                 completed=True,
-                kdm=initial_kdm_dict,
+                kdm=initial_kdm,
             )
             # delete this field before pushing to supabase
             if "nyserda_contract_date" in project:
                 del project["nyserda_contract_date"]
+
+            # mark when this project was last updated from NYSERDA
+            project["last_updated"] = update_last_updated(
+                "NYSERDA_large_scale", datetime.now(tz=nyt), {}
+            )
+            # delete data_through_date before pushing to supabase
+            if "data_through_date" in project:
+                del project["data_through_date"]
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -212,7 +249,7 @@ def nyserda_solar_to_database() -> None:
                     existing_project["key_development_milestones"] is None
                     or len(existing_project["key_development_milestones"]) < 0
                 ):
-                    update_object["key_development_milestones"] = initial_kdm_dict
+                    update_object["key_development_milestones"] = initial_kdm
                 else:
                     update_object["key_development_milestones"] = existing_project[
                         "key_development_milestones"
@@ -318,7 +355,7 @@ def nyiso_to_database() -> None:
                     existing_project["key_development_milestones"] is None
                     or len(existing_project["key_development_milestones"]) < 0
                 ):
-                    update_object["key_development_milestones"] = initial_kdm_dict
+                    update_object["key_development_milestones"] = initial_kdm
                 else:
                     update_object["key_development_milestones"] = existing_project[
                         "key_development_milestones"
@@ -367,7 +404,7 @@ def nyiso_to_database() -> None:
                     print(exception)
             else:
                 # appending key development milestones
-                project["key_development_milestones"] = initial_kdm_dict
+                project["key_development_milestones"] = initial_kdm
                 if project.get("date_of_ir", None) is not None:
                     entry_date = project.get("date_of_ir")
                     entry_date = entry_date.strftime("%Y-%m-%d")
@@ -486,7 +523,7 @@ def ores_under_review_to_database() -> None:
                 existing_project["key_development_milestones"] is None
                 or len(existing_project["key_development_milestones"]) < 0
             ):
-                update_object["key_development_milestones"] = initial_kdm_dict
+                update_object["key_development_milestones"] = initial_kdm
             else:
                 update_object["key_development_milestones"] = existing_project[
                     "key_development_milestones"
@@ -549,7 +586,7 @@ def ores_permitted_to_database() -> None:
                 existing_project["key_development_milestones"] is None
                 or len(existing_project["key_development_milestones"]) < 0
             ):
-                update_object["key_development_milestones"] = initial_kdm_dict
+                update_object["key_development_milestones"] = initial_kdm
             else:
                 update_object["key_development_milestones"] = existing_project[
                     "key_development_milestones"
@@ -597,7 +634,7 @@ def ores_permitted_to_database() -> None:
 """
 For testing
 """
-# nyserda_large_to_database()
+nyserda_large_to_database()
 # nyserda_solar_to_database()
 # nyiso_to_database()
 # ores_noi_to_database()

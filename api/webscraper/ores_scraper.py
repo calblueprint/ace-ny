@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from io import StringIO
 from utils.scraper_utils import geocode_lat_long
-from database_constants import initial_kdm_dict
+from database_constants import initial_kdm
 
 # url = "https://dps.ny.gov/ores-permit-applications"
 # page = requests.get(url)
@@ -72,7 +72,7 @@ def filter_noi(data: list) -> list:
             "county": county if county else None,
             "latitude": None,  # geocoding for lat/long is handled when inserting into database
             "longitude": None,
-            "key_development_milestones": initial_kdm_dict,
+            "key_development_milestones": initial_kdm,
         }
         filtered_list.append(project_dict)
     return filtered_list
@@ -95,7 +95,7 @@ def filter_under_review(data: list) -> list:
             "county": county if county else None,
             "latitude": None,  # geocoding for lat/long is handled when inserting into database
             "longitude": None,
-            "key_development_milestones": initial_kdm_dict,  # updating kdm for projects under review is handled in database.py
+            "key_development_milestones": initial_kdm,  # updating kdm for projects under review is handled in database.py
         }
         filtered_list.append(project_dict)
     return filtered_list
@@ -118,7 +118,7 @@ def filter_permitted(data):
             "county": county if county else None,
             "latitude": None,  # geocoding for lat/long is handled when inserting into database
             "longitude": None,
-            "key_development_milestones": initial_kdm_dict,  # updating kdm for permitted projects is handled in database.py
+            "key_development_milestones": initial_kdm,  # updating kdm for permitted projects is handled in database.py
         }
         filtered_list.append(project_dict)
     return filtered_list

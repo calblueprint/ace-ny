@@ -92,6 +92,12 @@ def update_kdm(milestoneTitle, completed, date, kdm):
     return updated_kdm
 
 
+def update_last_updated(source, date: datetime, last_updated: dict):
+    date_string = date.strftime("%Y%m%dT%H:%M:%S.%f%z")
+    last_updated[source] = date_string
+    return last_updated
+
+
 def turn_timestamp_to_string(timestamp):
     return timestamp.to_pydatetime().strftime("%Y-%m-%d")
 
