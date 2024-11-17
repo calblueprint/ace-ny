@@ -91,7 +91,7 @@ export const BodyText2 = styled.p<TextProps>`
 
 export const AccentText1 = styled.h4<TextProps>`
   ${TextStylesCoinbaseText}
-  font-size: 3.3rem;
+  font-size: 3rem;
   font-style: normal;
   color: ${COLORS.navy};
   opacity: 0.85;

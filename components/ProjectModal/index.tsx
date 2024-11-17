@@ -150,7 +150,7 @@ export default function ProjectModal({
         </ProjectOverview>
         <ProjectSize>
           <AccentText1>
-            <FiZap size={42} />
+            <FiZap size={38} />
             {size}
           </AccentText1>
           <AccentText2>Megawatts</AccentText2>

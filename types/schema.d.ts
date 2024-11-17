@@ -20,6 +20,10 @@ export type Project = {
   permit_process: string | null;
   proposed_cod: Date;
   approved: boolean;
+  interconnection_number: string | null;
+  permit_process: string | null;
+  permit_application_number: string | null;
+  last_updated: Date;
 };
 
 export interface Option {
