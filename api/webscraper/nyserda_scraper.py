@@ -18,7 +18,7 @@ def solicitation_name_to_date(solicitation_name):
     else:
         parts = solicitation_name.split("-")
         year = parts[0][-2::]
-        return f"%20{year}-%01-%01"
+        return f"20{year}-01-01"
 
 
 def query_nyserda_large():
@@ -147,14 +147,12 @@ def query_nyserda_solar(offset=0, limit=1000):
         return filtered_list
 
 
-"""
-The NYSERDA Statewide Distributed Solar Projects database has 230,000 records
-However, the API has a default limit of 1,000 rows.
-This function repeatedly queries the API with different offsets to get all the records.
-"""
-
-
 def query_nyserda_solar_repeat():
+    """
+    The NYSERDA Statewide Distributed Solar Projects database has 230,000 records
+    However, the API has a default limit of 1,000 rows.
+    This function repeatedly queries the API with different offsets to get all the records.
+    """
     # TODO: get the total number of records from the database by HTML parsing
     length = 250000
     limit = 1000

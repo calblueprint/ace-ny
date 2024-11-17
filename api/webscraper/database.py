@@ -88,7 +88,9 @@ def nyserda_large_to_database() -> None:
                 # update key development milestones
                 update_object["key_development_milestones"] = update_kdm(
                     "Winning a contract award from NYSERDA",
-                    date=project.get("nyserda_contract_date"),
+                    date=datetime.strptime(
+                        project.get("nyserda_contract_date"), "%Y-%m-%d"
+                    ).isoformat(),
                     completed=True,
                     kdm=update_object["key_development_milestones"],
                 )
@@ -147,7 +149,9 @@ def nyserda_large_to_database() -> None:
             # append key development milestones
             project["key_development_milestones"] = update_kdm(
                 "Winning a contract award from NYSERDA",
-                date=project.get("nyserda_contract_date"),
+                date=project.get(
+                    "nyserda_contract_date", None
+                ),  # small-scale solar projects don't have anything for this yet
                 completed=True,
                 kdm=initial_kdm_dict,
             )

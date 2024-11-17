@@ -111,7 +111,6 @@ def filter_permitted(data):
     filtered_list = []
     for row in data:
         town, county = parse_for_location(row["Description"])
-        lat, long = geocode_lat_long(f"{town}, NY")
         project_dict = {
             "permit_application_number": row.get("Permit Application Number", None),
             "project_name": row.get("Project Name", None),
