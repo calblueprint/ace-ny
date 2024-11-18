@@ -145,6 +145,7 @@ export const FilterCategoryLabel = styled.h3<TextProps>`
   font-weight: 400;
   opacity: 0.5;
   line-height: normal;
+  margin-top: 1rem;
 `;
 
 export const FilterCategoryText1 = styled.p<TextProps>`

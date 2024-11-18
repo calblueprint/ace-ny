@@ -70,7 +70,6 @@ export const ButtonWithIconStyles = styled.div`
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
-  margin-bottom: 1rem;
 `;
 
 export const IconStyles = styled.div`
