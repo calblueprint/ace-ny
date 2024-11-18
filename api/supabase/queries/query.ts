@@ -3,7 +3,7 @@ import supabase from '../createClient';
 
 export default async function queryProjects(): Promise<Project[]> {
   const { data: projects, error } = await supabase
-    .from('Projects')
+    .from('Projects_user_testing')
     .select('*')
     .eq('approved', true);
 
@@ -16,7 +16,7 @@ export default async function queryProjects(): Promise<Project[]> {
 
 export async function queryProjectbyId(id: number): Promise<Project> {
   const { data: project, error } = await supabase
-    .from('Projects')
+    .from('Projects_user_testing')
     .select('*')
     .eq('id', id)
     .single();
