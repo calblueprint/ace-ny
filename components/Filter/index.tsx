@@ -1,6 +1,7 @@
 import React from 'react';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
+import { FilterHeadingUnused } from '@/styles/texts';
 import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
 import { DropIcon } from '../../assets/Dropdown-Icons/icons';
 import {
@@ -50,7 +51,7 @@ export default function Filter({
       ) : (
         <FilterButtonStyles onClick={() => handleButtonClick(filter)}>
           <IconStyle>{filter.icon}</IconStyle>
-          {filter.label}
+          <FilterHeadingUnused>{filter.label}</FilterHeadingUnused>
           <DropIcon />
         </FilterButtonStyles>
       )}

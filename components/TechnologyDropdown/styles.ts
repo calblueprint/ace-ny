@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import COLORS from '@/styles/colors';
-import { CoinbaseMono, CoinbaseText } from '@/styles/fonts';
-import { FilterHeadingUnused } from '@/styles/texts';
 
 export const FilterDropdownStyles = styled.div`
   display: flex;
@@ -23,28 +21,7 @@ export const CheckboxContainer = styled.div`
   justify-content: center;
   align-self: center;
   column-gap: 0.875rem;
-  margin-bottom: -1.1rem;
-`;
-
-export const CategoryTitleStyles = styled.p`
-  display: flex;
-  font-family: ${CoinbaseMono};
-  font-size: 0.625rem;
-  color: rgba(46, 58, 89, 0.85);
-  font-style: normal;
-  font-weight: 300;
-  margin-bottom: -0.4rem;
-  margin-top: 1.2rem;
-`;
-
-export const OptionTitleStyles = styled.p`
-  display: flex;
-  font-family: ${CoinbaseText};
-  font-size: 0.75rem;
-  color: rgba(46, 58, 89, 0.85);
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
+  margin-top: 0.35rem;
 `;
 
 export const CheckboxStyles = styled.input`
@@ -53,7 +30,7 @@ export const CheckboxStyles = styled.input`
   margin-left: auto;
 `;
 
-export const ApplyButtonStyles = styled.button`
+export const ApplyButtonStyles = styled.button<{ isActive: boolean }>`
   display: flex;
   width: 10.81rem;
   height: 1.5rem;
@@ -63,17 +40,15 @@ export const ApplyButtonStyles = styled.button`
   align-items: center;
   cursor: pointer;
   color: ${COLORS.white};
-  font-family: ${CoinbaseText};
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 500;
+  opacity: ${({ isActive }) => (isActive ? '1' : '0.50')};
   line-height: normal;
   border: none;
   margin: 1.3rem auto 0 auto;
+  cursor: ${({ isActive }) => (isActive ? 'pointer' : 'not-allowed')};
+  pointer-events: ${({ isActive }) => (isActive ? 'auto' : 'none')};
 `;
 
 export const ButtonStyles = styled.button`
-  ${FilterHeadingUnused}
   display: flex;
   color: rgba(46, 58, 89, 0.85);
   background: ${COLORS.white};
@@ -95,6 +70,7 @@ export const ButtonWithIconStyles = styled.div`
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
+  margin-bottom: 1rem;
 `;
 
 export const IconStyles = styled.div`

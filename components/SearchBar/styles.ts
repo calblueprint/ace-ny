@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { CoinbaseText } from '@/styles/fonts';
 import COLORS from '../../styles/colors';
 
 export const SearchBarPaddingStyles = styled.div`
@@ -41,6 +42,20 @@ export const SearchBarStyles = styled.input`
   outline: none;
   box-shadow: none;
   padding-right: 7rem;
+  &::placeholder {
+    ${CoinbaseText.style}
+    font-size: 0.85rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    opacity: 0.5;
+    color: ${COLORS.navy};
+  }
+  ${CoinbaseText.style}
+  font-size: 0.85rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
   color: ${COLORS.electricBlue};
 `;
 

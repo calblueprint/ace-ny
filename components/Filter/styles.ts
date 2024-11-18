@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { FilterHeadingUnused } from '@/styles/texts';
 
 export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
   margin-right: 0.5rem;
@@ -19,7 +18,6 @@ export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
 `;
 
 export const FilterButtonStyles = styled.button`
-  ${FilterHeadingUnused}
   position: relative;
   background: #fff;
   border: none;

@@ -32,10 +32,9 @@ export const ApplyButtonStyles = styled.button<{ isActive: boolean }>`
   height: 1.5rem;
   flex-shrink: 0;
   border-radius: 0.25rem;
-  background: ${({ isActive }) =>
-    isActive
-      ? COLORS.electricBlue
-      : 'rgba(73, 116, 224, 0.50)'}; // Active vs Inactive color
+  background: ${COLORS.electricBlue};
+  opacity: ${({ isActive }) =>
+    isActive ? '1' : '0.5'}; // Active vs Inactive color
   display: flex;
   justify-content: center;
   align-items: center;
@@ -66,7 +65,7 @@ export const ButtonWithIconStyles = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
-  margin-bottom: -0.4rem;
+  margin-bottom: 0rem;
   cursor: pointer;
 `;
 

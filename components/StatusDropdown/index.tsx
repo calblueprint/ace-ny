@@ -4,6 +4,7 @@ import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
   ApplyFiltersText,
+  FilterHeadingUnused,
   FilterNameText,
   FilterOptionsText,
 } from '../../styles/texts';
@@ -51,7 +52,9 @@ export default function StatusDropdown({
     <FilterDropdownStyles>
       <FilterContentDiv>
         <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-          <FilterNameText>{icon}</FilterNameText>
+          <FilterNameText>
+            <FilterHeadingUnused>{icon}</FilterHeadingUnused>
+          </FilterNameText>
           <ButtonStyles>
             <FilterNameText>{label}</FilterNameText>
           </ButtonStyles>

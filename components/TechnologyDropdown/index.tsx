@@ -1,4 +1,9 @@
-import { FilterCategoryLabel, FilterCategoryText1 } from '@/styles/texts';
+import {
+  ApplyFiltersText,
+  FilterCategoryLabel,
+  FilterCategoryText1,
+  FilterHeadingUnused,
+} from '@/styles/texts';
 import { FilterType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import {
@@ -15,14 +20,12 @@ import {
   ApplyButtonStyles,
   ButtonStyles,
   ButtonWithIconStyles,
-  CategoryTitleStyles,
   CheckboxContainer,
   CheckboxStyles,
   ExitStyles,
   FilterContentDiv,
   FilterDropdownStyles,
   IconStyles,
-  OptionTitleStyles,
 } from './styles';
 
 interface TechnologyDropdownProps {
@@ -130,27 +133,28 @@ export default function TechnologyDropdown({
       },
     ],
   };
+
+  const isApplyButtonActive = selectedTechnologies.length > 0;
+
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
         <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
           {icon}
-          <ButtonStyles>{label}</ButtonStyles>
+          <ButtonStyles>
+            <FilterHeadingUnused>{label}</FilterHeadingUnused>
+          </ButtonStyles>
           <ExitStyles>
             <ExitIcon />
           </ExitStyles>
         </ButtonWithIconStyles>
         {filter.categories.map(category => (
           <div key={category.category}>
-            <CategoryTitleStyles>
-              <FilterCategoryLabel>{category.category}</FilterCategoryLabel>
-            </CategoryTitleStyles>
+            <FilterCategoryLabel>{category.category}</FilterCategoryLabel>
             {category.options.map(option => (
               <CheckboxContainer key={option.title}>
                 {option.icon}
-                <OptionTitleStyles>
-                  <FilterCategoryText1>{option.title}</FilterCategoryText1>
-                </OptionTitleStyles>
+                <FilterCategoryText1>{option.title}</FilterCategoryText1>
                 <CheckboxStyles
                   type="checkbox"
                   checked={selectedTechnologies.includes(option.title)}
@@ -166,7 +170,9 @@ export default function TechnologyDropdown({
             ))}
           </div>
         ))}
-        <ApplyButtonStyles>APPLY</ApplyButtonStyles>
+        <ApplyButtonStyles isActive={isApplyButtonActive}>
+          <ApplyFiltersText>APPLY</ApplyFiltersText>
+        </ApplyButtonStyles>
       </FilterContentDiv>
     </FilterDropdownStyles>
   );
