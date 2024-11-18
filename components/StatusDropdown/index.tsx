@@ -14,6 +14,7 @@ import {
   CheckboxContainer,
   CheckboxStyles,
   ExitStyles,
+  FilterContentDiv,
   FilterDropdownStyles,
   OptionTitleStyles,
 } from './styles';
@@ -48,35 +49,37 @@ export default function StatusDropdown({
 
   return (
     <FilterDropdownStyles>
-      <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-        <FilterNameText>{icon}</FilterNameText>
-        <ButtonStyles>
-          <FilterNameText>{label}</FilterNameText>
-        </ButtonStyles>
-        <ExitStyles>
-          <ExitIcon />
-        </ExitStyles>
-      </ButtonWithIconStyles>
-      <div>
-        {filterOptions.map(option => (
-          <CheckboxContainer key={option.title}>
-            <CheckboxStyles
-              type="checkbox"
-              checked={selectedStatus.includes(option.title)}
-              onChange={() => handleStatusChange(option.title)}
-            />
-            <OptionTitleStyles color={option.color}>
-              <FilterOptionsText $color={option.color}>
-                {' '}
-                {option.title}
-              </FilterOptionsText>
-            </OptionTitleStyles>
-          </CheckboxContainer>
-        ))}
-      </div>
-      <ApplyButtonStyles isActive={isApplyButtonActive}>
-        <ApplyFiltersText>APPLY</ApplyFiltersText>
-      </ApplyButtonStyles>
+      <FilterContentDiv>
+        <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
+          <FilterNameText>{icon}</FilterNameText>
+          <ButtonStyles>
+            <FilterNameText>{label}</FilterNameText>
+          </ButtonStyles>
+          <ExitStyles>
+            <ExitIcon />
+          </ExitStyles>
+        </ButtonWithIconStyles>
+        <div>
+          {filterOptions.map(option => (
+            <CheckboxContainer key={option.title}>
+              <CheckboxStyles
+                type="checkbox"
+                checked={selectedStatus.includes(option.title)}
+                onChange={() => handleStatusChange(option.title)}
+              />
+              <OptionTitleStyles color={option.color}>
+                <FilterOptionsText $color={option.color}>
+                  {' '}
+                  {option.title}
+                </FilterOptionsText>
+              </OptionTitleStyles>
+            </CheckboxContainer>
+          ))}
+        </div>
+        <ApplyButtonStyles isActive={isApplyButtonActive}>
+          <ApplyFiltersText>APPLY</ApplyFiltersText>
+        </ApplyButtonStyles>
+      </FilterContentDiv>
     </FilterDropdownStyles>
   );
 }

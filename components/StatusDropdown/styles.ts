@@ -6,7 +6,13 @@ export const FilterDropdownStyles = styled.div`
   background: ${COLORS.white};
   width: 10.5rem;
   border-radius: 0.5rem;
-  padding-bottom: 0.5rem;
+`;
+
+export const FilterContentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0.625rem 1.25rem 0.9rem 1.25rem;
+  align-content: space-between;
 `;
 
 export const OptionTitleStyles = styled.p<{ color: string }>`
@@ -18,6 +24,7 @@ export const OptionTitleStyles = styled.p<{ color: string }>`
 
 export const CheckboxStyles = styled.input`
   cursor: pointer;
+  margin-left: 0rem;
 `;
 
 export const ApplyButtonStyles = styled.button<{ isActive: boolean }>`
@@ -34,32 +41,31 @@ export const ApplyButtonStyles = styled.button<{ isActive: boolean }>`
   align-items: center;
   cursor: ${({ isActive }) => (isActive ? 'pointer' : 'not-allowed')};
   border: none;
-  margin: 1.4rem auto 0.5rem auto;
+  margin: 1.4rem auto auto auto;
   pointer-events: ${({ isActive }) => (isActive ? 'auto' : 'none')};
 `;
 
 export const ButtonStyles = styled.button`
+  display: flex;
   color: rgba(46, 58, 89, 0.85);
   background: ${COLORS.white};
   border: none;
   border-radius: 6.25rem;
-  display: flex;
   align-items: center;
   cursor: pointer;
 `;
 
 export const ExitStyles = styled.div`
   margin-left: auto;
-  margin-right: 1.1rem;
-  margin-bottom: auto;
+  display: flex;
+  align-self: center;
 `;
 
 export const ButtonWithIconStyles = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 0.5rem;
-  margin-left: 1rem;
-  padding-top: 1rem;
   margin-bottom: -0.4rem;
   cursor: pointer;
 `;
@@ -69,7 +75,6 @@ export const CheckboxContainer = styled.div`
   align-items: center;
   gap: 0.5rem;
   margin-bottom: -1.5rem;
-  margin-left: 1rem;
 `;
 export const IconStyles = styled.div`
   width: 3rem;
