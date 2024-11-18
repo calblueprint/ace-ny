@@ -10,7 +10,11 @@ load_dotenv(".env.local")
 google_maps_api_key = os.environ.get("NEXT_PUBLIC_GOOGLE_MAPS_API_KEY")
 
 
-def check_status(status):
+def check_status(status: str):
+    """
+    params: a string representing the status of a project, or possibly None
+    This function is used to check the status of NYSERDA projects and return them in a consistent format
+    """
     if status is None:
         return None
     if status.lower() == "cancelled":
@@ -24,6 +28,11 @@ def check_status(status):
 
 
 def geocode_lat_long(address):
+    """
+    params: a string in the form "City, NY" representing a city in New York state
+    This function uses the google maps geocoding api to get the estimated latitude and longitude of a city
+    returns a tuple of the form (latitude, longitude)
+    """
     parameters = urllib.parse.quote_plus(address)
     response = requests.get(
         f"https://maps.googleapis.com/maps/api/geocode/json?address={parameters}&key={google_maps_api_key}"
@@ -35,8 +44,9 @@ def geocode_lat_long(address):
     return latitude, longitude
 
 
-def create_update_object(existing_project, new_project):
+def create_update_object(existing_project: dict, new_project: dict) -> dict:
     """
+    params: existing project is a dict, new project is a dict representing the new data
     Assumes that the new project has more recent data than the existing project
     because this function only gets called by database.py after new_project's last_updated
     field is checked against existing_project's last_updated field
@@ -56,6 +66,12 @@ def create_update_object(existing_project, new_project):
 
 
 def clean_df_data(df):
+    """
+    params: a pandas dataframe object
+    Helper function that cleans a dataframe of data representing NYISO data
+    First, we drop any rows that don't contain project data
+    Then, we replace NaN, NaT, or any other non-valid cells with None
+    """
     df = df.copy()
     df.dropna(
         subset=["Project Name"], inplace=True
@@ -82,7 +98,14 @@ def standardize_label(renewable_energy_technology):
         return label
 
 
-def update_kdm(milestoneTitle, completed, date, kdm):
+def update_kdm(milestoneTitle: str, completed: bool, date: str, kdm: dict) -> dict:
+    """
+    params: milestoneTitle is a string representing which milestone is being updated
+    completed is a boolean
+    date should be a string of the form "YYYY-MM-DD"
+    kdm is a dictionary representing the current state of the Key Development Milestones
+    returns a dictionary representing KDMs after updating
+    """
     milestone = {"milestoneTitle": milestoneTitle, "completed": completed, "date": date}
 
     updated_kdm = [
@@ -92,13 +115,21 @@ def update_kdm(milestoneTitle, completed, date, kdm):
     return updated_kdm
 
 
-def update_last_updated(source, date: datetime, last_updated: dict):
+def update_last_updated(source: str, date: datetime, last_updated: dict):
+    """
+    params: source is a string reprsenting which datasource the updated data was from
+    date is a datetime object representing when this project was updated
+    last_updated is a dictionary representing the current state of when this project was updated by each datasource
+    """
     date_string = date.strftime("%Y%m%dT%H:%M:%S.%f%z")
     last_updated[source] = date_string
     return last_updated
 
 
 def turn_timestamp_to_string(timestamp):
+    """
+    returns a string of the form "YYYY-MM-DD"
+    """
     return timestamp.to_pydatetime().strftime("%Y-%m-%d")
 
 

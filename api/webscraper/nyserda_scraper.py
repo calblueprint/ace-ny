@@ -127,7 +127,7 @@ def query_nyserda_solar(offset=0, limit=1000):
                     ),  # small data set only has project_id
                     "project_status": check_status(
                         item.get("project_status", None)
-                    ),  # missing
+                    ),  # NYSERDA small-scale solar projects do not have a project status
                     "renewable_energy_technology": "Solar",
                     "size": size_in_mw,
                     "developer": item.get("developer", None),
@@ -138,7 +138,7 @@ def query_nyserda_solar(offset=0, limit=1000):
                     "zipcode": item.get("zip", None),
                     "latitude": None,
                     "longitude": None,
-                    "last_updated": item.get("data_through_date").split("T")[0],
+                    "data_through_date": item.get("data_through_date").split("T")[0],
                     "key_development_milestones": initial_kdm,
                     "project_image": None,
                     "approved": False,

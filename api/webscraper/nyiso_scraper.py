@@ -124,7 +124,7 @@ def filter_nyiso_list(project_list, sheet_name):
             "zipcode": None,  # missing
             "latitude": None,
             "longitude": None,
-            "last_updated": (
+            "nyiso_last_updated": (
                 item.get("Last Updated Date", None)  # NOTE: non-serializable into JSON
                 if (
                     sheet_name == "Interconnection Queue"
