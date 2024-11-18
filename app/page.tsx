@@ -7,20 +7,25 @@ import { Project } from '../types/schema';
 
 export default function Home() {
   const [projects, setProjects] = useState<Project[] | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [filteredProjects, setFilteredProjects] = useState<Project[] | null>(
+    null,
+  );
 
   useEffect(() => {
-    queryProjects()
-      .then(data => {
-        setProjects(data);
-      })
-      .catch(err => setError(err));
+    queryProjects().then(data => {
+      setProjects(data);
+    });
   }, []);
 
   return (
     <main style={mainStyles}>
-      {error ? <div style={errorStyles}>{error}</div> : null}
-      {projects ? <MapViewScreen projects={projects} /> : null}
+      {projects ? (
+        <MapViewScreen
+          projects={projects}
+          filteredProjects={filteredProjects}
+          setFilteredProjects={setFilteredProjects}
+        />
+      ) : null}
     </main>
   );
 }
@@ -34,8 +39,4 @@ const mainStyles: CSSProperties = {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-};
-
-const errorStyles: CSSProperties = {
-  color: '#D22B2B',
 };

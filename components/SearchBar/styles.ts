@@ -41,6 +41,7 @@ export const SearchBarStyles = styled.input`
   outline: none;
   box-shadow: none;
   padding-right: 7rem;
+  color: ${COLORS.electricBlue};
 `;
 
 export const SearchBarDiv = styled.div`
@@ -48,4 +49,13 @@ export const SearchBarDiv = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+`;
+
+export const SearchExitButton = styled.button<{ $isZero?: boolean }>`
+  visibility: ${({ $isZero }) => ($isZero ? 'hidden' : 'visible')};
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  background: none;
+  cursor: pointer;
 `;
