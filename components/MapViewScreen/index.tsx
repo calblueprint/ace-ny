@@ -13,8 +13,12 @@ import ProjectsListingModal from '../ProjectsListingModal';
 
 export default function MapViewScreen({
   projects,
+  filteredProjects,
+  setFilteredProjects,
 }: {
   projects: Project[] | null;
+  filteredProjects: Project[] | null;
+  setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | null>>;
 }) {
   const filters: FilterType[] = [
     {
@@ -45,10 +49,13 @@ export default function MapViewScreen({
 
   return (
     <>
-      <SearchBar />
+      <SearchBar
+        allProjects={projects}
+        setFilteredProjects={setFilteredProjects}
+      />
       <FilterBar filters={filters} onFilterChange={handleFilterChange} />
       <Map projects={projects} />
-      <ProjectsListingModal projects={projects} />
+      <ProjectsListingModal projects={filteredProjects} />
     </>
   );
 }
