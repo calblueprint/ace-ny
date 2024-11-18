@@ -2,8 +2,8 @@ import { CoinbaseText } from '@/styles/fonts';
 
 export const ClusterIcon = ({ count }: { count: number }) => (
   <svg
-    width="64"
-    height="75"
+    width="2.875rem"
+    height="3.5625rem"
     viewBox="0 0 64 75"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
