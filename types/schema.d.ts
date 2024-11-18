@@ -32,7 +32,7 @@ export interface Option {
 }
 
 export interface Filters {
-  status: boolean;
+  status: string[];
   technology: string[];
   projectSize: {
     min: number;

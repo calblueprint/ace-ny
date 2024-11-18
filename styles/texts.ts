@@ -193,6 +193,33 @@ export const SearchBarTextInUse = styled.p<TextProps>`
   color: ${COLORS.electricBlue};
 `;
 
+export const FilterNameText = styled.p<TextProps>`
+  ${TextStylesCoinbaseSans}
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: rgba(46, 58, 89, 0.85);
+`;
+
+export const FilterOptionsText = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  color: ${({ $color }) => $color || COLORS.navy};
+`;
+
+export const ApplyFiltersText = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: ${COLORS.white};
+`;
+
 /*
 
 export const FilterFont = styled.h1`
