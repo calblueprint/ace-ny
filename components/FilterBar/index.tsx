@@ -1,32 +1,20 @@
 import React, { useState } from 'react';
 import Filter from '@/components/Filter';
-import {
-  FilterChangeHandlers,
-  Filters,
-  FilterType,
-  Project,
-} from '@/types/schema';
+import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
 import { FilterContainerStyles } from './styles';
 
 export const FilterBar = ({
   filters,
   onFilterChange,
-  filteredProjects,
-  setFilteredProjects,
+  selectedFilters,
+  setSelectedFilters,
 }: {
   filters: FilterType[];
   onFilterChange: (filter: FilterType) => void;
-  filteredProjects: Project[];
-  setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | []>>;
+  selectedFilters: Filters;
+  setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
-
-  const [selectedFilters, setSelectedFilters] = useState<Filters>({
-    status: [],
-    technology: [],
-    projectSize: { min: 0, max: 0 },
-    location: [],
-  });
 
   const handleButtonClick = (filter: FilterType) => {
     setActiveFilter(activeFilter?.id === filter.id ? null : filter);
@@ -64,8 +52,6 @@ export const FilterBar = ({
           selectedFilters={selectedFilters}
           filterChangeHandlers={filterChangeHandlers}
           handleButtonClick={handleButtonClick}
-          filteredProjects={filteredProjects}
-          setFilteredProjects={setFilteredProjects}
         />
       ))}
     </FilterContainerStyles>
