@@ -51,7 +51,7 @@ export default function TechnologyDropdown({
         category: 'SOURCE',
         options: [
           {
-            title: 'Land-based Wind',
+            title: 'Land-Based Wind',
             icon: (
               <IconStyles>
                 <LandBasedWindIcon
