@@ -7,13 +7,12 @@ import { Project } from '../types/schema';
 
 export default function Home() {
   const [projects, setProjects] = useState<Project[] | null>(null);
-  const [filteredProjects, setFilteredProjects] = useState<Project[] | null>(
-    null,
-  );
+  const [filteredProjects, setFilteredProjects] = useState<Project[] | []>([]);
 
   useEffect(() => {
     queryProjects().then(data => {
       setProjects(data);
+      setFilteredProjects(data);
     });
   }, []);
 

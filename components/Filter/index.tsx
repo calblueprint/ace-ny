@@ -2,7 +2,12 @@ import React from 'react';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
 import { FilterHeadingUnused } from '@/styles/texts';
-import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
+import {
+  FilterChangeHandlers,
+  Filters,
+  FilterType,
+  Project,
+} from '@/types/schema';
 import { DropIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   FilterBackgroundStyles,
@@ -16,6 +21,8 @@ interface FilterProps {
   selectedFilters: Filters;
   filterChangeHandlers: FilterChangeHandlers;
   handleButtonClick: (filter: FilterType) => void;
+  filteredProjects: Project[];
+  setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | []>>;
 }
 
 export default function Filter({
@@ -24,6 +31,8 @@ export default function Filter({
   selectedFilters,
   filterChangeHandlers,
   handleButtonClick,
+  filteredProjects,
+  setFilteredProjects,
 }: FilterProps) {
   return (
     <FilterBackgroundStyles isActive={isActive}>
@@ -36,6 +45,8 @@ export default function Filter({
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
+            filteredProjects={filteredProjects}
+            setFilteredProjects={setFilteredProjects}
           />
         ) : filter.id === 'status' ? (
           <StatusDropdown

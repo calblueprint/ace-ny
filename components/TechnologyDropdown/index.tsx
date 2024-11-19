@@ -4,7 +4,7 @@ import {
   FilterCategoryText1,
   FilterHeadingUnused,
 } from '@/styles/texts';
-import { FilterType } from '@/types/schema';
+import { FilterType, Project } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
@@ -35,6 +35,8 @@ interface TechnologyDropdownProps {
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
+  filteredProjects: Project[];
+  setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | []>>;
 }
 
 export default function TechnologyDropdown({
@@ -44,6 +46,8 @@ export default function TechnologyDropdown({
   icon,
   label,
   currFilter,
+  filteredProjects,
+  setFilteredProjects,
 }: TechnologyDropdownProps) {
   const filter = {
     categories: [
@@ -133,8 +137,25 @@ export default function TechnologyDropdown({
       },
     ],
   };
-
   const isApplyButtonActive = selectedTechnologies.length > 0;
+
+  let filtered: Project[] = [];
+
+  const handleFiltering = () => {
+    filtered = [];
+    selectedTechnologies.map(technology =>
+      filtered?.concat(
+        filteredProjects?.filter(project =>
+          project.renewable_energy_technology
+            .toLowerCase()
+            .includes(technology.toLowerCase()),
+        ) ?? null,
+      ),
+    );
+    setFilteredProjects(filtered);
+    console.log(filtered);
+    console.log(selectedTechnologies);
+  };
 
   return (
     <FilterDropdownStyles>
@@ -170,7 +191,10 @@ export default function TechnologyDropdown({
             ))}
           </div>
         ))}
-        <ApplyButtonStyles isActive={isApplyButtonActive}>
+        <ApplyButtonStyles
+          isActive={isApplyButtonActive}
+          onClick={handleFiltering}
+        >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
       </FilterContentDiv>

@@ -15,8 +15,8 @@ export const SearchBar = ({
   allProjects,
   setFilteredProjects,
 }: {
-  allProjects: Project[] | null;
-  setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | null>>;
+  allProjects: Project[];
+  setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | []>>;
 }) => {
   const [searchTerm, setSearchTerm] = useState('');
 

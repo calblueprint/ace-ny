@@ -16,9 +16,9 @@ export default function MapViewScreen({
   filteredProjects,
   setFilteredProjects,
 }: {
-  projects: Project[] | null;
-  filteredProjects: Project[] | null;
-  setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | null>>;
+  projects: Project[];
+  filteredProjects: Project[];
+  setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | []>>;
 }) {
   const filters: FilterType[] = [
     {
@@ -53,7 +53,12 @@ export default function MapViewScreen({
         allProjects={projects}
         setFilteredProjects={setFilteredProjects}
       />
-      <FilterBar filters={filters} onFilterChange={handleFilterChange} />
+      <FilterBar
+        filters={filters}
+        onFilterChange={handleFilterChange}
+        filteredProjects={filteredProjects}
+        setFilteredProjects={setFilteredProjects}
+      />
       <Map projects={projects} />
       <ProjectsListingModal projects={filteredProjects} />
     </>

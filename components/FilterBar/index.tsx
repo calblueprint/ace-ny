@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import Filter from '@/components/Filter';
-import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
+import {
+  FilterChangeHandlers,
+  Filters,
+  FilterType,
+  Project,
+} from '@/types/schema';
 import { FilterContainerStyles } from './styles';
 
 export const FilterBar = ({
   filters,
   onFilterChange,
+  filteredProjects,
+  setFilteredProjects,
 }: {
   filters: FilterType[];
   onFilterChange: (filter: FilterType) => void;
+  filteredProjects: Project[];
+  setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | []>>;
 }) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
@@ -55,6 +64,8 @@ export const FilterBar = ({
           selectedFilters={selectedFilters}
           filterChangeHandlers={filterChangeHandlers}
           handleButtonClick={handleButtonClick}
+          filteredProjects={filteredProjects}
+          setFilteredProjects={setFilteredProjects}
         />
       ))}
     </FilterContainerStyles>

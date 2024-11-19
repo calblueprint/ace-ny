@@ -13,7 +13,7 @@ export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
   border: 0.05rem solid #fff;
   margin-top: 1rem;
   max-height: ${({ isActive }) => (isActive ? 'auto' : '2.2rem')};
-  border-radius: ${({ isActive }) => (isActive ? '0.5rem' : '6.25rem')};
+  border-radius: ${({ isActive }) => (isActive ? '0.8rem' : '6.25rem')};
   transition: height 0.5s ease-in-out;
 `;
 
