@@ -53,12 +53,7 @@ export default function MapViewScreen({
         allProjects={projects}
         setFilteredProjects={setFilteredProjects}
       />
-      <FilterBar
-        filters={filters}
-        onFilterChange={handleFilterChange}
-        filteredProjects={filteredProjects}
-        setFilteredProjects={setFilteredProjects}
-      />
+      <FilterBar filters={filters} onFilterChange={handleFilterChange} />
       <Map projects={projects} />
       <ProjectsListingModal projects={filteredProjects} />
     </>
