@@ -6,18 +6,15 @@ import { FilterContainerStyles } from './styles';
 export const FilterBar = ({
   filters,
   onFilterChange,
+  selectedFilters,
+  setSelectedFilters,
 }: {
   filters: FilterType[];
   onFilterChange: (filter: FilterType) => void;
+  selectedFilters: Filters;
+  setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
 }) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
-
-  const [selectedFilters, setSelectedFilters] = useState<Filters>({
-    status: [],
-    technology: [],
-    projectSize: { min: 0, max: 0 },
-    location: [],
-  });
 
   const handleButtonClick = (filter: FilterType) => {
     setActiveFilter(activeFilter?.id === filter.id ? null : filter);
