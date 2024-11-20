@@ -84,14 +84,15 @@ def nyserda_large_to_database() -> None:
                     project.get("project_status", None) is None
                     or project.get("project_status", None) == "Cancelled"
                 ):
-                    # Delete existing projects from the database if they've been cancelled
-                    response = (
-                        supabase.table(supabase_table)
-                        .delete()
-                        .eq("project_name", project["project_name"])
-                        .execute()
-                    )
-                    print("DELETE", response, "\n")
+                    # NOTE: not deleting any Cancelled projects for now
+                    # # Delete existing projects from the database if they've been cancelled
+                    # response = (
+                    #     supabase.table(supabase_table)
+                    #     .delete()
+                    #     .eq("project_name", project["project_name"])
+                    #     .execute()
+                    # )
+                    # print("DELETE", response, "\n")
                     continue
                 update_object = create_update_object(existing_project, project)
                 if (
@@ -509,6 +510,7 @@ def nyiso_to_database() -> None:
     nyiso_to_database_helper(filter_nyiso_in_service_sheet()[:10], "In Service")
 
 
+# NOTE: currently commenting out function to delete withdrawn projects for now
 # def check_withdrawn_nyiso_in_database() -> None:
 #     """
 #     This function uses projects queried from the Withdrawn and Cluster Projects-Withdrawn sheet of NYISO
