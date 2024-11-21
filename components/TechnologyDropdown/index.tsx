@@ -35,6 +35,7 @@ interface TechnologyDropdownProps {
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
+  handleFilterButtonClick: () => void;
 }
 
 export default function TechnologyDropdown({
@@ -44,6 +45,7 @@ export default function TechnologyDropdown({
   icon,
   label,
   currFilter,
+  handleFilterButtonClick,
 }: TechnologyDropdownProps) {
   const filter = {
     categories: [
@@ -169,7 +171,10 @@ export default function TechnologyDropdown({
             ))}
           </div>
         ))}
-        <ApplyButtonStyles isActive={isApplyButtonActive}>
+        <ApplyButtonStyles
+          isActive={isApplyButtonActive}
+          onClick={handleFilterButtonClick}
+        >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
       </FilterContentDiv>

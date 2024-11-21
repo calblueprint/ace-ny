@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';
@@ -15,6 +15,8 @@ export default function AddMarker({
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
   ); // track currently open modal
+
+  const [clusterer, setClusterer] = useState<MarkerClusterer | null>(null);
 
   const map = useMap();
 
@@ -92,15 +94,19 @@ export default function AddMarker({
     return mapZoom;
   };
 
-  const clusterer = useMemo(() => {
-    if (!map) return null;
+  useEffect(() => {
+    if (!map || !projects) return;
+
+    // clear previous cluster markers
+    if (clusterer) {
+      clusterer.clearMarkers();
+    }
 
     const renderer = {
       render(cluster: Cluster) {
         const count = cluster.markers?.length ?? 0;
         const position = cluster.position;
 
-        // create a container for the custom icon
         const container = document.createElement('div');
         const root = ReactDOM.createRoot(container);
         root.render(<ClusterIcon count={count} />);
@@ -112,22 +118,28 @@ export default function AddMarker({
       },
     };
 
-    const setClusterer = new MarkerClusterer({ map, renderer });
+    const newClusterer = new MarkerClusterer({ map, renderer });
 
-    setClusterer.addListener('click', function (cluster: Cluster) {
+    // Set zoom behavior for clusters
+    newClusterer.addListener('click', (cluster: Cluster) => {
       const mapZoom = map.getZoom() ?? 0;
       const minZoom = getMinZoom(cluster, mapZoom);
-
       if (mapZoom && mapZoom < minZoom) {
-        const idleListener = map.addListener('idle', function () {
+        const idleListener = map.addListener('idle', () => {
           map.setZoom(minZoom);
           idleListener.remove();
         });
       }
     });
 
-    return setClusterer;
-  }, [map]);
+    setClusterer(newClusterer);
+
+    // Cleanup on unmount or dependencies change
+    return () => {
+      newClusterer.clearMarkers();
+      setClusterer(null);
+    };
+  }, [map, projects]);
 
   return (
     <>

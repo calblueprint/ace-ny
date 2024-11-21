@@ -52,6 +52,25 @@ export default function MapViewScreen({
     location: [],
   });
 
+  // show projects based on selected filters
+  const handleFilterButtonClick = () => {
+    const { status, technology, projectSize, location } = selectedFilters;
+    console.log(
+      'status: ',
+      status,
+      'technology: ',
+      technology,
+      'projectSize: ',
+      projectSize,
+      'location: ',
+      location,
+    );
+    const filteredProjects = projects?.filter(project =>
+      technology.includes(project.renewable_energy_technology),
+    );
+    setFilteredProjects(filteredProjects);
+  };
+
   const handleFilterChange = (filter: FilterType) => {
     console.log(filter);
   };
@@ -74,8 +93,9 @@ export default function MapViewScreen({
         onFilterChange={handleFilterChange}
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
+        handleFilterButtonClick={handleFilterButtonClick}
       />
-      <Map projects={projects} />
+      <Map projects={filteredProjects} />
       <ProjectsListingModal projects={filteredProjects} />
     </>
   );
