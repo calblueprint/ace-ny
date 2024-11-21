@@ -51,7 +51,7 @@ export default function TechnologyDropdown({
         category: 'SOURCE',
         options: [
           {
-            title: 'Land-based Wind',
+            title: 'Land-Based Wind',
             icon: (
               <IconStyles>
                 <LandBasedWindIcon
@@ -133,7 +133,6 @@ export default function TechnologyDropdown({
       },
     ],
   };
-
   const isApplyButtonActive = selectedTechnologies.length > 0;
 
   return (
