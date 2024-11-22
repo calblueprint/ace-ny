@@ -33,7 +33,7 @@ export default function AddMarker({
     document.title = 'ACE NY';
     setSelectedProjectId(null); // close modal
   };
-
+  /*
   function euclideanDistance(point1: number[], point2: number[]): number {
     const [x1, y1] = point1;
     const [x2, y2] = point2;
@@ -91,7 +91,7 @@ export default function AddMarker({
     }
     return mapZoom;
   };
-
+*/
   const clusterer = useMemo(() => {
     if (!map) return null;
 
@@ -112,9 +112,24 @@ export default function AddMarker({
       },
     };
 
-    const setClusterer = new MarkerClusterer({ map, renderer });
+    const clusterHandler = (
+      event: google.maps.MapMouseEvent,
+      cluster: Cluster,
+      map: google.maps.Map,
+    ) => {
+      if (event.latLng) {
+        map.setCenter(event.latLng);
+        map.setZoom(11);
+      }
+    };
 
-    setClusterer.addListener('click', function (cluster: Cluster) {
+    const setClusterer = new MarkerClusterer({
+      map,
+      renderer,
+      onClusterClick: clusterHandler,
+    });
+
+    /*setClusterer.addListener('click', function (cluster: Cluster) {
       const mapZoom = map.getZoom() ?? 0;
       const minZoom = getMinZoom(cluster, mapZoom);
 
@@ -124,7 +139,7 @@ export default function AddMarker({
           idleListener.remove();
         });
       }
-    });
+    });*/
 
     return setClusterer;
   }, [map]);
