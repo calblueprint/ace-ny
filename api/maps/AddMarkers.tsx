@@ -118,8 +118,9 @@ export default function AddMarker({
       map: google.maps.Map,
     ) => {
       if (event.latLng) {
+        const mapZoom = (map.getZoom() ?? 0) + 4;
         map.setCenter(event.latLng);
-        map.setZoom(11);
+        map.setZoom(mapZoom);
       }
     };
 

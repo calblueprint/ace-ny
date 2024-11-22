@@ -181,6 +181,8 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
         width={340}
         height={250}
         style={projectImageStyles}
+        placeholder="blur"
+        blurDataURL="../../assets/blur_image.png"
       />
     </StyledProjectItem>
   );
