@@ -755,7 +755,7 @@ def ores_permitted_to_database() -> None:
 """
 For testing
 """
-nyserda_large_to_database()
+# nyserda_large_to_database()
 # nyserda_solar_to_database()
 # nyiso_to_database()
 # ores_noi_to_database()
