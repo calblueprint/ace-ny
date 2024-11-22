@@ -51,6 +51,8 @@ export default function MapViewScreen({
     projectSize: { min: 0, max: 0 },
     location: [],
   });
+  const [filteredWithoutSearch, setFilteredWithoutSearch] =
+    useState<Project[]>(projects);
 
   // show projects based on selected filters
   const handleFilterButtonClick = () => {
@@ -69,21 +71,21 @@ export default function MapViewScreen({
       technology.includes(project.renewable_energy_technology),
     );
     setFilteredProjects(filteredProjects);
+    setFilteredWithoutSearch(filteredProjects);
   };
+
+  // search within filtered projects
+  useEffect(() => {
+    const searchedProjects =
+      filteredWithoutSearch?.filter(project =>
+        project.project_name.toLowerCase().includes(searchTerm.toLowerCase()),
+      ) ?? [];
+    setFilteredProjects(searchedProjects);
+  }, [searchTerm, filteredWithoutSearch, setFilteredProjects]);
 
   const handleFilterChange = (filter: FilterType) => {
     console.log(filter);
   };
-
-  useEffect(() => {
-    let filtered: Project[] = [];
-    filtered =
-      projects?.filter(project =>
-        project.project_name.toLowerCase().includes(searchTerm.toLowerCase()),
-      ) ?? null;
-
-    setFilteredProjects(filtered);
-  }, [projects, searchTerm, setFilteredProjects]);
 
   return (
     <>
