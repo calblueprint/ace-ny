@@ -67,12 +67,25 @@ export default function MapViewScreen({
       'location: ',
       location,
     );
+    // add all filtering logic here
     const filteredProjects = projects?.filter(project =>
       technology.includes(project.renewable_energy_technology),
     );
     setFilteredProjects(filteredProjects);
     setFilteredWithoutSearch(filteredProjects);
   };
+
+  // clear filters
+  // const clearFilters = () => {
+  //   setSelectedFilters({
+  //     status: [],
+  //     technology: [],
+  //     projectSize: { min: 0, max: 0 },
+  //     location: [],
+  //   });
+  //   setFilteredProjects(projects);
+  //   setFilteredWithoutSearch(projects);
+  // };
 
   // search within filtered projects
   useEffect(() => {
