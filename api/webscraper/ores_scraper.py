@@ -2,8 +2,8 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from io import StringIO
-from utils.scraper_utils import geocode_lat_long
-from database_constants import initial_kdm
+from .utils.scraper_utils import geocode_lat_long
+from .database_constants import initial_kdm
 
 # url = "https://dps.ny.gov/ores-permit-applications"
 # page = requests.get(url)

@@ -1,26 +1,29 @@
 import os
+from dotenv import load_dotenv
 from datetime import datetime
 from dateutil import tz
 from supabase import create_client, Client
 from geocodio import GeocodioClient
 
-from nyserda_scraper import query_nyserda_large, query_nyserda_solar_repeat
-from nyiso_scraper import (
+from .nyserda_scraper import query_nyserda_large, query_nyserda_solar_repeat
+from .nyiso_scraper import (
     filter_nyiso_iq_sheet,
     filter_nyiso_cluster_sheet,
     filter_nyiso_in_service_sheet,
     filter_nyiso_withdrawn_sheets,
 )
-from ores_scraper import query_ores_noi, query_ores_under_review, query_ores_permitted
-from utils.scraper_utils import (
+from .ores_scraper import query_ores_noi, query_ores_under_review, query_ores_permitted
+from .utils.scraper_utils import (
     geocode_lat_long,
     create_update_object,
     update_kdm,
     update_last_updated,
 )
-from database_constants import (
+from .database_constants import (
     initial_kdm,
 )
+
+load_dotenv(os.path.join(os.path.dirname(__file__), "../../.env.local"))
 
 url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
@@ -48,7 +51,7 @@ def nyserda_large_to_database() -> None:
     In the case that the project is cancelled, we delete the project from the Supabase database.
     """
     database = []
-    database.extend(query_nyserda_large())
+    database.extend(query_nyserda_large()[:10])
     for project in database:
         if project.get("proposed_cod", None) is not None:
             ymd = datetime.strptime(project.get("proposed_cod"), "%Y").strftime(
@@ -752,7 +755,7 @@ def ores_permitted_to_database() -> None:
 """
 For testing
 """
-# nyserda_large_to_database()
+nyserda_large_to_database()
 # nyserda_solar_to_database()
 # nyiso_to_database()
 # ores_noi_to_database()

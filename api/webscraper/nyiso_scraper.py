@@ -2,8 +2,8 @@ import requests
 import pandas as pd
 from io import BytesIO
 import json
-from utils.scraper_utils import clean_df_data
-from database_constants import (
+from .utils.scraper_utils import clean_df_data
+from .database_constants import (
     renewable_energy_abbreviations,
 )
 
