@@ -25,6 +25,7 @@ import {
   ExitStyles,
   FilterContentDiv,
   FilterDropdownStyles,
+  FilterIconStyles,
   IconStyles,
 } from './styles';
 
@@ -36,6 +37,7 @@ interface TechnologyDropdownProps {
   label: string;
   currFilter: FilterType;
   handleFilterButtonClick: () => void;
+  clearFilters: () => void;
 }
 
 export default function TechnologyDropdown({
@@ -46,6 +48,7 @@ export default function TechnologyDropdown({
   label,
   currFilter,
   handleFilterButtonClick,
+  clearFilters,
 }: TechnologyDropdownProps) {
   const filter = {
     categories: [
@@ -140,12 +143,14 @@ export default function TechnologyDropdown({
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
-        <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-          {icon}
-          <ButtonStyles>
+        <ButtonWithIconStyles>
+          <FilterIconStyles onClick={() => handleButtonClick(currFilter)}>
+            {icon}
+          </FilterIconStyles>
+          <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
             <FilterHeadingUnused>{label}</FilterHeadingUnused>
           </ButtonStyles>
-          <ExitStyles>
+          <ExitStyles onClick={clearFilters}>
             <ExitIcon />
           </ExitStyles>
         </ButtonWithIconStyles>

@@ -51,50 +51,40 @@ export default function MapViewScreen({
     projectSize: { min: 0, max: 0 },
     location: [],
   });
-  const [filteredWithoutSearch, setFilteredWithoutSearch] =
+
+  const [filteredProjectsWithSearch, setFilteredProjectsWithSearch] =
     useState<Project[]>(projects);
 
   // show projects based on selected filters
   const handleFilterButtonClick = () => {
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     const { status, technology, projectSize, location } = selectedFilters;
-    console.log(
-      'status: ',
-      status,
-      'technology: ',
-      technology,
-      'projectSize: ',
-      projectSize,
-      'location: ',
-      location,
-    );
     // add all filtering logic here
     const filteredProjects = projects?.filter(project =>
       technology.includes(project.renewable_energy_technology),
     );
     setFilteredProjects(filteredProjects);
-    setFilteredWithoutSearch(filteredProjects);
   };
 
   // clear filters
-  // const clearFilters = () => {
-  //   setSelectedFilters({
-  //     status: [],
-  //     technology: [],
-  //     projectSize: { min: 0, max: 0 },
-  //     location: [],
-  //   });
-  //   setFilteredProjects(projects);
-  //   setFilteredWithoutSearch(projects);
-  // };
+  const clearFilters = () => {
+    setSelectedFilters({
+      status: [],
+      technology: [],
+      projectSize: { min: 0, max: 0 },
+      location: [],
+    });
+    setFilteredProjects(projects);
+  };
 
-  // search within filtered projects
+  // search within all projects
   useEffect(() => {
-    const searchedProjects =
-      filteredWithoutSearch?.filter(project =>
+    const searchedProjects: Project[] =
+      projects?.filter(project =>
         project.project_name.toLowerCase().includes(searchTerm.toLowerCase()),
       ) ?? [];
-    setFilteredProjects(searchedProjects);
-  }, [searchTerm, filteredWithoutSearch, setFilteredProjects]);
+    setFilteredProjectsWithSearch(searchedProjects);
+  }, [projects, searchTerm]);
 
   const handleFilterChange = (filter: FilterType) => {
     console.log(filter);
@@ -109,9 +99,10 @@ export default function MapViewScreen({
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
         handleFilterButtonClick={handleFilterButtonClick}
+        clearFilters={clearFilters}
       />
       <Map projects={filteredProjects} />
-      <ProjectsListingModal projects={filteredProjects} />
+      <ProjectsListingModal projects={filteredProjectsWithSearch} />
     </>
   );
 }

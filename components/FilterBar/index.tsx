@@ -9,12 +9,14 @@ export const FilterBar = ({
   selectedFilters,
   setSelectedFilters,
   handleFilterButtonClick,
+  clearFilters,
 }: {
   filters: FilterType[];
   onFilterChange: (filter: FilterType) => void;
   selectedFilters: Filters;
   setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
   handleFilterButtonClick: () => void;
+  clearFilters: () => void;
 }) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
@@ -55,6 +57,7 @@ export const FilterBar = ({
           filterChangeHandlers={filterChangeHandlers}
           handleButtonClick={handleButtonClick}
           handleFilterButtonClick={handleFilterButtonClick}
+          clearFilters={clearFilters}
         />
       ))}
     </FilterContainerStyles>
