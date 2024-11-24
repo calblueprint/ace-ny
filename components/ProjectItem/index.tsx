@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { useMap } from '@vis.gl/react-google-maps';
 import {
   queryDefaultImages,
   queryProjectbyId,
@@ -40,6 +41,8 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
   const [defaultImage, setDefaultImage] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
 
+  const map = useMap();
+
   useEffect(() => {
     queryProjectbyId(project_id).then(data => {
       setProject(data);
@@ -69,8 +72,8 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
     renewable_energy_technology,
     size,
     // developer,
-    // longitude,
-    // latitude,
+    longitude,
+    latitude,
     project_status,
     // county,
     // town,
@@ -142,6 +145,9 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
 
   const handleProjectClick = () => {
     setModalOpen(true);
+    const position = { lat: latitude, lng: longitude };
+    map?.panTo({ lat: 0, lng: 0 });
+    console.log(position);
   };
 
   if (modalOpen) {

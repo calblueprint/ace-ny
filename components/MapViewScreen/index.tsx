@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { APIProvider } from '@vis.gl/react-google-maps';
 import {
   LocationIcon,
   ProjectSizeIcon,
@@ -67,7 +68,7 @@ export default function MapViewScreen({
   }, [projects, searchTerm, setFilteredProjects]);
 
   return (
-    <>
+    <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <FilterBar
         filters={filters}
@@ -77,6 +78,6 @@ export default function MapViewScreen({
       />
       <Map projects={projects} />
       <ProjectsListingModal projects={filteredProjects} />
-    </>
+    </APIProvider>
   );
 }
