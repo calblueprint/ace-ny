@@ -9,14 +9,18 @@ import { MarkerInfoWindow } from './MarkerInfoWindow';
 
 export default function AddMarker({
   projects,
+  setMap,
+  map,
 }: {
   projects: Project[] | null;
+  setMap:  React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
+  map: google.maps.Map | null;
 }) {
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
   ); // track currently open modal
 
-  const map = useMap();
+  setMap(useMap());
 
   const handleMarkerClick = (
     projectId: number,

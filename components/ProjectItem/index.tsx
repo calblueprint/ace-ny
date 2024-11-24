@@ -36,12 +36,10 @@ import {
   StyledProjectItem,
 } from './styles';
 
-export default function ProjectItem({ project_id }: { project_id: number }) {
+export default function ProjectItem({ project_id, map }: { project_id: number , map: google.maps.Map | null}) {
   const [project, setProject] = useState<Project | null>(null);
   const [defaultImage, setDefaultImage] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
-
-  const map = useMap();
 
   useEffect(() => {
     queryProjectbyId(project_id).then(data => {

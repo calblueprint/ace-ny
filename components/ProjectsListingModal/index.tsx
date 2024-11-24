@@ -13,11 +13,13 @@ import {
 
 export default function ProjectsListingModal({
   projects,
+  map,
 }: {
   projects: Project[] | null;
+  map: google.maps.Map | null;
 }) {
   const projectItems = projects?.map((project: Project) => {
-    return <ProjectItem key={project.id} project_id={project.id} />;
+    return <ProjectItem key={project.id} project_id={project.id} map={map}/>;
   });
 
   return (

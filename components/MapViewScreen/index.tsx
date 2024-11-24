@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { APIProvider } from '@vis.gl/react-google-maps';
+import { APIProvider, useMap } from '@vis.gl/react-google-maps';
 import {
   LocationIcon,
   ProjectSizeIcon,
@@ -44,7 +44,7 @@ export default function MapViewScreen({
       icon: <LocationIcon />,
     },
   ];
-
+  const [map, setMap] = useState<google.maps.Map | null>(useMap());
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<Filters>({
     status: [],
@@ -76,8 +76,8 @@ export default function MapViewScreen({
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
       />
-      <Map projects={projects} />
-      <ProjectsListingModal projects={filteredProjects} />
+      <Map projects={projects} setMap={setMap} map={map}/>
+      <ProjectsListingModal projects={filteredProjects} map={map}/>
     </APIProvider>
   );
 }
