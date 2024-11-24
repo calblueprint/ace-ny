@@ -1,16 +1,20 @@
-import { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
-import { useMap } from '@vis.gl/react-google-maps';
+import { useAdvancedMarkerRef, useMap } from '@vis.gl/react-google-maps';
 import { ClusterIcon } from '@/assets/Clusters/icons';
 import ProjectModal from '@/components/ProjectModal';
 import { Project } from '../../types/schema';
 import { MarkerInfoWindow } from './MarkerInfoWindow';
 
+// REMOVE ^^
+
 export default function AddMarker({
   projects,
+  filteredProjects,
 }: {
   projects: Project[] | null;
+  filteredProjects: Project[] | null;
 }) {
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
@@ -129,6 +133,39 @@ export default function AddMarker({
     return setClusterer;
   }, [map]);
 
+  const markerMap = useRef<Map<number, google.maps.Marker>>(new Map());
+
+  const hideMarker = (marker: google.maps.Marker) => {
+    marker.setMap(null);
+  };
+
+  const showMarker = (marker: google.maps.Marker, map: google.maps.Map) => {
+    marker.setMap(map);
+  };
+
+  useEffect(() => {
+    console.log('filteredProjects', filteredProjects);
+
+    // Iterate through the filtered projects to update the visibility of each marker
+    projects?.forEach(project => {
+      const marker = markerMap.current.get(project.id);
+      console.log('markerMap', markerMap);
+      console.log('marker', marker);
+      if (marker) {
+        // Check if the project is in the filtered list
+        const isInFilteredProjects = filteredProjects?.some(
+          filteredProject => filteredProject.id === project.id,
+        );
+
+        if (isInFilteredProjects && map) {
+          showMarker(marker, map);
+        } else {
+          hideMarker(marker);
+        }
+      }
+    });
+  }, [filteredProjects, map, projects]);
+
   return (
     <>
       {projects?.map((project: Project) => {
@@ -145,6 +182,7 @@ export default function AddMarker({
             onMarkerClick={handleMarkerClick}
             clusterer={clusterer}
             selectedProjectId={selectedProjectId}
+            markerMap={markerMap.current}
           />
         );
       })}

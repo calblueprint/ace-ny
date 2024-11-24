@@ -34,6 +34,7 @@ export const MarkerInfoWindow = ({
   onMarkerClick,
   clusterer,
   selectedProjectId,
+  markerMap,
 }: {
   position: { lat: number; lng: number };
   projectId: number;
@@ -45,6 +46,7 @@ export const MarkerInfoWindow = ({
   ) => void;
   clusterer: MarkerClusterer | null;
   selectedProjectId: number | null;
+  markerMap: Map<number, google.maps.Marker>;
 }) => {
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [infoWindowShown, setInfoWindowShown] = useState(false);
@@ -87,6 +89,7 @@ export const MarkerInfoWindow = ({
   useEffect(() => {
     if (marker && clusterer) {
       clusterer.addMarker(marker);
+      markerMap.set(projectId, marker);
     }
   });
 

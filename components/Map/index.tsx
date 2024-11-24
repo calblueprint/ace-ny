@@ -4,8 +4,9 @@ import { APIProvider, Map as GoogleMap } from '@vis.gl/react-google-maps';
 import AddMarkers from '../../api/maps/AddMarkers';
 import { Project } from '../../types/schema';
 import './styles.css';
-import { CSSProperties } from 'react';
+import React, { CSSProperties } from 'react';
 
+//REMOVE ^^
 const containerStyle: CSSProperties = {
   width: '100%',
   height: '100%',
@@ -21,7 +22,10 @@ const center = {
 
 const mapId = '54eb1c7baba5a715'; // needed for AdvancedMarker
 
-export default function Map(props: { projects: Project[] | null }) {
+export default function Map(props: {
+  projects: Project[] | null;
+  filteredProjects: Project[] | null;
+}) {
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
       <GoogleMap
@@ -34,7 +38,10 @@ export default function Map(props: { projects: Project[] | null }) {
         mapTypeId={'roadmap'}
         clickableIcons={false}
       >
-        <AddMarkers projects={props.projects} />
+        <AddMarkers
+          projects={props.projects}
+          filteredProjects={props.filteredProjects}
+        />
       </GoogleMap>
     </APIProvider>
   );

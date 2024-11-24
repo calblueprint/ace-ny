@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   LocationIcon,
   ProjectSizeIcon,
@@ -75,7 +75,7 @@ export default function MapViewScreen({
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
       />
-      <Map projects={projects} />
+      <Map projects={projects} filteredProjects={filteredProjects} />
       <ProjectsListingModal projects={filteredProjects} />
     </>
   );
