@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useMemo, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';
@@ -15,8 +15,6 @@ export default function AddMarker({
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
   ); // track currently open modal
-
-  const [clusterer, setClusterer] = useState<MarkerClusterer | null>(null);
 
   const map = useMap();
 
@@ -36,18 +34,15 @@ export default function AddMarker({
     setSelectedProjectId(null); // close modal
   };
 
-  useEffect(() => {
-    if (!map || !projects) return;
-
-    // clear previous cluster markers
-    if (clusterer) {
-      clusterer.clearMarkers();
-    }
+  const clusterer = useMemo(() => {
+    if (!map) return null;
 
     const renderer = {
       render(cluster: Cluster) {
         const count = cluster.markers?.length ?? 0;
         const position = cluster.position;
+
+        // create a container for the custom icon
         const container = document.createElement('div');
         const root = ReactDOM.createRoot(container);
         root.render(<ClusterIcon count={count} />);
@@ -71,14 +66,14 @@ export default function AddMarker({
       }
     };
 
-    const newClusterer = new MarkerClusterer({
+    const setClusterer = new MarkerClusterer({
       map,
       renderer,
       onClusterClick: clusterHandler,
     });
 
-    setClusterer(newClusterer);
-  }, [map, projects]);
+    return setClusterer;
+  }, [map]);
 
   return (
     <>

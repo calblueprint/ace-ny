@@ -51,8 +51,10 @@ export default function MapViewScreen({
     projectSize: { min: 0, max: 0 },
     location: [],
   });
+  const [filteredProjectsFromDropdowns, setFilteredProjectsFromDropdowns] =
+    useState<Project[]>(projects);
 
-  const [filteredProjectsWithSearch, setFilteredProjectsWithSearch] =
+  const [filteredProjectsFromSearch, setFilteredProjectsFromSearch] =
     useState<Project[]>(projects);
 
   // show projects based on selected filters
@@ -60,10 +62,10 @@ export default function MapViewScreen({
     /* eslint-disable @typescript-eslint/no-unused-vars */
     const { status, technology, projectSize, location } = selectedFilters;
     // add all filtering logic here
-    const filteredProjects = projects?.filter(project =>
+    const technologyProjects = projects?.filter(project =>
       technology.includes(project.renewable_energy_technology),
     );
-    setFilteredProjects(filteredProjects);
+    setFilteredProjectsFromDropdowns(technologyProjects);
   };
 
   // clear filters
@@ -77,17 +79,34 @@ export default function MapViewScreen({
     setFilteredProjects(projects);
   };
 
-  // search within all projects
+  // search within all projects or filtered projects from dropdowns
   useEffect(() => {
+    let projectsToSearch: Project[] = [];
+
+    if (filteredProjectsFromDropdowns.length > 0) {
+      projectsToSearch = filteredProjectsFromDropdowns;
+    } else {
+      projectsToSearch = projects;
+    }
+
     const searchedProjects: Project[] =
-      projects?.filter(project =>
+      projectsToSearch?.filter(project =>
         project.project_name.toLowerCase().includes(searchTerm.toLowerCase()),
       ) ?? [];
-    setFilteredProjectsWithSearch(searchedProjects);
-  }, [projects, searchTerm]);
+
+    setFilteredProjectsFromSearch(searchedProjects);
+  }, [projects, searchTerm, filteredProjectsFromDropdowns]);
+
+  useEffect(() => {
+    setFilteredProjects(filteredProjectsFromDropdowns);
+  }, [filteredProjectsFromDropdowns, setFilteredProjects]);
+
+  useEffect(() => {
+    setFilteredProjects(filteredProjectsFromSearch);
+  }, [filteredProjectsFromSearch, setFilteredProjects]);
 
   const handleFilterChange = (filter: FilterType) => {
-    console.log(filter);
+    return;
   };
 
   return (
@@ -101,8 +120,8 @@ export default function MapViewScreen({
         handleFilterButtonClick={handleFilterButtonClick}
         clearFilters={clearFilters}
       />
-      <Map projects={filteredProjects} />
-      <ProjectsListingModal projects={filteredProjectsWithSearch} />
+      <Map projects={projects} />
+      <ProjectsListingModal projects={filteredProjects} />
     </>
   );
 }
