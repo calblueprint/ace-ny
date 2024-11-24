@@ -57,17 +57,6 @@ export default function MapViewScreen({
   const [filteredProjectsFromSearch, setFilteredProjectsFromSearch] =
     useState<Project[]>(projects);
 
-  // show projects based on selected filters
-  const handleFilterButtonClick = () => {
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    const { status, technology, projectSize, location } = selectedFilters;
-    // add all filtering logic here
-    const technologyProjects = projects?.filter(project =>
-      technology.includes(project.renewable_energy_technology),
-    );
-    setFilteredProjectsFromDropdowns(technologyProjects);
-  };
-
   // clear filters
   const clearFilters = () => {
     setSelectedFilters({
@@ -77,6 +66,17 @@ export default function MapViewScreen({
       location: [],
     });
     setFilteredProjects(projects);
+  };
+
+  // show projects based on selected filters
+  const handleFilterButtonClick = () => {
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    const { status, technology, projectSize, location } = selectedFilters;
+    // add all filtering logic here
+    const technologyProjects = projects?.filter(project =>
+      technology.includes(project.renewable_energy_technology),
+    );
+    setFilteredProjectsFromDropdowns(technologyProjects);
   };
 
   // search within all projects or filtered projects from dropdowns
