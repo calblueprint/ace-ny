@@ -76,8 +76,8 @@ export default function MapViewScreen({
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
       />
-      <Map projects={projects} setMap={setMap} map={map}/>
-      <ProjectsListingModal projects={filteredProjects} map={map}/>
+      <Map projects={projects} setMap={setMap} map={map} />
+      <ProjectsListingModal projects={filteredProjects} map={map} />
     </APIProvider>
   );
 }

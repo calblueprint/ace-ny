@@ -19,7 +19,7 @@ export default function ProjectsListingModal({
   map: google.maps.Map | null;
 }) {
   const projectItems = projects?.map((project: Project) => {
-    return <ProjectItem key={project.id} project_id={project.id} map={map}/>;
+    return <ProjectItem key={project.id} project_id={project.id} map={map} />;
   });
 
   return (

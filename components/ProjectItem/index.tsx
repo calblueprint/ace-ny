@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { useMap } from '@vis.gl/react-google-maps';
 import {
   queryDefaultImages,
   queryProjectbyId,
@@ -36,7 +35,13 @@ import {
   StyledProjectItem,
 } from './styles';
 
-export default function ProjectItem({ project_id, map }: { project_id: number , map: google.maps.Map | null}) {
+export default function ProjectItem({
+  project_id,
+  map,
+}: {
+  project_id: number;
+  map: google.maps.Map | null;
+}) {
   const [project, setProject] = useState<Project | null>(null);
   const [defaultImage, setDefaultImage] = useState<string | null>(null);
   const [modalOpen, setModalOpen] = useState(false);

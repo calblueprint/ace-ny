@@ -13,7 +13,7 @@ export default function AddMarker({
   map,
 }: {
   projects: Project[] | null;
-  setMap:  React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
+  setMap: React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
   map: google.maps.Map | null;
 }) {
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
