@@ -13,11 +13,19 @@ import {
 
 export default function ProjectsListingModal({
   projects,
+  setSelectedProjectId,
 }: {
   projects: Project[] | null;
+  setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   const projectItems = projects?.map((project: Project) => {
-    return <ProjectItem key={project.id} project_id={project.id} />;
+    return (
+      <ProjectItem
+        key={project.id}
+        project_id={project.id}
+        setSelectedProjectId={setSelectedProjectId}
+      />
+    );
   });
 
   return (

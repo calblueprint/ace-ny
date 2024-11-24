@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { APIProvider } from '@vis.gl/react-google-maps';
 import {
   LocationIcon,
   ProjectSizeIcon,
@@ -11,6 +10,7 @@ import Map from '@/components/Map';
 import { SearchBar } from '@/components/SearchBar';
 import { Filters, FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
+import ProjectModal from '../ProjectModal';
 import ProjectsListingModal from '../ProjectsListingModal';
 
 export default function MapViewScreen({
@@ -45,6 +45,9 @@ export default function MapViewScreen({
     },
   ];
 
+  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
+    null,
+  );
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<Filters>({
     status: [],
@@ -68,7 +71,7 @@ export default function MapViewScreen({
   }, [projects, searchTerm, setFilteredProjects]);
 
   return (
-    <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
+    <>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <FilterBar
         filters={filters}
@@ -76,8 +79,21 @@ export default function MapViewScreen({
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
       />
-      <Map projects={projects} />
-      <ProjectsListingModal projects={filteredProjects} />
-    </APIProvider>
+      <Map
+        projects={projects}
+        selectedProjectId={selectedProjectId}
+        setSelectedProjectId={setSelectedProjectId}
+      />
+      <ProjectsListingModal
+        projects={filteredProjects}
+        setSelectedProjectId={setSelectedProjectId}
+      />
+      {selectedProjectId && (
+        <ProjectModal
+          selectedProjectId={selectedProjectId}
+          setSelectedProjectId={setSelectedProjectId}
+        />
+      )}
+    </>
   );
 }

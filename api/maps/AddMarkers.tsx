@@ -1,21 +1,20 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';
 import { ClusterIcon } from '@/assets/Clusters/icons';
-import ProjectModal from '@/components/ProjectModal';
 import { Project } from '../../types/schema';
 import { MarkerInfoWindow } from './MarkerInfoWindow';
 
 export default function AddMarker({
   projects,
+  selectedProjectId,
+  setSelectedProjectId,
 }: {
   projects: Project[] | null;
+  selectedProjectId: number | null;
+  setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
-  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
-    null,
-  ); // track currently open modal
-
   const map = useMap();
 
   const handleMarkerClick = (
@@ -27,11 +26,6 @@ export default function AddMarker({
     if (selectedProjectId === projectId) {
       document.title = 'ACE NY';
     }
-  };
-
-  const closeModal = () => {
-    document.title = 'ACE NY';
-    setSelectedProjectId(null); // close modal
   };
 
   function euclideanDistance(point1: number[], point2: number[]): number {
@@ -148,14 +142,6 @@ export default function AddMarker({
           />
         );
       })}
-
-      {selectedProjectId && (
-        <ProjectModal
-          project_id={selectedProjectId}
-          closeModal={closeModal}
-          openFirst={true}
-        />
-      )}
     </>
   );
 }
