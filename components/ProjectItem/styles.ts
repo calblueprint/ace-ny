@@ -25,7 +25,13 @@ export const StyledProjectItem = styled.button`
   }
 `;
 
+export const projectImageDiv = styled.div`
+  width: 7.75rem,
+  height: 6.75rem,
+`;
+
 export const projectImageStyles: CSSProperties = {
+  objectFit: 'cover',
   width: '7.75rem',
   height: '6.75rem',
   borderRadius: '0px 12px 12px 0px',

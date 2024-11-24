@@ -135,7 +135,7 @@ export default function ProjectModal({
         />
         <ProjectOverview>
           <Developer>
-            <BodyText1>Developer ‣ {developer}</BodyText1>
+            {developer ? <BodyText1>Developer ‣ {developer}</BodyText1> : null}
             <CloseButton onClick={closeModal}>
               <FiX size={20} color="#000" />
             </CloseButton>
@@ -157,15 +157,17 @@ export default function ProjectModal({
         </ProjectSize>
         <Divider />
         <AllKDMS>{KDMs}</AllKDMS>
-        <AdditionalInfo>
-          <DetailsContainer>
-            <BodyText1>DETAILS</BodyText1>
-            <Divider />
-          </DetailsContainer>
-          <AdditionalText>
-            <BodyText1>{additional_information}</BodyText1>
-          </AdditionalText>
-        </AdditionalInfo>
+        {additional_information ? (
+          <AdditionalInfo>
+            <DetailsContainer>
+              <BodyText1>DETAILS</BodyText1>
+              <Divider />
+            </DetailsContainer>
+            <AdditionalText>
+              <BodyText1>{additional_information}</BodyText1>
+            </AdditionalText>
+          </AdditionalInfo>
+        ) : null}
       </ProjectDetails>
     </Modal>
   );
