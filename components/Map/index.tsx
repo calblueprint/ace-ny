@@ -4,9 +4,8 @@ import { APIProvider, Map as GoogleMap } from '@vis.gl/react-google-maps';
 import AddMarkers from '../../api/maps/AddMarkers';
 import { Project } from '../../types/schema';
 import './styles.css';
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 
-//REMOVE ^^
 const containerStyle: CSSProperties = {
   width: '100%',
   height: '100%',

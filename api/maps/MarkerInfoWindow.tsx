@@ -91,7 +91,14 @@ export const MarkerInfoWindow = ({
       clusterer.addMarker(marker);
       markerMap.set(projectId, marker);
     }
-  });
+
+    return () => {
+      if (marker && clusterer) {
+        clusterer.removeMarker(marker);
+        markerMap.delete(projectId);
+      }
+    };
+  }, [marker, clusterer, projectId, markerMap]);
 
   return (
     <>
