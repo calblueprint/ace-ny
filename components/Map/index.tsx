@@ -19,6 +19,13 @@ const center = {
   lng: -76.1474,
 };
 
+/*onst map_bounds = {
+  north: 35,
+  south: 50,
+  west: -65,
+  east: -85,
+};*/
+
 const mapId = '54eb1c7baba5a715'; // needed for AdvancedMarker
 
 export default function Map({
@@ -45,6 +52,7 @@ export default function Map({
         mapId={mapId}
         mapTypeId={'roadmap'}
         clickableIcons={false}
+        minZoom={7}
       >
         <AddMarkers
           projects={projects}
