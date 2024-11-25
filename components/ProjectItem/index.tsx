@@ -36,9 +36,11 @@ import {
 
 export default function ProjectItem({
   project_id,
+  map,
   setSelectedProjectId,
 }: {
   project_id: number;
+  map: google.maps.Map | null;
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   const [project, setProject] = useState<Project | null>(null);
@@ -73,8 +75,8 @@ export default function ProjectItem({
     renewable_energy_technology,
     size,
     // developer,
-    // longitude,
-    // latitude,
+    longitude,
+    latitude,
     project_status,
     // county,
     // town,
@@ -145,6 +147,8 @@ export default function ProjectItem({
   };
 
   const handleProjectClick = () => {
+    const position = new google.maps.LatLng(latitude ?? 0, longitude ?? 0);
+    map?.panTo(position);
     setSelectedProjectId(project_id);
   };
 

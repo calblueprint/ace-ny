@@ -24,10 +24,14 @@ const mapId = '54eb1c7baba5a715'; // needed for AdvancedMarker
 export default function Map({
   projects,
   selectedProjectId,
+  map,
+  setMap,
   setSelectedProjectId,
 }: {
   projects: Project[] | null;
   selectedProjectId: number | null;
+  map: google.maps.Map | null;
+  setMap: React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   return (
@@ -44,6 +48,8 @@ export default function Map({
       >
         <AddMarkers
           projects={projects}
+          map={map}
+          setMap={setMap}
           selectedProjectId={selectedProjectId}
           setSelectedProjectId={setSelectedProjectId}
         />

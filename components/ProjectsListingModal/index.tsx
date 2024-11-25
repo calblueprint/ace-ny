@@ -13,9 +13,11 @@ import {
 
 export default function ProjectsListingModal({
   projects,
+  map,
   setSelectedProjectId,
 }: {
   projects: Project[] | null;
+  map: google.maps.Map | null;
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   const projectItems = projects?.map((project: Project) => {
@@ -24,6 +26,7 @@ export default function ProjectsListingModal({
         key={project.id}
         project_id={project.id}
         setSelectedProjectId={setSelectedProjectId}
+        map={map}
       />
     );
   });

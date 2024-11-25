@@ -9,13 +9,17 @@ import { MarkerInfoWindow } from './MarkerInfoWindow';
 export default function AddMarker({
   projects,
   selectedProjectId,
+  map,
   setSelectedProjectId,
+  setMap,
 }: {
   projects: Project[] | null;
   selectedProjectId: number | null;
+  map: google.maps.Map | null;
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
+  setMap: React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
 }) {
-  const map = useMap();
+  setMap(useMap());
 
   const handleMarkerClick = (
     projectId: number,
