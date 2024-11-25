@@ -89,7 +89,7 @@ export const MarkerInfoWindow = ({
   useEffect(() => {
     if (marker && clusterer) {
       clusterer.addMarker(marker);
-      markerMap.set(projectId, marker);
+      markerMap.set(projectId, marker as unknown as google.maps.Marker);
     }
 
     return () => {
