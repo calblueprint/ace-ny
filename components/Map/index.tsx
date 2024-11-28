@@ -28,7 +28,19 @@ const center = {
 
 const mapId = '54eb1c7baba5a715'; // needed for AdvancedMarker
 
-export default function Map(props: { projects: Project[] | null }) {
+export default function Map({
+  projects,
+  selectedProjectId,
+  map,
+  setMap,
+  setSelectedProjectId,
+}: {
+  projects: Project[] | null;
+  selectedProjectId: number | null;
+  map: google.maps.Map | null;
+  setMap: React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
+  setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
+}) {
   return (
     <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string}>
       <GoogleMap
@@ -42,7 +54,13 @@ export default function Map(props: { projects: Project[] | null }) {
         clickableIcons={false}
         minZoom={7}
       >
-        <AddMarkers projects={props.projects} />
+        <AddMarkers
+          projects={projects}
+          map={map}
+          setMap={setMap}
+          selectedProjectId={selectedProjectId}
+          setSelectedProjectId={setSelectedProjectId}
+        />
       </GoogleMap>
     </APIProvider>
   );

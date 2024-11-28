@@ -13,11 +13,22 @@ import {
 
 export default function ProjectsListingModal({
   projects,
+  map,
+  setSelectedProjectId,
 }: {
   projects: Project[] | null;
+  map: google.maps.Map | null;
+  setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   const projectItems = projects?.map((project: Project) => {
-    return <ProjectItem key={project.id} project_id={project.id} />;
+    return (
+      <ProjectItem
+        key={project.id}
+        project_id={project.id}
+        setSelectedProjectId={setSelectedProjectId}
+        map={map}
+      />
+    );
   });
 
   return (
