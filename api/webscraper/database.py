@@ -1,4 +1,5 @@
 import os
+import copy
 from dotenv import load_dotenv
 from datetime import datetime
 from dateutil import tz
@@ -754,11 +755,87 @@ def ores_permitted_to_database() -> None:
 
 
 def merge_duplicates() -> None:
+    """
+    This function finds all duplicate projects and merges them together.
+    It identifies duplicate projects by looking for keywords in the project name (any part of the name before numbers, asterisks, or energy technology labels).
+    Next, it creates an update object that aggregates all information fields and kdms.
+    The update object adds together the sizes of any matching duplicate projects.
+    Any duplicate projects that get processed are added to a list of duplicates to delete so that the function doesn't reprocess them.
+    At the end, the function deletes any duplicates from the database.
+    """
     all_projects = supabase.table(supabase_table).select("*").execute().data
-    updated_projects = set()
-    duplicates = set()
+    duplicates_to_delete = []  # list of ids of duplicate projects to delete
 
-    pass
+    for project in all_projects:
+        if project["id"] in duplicates_to_delete:
+            continue  # skip any duplicate projects that have already been processed and marked for deletion
+        else:
+            update = copy.deepcopy(project)
+            keyword = find_keyword(project["project_name"])
+
+            # find all duplicate projects
+            matching_projects = (
+                supabase.table(supabase_table)
+                .select("*")
+                .ilike("project_name", f"%{keyword}%")
+                .execute()
+                .data
+            )
+
+            # process each duplicate project
+            for matching_project in matching_projects:
+
+                # skip matching project if it is the same as the current project
+                if matching_project["project_name"] == project["project_name"]:
+                    continue
+
+                # otherwise, combine fields of current project with duplicate's data
+                update = create_update_object(update, matching_project)
+
+                # add sizes of duplicate proejcts together
+                if (
+                    update.get("size", None) is not None
+                    and matching_project.size is not None
+                ):
+                    update["size"] = float(update["size"]) + float(
+                        matching_project["size"]
+                    )
+
+                # update kdm to include all milestones collected by all matching projects
+                for milestone in matching_project.get("key_development_milestones", []):
+                    if milestone["completed"]:
+                        update["key_development_milestones"] = update_kdm(
+                            milestoneTitle=milestone["milestoneTitle"],
+                            completed=milestone["completed"],
+                            date=milestone["date"],
+                            kdm=update["key_development_milestones"],
+                        )
+                # mark the current duplicate for deletion
+                duplicates_to_delete.append(matching_project["id"])
+
+            try:
+                response = (
+                    supabase.table(supabase_table)
+                    .update(update)
+                    .eq(
+                        "project_name",
+                        project["project_name"],
+                    )
+                    .execute()
+                )
+                print("UPDATE", response, "\n")
+            except Exception as exception:
+                print(exception)
+
+    # after merging all duplicates, delete any duplicate projects from database
+    for duplicate_id in duplicates_to_delete:
+        try:
+            response = (
+                supabase.table(supabase_table).delete().eq("id", duplicate_id).execute()
+            )
+            print("DELETE", response, "\n")
+        except Exception as exception:
+            print(exception)
 
 
 """
