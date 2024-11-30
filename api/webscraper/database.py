@@ -167,6 +167,7 @@ def nyserda_large_to_database() -> None:
                     del update_object["data_through_date"]
                 if "id" in update_object:
                     del update_object["id"]
+
                 try:
                     response = (
                         supabase.table(supabase_table)
@@ -235,6 +236,16 @@ def nyserda_large_to_database() -> None:
             # delete data_through_date before pushing to supabase
             if "data_through_date" in project:
                 del project["data_through_date"]
+
+            # offset latitude and longitude to avoid overlaps
+            if (
+                project.get("latitude", None) is not None
+                and project.get("longitude", None) is not None
+            ):
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project["latitude"], project["longitude"]
+                )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -369,6 +380,16 @@ def nyserda_solar_to_database() -> None:
             # delete data_through_date before pushing to supabase
             if "data_through_date" in project:
                 del project["data_through_date"]
+
+            # offset latitude and longitude to avoid overlaps
+            if (
+                project.get("latitude", None) is not None
+                and project.get("longitude", None) is not None
+            ):
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project["latitude"], project["longitude"]
+                )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -528,6 +549,16 @@ def nyiso_to_database() -> None:
                     datetime.now(tz=nyt),
                     project.get("last_updated", {}),
                 )
+
+                # offset latitude and longitude to avoid overlaps
+                if (
+                    project.get("latitude", None) is not None
+                    and project.get("longitude", None) is not None
+                ):
+                    project["latitude"], project["longitude"] = offset_lat_long(
+                        project["latitude"], project["longitude"]
+                    )
+
                 try:
                     response = supabase.table(supabase_table).insert(project).execute()
                     print("INSERT", response, "\n")
@@ -614,6 +645,16 @@ def ores_noi_to_database():
                 datetime.now(tz=nyt),
                 project.get("last_updated", {}),
             )
+
+            # offset latitude and longitude to avoid overlaps
+            if (
+                project.get("latitude", None) is not None
+                and project.get("longitude", None) is not None
+            ):
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project["latitude"], project["longitude"]
+                )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -693,6 +734,16 @@ def ores_under_review_to_database() -> None:
                 datetime.now(tz=nyt),
                 project.get("last_updated", {}),
             )
+
+            # offset latitude and longitude to avoid overlaps
+            if (
+                project.get("latitude", None) is not None
+                and project.get("longitude", None) is not None
+            ):
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project["latitude"], project["longitude"]
+                )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -772,6 +823,16 @@ def ores_permitted_to_database() -> None:
                 datetime.now(tz=nyt),
                 project.get("last_updated", {}),
             )
+
+            # offset latitude and longitude to avoid overlaps
+            if (
+                project.get("latitude", None) is not None
+                and project.get("longitude", None) is not None
+            ):
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project["latitude"], project["longitude"]
+                )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
