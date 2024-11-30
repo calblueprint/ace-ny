@@ -46,21 +46,31 @@ nyt = tz.gettz("America/New_York")
 
 
 def offset_lat_long(lat, long):
+    """
+    params: lat and long are floats representing the latitude and longitude of a project
+    Checks if there is a project within 0.01 degrees of the latitude and longitude and offsets the latitude and longitude if it overlaps with other projects
+    returns: newly offset latitude and longitude
+    """
     overlapping_projects = (
         supabase.table(supabase_table)
         .select("*")
-        .eq("latitude", lat)
-        .eq("longitude", long)
+        .lte("latitude", float(lat) + 0.01)
+        .gte("latitude", float(lat) - 0.01)
+        .lte("longitude", float(lat) + 0.01)
+        .gte("longitude", float(lat) - 0.01)
         .execute()
     )
     while len(overlapping_projects.data) > 0:
-        lat += 0.01  # offset latitude and longitude by about 1111 meters
-        long += 0.01
+        # casting in case lat and long aren't floats yet
+        lat = float(lat) + 0.01  # offset latitude and longitude by about 1111 meters
+        long = float(long) + 0.01
         overlapping_projects = (
             supabase.table(supabase_table)
             .select("*")
-            .eq("latitude", lat)
-            .eq("longitude", long)
+            .lte("latitude", float(lat) + 0.01)
+            .gte("latitude", float(lat) - 0.01)
+            .lte("longitude", float(lat) + 0.01)
+            .gte("longitude", float(lat) - 0.01)
             .execute()
         )
     return lat, long
@@ -76,7 +86,7 @@ def nyserda_large_to_database() -> None:
     In the case that the project is cancelled, we delete the project from the Supabase database.
     """
     database = []
-    database.extend(query_nyserda_large()[:10])
+    database.extend(query_nyserda_large()[:10])  # TODO: update slice for testing
     for project in database:
         if project.get("proposed_cod", None) is not None:
             ymd = datetime.strptime(project.get("proposed_cod"), "%Y").strftime(
@@ -154,6 +164,10 @@ def nyserda_large_to_database() -> None:
                     date=project.get("proposed_cod"),
                     completed=True,
                     kdm=update_object["key_development_milestones"],
+                )
+                # if project status is operational, mark all other kdms as completed
+                update_object["key_development_milestones"] = pass_all_kdms(
+                    update_object["key_development_milestones"]
                 )
                 # set last updated for NYSERDA field to current date/time in est
                 # datestring will be in the format "YYYYMMDDTHH:MM:SS.SSSZ"
@@ -491,6 +505,10 @@ def nyiso_to_database() -> None:
                             date=None,
                             completed=True,
                             kdm=update_object["key_development_milestones"],
+                        )
+                        # if project status is operational, mark all other kdms as completed
+                        update_object["key_development_milestones"] = pass_all_kdms(
+                            update_object["key_development_milestones"]
                         )
                     update_object["last_updated"] = update_last_updated(
                         "NYISO",
@@ -914,7 +932,6 @@ def merge_projects() -> None:
 
             # delete id from update object because supabase uses id as the primary key
             del update["id"]
-
             # update data pushed to Supabase to include the first project name
             update["project_name"] = project["project_name"]
 
