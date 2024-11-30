@@ -48,5 +48,11 @@ async def run_ores_permitted():
     return {"message": "Hello ORES Permitted"}
 
 
+@app.route("/api/merge", methods=["GET"])
+async def run_merge():
+    merge_projects()
+    return {"message": "Hello Merge"}
+
+
 if __name__ == "__main__":
     app.run(port=5328, debug=True)

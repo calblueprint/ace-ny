@@ -20,6 +20,7 @@ from .utils.scraper_utils import (
     update_kdm,
     update_last_updated,
     find_keyword,
+    combine_projects,
 )
 from .database_constants import (
     initial_kdm,
@@ -31,7 +32,7 @@ url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 supabase: Client = create_client(url, key)
 supabase_table: str = (
-    "Projects_duplicate"  # TODO: modify based on which table in supabase we want to edit
+    "Projects_test"  # TODO: modify based on which table in supabase we want to edit
 )
 
 geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
@@ -754,7 +755,7 @@ def ores_permitted_to_database() -> None:
                 print(exception)
 
 
-def merge_duplicates() -> None:
+def merge_projects() -> None:
     """
     This function finds all duplicate projects and merges them together.
     It identifies duplicate projects by looking for keywords in the project name (any part of the name before numbers, asterisks, or energy technology labels).
@@ -765,6 +766,8 @@ def merge_duplicates() -> None:
     """
     all_projects = supabase.table(supabase_table).select("*").execute().data
     duplicates_to_delete = []  # list of ids of duplicate projects to delete
+
+    print("ALL PROJECTS", len(all_projects))
 
     for project in all_projects:
         if project["id"] in duplicates_to_delete:
@@ -790,12 +793,12 @@ def merge_duplicates() -> None:
                     continue
 
                 # otherwise, combine fields of current project with duplicate's data
-                update = create_update_object(update, matching_project)
+                update = combine_projects(update, matching_project)
 
                 # add sizes of duplicate proejcts together
                 if (
                     update.get("size", None) is not None
-                    and matching_project.size is not None
+                    and matching_project.get("size", None) is not None
                 ):
                     update["size"] = float(update["size"]) + float(
                         matching_project["size"]
@@ -812,6 +815,9 @@ def merge_duplicates() -> None:
                         )
                 # mark the current duplicate for deletion
                 duplicates_to_delete.append(matching_project["id"])
+
+            del update["id"]
+            update["project_name"] = project["project_name"]
 
             try:
                 response = (
