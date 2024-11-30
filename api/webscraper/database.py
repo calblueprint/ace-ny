@@ -48,16 +48,16 @@ nyt = tz.gettz("America/New_York")
 def offset_lat_long(lat, long):
     """
     params: lat and long are floats representing the latitude and longitude of a project
-    Checks if there is a project within 0.01 degrees of the latitude and longitude and offsets the latitude and longitude if it overlaps with other projects
+    Checks if there is a project within 0.005 degrees of the latitude and longitude and offsets the latitude and longitude if it overlaps with other projects
     returns: newly offset latitude and longitude
     """
     overlapping_projects = (
         supabase.table(supabase_table)
         .select("*")
-        .lte("latitude", float(lat) + 0.01)
-        .gte("latitude", float(lat) - 0.01)
-        .lte("longitude", float(lat) + 0.01)
-        .gte("longitude", float(lat) - 0.01)
+        .lte("latitude", float(lat) + 0.005)
+        .gte("latitude", float(lat) - 0.005)
+        .lte("longitude", float(lat) + 0.005)
+        .gte("longitude", float(lat) - 0.005)
         .execute()
     )
     while len(overlapping_projects.data) > 0:
@@ -67,10 +67,10 @@ def offset_lat_long(lat, long):
         overlapping_projects = (
             supabase.table(supabase_table)
             .select("*")
-            .lte("latitude", float(lat) + 0.01)
-            .gte("latitude", float(lat) - 0.01)
-            .lte("longitude", float(lat) + 0.01)
-            .gte("longitude", float(lat) - 0.01)
+            .lte("latitude", float(lat) + 0.005)
+            .gte("latitude", float(lat) - 0.005)
+            .lte("longitude", float(lat) + 0.005)
+            .gte("longitude", float(lat) - 0.005)
             .execute()
         )
     return lat, long
