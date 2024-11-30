@@ -18,6 +18,7 @@ from .utils.scraper_utils import (
     create_update_object,
     update_kdm,
     update_last_updated,
+    find_keyword,
 )
 from .database_constants import (
     initial_kdm,
@@ -750,6 +751,14 @@ def ores_permitted_to_database() -> None:
                 print("INSERT", response, "\n")
             except Exception as exception:
                 print(exception)
+
+
+def merge_duplicates() -> None:
+    all_projects = supabase.table(supabase_table).select("*").execute().data
+    updated_projects = set()
+    duplicates = set()
+
+    pass
 
 
 """

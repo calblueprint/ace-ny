@@ -133,6 +133,26 @@ def turn_timestamp_to_string(timestamp):
     return timestamp.to_pydatetime().strftime("%Y-%m-%d")
 
 
+def find_keyword(project_name):
+    if "*" in project_name:
+        i = project_name.find("*")
+        return project_name[:i].strip()
+    elif "solar" in project_name.lower():
+        i = project_name.lower().find("solar")
+        return project_name[:i].strip()
+    elif "wind" in project_name.lower():
+        i = project_name.lower().find("wind")
+        return project_name[:i].strip()
+    else:
+        j = 0
+        while j < len(project_name):
+            if project_name[j].isdigit():
+                break
+            else:
+                j += 1
+        return project_name[:j].strip()
+
+
 # commands for creating requirements.txt file
 # python -m pipreqs.pipreqs --savepath=requirements.in && pip-compile
 # python -m piptools compile requirements.in
