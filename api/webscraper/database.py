@@ -21,6 +21,7 @@ from .utils.scraper_utils import (
     update_last_updated,
     find_keyword,
     combine_projects,
+    pass_all_kdms,
 )
 from .database_constants import (
     initial_kdm,
@@ -42,6 +43,27 @@ geocodio = GeocodioClient(geocode_api)
 nyt = tz.gettz("America/New_York")
 
 # NOTE: Supabase date objects follow the format YYYY-MM-DD
+
+
+def offset_lat_long(lat, long):
+    overlapping_projects = (
+        supabase.table(supabase_table)
+        .select("*")
+        .eq("latitude", lat)
+        .eq("longitude", long)
+        .execute()
+    )
+    while len(overlapping_projects.data) > 0:
+        lat += 0.01  # offset latitude and longitude by about 1111 meters
+        long += 0.01
+        overlapping_projects = (
+            supabase.table(supabase_table)
+            .select("*")
+            .eq("latitude", lat)
+            .eq("longitude", long)
+            .execute()
+        )
+    return lat, long
 
 
 def nyserda_large_to_database() -> None:
@@ -141,8 +163,10 @@ def nyserda_large_to_database() -> None:
                     existing_project.get("last_updated", {}),
                 )
                 # delete data_through_date before pushing to supabase
-                if "data_through_date" in project:
-                    del project["data_through_date"]
+                if "data_through_date" in update_object:
+                    del update_object["data_through_date"]
+                if "id" in update_object:
+                    del update_object["id"]
                 try:
                     response = (
                         supabase.table(supabase_table)
@@ -447,7 +471,7 @@ def nyiso_to_database() -> None:
                             completed=True,
                             kdm=update_object["key_development_milestones"],
                         )
-                    project["last_updated"] = update_last_updated(
+                    update_object["last_updated"] = update_last_updated(
                         "NYISO",
                         datetime.now(tz=nyt),
                         existing_project.get("last_updated", {}),
@@ -767,15 +791,12 @@ def merge_projects() -> None:
     all_projects = supabase.table(supabase_table).select("*").execute().data
     duplicates_to_delete = []  # list of ids of duplicate projects to delete
 
-    print("ALL PROJECTS", len(all_projects))
-
     for project in all_projects:
         if project["id"] in duplicates_to_delete:
             continue  # skip any duplicate projects that have already been processed and marked for deletion
         else:
             update = copy.deepcopy(project)
             keyword = find_keyword(project["project_name"])
-
             # find all duplicate projects
             matching_projects = (
                 supabase.table(supabase_table)
@@ -784,12 +805,14 @@ def merge_projects() -> None:
                 .execute()
                 .data
             )
+            if len(matching_projects) <= 1:
+                continue
 
             # process each duplicate project
             for matching_project in matching_projects:
 
                 # skip matching project if it is the same as the current project
-                if matching_project["project_name"] == project["project_name"]:
+                if matching_project["id"] == project["id"]:
                     continue
 
                 # otherwise, combine fields of current project with duplicate's data
@@ -816,7 +839,22 @@ def merge_projects() -> None:
                 # mark the current duplicate for deletion
                 duplicates_to_delete.append(matching_project["id"])
 
+            start_of_operations = [
+                milestone
+                for milestone in update["key_development_milestones"]
+                if milestone["milestoneTitle"] == "Start of operations"
+            ][0]
+            if start_of_operations.get(
+                "completed", False
+            ):  # if start of operations is True, mark all other milestones as True
+                update["key_development_milestones"] = pass_all_kdms(
+                    update["key_development_milestones"]
+                )
+
+            # delete id from update object because supabase uses id as the primary key
             del update["id"]
+
+            # update data pushed to Supabase to include the first project name
             update["project_name"] = project["project_name"]
 
             try:
