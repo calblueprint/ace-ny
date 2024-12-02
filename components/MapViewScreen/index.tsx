@@ -71,6 +71,7 @@ export default function MapViewScreen({
       location: [],
     });
     setFilteredProjects(projects);
+    setFilteredProjectsFromDropdowns(projects);
   };
 
   // show projects based on selected filters
@@ -110,16 +111,11 @@ export default function MapViewScreen({
     setFilteredProjects(filteredProjectsFromSearch);
   }, [filteredProjectsFromSearch, setFilteredProjects]);
 
-  const handleFilterChange = (filter: FilterType) => {
-    return;
-  };
-
   return (
     <>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <FilterBar
         filters={filters}
-        onFilterChange={handleFilterChange}
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
         handleFilterButtonClick={handleFilterButtonClick}

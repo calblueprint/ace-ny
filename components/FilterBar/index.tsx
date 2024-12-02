@@ -5,14 +5,12 @@ import { FilterContainerStyles } from './styles';
 
 export const FilterBar = ({
   filters,
-  onFilterChange,
   selectedFilters,
   setSelectedFilters,
   handleFilterButtonClick,
   clearFilters,
 }: {
   filters: FilterType[];
-  onFilterChange: (filter: FilterType) => void;
   selectedFilters: Filters;
   setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
   handleFilterButtonClick: () => void;
@@ -22,7 +20,6 @@ export const FilterBar = ({
 
   const handleButtonClick = (filter: FilterType) => {
     setActiveFilter(activeFilter?.id === filter.id ? null : filter);
-    onFilterChange(filter);
   };
 
   const handleTechnologyChange = (options: string[]) => {
