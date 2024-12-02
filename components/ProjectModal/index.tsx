@@ -37,22 +37,20 @@ import {
 } from './styles';
 
 export default function ProjectModal({
-  project_id,
-  closeModal,
-  openFirst,
+  selectedProjectId,
+  setSelectedProjectId,
 }: {
-  project_id: number;
-  closeModal: () => void;
-  openFirst: boolean;
+  selectedProjectId: number | null;
+  setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
 }) {
   const [project, setProject] = useState<Project | null>(null);
   const [defaultImage, setDefaultImage] = useState<string | null>(null);
 
   useEffect(() => {
-    queryProjectbyId(project_id).then(data => {
+    queryProjectbyId(selectedProjectId ?? 0).then(data => {
       setProject(data);
     });
-  }, [project_id]);
+  }, [selectedProjectId]);
 
   useEffect(() => {
     // Fetch default image when project data is available
@@ -117,9 +115,14 @@ export default function ProjectModal({
       ? `${renewable_energy_technology} default image`
       : 'No image available';
 
+  const closeModal = () => {
+    document.title = 'ACE NY';
+    setSelectedProjectId(null); // close modal
+  };
+
   return (
     <Modal
-      isOpen={openFirst}
+      isOpen={selectedProjectId !== null}
       style={{
         overlay: modalOverlayStyles,
         content: modalContentStyles,
@@ -135,7 +138,7 @@ export default function ProjectModal({
         />
         <ProjectOverview>
           <Developer>
-            {developer ? <BodyText1>Developer ‣ {developer}</BodyText1> : null}
+            <BodyText1>{developer ? 'Developer ‣ ' + developer : ''}</BodyText1>
             <CloseButton onClick={closeModal}>
               <FiX size={20} color="#000" />
             </CloseButton>
@@ -157,17 +160,15 @@ export default function ProjectModal({
         </ProjectSize>
         <Divider />
         <AllKDMS>{KDMs}</AllKDMS>
-        {additional_information ? (
-          <AdditionalInfo>
-            <DetailsContainer>
-              <BodyText1>DETAILS</BodyText1>
-              <Divider />
-            </DetailsContainer>
-            <AdditionalText>
-              <BodyText1>{additional_information}</BodyText1>
-            </AdditionalText>
-          </AdditionalInfo>
-        ) : null}
+        <AdditionalInfo>
+          <DetailsContainer $isEmpty={!additional_information}>
+            <BodyText1>DETAILS</BodyText1>
+            <Divider />
+          </DetailsContainer>
+          <AdditionalText>
+            <BodyText1>{additional_information}</BodyText1>
+          </AdditionalText>
+        </AdditionalInfo>
       </ProjectDetails>
     </Modal>
   );

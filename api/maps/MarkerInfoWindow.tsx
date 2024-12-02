@@ -48,7 +48,6 @@ export const MarkerInfoWindow = ({
 }) => {
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [infoWindowShown, setInfoWindowShown] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
 
   // open infowindow when marker is hovered and not already open
   const handleMarkerEnter = useCallback(() => {
@@ -59,17 +58,16 @@ export const MarkerInfoWindow = ({
 
   // close infowindow when modal is closed
   const handleClose = useCallback(() => {
-    if (!modalOpen) {
+    if (selectedProjectId !== projectId) {
       setInfoWindowShown(false);
     }
-  }, [modalOpen]);
+  }, [projectId, selectedProjectId]);
 
   const handleMarkerClick = () => {
     onMarkerClick(projectId, position);
-    setModalOpen(!modalOpen);
 
     // toggle infowindow when marker is clicked
-    if (!modalOpen) {
+    if (selectedProjectId === null) {
       setInfoWindowShown(true);
     } else {
       setInfoWindowShown(false);
@@ -80,7 +78,8 @@ export const MarkerInfoWindow = ({
     // close infowindow and modal if new marker is clicked
     if (selectedProjectId !== projectId) {
       setInfoWindowShown(false);
-      setModalOpen(false);
+    } else {
+      setInfoWindowShown(true);
     }
   }, [selectedProjectId, projectId]);
 

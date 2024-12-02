@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useMap } from '@vis.gl/react-google-maps';
 import {
   LocationIcon,
   ProjectSizeIcon,
@@ -10,6 +11,7 @@ import Map from '@/components/Map';
 import { SearchBar } from '@/components/SearchBar';
 import { Filters, FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
+import ProjectModal from '../ProjectModal';
 import ProjectsListingModal from '../ProjectsListingModal';
 
 export default function MapViewScreen({
@@ -43,7 +45,10 @@ export default function MapViewScreen({
       icon: <LocationIcon />,
     },
   ];
-
+  const [map, setMap] = useState<google.maps.Map | null>(useMap());
+  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
+    null,
+  );
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFilters, setSelectedFilters] = useState<Filters>({
     status: [],
@@ -120,8 +125,24 @@ export default function MapViewScreen({
         handleFilterButtonClick={handleFilterButtonClick}
         clearFilters={clearFilters}
       />
-      <Map projects={projects} />
-      <ProjectsListingModal projects={filteredProjects} />
+      <Map
+        projects={projects}
+        map={map}
+        setMap={setMap}
+        selectedProjectId={selectedProjectId}
+        setSelectedProjectId={setSelectedProjectId}
+      />
+      <ProjectsListingModal
+        projects={filteredProjects}
+        map={map}
+        setSelectedProjectId={setSelectedProjectId}
+      />
+      {selectedProjectId && (
+        <ProjectModal
+          selectedProjectId={selectedProjectId}
+          setSelectedProjectId={setSelectedProjectId}
+        />
+      )}
     </>
   );
 }

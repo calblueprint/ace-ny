@@ -1,22 +1,25 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';
 import { ClusterIcon } from '@/assets/Clusters/icons';
-import ProjectModal from '@/components/ProjectModal';
 import { Project } from '../../types/schema';
 import { MarkerInfoWindow } from './MarkerInfoWindow';
 
 export default function AddMarker({
   projects,
+  selectedProjectId,
+  map,
+  setSelectedProjectId,
+  setMap,
 }: {
   projects: Project[] | null;
+  selectedProjectId: number | null;
+  map: google.maps.Map | null;
+  setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
+  setMap: React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
 }) {
-  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
-    null,
-  ); // track currently open modal
-
-  const map = useMap();
+  setMap(useMap());
 
   const handleMarkerClick = (
     projectId: number,
@@ -28,11 +31,65 @@ export default function AddMarker({
       document.title = 'ACE NY';
     }
   };
+  /*
+  function euclideanDistance(point1: number[], point2: number[]): number {
+    const [x1, y1] = point1;
+    const [x2, y2] = point2;
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+  }
 
-  const closeModal = () => {
-    document.title = 'ACE NY';
-    setSelectedProjectId(null); // close modal
+  const getMinZoom = function (cluster: Cluster, mapZoom: number): number {
+    const numMarkers = cluster.markers?.length ?? 0;
+    const markers = cluster.markers ?? [];
+    if (numMarkers === 2) {
+      const marker1Position = (
+        markers[0] as google.maps.marker.AdvancedMarkerElement
+      ).position ?? { lat: 0, lng: 0 };
+      const marker2Position = (
+        markers[1] as google.maps.marker.AdvancedMarkerElement
+      ).position ?? { lat: 0, lng: 0 };
+      const distance = euclideanDistance(
+        Object.values(marker1Position),
+        Object.values(marker2Position),
+      );
+
+      const maxZoom = 11.5;
+      const minZoom = 6;
+      const maxDistance = 15;
+
+      let zoom = Math.max(
+        minZoom,
+        Math.min(
+          maxZoom,
+          minZoom +
+            ((maxDistance - distance) / maxDistance) * (maxZoom - minZoom),
+        ),
+      );
+
+      const projection = map?.getProjection();
+      const point1 = projection?.fromLatLngToPoint(marker1Position);
+      const point2 = projection?.fromLatLngToPoint(marker2Position);
+
+      const point1x = point1?.x ?? 0;
+      const point1y = point1?.y ?? 0;
+      const point2x = point2?.x ?? 0;
+      const point2y = point2?.y ?? 0;
+
+      const pixelDistance = Math.sqrt(
+        Math.pow(point2x - point1x, 2) + Math.pow(point2y - point1y, 2),
+      );
+
+      if (pixelDistance > 0.3) {
+        zoom = zoom - 1; // slight zoom out for large screen distances
+      }
+      if (pixelDistance < 0.15) {
+        zoom = zoom + 1; // slight zoom in for small screen distances
+      }
+      return zoom;
+    }
+    return mapZoom;
   };
+*/
 
   const clusterer = useMemo(() => {
     if (!map) return null;
@@ -60,7 +117,7 @@ export default function AddMarker({
       map: google.maps.Map,
     ) => {
       if (event.latLng) {
-        const mapZoom = (map.getZoom() ?? 0) + 4;
+        const mapZoom = (map.getZoom() ?? 0) + 3;
         map.setCenter(event.latLng);
         map.setZoom(mapZoom);
       }
@@ -94,14 +151,6 @@ export default function AddMarker({
           />
         );
       })}
-
-      {selectedProjectId && (
-        <ProjectModal
-          project_id={selectedProjectId}
-          closeModal={closeModal}
-          openFirst={true}
-        />
-      )}
     </>
   );
 }

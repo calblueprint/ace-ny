@@ -23,7 +23,6 @@ import {
 import COLORS from '@/styles/colors';
 import { Heading2, TagText1 } from '@/styles/texts';
 import { Project } from '@/types/schema';
-import ProjectModal from '../ProjectModal';
 import {
   projectImageStyles,
   ProjectInfo,
@@ -35,10 +34,17 @@ import {
   StyledProjectItem,
 } from './styles';
 
-export default function ProjectItem({ project_id }: { project_id: number }) {
+export default function ProjectItem({
+  project_id,
+  map,
+  setSelectedProjectId,
+}: {
+  project_id: number;
+  map: google.maps.Map | null;
+  setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
+}) {
   const [project, setProject] = useState<Project | null>(null);
   const [defaultImage, setDefaultImage] = useState<string | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     queryProjectbyId(project_id).then(data => {
@@ -69,8 +75,8 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
     renewable_energy_technology,
     size,
     // developer,
-    // longitude,
-    // latitude,
+    longitude,
+    latitude,
     project_status,
     // county,
     // town,
@@ -141,18 +147,10 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
   };
 
   const handleProjectClick = () => {
-    setModalOpen(true);
+    const position = new google.maps.LatLng(latitude ?? 0, longitude ?? 0);
+    map?.panTo(position);
+    setSelectedProjectId(project_id);
   };
-
-  if (modalOpen) {
-    return (
-      <ProjectModal
-        project_id={project_id}
-        closeModal={() => setModalOpen(false)}
-        openFirst={true}
-      />
-    );
-  }
 
   return (
     <StyledProjectItem onClick={handleProjectClick}>
