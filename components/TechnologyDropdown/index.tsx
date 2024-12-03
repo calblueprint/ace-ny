@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   ApplyFiltersText,
   FilterCategoryLabel,
@@ -25,6 +26,7 @@ import {
   ExitStyles,
   FilterContentDiv,
   FilterDropdownStyles,
+  FilterIconStyles,
   IconStyles,
 } from './styles';
 
@@ -35,6 +37,8 @@ interface TechnologyDropdownProps {
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
 }
 
 export default function TechnologyDropdown({
@@ -44,6 +48,8 @@ export default function TechnologyDropdown({
   icon,
   label,
   currFilter,
+  handleFilterButtonClick,
+  clearFilters,
 }: TechnologyDropdownProps) {
   const filter = {
     categories: [
@@ -138,12 +144,14 @@ export default function TechnologyDropdown({
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
-        <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-          {icon}
-          <ButtonStyles>
+        <ButtonWithIconStyles>
+          <FilterIconStyles onClick={() => handleButtonClick(currFilter)}>
+            {icon}
+          </FilterIconStyles>
+          <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
             <FilterHeadingUnused>{label}</FilterHeadingUnused>
           </ButtonStyles>
-          <ExitStyles>
+          <ExitStyles onClick={clearFilters}>
             <ExitIcon />
           </ExitStyles>
         </ButtonWithIconStyles>
@@ -169,7 +177,10 @@ export default function TechnologyDropdown({
             ))}
           </div>
         ))}
-        <ApplyButtonStyles isActive={isApplyButtonActive}>
+        <ApplyButtonStyles
+          isActive={isApplyButtonActive}
+          onClick={handleFilterButtonClick}
+        >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
       </FilterContentDiv>
