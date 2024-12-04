@@ -1,4 +1,3 @@
-import React from 'react'; //REMOVE
 import { FilterType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMap } from '@vis.gl/react-google-maps';
 import {
   LocationIcon,
@@ -101,7 +101,14 @@ export default function MapViewScreen({
 
     if (filteredProjectsFromDropdowns.length > 0) {
       projectsToSearch = filteredProjectsFromDropdowns;
-    } else {
+    } else if (
+      Object.values(selectedFilters).every(filter =>
+        Array.isArray(filter)
+          ? filter.length === 0
+          : filter.min === 0 && filter.max === 0,
+      )
+    ) {
+      // Only fallback to all projects if no filters are applied
       projectsToSearch = projects;
     }
 

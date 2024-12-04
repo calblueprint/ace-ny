@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Filter from '@/components/Filter';
 import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
 import { FilterContainerStyles } from './styles';
