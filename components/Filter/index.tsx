@@ -51,6 +51,8 @@ export default function Filter({
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
+            handleFilterButtonClick={handleFilterButtonClick}
+            clearFilters={clearFilters}
           />
         ) : // Add other filter dropdown components here
         null
