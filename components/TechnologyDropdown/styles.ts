@@ -72,12 +72,6 @@ export const ButtonWithIconStyles = styled.div`
   cursor: pointer;
 `;
 
-export const FilterIconStyles = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-`;
-
 export const IconStyles = styled.div`
   width: '3rem',
   height: '3rem',
