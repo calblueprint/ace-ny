@@ -5,20 +5,21 @@ import { FilterContainerStyles } from './styles';
 
 export const FilterBar = ({
   filters,
-  onFilterChange,
   selectedFilters,
   setSelectedFilters,
+  handleFilterButtonClick,
+  clearFilters,
 }: {
   filters: FilterType[];
-  onFilterChange: (filter: FilterType) => void;
   selectedFilters: Filters;
   setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
 }) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
   const handleButtonClick = (filter: FilterType) => {
     setActiveFilter(activeFilter?.id === filter.id ? null : filter);
-    onFilterChange(filter);
   };
 
   const handleTechnologyChange = (options: string[]) => {
@@ -52,6 +53,8 @@ export const FilterBar = ({
           selectedFilters={selectedFilters}
           filterChangeHandlers={filterChangeHandlers}
           handleButtonClick={handleButtonClick}
+          handleFilterButtonClick={handleFilterButtonClick}
+          clearFilters={clearFilters}
         />
       ))}
     </FilterContainerStyles>

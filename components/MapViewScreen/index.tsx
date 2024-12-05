@@ -56,29 +56,70 @@ export default function MapViewScreen({
     projectSize: { min: 0, max: 0 },
     location: [],
   });
+  const [filteredProjectsFromDropdowns, setFilteredProjectsFromDropdowns] =
+    useState<Project[]>(projects);
 
-  const handleFilterChange = (filter: FilterType) => {
-    console.log(filter);
+  const [filteredProjectsFromSearch, setFilteredProjectsFromSearch] =
+    useState<Project[]>(projects);
+
+  // clear filters
+  const clearFilters = () => {
+    setSelectedFilters({
+      status: [],
+      technology: [],
+      projectSize: { min: 0, max: 0 },
+      location: [],
+    });
+    setFilteredProjects(projects);
+    setFilteredProjectsFromDropdowns(projects);
   };
 
-  useEffect(() => {
-    let filtered: Project[] = [];
-    filtered =
-      projects?.filter(project =>
-        project.project_name.toLowerCase().includes(searchTerm.toLowerCase()),
-      ) ?? null;
+  // show projects based on selected filters
+  const handleFilterButtonClick = () => {
+    /* eslint-disable @typescript-eslint/no-unused-vars */
+    const { status, technology, projectSize, location } = selectedFilters;
+    // add all filtering logic here
+    const technologyProjects = projects?.filter(project =>
+      technology.includes(project.renewable_energy_technology),
+    );
+    setFilteredProjectsFromDropdowns(technologyProjects);
+  };
 
-    setFilteredProjects(filtered);
-  }, [projects, searchTerm, setFilteredProjects]);
+  // search within all projects or filtered projects from dropdowns
+  useEffect(() => {
+    let projectsToSearch: Project[] = [];
+
+    if (filteredProjectsFromDropdowns.length > 0) {
+      projectsToSearch = filteredProjectsFromDropdowns;
+    } else {
+      projectsToSearch = projects;
+    }
+
+    const searchedProjects: Project[] =
+      projectsToSearch?.filter(project =>
+        project.project_name.toLowerCase().includes(searchTerm.toLowerCase()),
+      ) ?? [];
+
+    setFilteredProjectsFromSearch(searchedProjects);
+  }, [projects, searchTerm, filteredProjectsFromDropdowns]);
+
+  useEffect(() => {
+    setFilteredProjects(filteredProjectsFromDropdowns);
+  }, [filteredProjectsFromDropdowns, setFilteredProjects]);
+
+  useEffect(() => {
+    setFilteredProjects(filteredProjectsFromSearch);
+  }, [filteredProjectsFromSearch, setFilteredProjects]);
 
   return (
     <>
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <FilterBar
         filters={filters}
-        onFilterChange={handleFilterChange}
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
+        handleFilterButtonClick={handleFilterButtonClick}
+        clearFilters={clearFilters}
       />
       <Map
         projects={projects}

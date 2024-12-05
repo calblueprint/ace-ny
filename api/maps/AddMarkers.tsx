@@ -90,6 +90,7 @@ export default function AddMarker({
     return mapZoom;
   };
 */
+
   const clusterer = useMemo(() => {
     if (!map) return null;
 
@@ -127,18 +128,6 @@ export default function AddMarker({
       renderer,
       onClusterClick: clusterHandler,
     });
-
-    /*setClusterer.addListener('click', function (cluster: Cluster) {
-      const mapZoom = map.getZoom() ?? 0;
-      const minZoom = getMinZoom(cluster, mapZoom);
-
-      if (mapZoom && mapZoom < minZoom) {
-        const idleListener = map.addListener('idle', function () {
-          map.setZoom(minZoom);
-          idleListener.remove();
-        });
-      }
-    });*/
 
     return setClusterer;
   }, [map]);
