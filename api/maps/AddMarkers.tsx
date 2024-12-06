@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';

@@ -31,6 +31,7 @@ const mapId = '54eb1c7baba5a715'; // needed for AdvancedMarker
 export default function Map({
   projects,
   selectedProjectId,
+  filteredProjects,
   map,
   setMap,
   setSelectedProjectId,
@@ -57,7 +58,7 @@ export default function Map({
       >
         <AddMarkers
           projects={projects}
-        filteredProjects={filteredProjects}
+          filteredProjects={filteredProjects}
           map={map}
           setMap={setMap}
           selectedProjectId={selectedProjectId}
