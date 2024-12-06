@@ -1,8 +1,7 @@
 import os
 import copy
 from dotenv import load_dotenv
-from datetime import datetime
-from dateutil import tz
+from datetime import datetime, timezone
 from supabase import create_client, Client
 from geocodio import GeocodioClient
 
@@ -40,7 +39,7 @@ geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
 geocodio = GeocodioClient(geocode_api)
 
 # constant used for the New York Timezone used when comparing datetime objects
-nyt = tz.gettz("America/New_York")
+nyt = timezone(datetime.now(timezone.utc).astimezone().utcoffset())
 
 # NOTE: Supabase date objects follow the format YYYY-MM-DD
 
@@ -182,6 +181,10 @@ def nyserda_large_to_database() -> None:
                 if "id" in update_object:
                     del update_object["id"]
 
+                # update last_updated_display field to reflect when the webscraper was last run
+                update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                    "%Y-%m-%dT%H:%M:%S.%f%z"
+                )
                 try:
                     response = (
                         supabase.table(supabase_table)
@@ -259,6 +262,11 @@ def nyserda_large_to_database() -> None:
                 project["latitude"], project["longitude"] = offset_lat_long(
                     project["latitude"], project["longitude"]
                 )
+
+            # update last_updated_display field to reflect when the webscraper was last run
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
 
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
@@ -338,6 +346,10 @@ def nyserda_solar_to_database() -> None:
                     del project["data_through_date"]
                 if "id" in update_object:
                     del update_object["id"]
+                # update last_updated_display field to reflect when the webscraper was last run
+                update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                    "%Y-%m-%dT%H:%M:%S.%f%z"
+                )
                 try:
                     response = (
                         supabase.table(supabase_table)
@@ -405,7 +417,10 @@ def nyserda_solar_to_database() -> None:
                 project["latitude"], project["longitude"] = offset_lat_long(
                     project["latitude"], project["longitude"]
                 )
-
+            # update last_updated_display field to reflect when the webscraper was last run
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -520,6 +535,10 @@ def nyiso_to_database() -> None:
                     # delete project id primary key before pushing to supabase
                     if "id" in update_object:
                         del update_object["id"]
+                    # update last_updated_display field to reflect when the webscraper was last run
+                    update_object["last_updated_display"] = datetime.now(
+                        tz=nyt
+                    ).strftime("%Y-%m-%dT%H:%M:%S.%f%z")
                     try:
                         response = (
                             supabase.table(supabase_table)
@@ -581,7 +600,10 @@ def nyiso_to_database() -> None:
                     project["latitude"], project["longitude"] = offset_lat_long(
                         project["latitude"], project["longitude"]
                     )
-
+                # update last_updated_display field to reflect when the webscraper was last run
+                update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                    "%Y-%m-%dT%H:%M:%S.%f%z"
+                )
                 try:
                     response = supabase.table(supabase_table).insert(project).execute()
                     print("INSERT", response, "\n")
@@ -645,6 +667,10 @@ def ores_noi_to_database():
             )
             if "id" in update_object:
                 del update_object["id"]
+            # update last_updated_display field to reflect when the webscraper was last run
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = (
                     supabase.table(supabase_table)
@@ -679,7 +705,10 @@ def ores_noi_to_database():
                 project["latitude"], project["longitude"] = offset_lat_long(
                     project["latitude"], project["longitude"]
                 )
-
+            # update last_updated_display field to reflect when the webscraper was last run
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -729,6 +758,10 @@ def ores_under_review_to_database() -> None:
             )
             if "id" in update_object:
                 del update_object["id"]
+            # update last_updated_display field to reflect when the webscraper was last run
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = (
                     supabase.table(supabase_table)
@@ -770,7 +803,10 @@ def ores_under_review_to_database() -> None:
                 project["latitude"], project["longitude"] = offset_lat_long(
                     project["latitude"], project["longitude"]
                 )
-
+            # update last_updated_display field to reflect when the webscraper was last run
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -820,6 +856,10 @@ def ores_permitted_to_database() -> None:
             )
             if "id" in update_object:
                 del update_object["id"]
+            # update last_updated_display field to reflect when the webscraper was last run
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = (
                     supabase.table(supabase_table)
@@ -861,7 +901,10 @@ def ores_permitted_to_database() -> None:
                 project["latitude"], project["longitude"] = offset_lat_long(
                     project["latitude"], project["longitude"]
                 )
-
+            # update last_updated_display field to reflect when the webscraper was last run
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -945,7 +988,10 @@ def merge_projects() -> None:
             del update["id"]
             # update data pushed to Supabase to include the first project name
             update["project_name"] = project["project_name"]
-
+            # update last_updated_display field to reflect when the webscraper was last run
+            update["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = (
                     supabase.table(supabase_table)

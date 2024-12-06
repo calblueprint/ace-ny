@@ -122,7 +122,7 @@ def update_last_updated(source: str, date: datetime, last_updated: dict):
     date is a datetime object representing when this project was updated
     last_updated is a dictionary representing the current state of when this project was updated by each datasource
     """
-    date_string = date.strftime("%Y%m%dT%H:%M:%S.%f%z")
+    date_string = date.strftime("%Y-%m-%dT%H:%M:%S.%f%z")
     last_updated[source] = date_string
     return last_updated
 
