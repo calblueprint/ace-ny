@@ -1,32 +1,39 @@
 import os
+import copy
+from dotenv import load_dotenv
 from datetime import datetime
 from dateutil import tz
 from supabase import create_client, Client
 from geocodio import GeocodioClient
 
-from nyserda_scraper import query_nyserda_large, query_nyserda_solar_repeat
-from nyiso_scraper import (
+from .nyserda_scraper import query_nyserda_large, query_nyserda_solar_repeat
+from .nyiso_scraper import (
     filter_nyiso_iq_sheet,
     filter_nyiso_cluster_sheet,
     filter_nyiso_in_service_sheet,
     filter_nyiso_withdrawn_sheets,
 )
-from ores_scraper import query_ores_noi, query_ores_under_review, query_ores_permitted
-from utils.scraper_utils import (
+from .ores_scraper import query_ores_noi, query_ores_under_review, query_ores_permitted
+from .utils.scraper_utils import (
     geocode_lat_long,
     create_update_object,
     update_kdm,
     update_last_updated,
+    find_keyword,
+    combine_projects,
+    pass_all_kdms,
 )
-from database_constants import (
+from .database_constants import (
     initial_kdm,
 )
+
+load_dotenv(os.path.join(os.path.dirname(__file__), "../../.env.local"))
 
 url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 supabase: Client = create_client(url, key)
 supabase_table: str = (
-    "Projects_duplicate"  # TODO: modify based on which table in supabase we want to edit
+    "Projects_test"  # TODO: modify based on which table in supabase we want to edit
 )
 
 geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
@@ -36,6 +43,37 @@ geocodio = GeocodioClient(geocode_api)
 nyt = tz.gettz("America/New_York")
 
 # NOTE: Supabase date objects follow the format YYYY-MM-DD
+
+
+def offset_lat_long(lat, long):
+    """
+    params: lat and long are floats representing the latitude and longitude of a project
+    Checks if there is a project within 0.005 degrees of the latitude and longitude and offsets the latitude and longitude if it overlaps with other projects
+    returns: newly offset latitude and longitude
+    """
+    overlapping_projects = (
+        supabase.table(supabase_table)
+        .select("*")
+        .lte("latitude", float(lat) + 0.005)
+        .gte("latitude", float(lat) - 0.005)
+        .lte("longitude", float(lat) + 0.005)
+        .gte("longitude", float(lat) - 0.005)
+        .execute()
+    )
+    while len(overlapping_projects.data) > 0:
+        # casting in case lat and long aren't floats yet
+        lat = float(lat) + 0.01  # offset latitude and longitude by about 1111 meters
+        long = float(long) + 0.01
+        overlapping_projects = (
+            supabase.table(supabase_table)
+            .select("*")
+            .lte("latitude", float(lat) + 0.005)
+            .gte("latitude", float(lat) - 0.005)
+            .lte("longitude", float(lat) + 0.005)
+            .gte("longitude", float(lat) - 0.005)
+            .execute()
+        )
+    return lat, long
 
 
 def nyserda_large_to_database() -> None:
@@ -48,7 +86,7 @@ def nyserda_large_to_database() -> None:
     In the case that the project is cancelled, we delete the project from the Supabase database.
     """
     database = []
-    database.extend(query_nyserda_large())
+    database.extend(query_nyserda_large()[:10])  # TODO: update slice for testing
     for project in database:
         if project.get("proposed_cod", None) is not None:
             ymd = datetime.strptime(project.get("proposed_cod"), "%Y").strftime(
@@ -127,6 +165,10 @@ def nyserda_large_to_database() -> None:
                     completed=True,
                     kdm=update_object["key_development_milestones"],
                 )
+                # if project status is operational, mark all other kdms as completed
+                update_object["key_development_milestones"] = pass_all_kdms(
+                    update_object["key_development_milestones"]
+                )
                 # set last updated for NYSERDA field to current date/time in est
                 # datestring will be in the format "YYYYMMDDTHH:MM:SS.SSSZ"
                 update_object["last_updated"] = update_last_updated(
@@ -135,8 +177,11 @@ def nyserda_large_to_database() -> None:
                     existing_project.get("last_updated", {}),
                 )
                 # delete data_through_date before pushing to supabase
-                if "data_through_date" in project:
-                    del project["data_through_date"]
+                if "data_through_date" in update_object:
+                    del update_object["data_through_date"]
+                if "id" in update_object:
+                    del update_object["id"]
+
                 try:
                     response = (
                         supabase.table(supabase_table)
@@ -205,6 +250,16 @@ def nyserda_large_to_database() -> None:
             # delete data_through_date before pushing to supabase
             if "data_through_date" in project:
                 del project["data_through_date"]
+
+            # offset latitude and longitude to avoid overlaps
+            if (
+                project.get("latitude", None) is not None
+                and project.get("longitude", None) is not None
+            ):
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project["latitude"], project["longitude"]
+                )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -339,6 +394,16 @@ def nyserda_solar_to_database() -> None:
             # delete data_through_date before pushing to supabase
             if "data_through_date" in project:
                 del project["data_through_date"]
+
+            # offset latitude and longitude to avoid overlaps
+            if (
+                project.get("latitude", None) is not None
+                and project.get("longitude", None) is not None
+            ):
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project["latitude"], project["longitude"]
+                )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -441,7 +506,11 @@ def nyiso_to_database() -> None:
                             completed=True,
                             kdm=update_object["key_development_milestones"],
                         )
-                    project["last_updated"] = update_last_updated(
+                        # if project status is operational, mark all other kdms as completed
+                        update_object["key_development_milestones"] = pass_all_kdms(
+                            update_object["key_development_milestones"]
+                        )
+                    update_object["last_updated"] = update_last_updated(
                         "NYISO",
                         datetime.now(tz=nyt),
                         existing_project.get("last_updated", {}),
@@ -498,6 +567,16 @@ def nyiso_to_database() -> None:
                     datetime.now(tz=nyt),
                     project.get("last_updated", {}),
                 )
+
+                # offset latitude and longitude to avoid overlaps
+                if (
+                    project.get("latitude", None) is not None
+                    and project.get("longitude", None) is not None
+                ):
+                    project["latitude"], project["longitude"] = offset_lat_long(
+                        project["latitude"], project["longitude"]
+                    )
+
                 try:
                     response = supabase.table(supabase_table).insert(project).execute()
                     print("INSERT", response, "\n")
@@ -584,6 +663,16 @@ def ores_noi_to_database():
                 datetime.now(tz=nyt),
                 project.get("last_updated", {}),
             )
+
+            # offset latitude and longitude to avoid overlaps
+            if (
+                project.get("latitude", None) is not None
+                and project.get("longitude", None) is not None
+            ):
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project["latitude"], project["longitude"]
+                )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -663,6 +752,16 @@ def ores_under_review_to_database() -> None:
                 datetime.now(tz=nyt),
                 project.get("last_updated", {}),
             )
+
+            # offset latitude and longitude to avoid overlaps
+            if (
+                project.get("latitude", None) is not None
+                and project.get("longitude", None) is not None
+            ):
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project["latitude"], project["longitude"]
+                )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -742,11 +841,123 @@ def ores_permitted_to_database() -> None:
                 datetime.now(tz=nyt),
                 project.get("last_updated", {}),
             )
+
+            # offset latitude and longitude to avoid overlaps
+            if (
+                project.get("latitude", None) is not None
+                and project.get("longitude", None) is not None
+            ):
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project["latitude"], project["longitude"]
+                )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
             except Exception as exception:
                 print(exception)
+
+
+def merge_projects() -> None:
+    """
+    This function finds all duplicate projects and merges them together.
+    It identifies duplicate projects by looking for keywords in the project name (any part of the name before numbers, asterisks, or energy technology labels).
+    Next, it creates an update object that aggregates all information fields and kdms.
+    The update object adds together the sizes of any matching duplicate projects.
+    Any duplicate projects that get processed are added to a list of duplicates to delete so that the function doesn't reprocess them.
+    At the end, the function deletes any duplicates from the database.
+    """
+    all_projects = supabase.table(supabase_table).select("*").execute().data
+    duplicates_to_delete = []  # list of ids of duplicate projects to delete
+
+    for project in all_projects:
+        if project["id"] in duplicates_to_delete:
+            continue  # skip any duplicate projects that have already been processed and marked for deletion
+        else:
+            update = copy.deepcopy(project)
+            keyword = find_keyword(project["project_name"])
+            # find all duplicate projects
+            matching_projects = (
+                supabase.table(supabase_table)
+                .select("*")
+                .ilike("project_name", f"%{keyword}%")
+                .execute()
+                .data
+            )
+            if len(matching_projects) <= 1:
+                continue
+
+            # process each duplicate project
+            for matching_project in matching_projects:
+
+                # skip matching project if it is the same as the current project
+                if matching_project["id"] == project["id"]:
+                    continue
+
+                # otherwise, combine fields of current project with duplicate's data
+                update = combine_projects(update, matching_project)
+
+                # add sizes of duplicate proejcts together
+                if (
+                    update.get("size", None) is not None
+                    and matching_project.get("size", None) is not None
+                ):
+                    update["size"] = float(update["size"]) + float(
+                        matching_project["size"]
+                    )
+
+                # update kdm to include all milestones collected by all matching projects
+                for milestone in matching_project.get("key_development_milestones", []):
+                    if milestone["completed"]:
+                        update["key_development_milestones"] = update_kdm(
+                            milestoneTitle=milestone["milestoneTitle"],
+                            completed=milestone["completed"],
+                            date=milestone["date"],
+                            kdm=update["key_development_milestones"],
+                        )
+                # mark the current duplicate for deletion
+                duplicates_to_delete.append(matching_project["id"])
+
+            start_of_operations = [
+                milestone
+                for milestone in update["key_development_milestones"]
+                if milestone["milestoneTitle"] == "Start of operations"
+            ][0]
+            if start_of_operations.get(
+                "completed", False
+            ):  # if start of operations is True, mark all other milestones as True
+                update["key_development_milestones"] = pass_all_kdms(
+                    update["key_development_milestones"]
+                )
+
+            # delete id from update object because supabase uses id as the primary key
+            del update["id"]
+            # update data pushed to Supabase to include the first project name
+            update["project_name"] = project["project_name"]
+
+            try:
+                response = (
+                    supabase.table(supabase_table)
+                    .update(update)
+                    .eq(
+                        "project_name",
+                        project["project_name"],
+                    )
+                    .execute()
+                )
+                print("UPDATE", response, "\n")
+            except Exception as exception:
+                print(exception)
+
+    # after merging all duplicates, delete any duplicate projects from database
+    for duplicate_id in duplicates_to_delete:
+        try:
+            response = (
+                supabase.table(supabase_table).delete().eq("id", duplicate_id).execute()
+            )
+            print("DELETE", response, "\n")
+        except Exception as exception:
+            print(exception)
 
 
 """

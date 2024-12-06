@@ -1,7 +1,7 @@
 import requests
 import json
-from utils.scraper_utils import check_status, geocode_lat_long, standardize_label
-from database_constants import renewable_energy_map, initial_kdm
+from .utils.scraper_utils import check_status, geocode_lat_long, standardize_label
+from .database_constants import renewable_energy_map, initial_kdm
 
 """
 This scrapes data from the NYSERDA Large-scale Renewable Projects database.
