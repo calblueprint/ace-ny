@@ -22,12 +22,12 @@ renewable_energy_abbreviations = {
 initial_kdm = [
     {"milestoneTitle": "Entry to NYISO Queue", "completed": False, "date": None},
     {
-        "milestoneTitle": "Application for permit to ORES",
+        "milestoneTitle": "Application for permit",
         "completed": False,
         "date": None,
     },
     {
-        "milestoneTitle": "Issuance of permit from ORES",
+        "milestoneTitle": "Issuance of permit",
         "completed": False,
         "date": None,
     },
