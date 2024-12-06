@@ -131,7 +131,9 @@ def nyserda_large_to_database() -> None:
                     # )
                     # print("DELETE", response, "\n")
                     continue
-                update_object = create_update_object(existing_project, project)
+                update_object = create_update_object(
+                    existing_project, project, "NYSERDA"
+                )
                 if (
                     existing_project["key_development_milestones"] is None
                     or len(existing_project["key_development_milestones"]) < 0
@@ -181,7 +183,7 @@ def nyserda_large_to_database() -> None:
                 if "id" in update_object:
                     del update_object["id"]
 
-                # update last_updated_display field to reflect when the webscraper was last run
+                # update last_updated_display field to reflect when when the webscraper last ran
                 update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                     "%Y-%m-%dT%H:%M:%S.%f%z"
                 )
@@ -263,8 +265,8 @@ def nyserda_large_to_database() -> None:
                     project["latitude"], project["longitude"]
                 )
 
-            # update last_updated_display field to reflect when the webscraper was last run
-            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+            # update last_updated_display field to reflect when when the webscraper last ran
+            project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
 
@@ -317,7 +319,7 @@ def nyserda_solar_to_database() -> None:
                 ).replace(tzinfo=nyt)
                 < last_nyserda_solar_update
             ):
-                update_object = create_update_object(existing_project, project)
+                update_object = (existing_project, project, "NYSERDA")
                 if (
                     existing_project["key_development_milestones"] is None
                     or len(existing_project["key_development_milestones"]) < 0
@@ -346,7 +348,7 @@ def nyserda_solar_to_database() -> None:
                     del project["data_through_date"]
                 if "id" in update_object:
                     del update_object["id"]
-                # update last_updated_display field to reflect when the webscraper was last run
+                # update last_updated_display field to reflect when when the webscraper last ran
                 update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                     "%Y-%m-%dT%H:%M:%S.%f%z"
                 )
@@ -417,8 +419,8 @@ def nyserda_solar_to_database() -> None:
                 project["latitude"], project["longitude"] = offset_lat_long(
                     project["latitude"], project["longitude"]
                 )
-            # update last_updated_display field to reflect when the webscraper was last run
-            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+            # update last_updated_display field to reflect when when the webscraper last ran
+            project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
             try:
@@ -484,7 +486,9 @@ def nyiso_to_database() -> None:
                         del project["nyiso_last_updated"]
                     # This helper function creates a dict of only fields that the existing project is missing
                     # but the NYISO data has
-                    update_object = create_update_object(existing_project, project)
+                    update_object = create_update_object(
+                        existing_project, project, "NYISO"
+                    )
                     if (
                         existing_project["key_development_milestones"] is None
                         or len(existing_project["key_development_milestones"]) < 0
@@ -535,7 +539,7 @@ def nyiso_to_database() -> None:
                     # delete project id primary key before pushing to supabase
                     if "id" in update_object:
                         del update_object["id"]
-                    # update last_updated_display field to reflect when the webscraper was last run
+                    # update last_updated_display field to reflect when when the webscraper last ran
                     update_object["last_updated_display"] = datetime.now(
                         tz=nyt
                     ).strftime("%Y-%m-%dT%H:%M:%S.%f%z")
@@ -600,8 +604,8 @@ def nyiso_to_database() -> None:
                     project["latitude"], project["longitude"] = offset_lat_long(
                         project["latitude"], project["longitude"]
                     )
-                # update last_updated_display field to reflect when the webscraper was last run
-                update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                # update last_updated_display field to reflect when when the webscraper last ran
+                project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                     "%Y-%m-%dT%H:%M:%S.%f%z"
                 )
                 try:
@@ -657,7 +661,7 @@ def ores_noi_to_database():
             existing_project = existing_data.data[
                 0
             ]  # NOTE: ORES data does not have a data_through_date kind of field
-            update_object = create_update_object(existing_project, project)
+            update_object = create_update_object(existing_project, project, "ORES")
 
             # update last_updated field of project to be current time before pushing
             project["last_updated"] = update_last_updated(
@@ -667,7 +671,7 @@ def ores_noi_to_database():
             )
             if "id" in update_object:
                 del update_object["id"]
-            # update last_updated_display field to reflect when the webscraper was last run
+            # update last_updated_display field to reflect when when the webscraper last ran
             update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
@@ -705,8 +709,8 @@ def ores_noi_to_database():
                 project["latitude"], project["longitude"] = offset_lat_long(
                     project["latitude"], project["longitude"]
                 )
-            # update last_updated_display field to reflect when the webscraper was last run
-            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+            # update last_updated_display field to reflect when when the webscraper last ran
+            project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
             try:
@@ -730,7 +734,7 @@ def ores_under_review_to_database() -> None:
             existing_project = existing_data.data[
                 0
             ]  # NOTE: ORES data does not have a data_through_date kind of field
-            update_object = create_update_object(existing_project, project)
+            update_object = create_update_object(existing_project, project, "ORES")
             # if the existing project has no kdms, add the dict first
             if (
                 existing_project["key_development_milestones"] is None
@@ -758,7 +762,7 @@ def ores_under_review_to_database() -> None:
             )
             if "id" in update_object:
                 del update_object["id"]
-            # update last_updated_display field to reflect when the webscraper was last run
+            # update last_updated_display field to reflect when when the webscraper last ran
             update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
@@ -803,8 +807,8 @@ def ores_under_review_to_database() -> None:
                 project["latitude"], project["longitude"] = offset_lat_long(
                     project["latitude"], project["longitude"]
                 )
-            # update last_updated_display field to reflect when the webscraper was last run
-            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+            # update last_updated_display field to reflect when when the webscraper last ran
+            project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
             try:
@@ -828,7 +832,7 @@ def ores_permitted_to_database() -> None:
             existing_project = existing_data.data[
                 0
             ]  # NOTE: ORES data does not have a data_through_date kind of field
-            update_object = create_update_object(existing_project, project)
+            update_object = create_update_object(existing_project, project, "ORES")
             # if the existing project has no kdms, add the dict first
             if (
                 existing_project["key_development_milestones"] is None
@@ -856,7 +860,7 @@ def ores_permitted_to_database() -> None:
             )
             if "id" in update_object:
                 del update_object["id"]
-            # update last_updated_display field to reflect when the webscraper was last run
+            # update last_updated_display field to reflect when when the webscraper last ran
             update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
@@ -901,8 +905,8 @@ def ores_permitted_to_database() -> None:
                 project["latitude"], project["longitude"] = offset_lat_long(
                     project["latitude"], project["longitude"]
                 )
-            # update last_updated_display field to reflect when the webscraper was last run
-            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+            # update last_updated_display field to reflect when when the webscraper last ran
+            project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
             try:
@@ -988,7 +992,7 @@ def merge_projects() -> None:
             del update["id"]
             # update data pushed to Supabase to include the first project name
             update["project_name"] = project["project_name"]
-            # update last_updated_display field to reflect when the webscraper was last run
+            # update last_updated_display field to reflect when when the webscraper last ran
             update["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )

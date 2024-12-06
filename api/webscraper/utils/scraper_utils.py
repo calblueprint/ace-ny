@@ -45,7 +45,9 @@ def geocode_lat_long(address):
     return latitude, longitude
 
 
-def create_update_object(existing_project: dict, new_project: dict) -> dict:
+def create_update_object(
+    existing_project: dict, new_project: dict, source: str = "NYSERDA"
+) -> dict:
     """
     params: existing project is a dict, new project is a dict representing the new data
     Assumes that the new project has more recent data than the existing project
@@ -54,6 +56,11 @@ def create_update_object(existing_project: dict, new_project: dict) -> dict:
     """
     update_object = {}
     for key, value in existing_project.items():
+        # ensure ORES takes priority in setting "town" and "county" field
+        if key == "town" or key == "county" and source == "ORES":
+            if new_project.get(key, None) is not None:
+                update_object[key] = new_project[key]
+                continue
         # add field if existing project doesn't have it but new project does
         if value is None and new_project.get(key, None) is not None:
             update_object[key] = new_project[key]
