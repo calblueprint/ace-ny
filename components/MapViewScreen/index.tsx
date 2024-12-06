@@ -123,6 +123,7 @@ export default function MapViewScreen({
       />
       <Map
         projects={projects}
+        filteredProjects={filteredProjects}
         map={map}
         setMap={setMap}
         selectedProjectId={selectedProjectId}

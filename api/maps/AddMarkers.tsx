@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';
@@ -8,12 +8,14 @@ import { MarkerInfoWindow } from './MarkerInfoWindow';
 
 export default function AddMarker({
   projects,
+  filteredProjects,
   selectedProjectId,
   map,
   setSelectedProjectId,
   setMap,
 }: {
   projects: Project[] | null;
+  filteredProjects: Project[] | null;
   selectedProjectId: number | null;
   map: google.maps.Map | null;
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
@@ -103,7 +105,6 @@ export default function AddMarker({
         const container = document.createElement('div');
         const root = ReactDOM.createRoot(container);
         root.render(<ClusterIcon count={count} />);
-
         return new google.maps.marker.AdvancedMarkerElement({
           position: position,
           content: container,
@@ -132,6 +133,50 @@ export default function AddMarker({
     return setClusterer;
   }, [map]);
 
+  const markerMap = useRef<Map<number, google.maps.Marker>>(new Map());
+
+  const hideMarker = (marker: google.maps.Marker) => {
+    marker.setMap(null);
+  };
+
+  const showMarker = (marker: google.maps.Marker, map: google.maps.Map) => {
+    marker.setMap(map);
+  };
+
+  useEffect(() => {
+    // Iterate through the filtered projects to update the visibility of each marker
+    projects?.forEach(project => {
+      const marker = markerMap.current.get(project.id);
+
+      if (marker) {
+        // Check if the project is in the filtered list
+        const isInFilteredProjects = filteredProjects?.some(
+          filteredProject => filteredProject.id === project.id,
+        );
+
+        if (isInFilteredProjects && map) {
+          showMarker(marker, map);
+        } else {
+          hideMarker(marker);
+        }
+      }
+    });
+  }, [filteredProjects, map, projects]);
+
+  // Re-rendering clusters based on filtered projects
+  useEffect(() => {
+    if (!clusterer || !map) return;
+
+    clusterer.clearMarkers();
+
+    filteredProjects?.forEach(project => {
+      const marker = markerMap.current.get(project.id);
+      if (marker) {
+        clusterer.addMarker(marker);
+      }
+    });
+  }, [filteredProjects, clusterer, map]);
+
   return (
     <>
       {projects?.map((project: Project) => {
@@ -148,6 +193,7 @@ export default function AddMarker({
             onMarkerClick={handleMarkerClick}
             clusterer={clusterer}
             selectedProjectId={selectedProjectId}
+            markerMap={markerMap.current}
           />
         );
       })}
