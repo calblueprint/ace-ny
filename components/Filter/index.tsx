@@ -16,6 +16,8 @@ interface FilterProps {
   selectedFilters: Filters;
   filterChangeHandlers: FilterChangeHandlers;
   handleButtonClick: (filter: FilterType) => void;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
 }
 
 export default function Filter({
@@ -24,6 +26,8 @@ export default function Filter({
   selectedFilters,
   filterChangeHandlers,
   handleButtonClick,
+  handleFilterButtonClick,
+  clearFilters,
 }: FilterProps) {
   return (
     <FilterBackgroundStyles isActive={isActive}>
@@ -36,6 +40,8 @@ export default function Filter({
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
+            handleFilterButtonClick={handleFilterButtonClick}
+            clearFilters={clearFilters}
           />
         ) : filter.id === 'status' ? (
           <StatusDropdown

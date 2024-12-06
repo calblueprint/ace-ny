@@ -19,13 +19,25 @@ export default function KeyDevelopmentMilestone({
     'IA tendered',
     'Operations begun',
   ];
-
+  function getDate() {
+    if (!date) return null;
+    const res = new Date(date);
+    return res;
+  }
   // Sets status label to date of completion or 'Pending' if incomplete
-  if (date) {
-    const year = date.slice(2, 4);
-    const month = date.slice(5, 7);
-    const day = date.slice(8, 10);
-    statusLabel = `${month}.${day}.${year}`;
+  if (milestoneLabels[index] === 'NYSERDA contracted' && date) {
+    const date_object = getDate();
+    statusLabel = String(date_object?.getFullYear());
+  } else if (date) {
+    const date_object = getDate();
+    if (date_object) {
+      const year = String(date_object?.getFullYear()).slice(-2);
+      const month = String(1 + date_object?.getMonth()).padStart(2, '0');
+      const day = String(date_object?.getDate()).padStart(2, '0');
+      statusLabel = `${month}.${day}.${year}`;
+    }
+  } else if (completed) {
+    statusLabel = 'Completed';
   } else {
     statusLabel = 'Pending';
   }
