@@ -26,7 +26,7 @@ url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 supabase: Client = create_client(url, key)
 supabase_table: str = (
-    "Projects_duplicate"  # TODO: modify based on which table in supabase we want to edit
+    "Projects_test_julee"  # TODO: modify based on which table in supabase we want to edit
 )
 
 geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
@@ -755,7 +755,7 @@ For testing
 # nyserda_large_to_database()
 # nyserda_solar_to_database()
 # nyiso_to_database()
-# ores_noi_to_database()
-# ores_under_review_to_database()
-# ores_permitted_to_database()
+ores_noi_to_database()
+ores_under_review_to_database()
+ores_permitted_to_database()
 # check_withdrawn_nyiso_in_database()
