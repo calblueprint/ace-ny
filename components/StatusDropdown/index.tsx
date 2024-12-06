@@ -1,4 +1,3 @@
-import React from 'react'; //REMOVE
 import { FilterType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
@@ -27,6 +26,8 @@ interface StatusDropdownProps {
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
 }
 
 export default function StatusDropdown({
@@ -36,9 +37,11 @@ export default function StatusDropdown({
   icon,
   label,
   currFilter,
+  handleFilterButtonClick,
+  clearFilters,
 }: StatusDropdownProps) {
   const filterOptions = [
-    { title: 'In Progress', color: `${COLORS.ashGrey}` },
+    { title: 'Proposed', color: `${COLORS.ashGrey}` },
     { title: 'Operational', color: `${COLORS.chateauGreen}` },
   ];
 
@@ -58,7 +61,7 @@ export default function StatusDropdown({
           <ButtonStyles>
             <FilterNameText>{label}</FilterNameText>
           </ButtonStyles>
-          <ExitStyles>
+          <ExitStyles onClick={clearFilters}>
             <ExitIcon />
           </ExitStyles>
         </ButtonWithIconStyles>
@@ -79,7 +82,10 @@ export default function StatusDropdown({
             </CheckboxContainer>
           ))}
         </div>
-        <ApplyButtonStyles isActive={isApplyButtonActive}>
+        <ApplyButtonStyles
+          isActive={isApplyButtonActive}
+          onClick={handleFilterButtonClick}
+        >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
       </FilterContentDiv>

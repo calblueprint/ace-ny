@@ -97,7 +97,7 @@ export default function ProjectItem({
   // Sets status label to "Operational" or "In Progress"
   let projectStatus = project_status;
   if (project_status !== 'Operational') {
-    projectStatus = 'In Progress';
+    projectStatus = 'Proposed';
   }
 
   // Sets status icon to OperationalIcon or InProgressIcon

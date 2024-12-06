@@ -1,4 +1,3 @@
-import React from 'react';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
 import { FilterHeadingUnused } from '@/styles/texts';
@@ -51,6 +50,8 @@ export default function Filter({
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
+            handleFilterButtonClick={handleFilterButtonClick}
+            clearFilters={clearFilters}
           />
         ) : // Add other filter dropdown components here
         null
