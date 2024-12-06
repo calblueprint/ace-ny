@@ -84,6 +84,8 @@ def nyserda_large_to_database() -> None:
     Otherwise, we push the new project to the Supabase database.
     In the case that the project is cancelled, we delete the project from the Supabase database.
     """
+    updated_ids = set()
+    inserted_ids = set()
     database = []
     database.extend(query_nyserda_large()[:10])  # TODO: update slice for testing
     for project in database:
@@ -195,6 +197,7 @@ def nyserda_large_to_database() -> None:
                         .execute()
                     )
                     print("UPDATE", response, "\n")
+                    updated_ids.add(response.data[0]["id"])
                 except Exception as exception:
                     print(exception)
             # print statement in case project does not have newer data than what the database already has
@@ -273,8 +276,10 @@ def nyserda_large_to_database() -> None:
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
+                inserted_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
+    return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
 def nyserda_solar_to_database() -> None:
@@ -285,6 +290,8 @@ def nyserda_solar_to_database() -> None:
     If so, we only update the project if the new project has newer data.
     Otherwise, we push the new project to the Supabase database.
     """
+    updated_ids = set()
+    inserted_ids = set()
     database = []
     database.extend(query_nyserda_solar_repeat())
     for project in database:
@@ -360,6 +367,7 @@ def nyserda_solar_to_database() -> None:
                         .execute()
                     )
                     print("UPDATE", response, "\n")
+                    updated_ids.add(response.data[0]["id"])
                 except Exception as exception:
                     print(exception)
             # print statement in case project does not have newer data than what the database already has
@@ -426,8 +434,10 @@ def nyserda_solar_to_database() -> None:
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
+                inserted_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
+    return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
 def nyiso_to_database() -> None:
@@ -438,6 +448,8 @@ def nyiso_to_database() -> None:
     Otherwise, the new project is pushed to Supabase.
     This helper function is called for all three sheets in the NYISO xlsx spreadsheet: Interconnection Queue, Cluster Projects, and In Service
     """
+    updated_ids = set()
+    inserted_ids = set()
 
     # helper function to handle different actions based on which sheet the data is from
     def nyiso_to_database_helper(projects, sheet_name):
@@ -554,6 +566,7 @@ def nyiso_to_database() -> None:
                             .execute()
                         )
                         print("UPDATE", response, "\n")
+                        updated_ids.add(response.data[0]["id"])
                     except Exception as exception:
                         print(exception)
                 else:
@@ -611,6 +624,7 @@ def nyiso_to_database() -> None:
                 try:
                     response = supabase.table(supabase_table).insert(project).execute()
                     print("INSERT", response, "\n")
+                    inserted_ids.add(response.data[0]["id"])
                 except Exception as exception:
                     print(exception)
 
@@ -618,6 +632,8 @@ def nyiso_to_database() -> None:
     nyiso_to_database_helper(filter_nyiso_iq_sheet()[:10], "Interconnection Queue")
     nyiso_to_database_helper(filter_nyiso_cluster_sheet()[:10], "Cluster Projects")
     nyiso_to_database_helper(filter_nyiso_in_service_sheet()[:10], "In Service")
+
+    return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
 # NOTE: currently commenting out function to delete withdrawn projects for now
@@ -648,6 +664,8 @@ def nyiso_to_database() -> None:
 
 
 def ores_noi_to_database():
+    updated_ids = set()
+    inserted_ids = set()
     database = []
     database.extend(query_ores_noi())
     for project in database:
@@ -686,6 +704,7 @@ def ores_noi_to_database():
                     .execute()
                 )
                 print("UPDATE", response, "\n")
+                updated_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
         else:
@@ -716,11 +735,15 @@ def ores_noi_to_database():
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
+                inserted_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
+    return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
 def ores_under_review_to_database() -> None:
+    updated_ids = set()
+    inserted_ids = set()
     database = []
     database.extend(query_ores_under_review())
     for project in database:
@@ -777,6 +800,7 @@ def ores_under_review_to_database() -> None:
                     .execute()
                 )
                 print("UPDATE", response, "\n")
+                updated_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
         else:
@@ -814,11 +838,15 @@ def ores_under_review_to_database() -> None:
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
+                inserted_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
+    return {"inserted_ids": inserted_ids, "updated_ids": updated_ids}
 
 
 def ores_permitted_to_database() -> None:
+    updated_ids = set()
+    inserted_ids = set()
     database = []
     database.extend(query_ores_permitted())
     for project in database:
@@ -875,6 +903,7 @@ def ores_permitted_to_database() -> None:
                     .execute()
                 )
                 print("UPDATE", response, "\n")
+                updated_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
         else:
@@ -912,8 +941,10 @@ def ores_permitted_to_database() -> None:
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
+                inserted_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
+    return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
 def merge_projects() -> None:
@@ -1019,6 +1050,7 @@ def merge_projects() -> None:
             print("DELETE", response, "\n")
         except Exception as exception:
             print(exception)
+    return {"deleted_ids": set(duplicates_to_delete)}
 
 
 """
