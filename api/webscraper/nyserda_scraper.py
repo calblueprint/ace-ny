@@ -45,7 +45,7 @@ def query_nyserda_large():
                         item.get("renewable_technology")
                     ],
                     "developer": item.get("developer_name", None),
-                    "county": item.get("county_province", None),
+                    "county": [item.get("county_province")] or None,
                     "region": item.get("redc", None),
                     "zipcode": item.get("zip_code", None),
                     "latitude": (
@@ -132,8 +132,8 @@ def query_nyserda_solar(offset=0, limit=1000):
                     "size": size_in_mw,
                     "developer": item.get("developer", None),
                     "proposed_cod": item.get("interconnection_date", None),
-                    "town": item.get("city_town", None),
-                    "county": item.get("county", None),
+                    "town": [item.get("city_town")] or None,
+                    "county": [item.get("county")] or None,
                     "region": item.get("redc", None),  # missing
                     "zipcode": item.get("zip", None),
                     "latitude": None,

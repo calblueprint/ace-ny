@@ -33,7 +33,7 @@ url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 supabase: Client = create_client(url, key)
 supabase_table: str = (
-    "Projects_test"  # TODO: modify based on which table in supabase we want to edit
+    "Projects_test_deena"  # TODO: modify based on which table in supabase we want to edit
 )
 
 geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
@@ -336,6 +336,8 @@ def nyserda_solar_to_database() -> None:
                 # delete data_through_date before pushing to supabase
                 if "data_through_date" in project:
                     del project["data_through_date"]
+                if "id" in update_object:
+                    del update_object["id"]
                 try:
                     response = (
                         supabase.table(supabase_table)
@@ -515,6 +517,9 @@ def nyiso_to_database() -> None:
                         datetime.now(tz=nyt),
                         existing_project.get("last_updated", {}),
                     )
+                    # delete project id primary key before pushing to supabase
+                    if "id" in update_object:
+                        del update_object["id"]
                     try:
                         response = (
                             supabase.table(supabase_table)
@@ -638,6 +643,8 @@ def ores_noi_to_database():
                 datetime.now(tz=nyt),
                 existing_project.get("last_updated", {}),
             )
+            if "id" in update_object:
+                del update_object["id"]
             try:
                 response = (
                     supabase.table(supabase_table)
@@ -720,6 +727,8 @@ def ores_under_review_to_database() -> None:
                 datetime.now(tz=nyt),
                 existing_project.get("last_updated", {}),
             )
+            if "id" in update_object:
+                del update_object["id"]
             try:
                 response = (
                     supabase.table(supabase_table)
@@ -809,6 +818,8 @@ def ores_permitted_to_database() -> None:
                 datetime.now(tz=nyt),
                 existing_project.get("last_updated", {}),
             )
+            if "id" in update_object:
+                del update_object["id"]
             try:
                 response = (
                     supabase.table(supabase_table)

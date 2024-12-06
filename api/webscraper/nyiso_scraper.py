@@ -64,7 +64,7 @@ def query_nyiso():
                 "proposed_cod": item.get(
                     "Proposed COD", None
                 ),  # note: non-serializable into JSON --> can't directly write to file
-                "county": item.get("County", None),
+                "county": [item.get("County")] or None,
                 "region": None,  # missing
                 "zipcode": None,  # missing
                 "latitude": None,
@@ -119,7 +119,7 @@ def filter_nyiso_list(project_list, sheet_name):
             "proposed_cod": item.get(
                 "Proposed COD", None
             ),  # NOTE: non-serializable into JSON --> can't directly write to file
-            "county": item.get("County", None),
+            "county": [item.get("County")] or None,
             "region": None,  # missing
             "zipcode": None,  # missing
             "latitude": None,
