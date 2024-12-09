@@ -9,16 +9,6 @@ import {
   IconStyle,
 } from './styles';
 
-interface FilterProps {
-  filter: FilterType;
-  isActive: boolean;
-  selectedFilters: Filters;
-  filterChangeHandlers: FilterChangeHandlers;
-  handleButtonClick: (filter: FilterType) => void;
-  handleFilterButtonClick: () => void;
-  clearFilters: () => void;
-}
-
 export default function Filter({
   filter,
   isActive,
@@ -27,7 +17,17 @@ export default function Filter({
   handleButtonClick,
   handleFilterButtonClick,
   clearFilters,
-}: FilterProps) {
+  setActiveFilter,
+}: {
+  filter: FilterType;
+  isActive: boolean;
+  selectedFilters: Filters;
+  filterChangeHandlers: FilterChangeHandlers;
+  handleButtonClick: (filter: FilterType) => void;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
+  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+}) {
   return (
     <FilterBackgroundStyles isActive={isActive}>
       {isActive ? (
@@ -41,6 +41,7 @@ export default function Filter({
             currFilter={filter}
             handleFilterButtonClick={handleFilterButtonClick}
             clearFilters={clearFilters}
+            setActiveFilter={setActiveFilter}
           />
         ) : filter.id === 'status' ? (
           <StatusDropdown
@@ -52,6 +53,7 @@ export default function Filter({
             currFilter={filter}
             handleFilterButtonClick={handleFilterButtonClick}
             clearFilters={clearFilters}
+            setActiveFilter={setActiveFilter}
           />
         ) : // Add other filter dropdown components here
         null

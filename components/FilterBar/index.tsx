@@ -39,8 +39,8 @@ export const FilterBar = ({
     // Add other filter change handlers here
     status: handleStatusChange,
     technology: handleTechnologyChange,
-    projectSize: () => {},
-    location: () => {},
+    /*projectSize: () => {},
+    location: () => {},*/
   };
 
   return (
@@ -55,6 +55,7 @@ export const FilterBar = ({
           handleButtonClick={handleButtonClick}
           handleFilterButtonClick={handleFilterButtonClick}
           clearFilters={clearFilters}
+          setActiveFilter={setActiveFilter}
         />
       ))}
     </FilterContainerStyles>

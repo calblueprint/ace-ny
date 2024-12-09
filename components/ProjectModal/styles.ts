@@ -71,6 +71,12 @@ export const Developer = styled.div`
   align-items: center;
 `;
 
+export const DeveloperText = styled.div<{ $isDeveloperEmpty: boolean }>`
+  display: flex;
+  visibility: ${({ $isDeveloperEmpty }) =>
+    $isDeveloperEmpty ? 'hidden' : 'visible'};
+`;
+
 export const ProjectName = styled.div`
   overflow: visible;
   text-overflow: ellipsis;
@@ -112,9 +118,10 @@ export const AdditionalInfo = styled.div`
   padding: 1.25rem;
 `;
 
-export const DetailsContainer = styled.div<{ $isEmpty: boolean }>`
+export const DetailsContainer = styled.div<{ $isDetailsEmpty: boolean }>`
   display: flex;
-  visibility: ${({ $isEmpty }) => ($isEmpty ? 'hidden' : 'visible')};
+  visibility: ${({ $isDetailsEmpty }) =>
+    $isDetailsEmpty ? 'hidden' : 'visible'};
   align-items: center;
   width: 100%;
   gap: 0.5rem;

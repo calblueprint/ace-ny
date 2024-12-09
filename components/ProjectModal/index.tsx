@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { FiX, FiZap } from 'react-icons/fi';
 import Modal from 'react-modal';
 import Image from 'next/image';
+import { DeveloperIcon } from '@/assets/Project-Icons/icons';
 import {
   queryDefaultImages,
   queryProjectbyId,
@@ -25,6 +26,7 @@ import {
   CloseButton,
   DetailsContainer,
   Developer,
+  DeveloperText,
   Divider,
   modalContentStyles,
   modalOverlayStyles,
@@ -138,7 +140,16 @@ export default function ProjectModal({
         />
         <ProjectOverview>
           <Developer>
-            <BodyText1>{developer ? 'Developer ‣ ' + developer : ''}</BodyText1>
+            <DeveloperText $isDeveloperEmpty={!developer}>
+              <BodyText1>
+                Developer{' '}
+                <DeveloperIcon
+                  width={'0.5rem'}
+                  height={'0.5rem'}
+                ></DeveloperIcon>{' '}
+                {developer}
+              </BodyText1>
+            </DeveloperText>
             <CloseButton onClick={closeModal}>
               <FiX size={20} color="#000" />
             </CloseButton>
@@ -161,7 +172,7 @@ export default function ProjectModal({
         <Divider />
         <AllKDMS>{KDMs}</AllKDMS>
         <AdditionalInfo>
-          <DetailsContainer $isEmpty={!additional_information}>
+          <DetailsContainer $isDetailsEmpty={!additional_information}>
             <BodyText1>DETAILS</BodyText1>
             <Divider />
           </DetailsContainer>

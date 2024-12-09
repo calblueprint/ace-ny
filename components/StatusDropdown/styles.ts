@@ -4,14 +4,14 @@ import COLORS from '../../styles/colors';
 export const FilterDropdownStyles = styled.div`
   position: relative;
   background: ${COLORS.white};
-  width: 10.5rem;
+  width: 10rem;
   border-radius: 0.5rem;
 `;
 
 export const FilterContentDiv = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 0.625rem 1.25rem 0.9rem 1.25rem;
+  padding: 0.625rem 0.9375rem 0.9rem 0.9375rem;
   align-content: space-between;
 `;
 
@@ -78,4 +78,22 @@ export const CheckboxContainer = styled.div`
 export const IconStyles = styled.div`
   width: 3rem;
   height: 3rem;
+`;
+
+export const ClearButtonStyles = styled.button<{ isActive: boolean }>`
+  width: 8rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 0.09rem;
+  border-color: ${COLORS.electricBlue};
+  opacity: ${({ isActive }) => (isActive ? '1' : '0.5')};
+  background: ${COLORS.white};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.375rem auto auto auto;
+  pointer-events: ${({ isActive }) => (isActive ? 'auto' : 'none')};
+  cursor: ${({ isActive }) => (isActive ? 'pointer' : 'not-allowed')};
 `;

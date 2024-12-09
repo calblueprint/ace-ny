@@ -1,5 +1,6 @@
 import {
   ApplyFiltersText,
+  ClearFiltersText,
   FilterCategoryLabel,
   FilterCategoryText1,
   FilterHeadingUnused,
@@ -22,23 +23,13 @@ import {
   ButtonWithIconStyles,
   CheckboxContainer,
   CheckboxStyles,
+  ClearButtonStyles,
   ExitStyles,
   FilterContentDiv,
   FilterDropdownStyles,
   FilterIconStyles,
   IconStyles,
 } from './styles';
-
-interface TechnologyDropdownProps {
-  selectedTechnologies: string[];
-  setSelectedTechnologies: (technologies: string[]) => void;
-  handleButtonClick: (filter: FilterType) => void;
-  icon: React.ReactNode;
-  label: string;
-  currFilter: FilterType;
-  handleFilterButtonClick: () => void;
-  clearFilters: () => void;
-}
 
 export default function TechnologyDropdown({
   selectedTechnologies,
@@ -49,7 +40,23 @@ export default function TechnologyDropdown({
   currFilter,
   handleFilterButtonClick,
   clearFilters,
-}: TechnologyDropdownProps) {
+  setActiveFilter,
+}: {
+  selectedTechnologies: string[];
+  setSelectedTechnologies: (technologies: string[]) => void;
+  handleButtonClick: (filter: FilterType) => void;
+  icon: React.ReactNode;
+  label: string;
+  currFilter: FilterType;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
+  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+}) {
+  const handleApplyButtonClick = () => {
+    handleFilterButtonClick();
+    setActiveFilter(null);
+  };
+
   const filter = {
     categories: [
       {
@@ -150,7 +157,7 @@ export default function TechnologyDropdown({
           <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
             <FilterHeadingUnused>{label}</FilterHeadingUnused>
           </ButtonStyles>
-          <ExitStyles onClick={clearFilters}>
+          <ExitStyles>
             <ExitIcon />
           </ExitStyles>
         </ButtonWithIconStyles>
@@ -178,10 +185,16 @@ export default function TechnologyDropdown({
         ))}
         <ApplyButtonStyles
           isActive={isApplyButtonActive}
-          onClick={handleFilterButtonClick}
+          onClick={handleApplyButtonClick}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
+        <ClearButtonStyles
+          isActive={isApplyButtonActive}
+          onClick={clearFilters}
+        >
+          <ClearFiltersText>CLEAR</ClearFiltersText>
+        </ClearButtonStyles>
       </FilterContentDiv>
     </FilterDropdownStyles>
   );

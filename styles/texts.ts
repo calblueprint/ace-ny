@@ -34,7 +34,7 @@ const TextStylesCoinbaseText = css<TextProps>`
 
 export const Heading1 = styled.h1<TextProps>`
   ${TextStylesCoinbaseMono}
-  font-weight: 300;
+  font-weight: 400;
   color: ${COLORS.navy};
   font-size: 1.375rem;
   font-style: normal;
@@ -64,18 +64,17 @@ export const SubHeading2 = styled.h2<TextProps>`
   font-size: 0.625rem;
   color: ${COLORS.navy};
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   opacity: 0.75;
   line-height: 120%;
 `;
 
 export const BodyText1 = styled.p<TextProps>`
   ${TextStylesCoinbaseMono}
-  color: ${COLORS.navy};
+  color: ${COLORS.navy75};
   font-size: 0.625rem;
   font-style: normal;
-  font-weight: 300;
-  opacity: 0.65;
+  font-weight: 400;
   line-height: 120%;
 `;
 
@@ -84,7 +83,7 @@ export const BodyText2 = styled.p<TextProps>`
   color: ${COLORS.navy};
   font-size: 0.875rem;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 130%; /* 15.6px */
   letter-spacing: 0.25px;
 `;
@@ -95,7 +94,7 @@ export const AccentText1 = styled.h4<TextProps>`
   font-style: normal;
   color: ${COLORS.navy};
   opacity: 0.85;
-  font-weight: 300;
+  font-weight: 400;
   line-height: normal;
 `;
 
@@ -104,7 +103,7 @@ export const AccentText2 = styled.h4<TextProps>`
   color: ${COLORS.navy};
   font-size: 0.875rem;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   line-height: normal;
 `;
 
@@ -113,9 +112,20 @@ export const TagText1 = styled.p<TextProps>`
   color: ${COLORS.navy};
   font-size: 0.625rem;
   font-style: normal;
-  font-weight: 200;
+  font-weight: 300;
   opacity: 0.75;
   line-height: normal;
+`;
+
+export const MarkerInfoWindowText1 = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.navy};
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 300;
+  opacity: 0.75;
+  line-height: 0.77;
+  padding-left: 0.4rem;
 `;
 
 export const FilterHeadingUnused = styled.h3<TextProps>`
@@ -207,7 +217,7 @@ export const FilterOptionsText = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
   font-size: 0.75rem;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 400;
   line-height: normal;
   color: ${({ $color }) => $color || COLORS.navy};
 `;
@@ -219,6 +229,15 @@ export const ApplyFiltersText = styled.p<TextProps>`
   font-weight: 500;
   line-height: normal;
   color: ${COLORS.white};
+`;
+
+export const ClearFiltersText = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: ${COLORS.electricBlue};
 `;
 
 /*

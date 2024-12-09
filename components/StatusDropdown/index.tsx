@@ -3,6 +3,7 @@ import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
   ApplyFiltersText,
+  ClearFiltersText,
   FilterHeadingUnused,
   FilterNameText,
   FilterOptionsText,
@@ -13,22 +14,12 @@ import {
   ButtonWithIconStyles,
   CheckboxContainer,
   CheckboxStyles,
+  ClearButtonStyles,
   ExitStyles,
   FilterContentDiv,
   FilterDropdownStyles,
   OptionTitleStyles,
 } from './styles';
-
-interface StatusDropdownProps {
-  selectedStatus: string[];
-  setSelectedStatus: (status: string[]) => void;
-  handleButtonClick: (filter: FilterType) => void;
-  icon: React.ReactNode;
-  label: string;
-  currFilter: FilterType;
-  handleFilterButtonClick: () => void;
-  clearFilters: () => void;
-}
 
 export default function StatusDropdown({
   selectedStatus,
@@ -39,7 +30,23 @@ export default function StatusDropdown({
   currFilter,
   handleFilterButtonClick,
   clearFilters,
-}: StatusDropdownProps) {
+  setActiveFilter,
+}: {
+  selectedStatus: string[];
+  setSelectedStatus: (status: string[]) => void;
+  handleButtonClick: (filter: FilterType) => void;
+  icon: React.ReactNode;
+  label: string;
+  currFilter: FilterType;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
+  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+}) {
+  const handleApplyButtonClick = () => {
+    handleFilterButtonClick();
+    setActiveFilter(null);
+  };
+
   const filterOptions = [
     { title: 'Proposed', color: `${COLORS.ashGrey}` },
     { title: 'Operational', color: `${COLORS.chateauGreen}` },
@@ -69,7 +76,7 @@ export default function StatusDropdown({
           {filterOptions.map(option => (
             <CheckboxContainer key={option.title}>
               <CheckboxStyles
-                type="checkbox"
+                type="radio"
                 checked={selectedStatus.includes(option.title)}
                 onChange={() => handleStatusChange(option.title)}
               />
@@ -84,10 +91,16 @@ export default function StatusDropdown({
         </div>
         <ApplyButtonStyles
           isActive={isApplyButtonActive}
-          onClick={handleFilterButtonClick}
+          onClick={handleApplyButtonClick}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
+        <ClearButtonStyles
+          isActive={isApplyButtonActive}
+          onClick={clearFilters}
+        >
+          <ClearFiltersText>CLEAR</ClearFiltersText>
+        </ClearButtonStyles>
       </FilterContentDiv>
     </FilterDropdownStyles>
   );
