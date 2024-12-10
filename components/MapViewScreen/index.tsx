@@ -8,7 +8,6 @@ ProjectSizeIcon,*/
 } from '@/assets/Dropdown-Icons/icons';
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
-import { SearchBar } from '@/components/SearchBar';
 import { Filters, FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
 import ProjectModal from '../ProjectModal';
@@ -130,7 +129,6 @@ export default function MapViewScreen({
 
   return (
     <>
-      <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <FilterBar
         filters={filters}
         selectedFilters={selectedFilters}
@@ -150,6 +148,8 @@ export default function MapViewScreen({
         projects={filteredProjects}
         map={map}
         setSelectedProjectId={setSelectedProjectId}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
       />
       {selectedProjectId && (
         <ProjectModal

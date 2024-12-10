@@ -3,27 +3,14 @@ import { CoinbaseText } from '@/styles/fonts';
 import COLORS from '../../styles/colors';
 
 export const SearchBarPaddingStyles = styled.div`
-  display: inline-flex;
-  position: absolute;
-  top: 1.26rem;
-  left: 1.25rem;
-  background: linear-gradient(
-    180deg,
-    rgba(250, 250, 250, 0.32) 0%,
-    rgba(238, 238, 238, 0.65) 100%
-  );
-  backdrop-filter: blur(7.5px);
-  padding: 0.3rem;
+  display: flex;
   align-items: center;
   gap: 0.4rem;
-  border-radius: 6.25rem;
-  border: 0.05rem solid #fff;
-  z-index: 3;
 `;
 
 export const SearchBarBackgroundStyles = styled.div`
   display: flex;
-  width: 21.6rem;
+  width: 20rem;
   height: 2.75rem;
   padding: 0.3rem 1.8rem;
   flex-direction: row;
@@ -31,9 +18,10 @@ export const SearchBarBackgroundStyles = styled.div`
   align-items: center;
   flex-shrink: 0;
   gap: 0.5rem;
-  border-radius: 6.25rem;
-  background: ${COLORS.white};
+  border-radius: 12px 12px 8px 8px;
+  background: ${COLORS.navy30};
   box-sizing: border-box;
+  border-bottom: 1px solid var(--navy-50, #949aa9);
 `;
 
 export const SearchBarStyles = styled.input`
@@ -42,19 +30,19 @@ export const SearchBarStyles = styled.input`
   outline: none;
   box-shadow: none;
   padding-right: 7rem;
+  background: none;
   &::placeholder {
     ${CoinbaseText.style}
-    font-size: 0.85rem;
+    font-size: 0.875rem;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 300;
     line-height: normal;
-    opacity: 0.5;
-    color: ${COLORS.navy};
+    color: ${COLORS.navy85};
   }
   ${CoinbaseText.style}
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: normal;
   color: ${COLORS.electricBlue};
 `;
