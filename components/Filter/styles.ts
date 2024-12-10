@@ -10,10 +10,12 @@ export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
   backdrop-filter: blur(7.5px);
   padding: 0.25rem;
   z-index: 5;
-  border: 0.05rem solid #fff;
-  margin-top: 1rem;
+  border: 'none';
+
+  margin-top: 0.45rem;
   max-height: ${({ isActive }) => (isActive ? 'auto' : '2.2rem')};
   border-radius: ${({ isActive }) => (isActive ? '0.8rem' : '6.25rem')};
+
   transition: height 0.5s ease-in-out;
 `;
 

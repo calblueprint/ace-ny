@@ -62,10 +62,9 @@ export const SubHeading1 = styled.h2<TextProps>`
 export const SubHeading2 = styled.h2<TextProps>`
   ${TextStylesCoinbaseMono}
   font-size: 0.625rem;
-  color: ${COLORS.navy};
+  color: ${COLORS.navy75};
   font-style: normal;
   font-weight: 400;
-  opacity: 0.75;
   line-height: 120%;
 `;
 
@@ -92,8 +91,7 @@ export const AccentText1 = styled.h4<TextProps>`
   ${TextStylesCoinbaseText}
   font-size: 3rem;
   font-style: normal;
-  color: ${COLORS.navy};
-  opacity: 0.85;
+  color: ${COLORS.navy85};
   font-weight: 400;
   line-height: normal;
 `;
@@ -109,32 +107,38 @@ export const AccentText2 = styled.h4<TextProps>`
 
 export const TagText1 = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
-  color: ${COLORS.navy};
+  color: ${COLORS.navy75};
   font-size: 0.625rem;
   font-style: normal;
   font-weight: 300;
-  opacity: 0.75;
+  line-height: normal;
+`;
+
+export const TagText2 = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.electricBlue};
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 300;
   line-height: normal;
 `;
 
 export const MarkerInfoWindowText1 = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
-  color: ${COLORS.navy};
+  color: ${COLORS.navy75};
   font-size: 0.625rem;
   font-style: normal;
   font-weight: 300;
-  opacity: 0.75;
   line-height: 0.77;
   padding-left: 0.4rem;
 `;
 
 export const FilterHeadingUnused = styled.h3<TextProps>`
   ${TextStylesCoinbaseText}
-  color: ${COLORS.navy};
+  color: ${COLORS.navy85};
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
-  opacity: 0.85;
   line-height: normal;
 `;
 
@@ -163,8 +167,7 @@ export const FilterCategoryText1 = styled.p<TextProps>`
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 300;
-  color: ${COLORS.navy};
-  opacity: 0.75;
+  color: ${COLORS.navy75};
 `;
 
 export const MinMaxTextUnused = styled.p<TextProps>`

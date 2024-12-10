@@ -29,19 +29,22 @@ export const SearchBar = ({
     <SearchBarPaddingStyles>
       <SearchBarBackgroundStyles>
         <SearchBarDiv>
-          <SearchIcon />
+          {searchTerm && searchTerm.length > 0 ? (
+            <SearchExitButton
+              onClick={handleExit}
+              $isZero={searchTerm?.length === 0}
+            >
+              <SearchExit />
+            </SearchExitButton>
+          ) : (
+            <SearchIcon fill={'#4C5671'} />
+          )}
           <SearchBarStyles
             type="text"
             placeholder="Search for a project"
             onChange={handleSearchChange}
             value={searchTerm + ''}
           />
-          <SearchExitButton
-            onClick={handleExit}
-            $isZero={searchTerm?.length === 0}
-          >
-            <SearchExit />
-          </SearchExitButton>
         </SearchBarDiv>
       </SearchBarBackgroundStyles>
     </SearchBarPaddingStyles>
