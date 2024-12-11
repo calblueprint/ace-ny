@@ -2,8 +2,8 @@ import requests
 import pandas as pd
 from io import BytesIO
 import json
-from utils.scraper_utils import clean_df_data
-from database_constants import (
+from .utils.scraper_utils import clean_df_data
+from .database_constants import (
     renewable_energy_abbreviations,
 )
 
@@ -141,6 +141,7 @@ def filter_nyiso_list(project_list, sheet_name):
             # the following fields are used for updating kdms when updating the database
             "date_of_ir": item.get("Date of IR", None),  # datetime object
             "ia_tender_date": item.get("IA Tender Date", None),  # timestamp object
+            "utility": item.get("Utility", None),
         }
         if sheet_name == "In Service":
             project_dict["developer"] = item.get("Owner/Developer", None)

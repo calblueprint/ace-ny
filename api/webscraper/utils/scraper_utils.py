@@ -1,5 +1,6 @@
 import requests
 import urllib
+import copy
 from dotenv import load_dotenv
 import os
 import pandas as pd
@@ -131,6 +132,46 @@ def turn_timestamp_to_string(timestamp):
     returns a string of the form "YYYY-MM-DD"
     """
     return timestamp.to_pydatetime().strftime("%Y-%m-%d")
+
+
+def find_keyword(project_name):
+    if " " not in project_name:
+        return project_name
+    if "*" in project_name:
+        i = project_name.find("*")
+        return project_name[:i].strip()
+    elif "solar" in project_name.lower():
+        i = project_name.lower().find("solar")
+        return project_name[:i].strip()
+    elif "wind" in project_name.lower():
+        i = project_name.lower().find("wind")
+        return project_name[:i].strip()
+    else:
+        j = 0
+        while j < len(project_name):
+            if project_name[j].isdigit():
+                break
+            else:
+                j += 1
+        return project_name[:j].strip()
+
+
+def combine_projects(existing_project: dict, new_project: dict) -> dict:
+    """
+    params: existing project is a dict, new project is a dict representing the new data
+    Adds any data that the new_project has but that the existing project is missing
+    """
+    for key, value in existing_project.items():
+        # add field if existing project doesn't have it but new project does
+        if value is None and new_project.get(key, None) is not None:
+            existing_project[key] = new_project[key]
+    return existing_project
+
+
+def pass_all_kdms(kdm: dict) -> dict:
+    for milestone in kdm:
+        milestone["completed"] = True
+    return kdm
 
 
 # commands for creating requirements.txt file
