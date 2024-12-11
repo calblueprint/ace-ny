@@ -1,41 +1,81 @@
 import os
-from datetime import datetime
-from dateutil import tz
+import copy
+from dotenv import load_dotenv
+from datetime import datetime, timezone
 from supabase import create_client, Client
 from geocodio import GeocodioClient
 
-from nyserda_scraper import query_nyserda_large, query_nyserda_solar_repeat
-from nyiso_scraper import (
+from .nyserda_scraper import query_nyserda_large, query_nyserda_solar_repeat
+from .nyiso_scraper import (
     filter_nyiso_iq_sheet,
     filter_nyiso_cluster_sheet,
     filter_nyiso_in_service_sheet,
     filter_nyiso_withdrawn_sheets,
 )
-from ores_scraper import query_ores_noi, query_ores_under_review, query_ores_permitted
-from utils.scraper_utils import (
+from .ores_scraper import query_ores_noi, query_ores_under_review, query_ores_permitted
+from .utils.scraper_utils import (
     geocode_lat_long,
     create_update_object,
     update_kdm,
     update_last_updated,
+    find_keyword,
+    combine_projects,
+    pass_all_kdms,
 )
-from database_constants import (
+from .database_constants import (
     initial_kdm,
 )
+
+load_dotenv(os.path.join(os.path.dirname(__file__), "../../.env.local"))
 
 url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 supabase: Client = create_client(url, key)
 supabase_table: str = (
-    "Projects_test_julee"  # TODO: modify based on which table in supabase we want to edit
+    "Projects_test_deena"  # TODO: modify based on which table in supabase we want to edit
 )
 
 geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
 geocodio = GeocodioClient(geocode_api)
 
 # constant used for the New York Timezone used when comparing datetime objects
-nyt = tz.gettz("America/New_York")
+nyt = timezone(datetime.now(timezone.utc).astimezone().utcoffset())
 
 # NOTE: Supabase date objects follow the format YYYY-MM-DD
+
+
+def offset_lat_long(lat, long):
+    """
+    params: lat and long are floats representing the latitude and longitude of a project
+    If the project does not have a defined latitude or longitude yet, return None
+    Checks if there is a project within 0.005 degrees of the latitude and longitude and offsets the latitude and longitude if it overlaps with other projects
+    returns: newly offset latitude and longitude
+    """
+    if lat is None or long is None:
+        return (None, None)
+    overlapping_projects = (
+        supabase.table(supabase_table)
+        .select("*")
+        .lte("latitude", float(lat) + 0.005)
+        .gte("latitude", float(lat) - 0.005)
+        .lte("longitude", float(lat) + 0.005)
+        .gte("longitude", float(lat) - 0.005)
+        .execute()
+    )
+    while len(overlapping_projects.data) > 0:
+        # casting in case lat and long aren't floats yet
+        lat = float(lat) + 0.01  # offset latitude and longitude by about 1111 meters
+        long = float(long) + 0.01
+        overlapping_projects = (
+            supabase.table(supabase_table)
+            .select("*")
+            .lte("latitude", float(lat) + 0.005)
+            .gte("latitude", float(lat) - 0.005)
+            .lte("longitude", float(lat) + 0.005)
+            .gte("longitude", float(lat) - 0.005)
+            .execute()
+        )
+    return lat, long
 
 
 def nyserda_large_to_database() -> None:
@@ -47,8 +87,10 @@ def nyserda_large_to_database() -> None:
     Otherwise, we push the new project to the Supabase database.
     In the case that the project is cancelled, we delete the project from the Supabase database.
     """
+    updated_ids = set()
+    inserted_ids = set()
     database = []
-    database.extend(query_nyserda_large())
+    database.extend(query_nyserda_large())  # TODO: update slice for testing
     for project in database:
         if project.get("proposed_cod", None) is not None:
             ymd = datetime.strptime(project.get("proposed_cod"), "%Y").strftime(
@@ -94,7 +136,9 @@ def nyserda_large_to_database() -> None:
                     # )
                     # print("DELETE", response, "\n")
                     continue
-                update_object = create_update_object(existing_project, project)
+                update_object = create_update_object(
+                    existing_project, project, "NYSERDA"
+                )
                 if (
                     existing_project["key_development_milestones"] is None
                     or len(existing_project["key_development_milestones"]) < 0
@@ -127,6 +171,10 @@ def nyserda_large_to_database() -> None:
                     completed=True,
                     kdm=update_object["key_development_milestones"],
                 )
+                # if project status is operational, mark all other kdms as completed
+                update_object["key_development_milestones"] = pass_all_kdms(
+                    update_object["key_development_milestones"]
+                )
                 # set last updated for NYSERDA field to current date/time in est
                 # datestring will be in the format "YYYYMMDDTHH:MM:SS.SSSZ"
                 update_object["last_updated"] = update_last_updated(
@@ -134,9 +182,13 @@ def nyserda_large_to_database() -> None:
                     datetime.now(tz=nyt),
                     existing_project.get("last_updated", {}),
                 )
-                # delete data_through_date before pushing to supabase
-                if "data_through_date" in project:
-                    del project["data_through_date"]
+                if "id" in update_object:
+                    del update_object["id"]
+
+                # update last_updated_display field to reflect when when the webscraper last ran
+                update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                    "%Y-%m-%dT%H:%M:%S.%f%z"
+                )
                 try:
                     response = (
                         supabase.table(supabase_table)
@@ -145,6 +197,7 @@ def nyserda_large_to_database() -> None:
                         .execute()
                     )
                     print("UPDATE", response, "\n")
+                    updated_ids.add(response.data[0]["id"])
                 except Exception as exception:
                     print(exception)
             # print statement in case project does not have newer data than what the database already has
@@ -183,7 +236,7 @@ def nyserda_large_to_database() -> None:
 
                     project["state_senate_district"] = state_senate_district
                     project["assembly_district"] = assembly_district
-                    project["town"] = town
+                    project["town"] = [town] if town else None
 
             # append key development milestones
             project["key_development_milestones"] = update_kdm(
@@ -202,14 +255,27 @@ def nyserda_large_to_database() -> None:
             project["last_updated"] = update_last_updated(
                 "NYSERDA_large_scale", datetime.now(tz=nyt), {}
             )
-            # delete data_through_date before pushing to supabase
+            # because the data_through_date field doesn't exist in supabase schema, first delete data_through_date before pushing to supabase
             if "data_through_date" in project:
                 del project["data_through_date"]
+
+            # offset latitude and longitude to avoid overlaps
+            project["latitude"], project["longitude"] = offset_lat_long(
+                project.get("latitude", None), project.get("longitude", None)
+            )
+
+            # update last_updated_display field to reflect when when the webscraper last ran
+            project["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
+                inserted_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
+    return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
 def nyserda_solar_to_database() -> None:
@@ -220,6 +286,8 @@ def nyserda_solar_to_database() -> None:
     If so, we only update the project if the new project has newer data.
     Otherwise, we push the new project to the Supabase database.
     """
+    updated_ids = set()
+    inserted_ids = set()
     database = []
     database.extend(query_nyserda_solar_repeat())
     for project in database:
@@ -254,7 +322,7 @@ def nyserda_solar_to_database() -> None:
                 ).replace(tzinfo=nyt)
                 < last_nyserda_solar_update
             ):
-                update_object = create_update_object(existing_project, project)
+                update_object = (existing_project, project, "NYSERDA")
                 if (
                     existing_project["key_development_milestones"] is None
                     or len(existing_project["key_development_milestones"]) < 0
@@ -278,9 +346,12 @@ def nyserda_solar_to_database() -> None:
                     datetime.now(tz=nyt),
                     existing_project.get("last_updated", {}),
                 )
-                # delete data_through_date before pushing to supabase
-                if "data_through_date" in project:
-                    del project["data_through_date"]
+                if "id" in update_object:
+                    del update_object["id"]
+                # update last_updated_display field to reflect when when the webscraper last ran
+                update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                    "%Y-%m-%dT%H:%M:%S.%f%z"
+                )
                 try:
                     response = (
                         supabase.table(supabase_table)
@@ -289,6 +360,7 @@ def nyserda_solar_to_database() -> None:
                         .execute()
                     )
                     print("UPDATE", response, "\n")
+                    updated_ids.add(response.data[0]["id"])
                 except Exception as exception:
                     print(exception)
             # print statement in case project does not have newer data than what the database already has
@@ -298,8 +370,8 @@ def nyserda_solar_to_database() -> None:
                 )
         else:
             # reverse geocoding for latitude and longitude
-            if project.get("town", None) is not None:
-                lat, long = geocode_lat_long(f"{project['town']}, NY")
+            if len(project.get("town", [])) > 0:
+                lat, long = geocode_lat_long(f"{project['town'][0]}, NY")
             if lat is not None and long is not None:
                 project["latitude"] = lat
                 project["longitude"] = long
@@ -323,7 +395,7 @@ def nyserda_solar_to_database() -> None:
 
                     project["state_senate_district"] = state_senate_district
                     project["assembly_district"] = assembly_district
-                    project["town"] = town
+                    project["town"] = [town] if town else None
 
             # update key development milestones
             project["key_development_milestones"] = update_kdm(
@@ -336,14 +408,26 @@ def nyserda_solar_to_database() -> None:
             project["last_updated"] = update_last_updated(
                 "NYSERDA_solar", datetime.now(tz=nyt), {}
             )
-            # delete data_through_date before pushing to supabase
+            # because the data_through_date field doesn't exist in supabase schema, first delete data_through_date before pushing to supabase
             if "data_through_date" in project:
                 del project["data_through_date"]
+
+            # offset latitude and longitude to avoid overlaps
+            project["latitude"], project["longitude"] = offset_lat_long(
+                project.get("latitude", None), project.get("longitude", None)
+            )
+
+            # update last_updated_display field to reflect when when the webscraper last ran
+            project["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
+                inserted_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
+    return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
 def nyiso_to_database() -> None:
@@ -354,6 +438,8 @@ def nyiso_to_database() -> None:
     Otherwise, the new project is pushed to Supabase.
     This helper function is called for all three sheets in the NYISO xlsx spreadsheet: Interconnection Queue, Cluster Projects, and In Service
     """
+    updated_ids = set()
+    inserted_ids = set()
 
     # helper function to handle different actions based on which sheet the data is from
     def nyiso_to_database_helper(projects, sheet_name):
@@ -402,7 +488,9 @@ def nyiso_to_database() -> None:
                         del project["nyiso_last_updated"]
                     # This helper function creates a dict of only fields that the existing project is missing
                     # but the NYISO data has
-                    update_object = create_update_object(existing_project, project)
+                    update_object = create_update_object(
+                        existing_project, project, "NYISO"
+                    )
                     if (
                         existing_project["key_development_milestones"] is None
                         or len(existing_project["key_development_milestones"]) < 0
@@ -441,11 +529,22 @@ def nyiso_to_database() -> None:
                             completed=True,
                             kdm=update_object["key_development_milestones"],
                         )
-                    project["last_updated"] = update_last_updated(
+                        # if project status is operational, mark all other kdms as completed
+                        update_object["key_development_milestones"] = pass_all_kdms(
+                            update_object["key_development_milestones"]
+                        )
+                    update_object["last_updated"] = update_last_updated(
                         "NYISO",
                         datetime.now(tz=nyt),
                         existing_project.get("last_updated", {}),
                     )
+                    # delete project id primary key before pushing to supabase
+                    if "id" in update_object:
+                        del update_object["id"]
+                    # update last_updated_display field to reflect when when the webscraper last ran
+                    update_object["last_updated_display"] = datetime.now(
+                        tz=nyt
+                    ).strftime("%Y-%m-%dT%H:%M:%S.%f%z")
                     try:
                         response = (
                             supabase.table(supabase_table)
@@ -457,6 +556,7 @@ def nyiso_to_database() -> None:
                             .execute()
                         )
                         print("UPDATE", response, "\n")
+                        updated_ids.add(response.data[0]["id"])
                     except Exception as exception:
                         print(exception)
                 else:
@@ -498,9 +598,20 @@ def nyiso_to_database() -> None:
                     datetime.now(tz=nyt),
                     project.get("last_updated", {}),
                 )
+
+                # offset latitude and longitude to avoid overlaps
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project.get("latitude", None), project.get("longitude", None)
+                )
+
+                # update last_updated_display field to reflect when when the webscraper last ran
+                project["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                    "%Y-%m-%dT%H:%M:%S.%f%z"
+                )
                 try:
                     response = supabase.table(supabase_table).insert(project).execute()
                     print("INSERT", response, "\n")
+                    inserted_ids.add(response.data[0]["id"])
                 except Exception as exception:
                     print(exception)
 
@@ -508,6 +619,8 @@ def nyiso_to_database() -> None:
     nyiso_to_database_helper(filter_nyiso_iq_sheet()[:10], "Interconnection Queue")
     nyiso_to_database_helper(filter_nyiso_cluster_sheet()[:10], "Cluster Projects")
     nyiso_to_database_helper(filter_nyiso_in_service_sheet()[:10], "In Service")
+
+    return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
 # NOTE: currently commenting out function to delete withdrawn projects for now
@@ -538,6 +651,8 @@ def nyiso_to_database() -> None:
 
 
 def ores_noi_to_database():
+    updated_ids = set()
+    inserted_ids = set()
     database = []
     database.extend(query_ores_noi())
     for project in database:
@@ -551,13 +666,19 @@ def ores_noi_to_database():
             existing_project = existing_data.data[
                 0
             ]  # NOTE: ORES data does not have a data_through_date kind of field
-            update_object = create_update_object(existing_project, project)
+            update_object = create_update_object(existing_project, project, "ORES")
 
             # update last_updated field of project to be current time before pushing
             project["last_updated"] = update_last_updated(
                 "ORES",
                 datetime.now(tz=nyt),
                 existing_project.get("last_updated", {}),
+            )
+            if "id" in update_object:
+                del update_object["id"]
+            # update last_updated_display field to reflect when when the webscraper last ran
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
             )
             try:
                 response = (
@@ -570,11 +691,12 @@ def ores_noi_to_database():
                     .execute()
                 )
                 print("UPDATE", response, "\n")
+                updated_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
         else:
-            if project.get("town", None) is not None:
-                lat, long = geocode_lat_long(f"{project['town']}, NY")
+            if len(project.get("town", [])) > 0:
+                lat, long = geocode_lat_long(f"{project['town'][0]}, NY")
                 project["latitude"] = lat
                 project["longitude"] = long
 
@@ -584,14 +706,28 @@ def ores_noi_to_database():
                 datetime.now(tz=nyt),
                 project.get("last_updated", {}),
             )
+
+            # offset latitude and longitude to avoid overlaps
+            project["latitude"], project["longitude"] = offset_lat_long(
+                project.get("latitude", None), project.get("longitude", None)
+            )
+
+            # update last_updated_display field to reflect when when the webscraper last ran
+            project["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
+                inserted_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
+    return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
 def ores_under_review_to_database() -> None:
+    updated_ids = set()
+    inserted_ids = set()
     database = []
     database.extend(query_ores_under_review())
     for project in database:
@@ -605,7 +741,7 @@ def ores_under_review_to_database() -> None:
             existing_project = existing_data.data[
                 0
             ]  # NOTE: ORES data does not have a data_through_date kind of field
-            update_object = create_update_object(existing_project, project)
+            update_object = create_update_object(existing_project, project, "ORES")
             # if the existing project has no kdms, add the dict first
             if (
                 existing_project["key_development_milestones"] is None
@@ -631,6 +767,12 @@ def ores_under_review_to_database() -> None:
                 datetime.now(tz=nyt),
                 existing_project.get("last_updated", {}),
             )
+            if "id" in update_object:
+                del update_object["id"]
+            # update last_updated_display field to reflect when when the webscraper last ran
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = (
                     supabase.table(supabase_table)
@@ -642,11 +784,12 @@ def ores_under_review_to_database() -> None:
                     .execute()
                 )
                 print("UPDATE", response, "\n")
+                updated_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
         else:
-            if project.get("town", None) is not None:
-                lat, long = geocode_lat_long(f"{project['town']}, NY")
+            if len(project.get("town", [])) > 0:
+                lat, long = geocode_lat_long(f"{project['town'][0]}, NY")
                 project["latitude"] = lat
                 project["longitude"] = long
 
@@ -663,14 +806,28 @@ def ores_under_review_to_database() -> None:
                 datetime.now(tz=nyt),
                 project.get("last_updated", {}),
             )
+
+            # offset latitude and longitude to avoid overlaps
+            project["latitude"], project["longitude"] = offset_lat_long(
+                project.get("latitude", None), project.get("longitude", None)
+            )
+
+            # update last_updated_display field to reflect when when the webscraper last ran
+            project["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
+                inserted_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
+    return {"inserted_ids": inserted_ids, "updated_ids": updated_ids}
 
 
 def ores_permitted_to_database() -> None:
+    updated_ids = set()
+    inserted_ids = set()
     database = []
     database.extend(query_ores_permitted())
     for project in database:
@@ -684,7 +841,7 @@ def ores_permitted_to_database() -> None:
             existing_project = existing_data.data[
                 0
             ]  # NOTE: ORES data does not have a data_through_date kind of field
-            update_object = create_update_object(existing_project, project)
+            update_object = create_update_object(existing_project, project, "ORES")
             # if the existing project has no kdms, add the dict first
             if (
                 existing_project["key_development_milestones"] is None
@@ -710,6 +867,12 @@ def ores_permitted_to_database() -> None:
                 datetime.now(tz=nyt),
                 existing_project.get("last_updated", {}),
             )
+            if "id" in update_object:
+                del update_object["id"]
+            # update last_updated_display field to reflect when when the webscraper last ran
+            update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = (
                     supabase.table(supabase_table)
@@ -721,11 +884,12 @@ def ores_permitted_to_database() -> None:
                     .execute()
                 )
                 print("UPDATE", response, "\n")
+                updated_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
         else:
-            if project.get("town", None) is not None:
-                lat, long = geocode_lat_long(f"{project['town']}, NY")
+            if len(project.get("town", [])) > 0:
+                lat, long = geocode_lat_long(f"{project['town'][0]}, NY")
                 project["latitude"] = lat
                 project["longitude"] = long
 
@@ -742,11 +906,129 @@ def ores_permitted_to_database() -> None:
                 datetime.now(tz=nyt),
                 project.get("last_updated", {}),
             )
+
+            # offset latitude and longitude to avoid overlaps
+            project["latitude"], project["longitude"] = offset_lat_long(
+                project.get("latitude", None), project.get("longitude", None)
+            )
+
+            # update last_updated_display field to reflect when when the webscraper last ran
+            project["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
+                inserted_ids.add(response.data[0]["id"])
             except Exception as exception:
                 print(exception)
+    return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
+
+
+def merge_projects():
+    """
+    This function finds all duplicate projects and merges them together.
+    It identifies duplicate projects by looking for keywords in the project name (any part of the name before numbers, asterisks, or energy technology labels).
+    Next, it creates an update object that aggregates all information fields and kdms.
+    The update object adds together the sizes of any matching duplicate projects.
+    Any duplicate projects that get processed are added to a list of duplicates to delete so that the function doesn't reprocess them.
+    At the end, the function deletes any duplicates from the database.
+    """
+    all_projects = supabase.table(supabase_table).select("*").execute().data
+    duplicates_to_delete = []  # list of ids of duplicate projects to delete
+
+    for project in all_projects:
+        if project["id"] in duplicates_to_delete:
+            continue  # skip any duplicate projects that have already been processed and marked for deletion
+        else:
+            update = copy.deepcopy(project)
+            keyword = find_keyword(project["project_name"])
+            # find all duplicate projects
+            matching_projects = (
+                supabase.table(supabase_table)
+                .select("*")
+                .ilike("project_name", f"%{keyword}%")
+                .execute()
+                .data
+            )
+            if len(matching_projects) <= 1:
+                continue
+
+            # process each duplicate project
+            for matching_project in matching_projects:
+
+                # skip matching project if it is the same as the current project
+                if matching_project["id"] == project["id"]:
+                    continue
+
+                # otherwise, combine fields of current project with duplicate's data
+                update = combine_projects(update, matching_project)
+
+                # add sizes of duplicate proejcts together
+                if (
+                    update.get("size", None) is not None
+                    and matching_project.get("size", None) is not None
+                ):
+                    update["size"] = float(update["size"]) + float(
+                        matching_project["size"]
+                    )
+
+                # update kdm to include all milestones collected by all matching projects
+                for milestone in matching_project.get("key_development_milestones", []):
+                    if milestone["completed"]:
+                        update["key_development_milestones"] = update_kdm(
+                            milestoneTitle=milestone["milestoneTitle"],
+                            completed=milestone["completed"],
+                            date=milestone["date"],
+                            kdm=update["key_development_milestones"],
+                        )
+                # mark the current duplicate for deletion
+                duplicates_to_delete.append(matching_project["id"])
+
+            start_of_operations = [
+                milestone
+                for milestone in update["key_development_milestones"]
+                if milestone["milestoneTitle"] == "Start of operations"
+            ][0]
+            if start_of_operations.get(
+                "completed", False
+            ):  # if start of operations is True, mark all other milestones as True
+                update["key_development_milestones"] = pass_all_kdms(
+                    update["key_development_milestones"]
+                )
+
+            # delete id from update object because supabase uses id as the primary key
+            del update["id"]
+            # update data pushed to Supabase to include the first project name
+            update["project_name"] = project["project_name"]
+            # update last_updated_display field to reflect when when the webscraper last ran
+            update["last_updated_display"] = datetime.now(tz=nyt).strftime(
+                "%Y-%m-%dT%H:%M:%S.%f%z"
+            )
+            try:
+                response = (
+                    supabase.table(supabase_table)
+                    .update(update)
+                    .eq(
+                        "project_name",
+                        project["project_name"],
+                    )
+                    .execute()
+                )
+                print("UPDATE", response, "\n")
+            except Exception as exception:
+                print(exception)
+
+    # after merging all duplicates, delete any duplicate projects from database
+    for duplicate_id in duplicates_to_delete:
+        try:
+            response = (
+                supabase.table(supabase_table).delete().eq("id", duplicate_id).execute()
+            )
+            print("DELETE", response, "\n")
+        except Exception as exception:
+            print(exception)
+    return {"deleted_ids": set(duplicates_to_delete)}
 
 
 """
