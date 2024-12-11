@@ -93,13 +93,15 @@ def parse_for_project_size(description):
 
     return project_size
 
-
+# TODO: Fix this to account for all renewable energy types (only looks for solar and wind)
 def parse_for_renewable_energy_technology(description):
-    renewable_energy_technology = ""
-
     # Change description to lowercase
     description = description.lower()
-    return
+    if "solar" in description:
+        return "Solar PV"
+    if "wind" in description:
+        return "Land-Based Wind"
+    return None
 
 
 def has_energy_storage(description):
@@ -152,7 +154,8 @@ def filter_noi(data: list) -> list:
             "size": parse_for_project_size(row["Description"]),
             "has_energy_storage": has_energy_storage(row["Description"]),
             "has_pumped_storage": has_pumped_storage(row["Description"]),
-            "storage_size": parse_for_storage_size(row["Description"])
+            "storage_size": parse_for_storage_size(row["Description"]),
+            "renewable_energy_technology": parse_for_renewable_energy_technology(row["Description"])
         }
         filtered_list.append(project_dict)
     return filtered_list
@@ -179,7 +182,8 @@ def filter_under_review(data: list) -> list:
             "size": parse_for_project_size(row["Description"]),
             "has_energy_storage": has_energy_storage(row["Description"]),
             "has_pumped_storage": has_pumped_storage(row["Description"]),
-            "storage_size": parse_for_storage_size(row["Description"])
+            "storage_size": parse_for_storage_size(row["Description"]),
+            "renewable_energy_technology": parse_for_renewable_energy_technology(row["Description"])
         }
         filtered_list.append(project_dict)
     return filtered_list
@@ -206,7 +210,8 @@ def filter_permitted(data):
             "size": parse_for_project_size(row["Description"]),
             "has_energy_storage": has_energy_storage(row["Description"]),
             "has_pumped_storage": has_pumped_storage(row["Description"]),
-            "storage_size": parse_for_storage_size(row["Description"])
+            "storage_size": parse_for_storage_size(row["Description"]),
+            "renewable_energy_technology": parse_for_renewable_energy_technology(row["Description"])
         }
         filtered_list.append(project_dict)
     return filtered_list
