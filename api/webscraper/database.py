@@ -47,9 +47,12 @@ nyt = timezone(datetime.now(timezone.utc).astimezone().utcoffset())
 def offset_lat_long(lat, long):
     """
     params: lat and long are floats representing the latitude and longitude of a project
+    If the project does not have a defined latitude or longitude yet, return None
     Checks if there is a project within 0.005 degrees of the latitude and longitude and offsets the latitude and longitude if it overlaps with other projects
     returns: newly offset latitude and longitude
     """
+    if lat is None or long is None:
+        return (None, None)
     overlapping_projects = (
         supabase.table(supabase_table)
         .select("*")
@@ -87,7 +90,7 @@ def nyserda_large_to_database() -> None:
     updated_ids = set()
     inserted_ids = set()
     database = []
-    database.extend(query_nyserda_large()[:10])  # TODO: update slice for testing
+    database.extend(query_nyserda_large())  # TODO: update slice for testing
     for project in database:
         if project.get("proposed_cod", None) is not None:
             ymd = datetime.strptime(project.get("proposed_cod"), "%Y").strftime(
@@ -179,9 +182,6 @@ def nyserda_large_to_database() -> None:
                     datetime.now(tz=nyt),
                     existing_project.get("last_updated", {}),
                 )
-                # delete data_through_date before pushing to supabase
-                if "data_through_date" in update_object:
-                    del update_object["data_through_date"]
                 if "id" in update_object:
                     del update_object["id"]
 
@@ -236,7 +236,7 @@ def nyserda_large_to_database() -> None:
 
                     project["state_senate_district"] = state_senate_district
                     project["assembly_district"] = assembly_district
-                    project["town"] = town
+                    project["town"] = [town] if town else None
 
             # append key development milestones
             project["key_development_milestones"] = update_kdm(
@@ -255,18 +255,14 @@ def nyserda_large_to_database() -> None:
             project["last_updated"] = update_last_updated(
                 "NYSERDA_large_scale", datetime.now(tz=nyt), {}
             )
-            # delete data_through_date before pushing to supabase
+            # because the data_through_date field doesn't exist in supabase schema, first delete data_through_date before pushing to supabase
             if "data_through_date" in project:
                 del project["data_through_date"]
 
             # offset latitude and longitude to avoid overlaps
-            if (
-                project.get("latitude", None) is not None
-                and project.get("longitude", None) is not None
-            ):
-                project["latitude"], project["longitude"] = offset_lat_long(
-                    project["latitude"], project["longitude"]
-                )
+            project["latitude"], project["longitude"] = offset_lat_long(
+                project.get("latitude", None), project.get("longitude", None)
+            )
 
             # update last_updated_display field to reflect when when the webscraper last ran
             project["last_updated_display"] = datetime.now(tz=nyt).strftime(
@@ -350,9 +346,6 @@ def nyserda_solar_to_database() -> None:
                     datetime.now(tz=nyt),
                     existing_project.get("last_updated", {}),
                 )
-                # delete data_through_date before pushing to supabase
-                if "data_through_date" in project:
-                    del project["data_through_date"]
                 if "id" in update_object:
                     del update_object["id"]
                 # update last_updated_display field to reflect when when the webscraper last ran
@@ -377,8 +370,8 @@ def nyserda_solar_to_database() -> None:
                 )
         else:
             # reverse geocoding for latitude and longitude
-            if project.get("town", None) is not None:
-                lat, long = geocode_lat_long(f"{project['town']}, NY")
+            if len(project.get("town", [])) > 0:
+                lat, long = geocode_lat_long(f"{project['town'][0]}, NY")
             if lat is not None and long is not None:
                 project["latitude"] = lat
                 project["longitude"] = long
@@ -402,7 +395,7 @@ def nyserda_solar_to_database() -> None:
 
                     project["state_senate_district"] = state_senate_district
                     project["assembly_district"] = assembly_district
-                    project["town"] = town
+                    project["town"] = [town] if town else None
 
             # update key development milestones
             project["key_development_milestones"] = update_kdm(
@@ -415,18 +408,15 @@ def nyserda_solar_to_database() -> None:
             project["last_updated"] = update_last_updated(
                 "NYSERDA_solar", datetime.now(tz=nyt), {}
             )
-            # delete data_through_date before pushing to supabase
+            # because the data_through_date field doesn't exist in supabase schema, first delete data_through_date before pushing to supabase
             if "data_through_date" in project:
                 del project["data_through_date"]
 
             # offset latitude and longitude to avoid overlaps
-            if (
-                project.get("latitude", None) is not None
-                and project.get("longitude", None) is not None
-            ):
-                project["latitude"], project["longitude"] = offset_lat_long(
-                    project["latitude"], project["longitude"]
-                )
+            project["latitude"], project["longitude"] = offset_lat_long(
+                project.get("latitude", None), project.get("longitude", None)
+            )
+
             # update last_updated_display field to reflect when when the webscraper last ran
             project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
@@ -610,13 +600,10 @@ def nyiso_to_database() -> None:
                 )
 
                 # offset latitude and longitude to avoid overlaps
-                if (
-                    project.get("latitude", None) is not None
-                    and project.get("longitude", None) is not None
-                ):
-                    project["latitude"], project["longitude"] = offset_lat_long(
-                        project["latitude"], project["longitude"]
-                    )
+                project["latitude"], project["longitude"] = offset_lat_long(
+                    project.get("latitude", None), project.get("longitude", None)
+                )
+
                 # update last_updated_display field to reflect when when the webscraper last ran
                 project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                     "%Y-%m-%dT%H:%M:%S.%f%z"
@@ -708,8 +695,8 @@ def ores_noi_to_database():
             except Exception as exception:
                 print(exception)
         else:
-            if project.get("town", None) is not None:
-                lat, long = geocode_lat_long(f"{project['town']}, NY")
+            if len(project.get("town", [])) > 0:
+                lat, long = geocode_lat_long(f"{project['town'][0]}, NY")
                 project["latitude"] = lat
                 project["longitude"] = long
 
@@ -721,13 +708,10 @@ def ores_noi_to_database():
             )
 
             # offset latitude and longitude to avoid overlaps
-            if (
-                project.get("latitude", None) is not None
-                and project.get("longitude", None) is not None
-            ):
-                project["latitude"], project["longitude"] = offset_lat_long(
-                    project["latitude"], project["longitude"]
-                )
+            project["latitude"], project["longitude"] = offset_lat_long(
+                project.get("latitude", None), project.get("longitude", None)
+            )
+
             # update last_updated_display field to reflect when when the webscraper last ran
             project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
@@ -804,8 +788,8 @@ def ores_under_review_to_database() -> None:
             except Exception as exception:
                 print(exception)
         else:
-            if project.get("town", None) is not None:
-                lat, long = geocode_lat_long(f"{project['town']}, NY")
+            if len(project.get("town", [])) > 0:
+                lat, long = geocode_lat_long(f"{project['town'][0]}, NY")
                 project["latitude"] = lat
                 project["longitude"] = long
 
@@ -824,13 +808,10 @@ def ores_under_review_to_database() -> None:
             )
 
             # offset latitude and longitude to avoid overlaps
-            if (
-                project.get("latitude", None) is not None
-                and project.get("longitude", None) is not None
-            ):
-                project["latitude"], project["longitude"] = offset_lat_long(
-                    project["latitude"], project["longitude"]
-                )
+            project["latitude"], project["longitude"] = offset_lat_long(
+                project.get("latitude", None), project.get("longitude", None)
+            )
+
             # update last_updated_display field to reflect when when the webscraper last ran
             project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
@@ -907,8 +888,8 @@ def ores_permitted_to_database() -> None:
             except Exception as exception:
                 print(exception)
         else:
-            if project.get("town", None) is not None:
-                lat, long = geocode_lat_long(f"{project['town']}, NY")
+            if len(project.get("town", [])) > 0:
+                lat, long = geocode_lat_long(f"{project['town'][0]}, NY")
                 project["latitude"] = lat
                 project["longitude"] = long
 
@@ -927,13 +908,10 @@ def ores_permitted_to_database() -> None:
             )
 
             # offset latitude and longitude to avoid overlaps
-            if (
-                project.get("latitude", None) is not None
-                and project.get("longitude", None) is not None
-            ):
-                project["latitude"], project["longitude"] = offset_lat_long(
-                    project["latitude"], project["longitude"]
-                )
+            project["latitude"], project["longitude"] = offset_lat_long(
+                project.get("latitude", None), project.get("longitude", None)
+            )
+
             # update last_updated_display field to reflect when when the webscraper last ran
             project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
@@ -947,7 +925,7 @@ def ores_permitted_to_database() -> None:
     return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
-def merge_projects() -> None:
+def merge_projects():
     """
     This function finds all duplicate projects and merges them together.
     It identifies duplicate projects by looking for keywords in the project name (any part of the name before numbers, asterisks, or energy technology labels).
