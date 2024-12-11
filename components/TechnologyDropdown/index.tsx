@@ -1,5 +1,6 @@
 import {
   ApplyFiltersText,
+  ClearFiltersText,
   FilterCategoryLabel,
   FilterCategoryText1,
   FilterHeadingUnused,
@@ -22,20 +23,13 @@ import {
   ButtonWithIconStyles,
   CheckboxContainer,
   CheckboxStyles,
+  ClearButtonStyles,
   ExitStyles,
   FilterContentDiv,
   FilterDropdownStyles,
+  FilterIconStyles,
   IconStyles,
 } from './styles';
-
-interface TechnologyDropdownProps {
-  selectedTechnologies: string[];
-  setSelectedTechnologies: (technologies: string[]) => void;
-  handleButtonClick: (filter: FilterType) => void;
-  icon: React.ReactNode;
-  label: string;
-  currFilter: FilterType;
-}
 
 export default function TechnologyDropdown({
   selectedTechnologies,
@@ -44,7 +38,25 @@ export default function TechnologyDropdown({
   icon,
   label,
   currFilter,
-}: TechnologyDropdownProps) {
+  handleFilterButtonClick,
+  clearFilters,
+  setActiveFilter,
+}: {
+  selectedTechnologies: string[];
+  setSelectedTechnologies: (technologies: string[]) => void;
+  handleButtonClick: (filter: FilterType) => void;
+  icon: React.ReactNode;
+  label: string;
+  currFilter: FilterType;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
+  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+}) {
+  const handleApplyButtonClick = () => {
+    handleFilterButtonClick();
+    setActiveFilter(null);
+  };
+
   const filter = {
     categories: [
       {
@@ -138,9 +150,11 @@ export default function TechnologyDropdown({
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
-        <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-          {icon}
-          <ButtonStyles>
+        <ButtonWithIconStyles>
+          <FilterIconStyles onClick={() => handleButtonClick(currFilter)}>
+            {icon}
+          </FilterIconStyles>
+          <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
             <FilterHeadingUnused>{label}</FilterHeadingUnused>
           </ButtonStyles>
           <ExitStyles>
@@ -169,9 +183,18 @@ export default function TechnologyDropdown({
             ))}
           </div>
         ))}
-        <ApplyButtonStyles isActive={isApplyButtonActive}>
+        <ApplyButtonStyles
+          isActive={isApplyButtonActive}
+          onClick={handleApplyButtonClick}
+        >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
+        <ClearButtonStyles
+          isActive={isApplyButtonActive}
+          onClick={clearFilters}
+        >
+          <ClearFiltersText>CLEAR</ClearFiltersText>
+        </ClearButtonStyles>
       </FilterContentDiv>
     </FilterDropdownStyles>
   );

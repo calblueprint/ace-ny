@@ -6,6 +6,7 @@ import {
   queryDefaultImages,
   queryProjectbyId,
 } from '@/api/supabase/queries/query';
+import { DeveloperIcon } from '@/assets/Project-Icons/icons';
 import { SmallSizeIcon } from '@/assets/Size-Icons/icons';
 import {
   GreenDotOperationalIcon,
@@ -21,9 +22,11 @@ import {
   SolarPvIcon,
 } from '@/assets/Technology-Tag-Icons/icons';
 import COLORS from '@/styles/colors';
-import { Heading2, TagText1 } from '@/styles/texts';
+import { BodyText1, Heading2, TagText1, TagText2 } from '@/styles/texts';
 import { Project } from '@/types/schema';
 import {
+  DeveloperInfo,
+  DeveloperOverflow,
   projectImageStyles,
   ProjectInfo,
   ProjectName,
@@ -74,7 +77,7 @@ export default function ProjectItem({
     project_name,
     renewable_energy_technology,
     size,
-    // developer,
+    developer,
     longitude,
     latitude,
     project_status,
@@ -97,7 +100,7 @@ export default function ProjectItem({
   // Sets status label to "Operational" or "In Progress"
   let projectStatus = project_status;
   if (project_status !== 'Operational') {
-    projectStatus = 'In Progress';
+    projectStatus = 'Proposed';
   }
 
   // Sets status icon to OperationalIcon or InProgressIcon
@@ -158,18 +161,23 @@ export default function ProjectItem({
         <Heading2>
           <ProjectName>{project_name?.toUpperCase()}</ProjectName>
         </Heading2>
-        <ProjectStatus>
-          {statusIcon}
-          <TagText1>{projectStatus}</TagText1>
-        </ProjectStatus>
+        <DeveloperInfo $isDeveloperEmpty={!developer}>
+          <DeveloperIcon width={'0.5rem'} height={'0.5rem'} />
+          <BodyText1>
+            <DeveloperOverflow>{developer}</DeveloperOverflow>
+          </BodyText1>
+        </DeveloperInfo>
         <ProjectSizeAndType>
+          <ProjectStatus>
+            {statusIcon}
+            <TagText1>{projectStatus}</TagText1>
+          </ProjectStatus>
           <ProjectSize>
             <SmallSizeIcon />
-            <TagText1>{size} MW</TagText1>
+            <TagText2>{size} MW</TagText2>
           </ProjectSize>
           <ProjectType>
             {energyTypeIconMap[renewable_energy_technology ?? '']}
-            <TagText1>{renewable_energy_technology}</TagText1>
           </ProjectType>
         </ProjectSizeAndType>
       </ProjectInfo>

@@ -66,4 +66,7 @@ project_fields = [
     "permit_process",
     "permit_application_number",
     "last_updated",
+    "has_energy_storage",
+    "has_pumped_storage",
+    "storage_size",
 ]

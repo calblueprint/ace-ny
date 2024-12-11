@@ -7,7 +7,7 @@ import {
   Pin,
   useAdvancedMarkerRef,
 } from '@vis.gl/react-google-maps';
-import { TagText1 } from '@/styles/texts';
+import { MarkerInfoWindowText1 } from '@/styles/texts';
 import energyStorage from '../../assets/Custom-Markers/energy_storage.svg';
 import geothermal from '../../assets/Custom-Markers/geothermal.svg';
 import hydroelectric from '../../assets/Custom-Markers/hydroelectric.svg';
@@ -15,6 +15,7 @@ import landbased_wind from '../../assets/Custom-Markers/landbased_wind.svg';
 import offshore_wind from '../../assets/Custom-Markers/offshore_wind.svg';
 import pumped_storage from '../../assets/Custom-Markers/pumped_storage.svg';
 import solarPower from '../../assets/Custom-Markers/solar_power.svg';
+import { InfoWindowStyle } from './style';
 
 const technologyToPin: Record<string, string> = {
   'Energy Storage': energyStorage,
@@ -34,6 +35,7 @@ export const MarkerInfoWindow = ({
   onMarkerClick,
   clusterer,
   selectedProjectId,
+  markerMap,
 }: {
   position: { lat: number; lng: number };
   projectId: number;
@@ -45,6 +47,7 @@ export const MarkerInfoWindow = ({
   ) => void;
   clusterer: MarkerClusterer | null;
   selectedProjectId: number | null;
+  markerMap: Map<number, google.maps.Marker>;
 }) => {
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [infoWindowShown, setInfoWindowShown] = useState(false);
@@ -86,8 +89,16 @@ export const MarkerInfoWindow = ({
   useEffect(() => {
     if (marker && clusterer) {
       clusterer.addMarker(marker);
+      markerMap.set(projectId, marker as unknown as google.maps.Marker);
     }
-  });
+
+    return () => {
+      if (marker && clusterer) {
+        clusterer.removeMarker(marker);
+        markerMap.delete(projectId);
+      }
+    };
+  }, [marker, clusterer, projectId, markerMap]);
 
   return (
     <>
@@ -109,8 +120,15 @@ export const MarkerInfoWindow = ({
         )}
       </AdvancedMarker>
       {infoWindowShown && (
-        <InfoWindow anchor={marker} onClose={handleClose} disableAutoPan={true}>
-          <TagText1>{projectName}</TagText1>
+        <InfoWindow
+          anchor={marker}
+          pixelOffset={[-5, 0]}
+          onClose={handleClose}
+          disableAutoPan={true}
+          style={InfoWindowStyle}
+          headerDisabled={true}
+        >
+          <MarkerInfoWindowText1>{projectName}</MarkerInfoWindowText1>
         </InfoWindow>
       )}
     </>
