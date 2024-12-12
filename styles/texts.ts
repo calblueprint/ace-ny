@@ -243,6 +243,15 @@ export const ClearFiltersText = styled.p<TextProps>`
   color: ${COLORS.electricBlue};
 `;
 
+export const InfoHoverText = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 250;
+  line-height: 160%;
+  color: ${COLORS.navy};
+`;
+
 /*
 
 export const FilterFont = styled.h1`
