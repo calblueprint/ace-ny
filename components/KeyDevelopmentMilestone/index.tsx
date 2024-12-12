@@ -1,5 +1,11 @@
+import React from 'react';
 import { CheckmarkIcon, DotDotDotIcon } from '../../assets/KDM-Icons/icons';
-import { Milestone, MilestoneLabel } from './styles';
+import {
+  KDMInfoHoverContainer,
+  KDMInfoText,
+  Milestone,
+  MilestoneLabel,
+} from './styles';
 
 export default function KeyDevelopmentMilestone({
   completed,
@@ -19,6 +25,13 @@ export default function KeyDevelopmentMilestone({
     'IA tendered',
     'Operations begun',
   ];
+  // Abbreviation to full text mapping
+  const abbreviationMap: Record<string, string> = {
+    NYISO: 'New York Independent System Operator',
+    NYSERDA: 'New York State Energy Research and Development Authority',
+    IA: 'Interconnection Agreement',
+  };
+
   function getDate() {
     if (!date) return null;
     const res = new Date(date);
@@ -42,9 +55,38 @@ export default function KeyDevelopmentMilestone({
     statusLabel = 'Pending';
   }
 
+  const renderWithTooltip = (text: string) => {
+    // Find the abbreviation in the text
+    const abbreviation = Object.keys(abbreviationMap).find(abbr =>
+      text.includes(abbr),
+    );
+
+    // If an abbreviation is found, replace it with a React component (tooltip)
+    if (abbreviation) {
+      return (
+        <KDMInfoHoverContainer>
+          {text.split(abbreviation).map((part, index) => (
+            <React.Fragment key={index}>
+              {part}
+              {index < 1 && ( // Only show the tooltip after the abbreviation
+                <>
+                  {abbreviation}
+                  <KDMInfoText>{abbreviationMap[abbreviation]}</KDMInfoText>
+                </>
+              )}
+            </React.Fragment>
+          ))}
+        </KDMInfoHoverContainer>
+      );
+    }
+
+    // If no abbreviation is found, just return the text
+    return text;
+  };
+
   return (
     <Milestone completed={completed}>
-      {milestoneLabels[index]}
+      {renderWithTooltip(milestoneLabels[index])}
       <MilestoneLabel status={completed}>
         {completed ? <CheckmarkIcon /> : <DotDotDotIcon />}
         {statusLabel}
