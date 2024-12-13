@@ -73,12 +73,14 @@ export const KDMInfoText = styled.div`
   border-radius: 0.25rem;
   padding: 0.75rem;
   position: absolute;
-  bottom: 130%;
+  bottom: 150%;
   white-space: normal;
-  word-wrap: break-word;
   box-shadow:
     0rem 1rem 1.25rem 0rem rgba(46, 58, 89, 0.1),
     0rem 0.0625rem 0.0625rem 0rem rgba(46, 58, 89, 0.15);
+
+  left: 50%;
+  transform: translateX(-70%);
 
   /* Tooltip arrow */
   &::after {
