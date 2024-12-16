@@ -144,6 +144,7 @@ def query_nyserda_solar(offset=0, limit=1000):
                     "approved": False,
                 }
                 filtered_list.append(project_dict)
+        print(filtered_list)
         return filtered_list
 
 

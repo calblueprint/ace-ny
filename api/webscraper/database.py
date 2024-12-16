@@ -615,10 +615,11 @@ def nyiso_to_database() -> None:
                 except Exception as exception:
                     print(exception)
 
+    # TODO: update slicing for testing vs development
     # call helper function for each sheet with the corresponding sheet name
-    nyiso_to_database_helper(filter_nyiso_iq_sheet()[:10], "Interconnection Queue")
-    nyiso_to_database_helper(filter_nyiso_cluster_sheet()[:10], "Cluster Projects")
-    nyiso_to_database_helper(filter_nyiso_in_service_sheet()[:10], "In Service")
+    nyiso_to_database_helper(filter_nyiso_iq_sheet(), "Interconnection Queue")
+    nyiso_to_database_helper(filter_nyiso_cluster_sheet(), "Cluster Projects")
+    nyiso_to_database_helper(filter_nyiso_in_service_sheet(), "In Service")
 
     return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
