@@ -6,6 +6,7 @@ import {
   queryDefaultImages,
   queryProjectbyId,
 } from '@/api/supabase/queries/query';
+import { DeveloperIcon } from '@/assets/Project-Icons/icons';
 import { SmallSizeIcon } from '@/assets/Size-Icons/icons';
 import {
   GreenDotOperationalIcon,
@@ -21,10 +22,11 @@ import {
   SolarPvIcon,
 } from '@/assets/Technology-Tag-Icons/icons';
 import COLORS from '@/styles/colors';
-import { Heading2, TagText1 } from '@/styles/texts';
+import { BodyText1, Heading2, TagText1, TagText2 } from '@/styles/texts';
 import { Project } from '@/types/schema';
-import ProjectModal from '../ProjectModal';
 import {
+  DeveloperInfo,
+  DeveloperOverflow,
   projectImageStyles,
   ProjectInfo,
   ProjectName,
@@ -35,10 +37,17 @@ import {
   StyledProjectItem,
 } from './styles';
 
-export default function ProjectItem({ project_id }: { project_id: number }) {
+export default function ProjectItem({
+  project_id,
+  map,
+  setSelectedProjectId,
+}: {
+  project_id: number;
+  map: google.maps.Map | null;
+  setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
+}) {
   const [project, setProject] = useState<Project | null>(null);
   const [defaultImage, setDefaultImage] = useState<string | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     queryProjectbyId(project_id).then(data => {
@@ -68,9 +77,9 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
     project_name,
     renewable_energy_technology,
     size,
-    // developer,
-    // longitude,
-    // latitude,
+    developer,
+    longitude,
+    latitude,
     project_status,
     // county,
     // town,
@@ -91,7 +100,7 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
   // Sets status label to "Operational" or "In Progress"
   let projectStatus = project_status;
   if (project_status !== 'Operational') {
-    projectStatus = 'In Progress';
+    projectStatus = 'Proposed';
   }
 
   // Sets status icon to OperationalIcon or InProgressIcon
@@ -141,18 +150,10 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
   };
 
   const handleProjectClick = () => {
-    setModalOpen(true);
+    const position = new google.maps.LatLng(latitude ?? 0, longitude ?? 0);
+    map?.panTo(position);
+    setSelectedProjectId(project_id);
   };
-
-  if (modalOpen) {
-    return (
-      <ProjectModal
-        project_id={project_id}
-        closeModal={() => setModalOpen(false)}
-        openFirst={true}
-      />
-    );
-  }
 
   return (
     <StyledProjectItem onClick={handleProjectClick}>
@@ -160,18 +161,23 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
         <Heading2>
           <ProjectName>{project_name?.toUpperCase()}</ProjectName>
         </Heading2>
-        <ProjectStatus>
-          {statusIcon}
-          <TagText1>{projectStatus}</TagText1>
-        </ProjectStatus>
+        <DeveloperInfo $isDeveloperEmpty={!developer}>
+          <DeveloperIcon width={'0.5rem'} height={'0.5rem'} />
+          <BodyText1>
+            <DeveloperOverflow>{developer}</DeveloperOverflow>
+          </BodyText1>
+        </DeveloperInfo>
         <ProjectSizeAndType>
+          <ProjectStatus>
+            {statusIcon}
+            <TagText1>{projectStatus}</TagText1>
+          </ProjectStatus>
           <ProjectSize>
             <SmallSizeIcon />
-            <TagText1>{size} MW</TagText1>
+            <TagText2>{size} MW</TagText2>
           </ProjectSize>
           <ProjectType>
             {energyTypeIconMap[renewable_energy_technology ?? '']}
-            <TagText1>{renewable_energy_technology}</TagText1>
           </ProjectType>
         </ProjectSizeAndType>
       </ProjectInfo>
@@ -181,6 +187,8 @@ export default function ProjectItem({ project_id }: { project_id: number }) {
         width={340}
         height={250}
         style={projectImageStyles}
+        placeholder="blur"
+        blurDataURL="../../assets/blur_image.png"
       />
     </StyledProjectItem>
   );

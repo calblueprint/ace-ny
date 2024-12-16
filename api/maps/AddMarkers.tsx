@@ -1,22 +1,27 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';
 import { ClusterIcon } from '@/assets/Clusters/icons';
-import ProjectModal from '@/components/ProjectModal';
 import { Project } from '../../types/schema';
 import { MarkerInfoWindow } from './MarkerInfoWindow';
 
 export default function AddMarker({
   projects,
+  filteredProjects,
+  selectedProjectId,
+  map,
+  setSelectedProjectId,
+  setMap,
 }: {
   projects: Project[] | null;
+  filteredProjects: Project[] | null;
+  selectedProjectId: number | null;
+  map: google.maps.Map | null;
+  setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
+  setMap: React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
 }) {
-  const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
-    null,
-  ); // track currently open modal
-
-  const map = useMap();
+  setMap(useMap());
 
   const handleMarkerClick = (
     projectId: number,
@@ -28,12 +33,7 @@ export default function AddMarker({
       document.title = 'ACE NY';
     }
   };
-
-  const closeModal = () => {
-    document.title = 'ACE NY';
-    setSelectedProjectId(null); // close modal
-  };
-
+  /*
   function euclideanDistance(point1: number[], point2: number[]): number {
     const [x1, y1] = point1;
     const [x2, y2] = point2;
@@ -91,6 +91,7 @@ export default function AddMarker({
     }
     return mapZoom;
   };
+*/
 
   const clusterer = useMemo(() => {
     if (!map) return null;
@@ -104,7 +105,6 @@ export default function AddMarker({
         const container = document.createElement('div');
         const root = ReactDOM.createRoot(container);
         root.render(<ClusterIcon count={count} />);
-
         return new google.maps.marker.AdvancedMarkerElement({
           position: position,
           content: container,
@@ -112,22 +112,70 @@ export default function AddMarker({
       },
     };
 
-    const setClusterer = new MarkerClusterer({ map, renderer });
-
-    setClusterer.addListener('click', function (cluster: Cluster) {
-      const mapZoom = map.getZoom() ?? 0;
-      const minZoom = getMinZoom(cluster, mapZoom);
-
-      if (mapZoom && mapZoom < minZoom) {
-        const idleListener = map.addListener('idle', function () {
-          map.setZoom(minZoom);
-          idleListener.remove();
-        });
+    const clusterHandler = (
+      event: google.maps.MapMouseEvent,
+      cluster: Cluster,
+      map: google.maps.Map,
+    ) => {
+      if (event.latLng) {
+        const mapZoom = (map.getZoom() ?? 0) + 3;
+        map.setCenter(event.latLng);
+        map.setZoom(mapZoom);
       }
+    };
+
+    const setClusterer = new MarkerClusterer({
+      map,
+      renderer,
+      onClusterClick: clusterHandler,
     });
 
     return setClusterer;
   }, [map]);
+
+  const markerMap = useRef<Map<number, google.maps.Marker>>(new Map());
+
+  const hideMarker = (marker: google.maps.Marker) => {
+    marker.setMap(null);
+  };
+
+  const showMarker = (marker: google.maps.Marker, map: google.maps.Map) => {
+    marker.setMap(map);
+  };
+
+  useEffect(() => {
+    // Iterate through the filtered projects to update the visibility of each marker
+    projects?.forEach(project => {
+      const marker = markerMap.current.get(project.id);
+
+      if (marker) {
+        // Check if the project is in the filtered list
+        const isInFilteredProjects = filteredProjects?.some(
+          filteredProject => filteredProject.id === project.id,
+        );
+
+        if (isInFilteredProjects && map) {
+          showMarker(marker, map);
+        } else {
+          hideMarker(marker);
+        }
+      }
+    });
+  }, [filteredProjects, map, projects]);
+
+  // Re-rendering clusters based on filtered projects
+  useEffect(() => {
+    if (!clusterer || !map) return;
+
+    clusterer.clearMarkers();
+
+    filteredProjects?.forEach(project => {
+      const marker = markerMap.current.get(project.id);
+      if (marker) {
+        clusterer.addMarker(marker);
+      }
+    });
+  }, [filteredProjects, clusterer, map]);
 
   return (
     <>
@@ -145,17 +193,10 @@ export default function AddMarker({
             onMarkerClick={handleMarkerClick}
             clusterer={clusterer}
             selectedProjectId={selectedProjectId}
+            markerMap={markerMap.current}
           />
         );
       })}
-
-      {selectedProjectId && (
-        <ProjectModal
-          project_id={selectedProjectId}
-          closeModal={closeModal}
-          openFirst={true}
-        />
-      )}
     </>
   );
 }

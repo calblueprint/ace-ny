@@ -1,9 +1,9 @@
-import React from 'react'; //REMOVE
 import { FilterType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
   ApplyFiltersText,
+  ClearFiltersText,
   FilterHeadingUnused,
   FilterNameText,
   FilterOptionsText,
@@ -14,20 +14,12 @@ import {
   ButtonWithIconStyles,
   CheckboxContainer,
   CheckboxStyles,
+  ClearButtonStyles,
   ExitStyles,
   FilterContentDiv,
   FilterDropdownStyles,
   OptionTitleStyles,
 } from './styles';
-
-interface StatusDropdownProps {
-  selectedStatus: string[];
-  setSelectedStatus: (status: string[]) => void;
-  handleButtonClick: (filter: FilterType) => void;
-  icon: React.ReactNode;
-  label: string;
-  currFilter: FilterType;
-}
 
 export default function StatusDropdown({
   selectedStatus,
@@ -36,9 +28,27 @@ export default function StatusDropdown({
   icon,
   label,
   currFilter,
-}: StatusDropdownProps) {
+  handleFilterButtonClick,
+  clearFilters,
+  setActiveFilter,
+}: {
+  selectedStatus: string[];
+  setSelectedStatus: (status: string[]) => void;
+  handleButtonClick: (filter: FilterType) => void;
+  icon: React.ReactNode;
+  label: string;
+  currFilter: FilterType;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
+  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+}) {
+  const handleApplyButtonClick = () => {
+    handleFilterButtonClick();
+    setActiveFilter(null);
+  };
+
   const filterOptions = [
-    { title: 'In Progress', color: `${COLORS.ashGrey}` },
+    { title: 'Proposed', color: `${COLORS.ashGrey}` },
     { title: 'Operational', color: `${COLORS.chateauGreen}` },
   ];
 
@@ -58,7 +68,7 @@ export default function StatusDropdown({
           <ButtonStyles>
             <FilterNameText>{label}</FilterNameText>
           </ButtonStyles>
-          <ExitStyles>
+          <ExitStyles onClick={clearFilters}>
             <ExitIcon />
           </ExitStyles>
         </ButtonWithIconStyles>
@@ -66,7 +76,7 @@ export default function StatusDropdown({
           {filterOptions.map(option => (
             <CheckboxContainer key={option.title}>
               <CheckboxStyles
-                type="checkbox"
+                type="radio"
                 checked={selectedStatus.includes(option.title)}
                 onChange={() => handleStatusChange(option.title)}
               />
@@ -79,9 +89,18 @@ export default function StatusDropdown({
             </CheckboxContainer>
           ))}
         </div>
-        <ApplyButtonStyles isActive={isApplyButtonActive}>
+        <ApplyButtonStyles
+          isActive={isApplyButtonActive}
+          onClick={handleApplyButtonClick}
+        >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
+        <ClearButtonStyles
+          isActive={isApplyButtonActive}
+          onClick={clearFilters}
+        >
+          <ClearFiltersText>CLEAR</ClearFiltersText>
+        </ClearButtonStyles>
       </FilterContentDiv>
     </FilterDropdownStyles>
   );

@@ -1,4 +1,3 @@
-import React from 'react';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
 import { FilterHeadingUnused } from '@/styles/texts';
@@ -10,21 +9,25 @@ import {
   IconStyle,
 } from './styles';
 
-interface FilterProps {
-  filter: FilterType;
-  isActive: boolean;
-  selectedFilters: Filters;
-  filterChangeHandlers: FilterChangeHandlers;
-  handleButtonClick: (filter: FilterType) => void;
-}
-
 export default function Filter({
   filter,
   isActive,
   selectedFilters,
   filterChangeHandlers,
   handleButtonClick,
-}: FilterProps) {
+  handleFilterButtonClick,
+  clearFilters,
+  setActiveFilter,
+}: {
+  filter: FilterType;
+  isActive: boolean;
+  selectedFilters: Filters;
+  filterChangeHandlers: FilterChangeHandlers;
+  handleButtonClick: (filter: FilterType) => void;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
+  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+}) {
   return (
     <FilterBackgroundStyles isActive={isActive}>
       {isActive ? (
@@ -36,6 +39,9 @@ export default function Filter({
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
+            handleFilterButtonClick={handleFilterButtonClick}
+            clearFilters={clearFilters}
+            setActiveFilter={setActiveFilter}
           />
         ) : filter.id === 'status' ? (
           <StatusDropdown
@@ -45,6 +51,9 @@ export default function Filter({
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
+            handleFilterButtonClick={handleFilterButtonClick}
+            clearFilters={clearFilters}
+            setActiveFilter={setActiveFilter}
           />
         ) : // Add other filter dropdown components here
         null

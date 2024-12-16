@@ -25,7 +25,13 @@ export const StyledProjectItem = styled.button`
   }
 `;
 
+export const projectImageDiv = styled.div`
+  width: 7.75rem,
+  height: 6.75rem,
+`;
+
 export const projectImageStyles: CSSProperties = {
+  objectFit: 'cover',
   width: '7.75rem',
   height: '6.75rem',
   borderRadius: '0px 12px 12px 0px',
@@ -64,7 +70,8 @@ export const ProjectStatus = styled.div`
 
 export const ProjectSizeAndType = styled.div`
   display: flex;
-  gap: 0.5rem;
+  gap: 0.625rem;
+  margin-bottom: 0.9rem;
   margin-top: 1.5rem;
 `;
 
@@ -78,4 +85,21 @@ export const ProjectType = styled.div`
   display: flex;
   align-items: center;
   gap: 0.25rem;
+`;
+
+export const DeveloperInfo = styled.div<{ $isDeveloperEmpty: boolean }>`
+  display: flex;
+  margin-top: 0.25rem;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.375rem;
+  visibility: ${({ $isDeveloperEmpty }) =>
+    $isDeveloperEmpty ? 'hidden' : 'visible'};
+`;
+
+export const DeveloperOverflow = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 9.5rem;
 `;

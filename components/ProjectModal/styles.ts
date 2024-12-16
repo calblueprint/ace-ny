@@ -10,14 +10,13 @@ export const modalOverlayStyles: CSSProperties = {
 
 export const modalContentStyles: CSSProperties = {
   display: 'flex',
-  top: '5.3125rem',
+  top: '1.25rem',
   left: '1.25rem',
   width: '90vw',
   maxWidth: '22.25rem',
-  height: '85vh',
-  borderRadius:
-    'var(--Spacing-Medium, 1.5rem) var(--Spacing-Medium, 1.5rem) 1.875rem 1.875rem',
-  border: '0.75px solid var(--WorldPeas-White, #fff)',
+  height: '95vh',
+  borderRadius: '1.5rem',
+  border: 'none',
   background:
     'linear-gradient(180deg, rgba(250, 250, 250, 0.32) 0%, rgba(238, 238, 238, 0.65) 100%)',
   backdropFilter: 'blur(7.5px)',
@@ -71,6 +70,12 @@ export const Developer = styled.div`
   align-items: center;
 `;
 
+export const DeveloperText = styled.div<{ $isDeveloperEmpty: boolean }>`
+  display: flex;
+  visibility: ${({ $isDeveloperEmpty }) =>
+    $isDeveloperEmpty ? 'hidden' : 'visible'};
+`;
+
 export const ProjectName = styled.div`
   overflow: visible;
   text-overflow: ellipsis;
@@ -112,8 +117,10 @@ export const AdditionalInfo = styled.div`
   padding: 1.25rem;
 `;
 
-export const DetailsContainer = styled.div`
+export const DetailsContainer = styled.div<{ $isDetailsEmpty: boolean }>`
   display: flex;
+  visibility: ${({ $isDetailsEmpty }) =>
+    $isDetailsEmpty ? 'hidden' : 'visible'};
   align-items: center;
   width: 100%;
   gap: 0.5rem;
