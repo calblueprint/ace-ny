@@ -24,6 +24,10 @@ export type Project = {
   permit_process: string | null;
   permit_application_number: string | null;
   last_updated: Date;
+  has_energy_storage: boolean;
+  has_pumped_storage: boolean;
+  storage_size: number;
+  utility_service_provider: string;
 };
 
 export interface Option {

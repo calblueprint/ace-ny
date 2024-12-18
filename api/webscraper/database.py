@@ -7,7 +7,7 @@ from geocodio import GeocodioClient
 
 from .nyserda_scraper import query_nyserda_large, query_nyserda_solar_repeat
 from .nyiso_scraper import (
-    filter_nyiso_iq_sheet,
+    # filter_nyiso_iq_sheet, ** NO LONGER NEEDED **
     filter_nyiso_cluster_sheet,
     filter_nyiso_in_service_sheet,
     filter_nyiso_withdrawn_sheets,
@@ -32,7 +32,7 @@ url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 supabase: Client = create_client(url, key)
 supabase_table: str = (
-    "Projects_test_deena"  # TODO: modify based on which table in supabase we want to edit
+    "Projects_test_julee"  # TODO: modify based on which table in supabase we want to edit
 )
 
 geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
@@ -436,7 +436,7 @@ def nyiso_to_database() -> None:
     The helper function first checks if an existing project with a matching name exists in Supabase.
     If so, the existing project is updated if it has newer data (or if any of the last_updated date information is missing).
     Otherwise, the new project is pushed to Supabase.
-    This helper function is called for all three sheets in the NYISO xlsx spreadsheet: Interconnection Queue, Cluster Projects, and In Service
+    This helper function is called for two sheets in the NYISO xlsx spreadsheet: Cluster Projects and In Service
     """
     updated_ids = set()
     inserted_ids = set()
@@ -616,9 +616,9 @@ def nyiso_to_database() -> None:
                     print(exception)
 
     # call helper function for each sheet with the corresponding sheet name
-    nyiso_to_database_helper(filter_nyiso_iq_sheet()[:10], "Interconnection Queue")
-    nyiso_to_database_helper(filter_nyiso_cluster_sheet()[:10], "Cluster Projects")
-    nyiso_to_database_helper(filter_nyiso_in_service_sheet()[:10], "In Service")
+    # nyiso_to_database_helper(filter_nyiso_iq_sheet()[:10], "Interconnection Queue") ** NO LONGER NEEDED **
+    nyiso_to_database_helper(filter_nyiso_cluster_sheet(), "Cluster Projects")
+    nyiso_to_database_helper(filter_nyiso_in_service_sheet(), "In Service")
 
     return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
