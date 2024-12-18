@@ -106,7 +106,9 @@ def nyserda_large_to_database() -> None:
         if len(existing_data.data) > 0:
             existing_project = existing_data.data[0]
             if (
-                existing_project.get("last_updated", {}).get("NYSERDA_large_scale")
+                existing_project.get("last_updated", {}).get(
+                    "NYSERDA_large_scale", None
+                )
                 is not None
             ):
                 last_nyserda_update = datetime.fromisoformat(
@@ -305,7 +307,7 @@ def nyserda_solar_to_database() -> None:
         if len(existing_data.data) > 0:
             existing_project = existing_data.data[0]
             if (
-                existing_project.get("last_updated", {}).get("NYSERDA_solar")
+                existing_project.get("last_updated", {}).get("NYSERDA_solar", None)
                 is not None
             ):
                 # get the last time this project was updated by turning the string into a datetime object
@@ -322,7 +324,9 @@ def nyserda_solar_to_database() -> None:
                 ).replace(tzinfo=nyt)
                 < last_nyserda_solar_update
             ):
-                update_object = (existing_project, project, "NYSERDA")
+                update_object = create_update_object(
+                    existing_project, project, "NYSERDA"
+                )
                 if (
                     existing_project["key_development_milestones"] is None
                     or len(existing_project["key_development_milestones"]) < 0
@@ -348,6 +352,8 @@ def nyserda_solar_to_database() -> None:
                 )
                 if "id" in update_object:
                     del update_object["id"]
+                if "data_through_date" in update_object:
+                    del update_object["data_through_date"]
                 # update last_updated_display field to reflect when when the webscraper last ran
                 update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                     "%Y-%m-%dT%H:%M:%S.%f%z"
@@ -375,10 +381,14 @@ def nyserda_solar_to_database() -> None:
             if lat is not None and long is not None:
                 project["latitude"] = lat
                 project["longitude"] = long
-                geocodio_result = geocodio.reverse(
-                    (project.get("latitude"), project.get("longitude")),
-                    fields=["stateleg"],
-                ).get("results", None)
+                try:
+                    geocodio_result = geocodio.reverse(
+                        (project.get("latitude"), project.get("longitude")),
+                        fields=["stateleg"],
+                    ).get("results", None)
+                except Exception as exception:
+                    print(exception)
+                    geocodio_result = None
                 if geocodio_result is not None:
                     location = geocodio_result[0]
                     state_senate_district = int(
@@ -469,7 +479,10 @@ def nyiso_to_database() -> None:
             )
             if len(existing_data.data) > 0:
                 existing_project = existing_data.data[0]
-                if existing_project.get("last_updated", {}).get("NYISO") is not None:
+                if (
+                    existing_project.get("last_updated", {}).get("NYISO", None)
+                    is not None
+                ):
                     last_nyiso_update = datetime.fromisoformat(
                         existing_project["last_updated"]["NYISO"]
                     )
