@@ -1,21 +1,17 @@
+import COLORS from '@/styles/colors';
 import {
   CalendarIcon,
   GreenDotOperationalIcon,
   GreyDotInProgressIcon,
 } from '../../assets/Status-Tag-Icons/icons';
 import { TagText1 } from '../../styles/texts';
-import {
-  AllTagStyles,
-  CODTagStyles,
-  ProposedCODTagStyles,
-  StatusTagStyles,
-} from './styles';
+import { AllTagStyles, CODTagStyles, TagStyle } from './styles';
 
 export default function StatusTag({
   projectStatus,
   cod,
 }: {
-  projectStatus: string | undefined;
+  projectStatus: string;
   cod: Date | undefined;
 }) {
   function convertDateToString() {
@@ -27,31 +23,40 @@ export default function StatusTag({
     return `${month}.${day}.${year}`;
   }
 
-  if (projectStatus === 'Operational') {
-    return (
-      <StatusTagStyles>
-        <GreenDotOperationalIcon /> <TagText1>Operational</TagText1>
-      </StatusTagStyles>
-    );
-  }
+  const statusIcon: { [key: string]: JSX.Element } = {
+    Operational: <GreenDotOperationalIcon />,
+    Proposed: <GreyDotInProgressIcon />,
+  };
+  const statusTextColor: { [key: string]: string } = {
+    Operational: COLORS.aceGreen,
+    Proposed: COLORS.ashGrey,
+  };
 
-  if (projectStatus === 'Proposed') {
-    return cod ? (
-      <AllTagStyles>
-        <ProposedCODTagStyles>
-          <GreyDotInProgressIcon /> <TagText1>Proposed</TagText1>
-        </ProposedCODTagStyles>
-        <CODTagStyles>
-          <CalendarIcon />
-          <TagText1>COD {convertDateToString()}</TagText1>
-        </CODTagStyles>
-      </AllTagStyles>
-    ) : (
-      <StatusTagStyles>
-        <GreyDotInProgressIcon /> <TagText1>Proposed</TagText1>
-      </StatusTagStyles>
-    );
-  }
-
-  return null;
+  return (
+    <div>
+      {cod ? (
+        <AllTagStyles>
+          <TagStyle $color={statusTextColor[projectStatus]}>
+            {statusIcon[projectStatus]}{' '}
+            <TagText1 $color={statusTextColor[projectStatus]}>
+              {projectStatus}
+            </TagText1>
+          </TagStyle>
+          <CODTagStyles>
+            <CalendarIcon />
+            <TagText1 $color={COLORS.electricBlue}>
+              COD {convertDateToString()}
+            </TagText1>
+          </CODTagStyles>
+        </AllTagStyles>
+      ) : (
+        <TagStyle $color={statusTextColor[projectStatus]}>
+          {statusIcon[projectStatus]}{' '}
+          <TagText1 $color={statusTextColor[projectStatus]}>
+            {projectStatus}
+          </TagText1>
+        </TagStyle>
+      )}
+    </div>
+  );
 }

@@ -50,13 +50,28 @@ export default function TechnologyTag({
     ),
   };
 
+  const colorMap: { [key: string]: string } = {
+    'Offshore Wind': COLORS.electricBlue,
+    'Energy Storage': COLORS.teal,
+    Geothermal: COLORS.earthyGreen,
+    Hydroelectric: COLORS.frenchBlue,
+    'Land-Based Wind': COLORS.skyBlue,
+    'Pumped Storage': COLORS.cyanBlue,
+    'Solar PV': COLORS.solarYellow,
+  };
+
   const icon = technology ? iconMap[technology] : null;
 
   return (
     <div>
       {icon && (
-        <TechnologyTagStyles>
-          {icon} <TagText1>{technology}</TagText1>
+        <TechnologyTagStyles
+          $backgroundColor={technology ? colorMap[technology] : ''}
+        >
+          {icon}{' '}
+          <TagText1 $color={technology ? colorMap[technology] : ''}>
+            {technology}
+          </TagText1>
         </TechnologyTagStyles>
       )}
     </div>
