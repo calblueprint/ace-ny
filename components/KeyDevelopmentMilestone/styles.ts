@@ -78,7 +78,6 @@ export const KDMInfoText = styled.div`
   box-shadow:
     0rem 1rem 1.25rem 0rem rgba(46, 58, 89, 0.1),
     0rem 0.0625rem 0.0625rem 0rem rgba(46, 58, 89, 0.15);
-
   left: 50%;
   transform: translateX(-70%);
 
