@@ -52,3 +52,42 @@ export const MilestoneTitle = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+
+export const KDMInfoHoverContainer = styled.div`
+  position: relative;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.25rem;
+  &:hover > div {
+    visibility: visible;
+    opacity: 1;
+  }
+`;
+
+export const KDMInfoText = styled.div`
+  visibility: hidden;
+  width: auto;
+  background-color: white;
+  text-align: center;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  position: absolute;
+  bottom: 130%;
+  white-space: normal;
+  word-wrap: break-word;
+  box-shadow:
+    0rem 1rem 1.25rem 0rem rgba(46, 58, 89, 0.1),
+    0rem 0.0625rem 0.0625rem 0rem rgba(46, 58, 89, 0.15);
+
+  /* Tooltip arrow */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0.625rem;
+    border-width: 0.313rem;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+  }
+`;
