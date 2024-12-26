@@ -61,7 +61,7 @@ export const SubHeading1 = styled.h2<TextProps>`
 
 export const SubHeading2 = styled.h2<TextProps>`
   ${TextStylesCoinbaseMono}
-  font-size: 0.625rem;
+  font-size: 0.7rem;
   color: ${COLORS.navy75};
   font-style: normal;
   font-weight: 400;
@@ -89,11 +89,11 @@ export const BodyText2 = styled.p<TextProps>`
 
 export const AccentText1 = styled.h4<TextProps>`
   ${TextStylesCoinbaseText}
-  font-size: 3rem;
+  font-size: 2rem;
   font-style: normal;
   color: ${COLORS.navy85};
   font-weight: 400;
-  line-height: normal;
+  line-height: 2rem;
 `;
 
 export const AccentText2 = styled.h4<TextProps>`
@@ -107,20 +107,21 @@ export const AccentText2 = styled.h4<TextProps>`
 
 export const TagText1 = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
-  color: ${COLORS.navy75};
   font-size: 0.625rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
+  color: ${({ $color }) => $color || COLORS.navy75};
 `;
 
 export const TagText2 = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
   color: ${COLORS.electricBlue};
-  font-size: 0.625rem;
+  font-size: 10px;
   font-style: normal;
-  font-weight: 300;
+  font-weight: 500;
   line-height: normal;
+  letter-spacing: 0.2px;
 `;
 
 export const MarkerInfoWindowText1 = styled.p<TextProps>`

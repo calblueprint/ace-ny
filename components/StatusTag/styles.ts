@@ -1,34 +1,29 @@
 import styled from 'styled-components';
+import COLORS from '@/styles/colors';
 
-const BaseTagStyles = styled.div`
-  border-radius: 6.25rem;
-  border: 0.031rem solid rgba(46, 58, 89, 0.25);
-  display: inline-flex;
-  height: 1.375rem;
+const BaseTagStyle = styled.div`
+  display: flex;
+  gap: 0.625rem;
+  height: 1.2rem;
   padding: 0.1rem 0.625rem;
   align-items: center;
   flex-direction: row;
-  gap: 0.25rem;
-`;
-
-export const StatusTagStyles = styled(BaseTagStyles)``;
-
-export const ProposedCODTagStyles = styled(BaseTagStyles)`
-  border-left: none;
-  border-top: none;
-  border-bottom: none;
-`;
-
-export const CODTagStyles = styled.div`
-  display: inline-flex;
-  height: 1.375rem;
-  align-items: center;
-  flex-direction: row;
-  gap: 0.25rem;
-  white-space: nowrap;
-`;
-
-export const AllTagStyles = styled(BaseTagStyles)`
-  padding-left: 0rem;
   gap: 0.375rem;
+  border-radius: 5px;
+`;
+
+export const TagStyle = styled(BaseTagStyle)<{ $color: string }>`
+  background: ${({ $color }) => `${$color}10`};
+`;
+
+export const CODTagStyles = styled(BaseTagStyle)`
+  background: ${COLORS.electricBlue10};
+`;
+
+export const AllTagStyles = styled.div`
+  padding-left: 0.1rem;
+  gap: 0.35rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 `;
