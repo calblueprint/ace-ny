@@ -59,6 +59,7 @@ export const KDMInfoHoverContainer = styled.div`
   cursor: pointer;
   align-items: center;
   gap: 0.25rem;
+  //width: 150px;
   &:hover > div {
     visibility: visible;
     opacity: 1;
