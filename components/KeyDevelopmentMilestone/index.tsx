@@ -1,5 +1,12 @@
+import React from 'react';
 import { CheckmarkIcon, DotDotDotIcon } from '../../assets/KDM-Icons/icons';
-import { Milestone, MilestoneLabel, MilestoneTitle } from './styles';
+import {
+  KDMInfoHoverContainer,
+  KDMInfoText,
+  Milestone,
+  MilestoneLabel,
+  MilestoneTitle,
+} from './styles';
 
 export default function KeyDevelopmentMilestone({
   completed,
@@ -19,6 +26,13 @@ export default function KeyDevelopmentMilestone({
     'IA tendered',
     'Operations begun',
   ];
+  // Abbreviation to full text mapping
+  const abbreviationMap: Record<string, string> = {
+    NYISO: 'New York Independent System Operator',
+    NYSERDA: 'New York State Energy Research and Development Authority',
+    IA: 'Interconnection Agreement',
+  };
+
   function getDate() {
     if (!date) return null;
     const res = new Date(date);
@@ -42,10 +56,38 @@ export default function KeyDevelopmentMilestone({
     statusLabel = 'Pending';
   }
 
+  const renderWithTooltip = (text: string) => {
+    // Find the abbreviation in the KDMs (ex. NYISO)
+    const abbreviation = Object.keys(abbreviationMap).find(abbr =>
+      text.includes(abbr),
+    );
+
+    // If an abbreviation is found, render it with a tooltip
+    if (abbreviation) {
+      const parts = text.split(abbreviation);
+      const fullText = abbreviationMap[abbreviation];
+
+      return (
+        <span>
+          <KDMInfoHoverContainer>
+            <React.Fragment>
+              {abbreviation}
+              <KDMInfoText>{fullText}</KDMInfoText>
+            </React.Fragment>
+          </KDMInfoHoverContainer>
+          {parts[1]} {/* Text after the abbreviation */}
+        </span>
+      );
+    }
+
+    // If no abbreviation is found, return plain text
+    return text;
+  };
+
   return (
     <Milestone completed={completed}>
       <MilestoneTitle>
-        {milestoneLabels[index]}
+        {renderWithTooltip(milestoneLabels[index])}
         {completed ? (
           <CheckmarkIcon width={'9'} height={'8'} />
         ) : (
