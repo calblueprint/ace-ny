@@ -1,5 +1,5 @@
 import { CheckmarkIcon, DotDotDotIcon } from '../../assets/KDM-Icons/icons';
-import { Milestone, MilestoneLabel } from './styles';
+import { Milestone, MilestoneLabel, MilestoneTitle } from './styles';
 
 export default function KeyDevelopmentMilestone({
   completed,
@@ -44,11 +44,15 @@ export default function KeyDevelopmentMilestone({
 
   return (
     <Milestone completed={completed}>
-      {milestoneLabels[index]}
-      <MilestoneLabel status={completed}>
-        {completed ? <CheckmarkIcon /> : <DotDotDotIcon />}
-        {statusLabel}
-      </MilestoneLabel>
+      <MilestoneTitle>
+        {milestoneLabels[index]}
+        {completed ? (
+          <CheckmarkIcon width={'9'} height={'8'} />
+        ) : (
+          <DotDotDotIcon />
+        )}
+      </MilestoneTitle>
+      <MilestoneLabel status={completed}>{statusLabel}</MilestoneLabel>
     </Milestone>
   );
 }
