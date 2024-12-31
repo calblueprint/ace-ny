@@ -1,3 +1,4 @@
+import React from 'react';
 import COLORS from '@/styles/colors';
 import {
   CalendarIcon,
@@ -5,7 +6,13 @@ import {
   GreyDotInProgressIcon,
 } from '../../assets/Status-Tag-Icons/icons';
 import { TagText1 } from '../../styles/texts';
-import { AllTagStyles, CODTagStyles, TagStyle } from './styles';
+import {
+  AllTagStyles,
+  CODInfoHoverContainer,
+  CODInfoText,
+  CODTagStyles,
+  TagStyle,
+} from './styles';
 
 export default function StatusTag({
   projectStatus,
@@ -43,10 +50,18 @@ export default function StatusTag({
             </TagText1>
           </TagStyle>
           <CODTagStyles>
-            <CalendarIcon />
-            <TagText1 $color={COLORS.electricBlue}>
-              COD {convertDateToString()}
-            </TagText1>
+            <CODInfoHoverContainer>
+              <CODInfoText>
+                <TagText1>
+                  COD stands for Commercial Operations Date. It is the predicted
+                  date that this project will begin to produce electricity.
+                </TagText1>
+              </CODInfoText>
+              <CalendarIcon />
+              <TagText1 $color={COLORS.electricBlue}>
+                COD {convertDateToString()}
+              </TagText1>
+            </CODInfoHoverContainer>
           </CODTagStyles>
         </AllTagStyles>
       ) : (
