@@ -52,7 +52,7 @@ export default function StatusTag({
           <CODTagStyles>
             <CODInfoHoverContainer>
               <CODInfoText>
-                <TagText1>
+                <TagText1 $color={COLORS.navy}>
                   <span style={{ color: COLORS.electricBlue }}>COD</span> stands
                   for{' '}
                   <span style={{ color: COLORS.electricBlue }}>

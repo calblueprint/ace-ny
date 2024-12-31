@@ -68,13 +68,15 @@ export default function KeyDevelopmentMilestone({
       const fullText = abbreviationMap[abbreviation];
 
       return (
-        <KDMInfoHoverContainer>
-          <React.Fragment>
-            {abbreviation}
-            <KDMInfoText>{fullText}</KDMInfoText>
-          </React.Fragment>
+        <span>
+          <KDMInfoHoverContainer>
+            <React.Fragment>
+              {abbreviation}
+              <KDMInfoText>{fullText}</KDMInfoText>
+            </React.Fragment>
+          </KDMInfoHoverContainer>
           {parts[1]} {/* Text after the abbreviation */}
-        </KDMInfoHoverContainer>
+        </span>
       );
     }
 

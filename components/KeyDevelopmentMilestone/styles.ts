@@ -55,7 +55,7 @@ export const MilestoneTitle = styled.div`
 
 export const KDMInfoHoverContainer = styled.div`
   position: relative;
-  display: flex;
+  display: inline-flex;
   cursor: pointer;
   align-items: center;
   gap: 0.25rem;
@@ -67,8 +67,9 @@ export const KDMInfoHoverContainer = styled.div`
 `;
 
 export const KDMInfoText = styled.div`
+  color: ${COLORS.navy};
   visibility: hidden;
-  width: auto;
+  width: 8rem;
   background-color: white;
   text-align: center;
   border-radius: 0.25rem;
@@ -79,8 +80,7 @@ export const KDMInfoText = styled.div`
   box-shadow:
     0rem 1rem 1.25rem 0rem rgba(46, 58, 89, 0.1),
     0rem 0.0625rem 0.0625rem 0rem rgba(46, 58, 89, 0.15);
-  left: 50%;
-  transform: translateX(-70%);
+  transform: translateX(-5%);
 
   /* Tooltip arrow */
   &::after {
