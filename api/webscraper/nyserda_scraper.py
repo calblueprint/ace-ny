@@ -120,30 +120,29 @@ def query_nyserda_solar(offset=0, limit=1000):
             ):  # some projects have no project_id, so we skip them
                 continue
 
-            if check_status(item.get("project_status", None)) != "Cancelled":
-                project_dict = {
-                    "project_name": item.get(
-                        "project_id", None
-                    ),  # small data set only has project_id
-                    "project_status": check_status(
-                        item.get("project_status", None)
-                    ),  # NYSERDA small-scale solar projects do not have a project status
-                    "renewable_energy_technology": "Solar",
-                    "size": size_in_mw,
-                    "developer": item.get("developer", None),
-                    "proposed_cod": item.get("interconnection_date", None),
-                    "town": [item.get("city_town")] or None,
-                    "county": [item.get("county")] or None,
-                    "region": item.get("redc", None),  # missing
-                    "zipcode": item.get("zip", None),
-                    "latitude": None,
-                    "longitude": None,
-                    "data_through_date": item.get("data_through_date").split("T")[0],
-                    "key_development_milestones": initial_kdm,
-                    "project_image": None,
-                    "approved": False,
-                }
-                filtered_list.append(project_dict)
+            project_dict = {
+                "project_name": item.get(
+                    "project_id", None
+                ),  # small data set only has project_id
+                "project_status": check_status(
+                    item.get("project_status", None)
+                ),  # NYSERDA small-scale solar projects do not have a project status
+                "renewable_energy_technology": "Solar",
+                "size": size_in_mw,
+                "developer": item.get("developer", None),
+                "proposed_cod": item.get("interconnection_date", None),
+                "town": [item.get("city_town")] or None,
+                "county": [item.get("county")] or None,
+                "region": item.get("redc", None),  # missing
+                "zipcode": item.get("zip", None),
+                "latitude": None,
+                "longitude": None,
+                "data_through_date": item.get("data_through_date").split("T")[0],
+                "key_development_milestones": initial_kdm,
+                "project_image": None,
+                "approved": False,
+            }
+            filtered_list.append(project_dict)
         return filtered_list
 
 
