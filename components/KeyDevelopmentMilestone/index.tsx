@@ -1,3 +1,4 @@
+import React from 'react';
 import { CheckmarkIcon, DotDotDotIcon } from '../../assets/KDM-Icons/icons';
 import { Milestone, MilestoneLabel } from './styles';
 
