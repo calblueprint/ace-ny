@@ -29,7 +29,7 @@ const statusDetails = {
   },
 };
 
-type ProjectStatus = keyof typeof statusDetails;
+type ProjectStatus = keyof typeof statusDetails | string;
 
 export default function StatusTag({
   projectStatus,
@@ -47,8 +47,8 @@ export default function StatusTag({
     return `${month}.${day}.${year}`;
   }
 
-  // Use a default status if projectStatus is invalid
-  const status = statusDetails[projectStatus] || {
+  // Use a default fallback status for unknown statuses
+  const status = statusDetails[projectStatus as keyof typeof statusDetails] || {
     icon: null,
     color: COLORS.grey, // Fallback color
     info: 'Status information unavailable.',
