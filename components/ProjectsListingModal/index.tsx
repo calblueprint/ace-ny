@@ -35,6 +35,7 @@ export default function ProjectsListingModal({
         project_id={project.id}
         setSelectedProjectId={setSelectedProjectId}
         map={map}
+        project={project}
       />
     );
   });
@@ -46,6 +47,7 @@ export default function ProjectsListingModal({
         overlay: modalOverlayStyles,
         content: modalContentStyles,
       }}
+      ariaHideApp={false}
     >
       <ProjectDetails>
         <ModalContents>

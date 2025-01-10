@@ -119,9 +119,9 @@ export const TagText2 = styled.p<TextProps>`
   color: ${COLORS.electricBlue};
   font-size: 10px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: normal;
-  letter-spacing: 0.2px;
+  letter-spacing: 1px;
 `;
 
 export const MarkerInfoWindowText1 = styled.p<TextProps>`

@@ -50,14 +50,14 @@ export const ProgressBar = styled.div`
   width: 100%;
 `;
 
-export const ProgressBox = styled.div<{ completed: boolean }>`
+export const ProgressBox = styled.div<{ $completed: boolean }>`
   width: 2.625rem;
   height: 0.5rem;
   border-radius: 2px;
   background: ${COLORS.electricBlue};
-  opacity: ${props => (props.completed ? '0.85' : '0.5')};
+  opacity: ${props => (props.$completed ? '0.85' : '0.5')};
   box-shadow: ${props =>
-    props.completed
+    props.$completed
       ? '0px 3px 4px 0px rgba(46, 58, 89, 0.10)'
       : '0px 2px 4px 0px rgba(73, 116, 224, 0.10) inset'};
 `;

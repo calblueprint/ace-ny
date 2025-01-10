@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useMap } from '@vis.gl/react-google-maps';
+//import { useMap } from '@vis.gl/react-google-maps';
 import {
   /*LocationIcon,
 ProjectSizeIcon,*/
@@ -44,7 +44,7 @@ export default function MapViewScreen({
       icon: <LocationIcon />,
     },*/
   ];
-  const [map, setMap] = useState<google.maps.Map | null>(useMap());
+  const [map, setMap] = useState<google.maps.Map | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
   );
@@ -155,6 +155,7 @@ export default function MapViewScreen({
         <ProjectModal
           selectedProjectId={selectedProjectId}
           setSelectedProjectId={setSelectedProjectId}
+          project={projects.find(i => i.id === selectedProjectId)}
         />
       )}
     </>

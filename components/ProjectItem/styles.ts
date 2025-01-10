@@ -35,8 +35,6 @@ export const projectImageStyles: CSSProperties = {
   width: '7.75rem',
   height: '6.75rem',
   borderRadius: '0px 12px 12px 0px',
-  opacity: '0.9',
-  background: 'url(<path-to-image>) lightgray 50% / cover no-repeat',
   marginLeft: '-0.9375rem',
 };
 
@@ -84,7 +82,7 @@ export const ProjectSize = styled.div`
 export const ProjectType = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.3rem;
 `;
 
 export const DeveloperInfo = styled.div<{ $isDeveloperEmpty: boolean }>`
