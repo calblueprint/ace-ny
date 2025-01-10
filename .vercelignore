@@ -12,3 +12,5 @@ ores_scraper.py
 nyiso_scraper.cpython-312.pyc
 nyserda_scraper.cpython-312.pyc
 database_constants.cpython-312.pyc
+__init__.cpython-312.pyc
+app.py

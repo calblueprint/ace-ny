@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
+export const FilterBackgroundStyles = styled.div<{ $isActive: boolean }>`
   margin-right: 0.5rem;
   background: linear-gradient(
     180deg,
@@ -13,8 +13,8 @@ export const FilterBackgroundStyles = styled.div<{ isActive: boolean }>`
   border: 'none';
 
   margin-top: 0.45rem;
-  max-height: ${({ isActive }) => (isActive ? 'auto' : '2.2rem')};
-  border-radius: ${({ isActive }) => (isActive ? '0.8rem' : '6.25rem')};
+  max-height: ${({ $isActive }) => ($isActive ? 'auto' : '2.2rem')};
+  border-radius: ${({ $isActive }) => ($isActive ? '0.8rem' : '6.25rem')};
 
   transition: height 0.5s ease-in-out;
 `;

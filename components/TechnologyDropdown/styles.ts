@@ -30,7 +30,7 @@ export const CheckboxStyles = styled.input`
   margin-left: auto;
 `;
 
-export const ApplyButtonStyles = styled.button<{ isActive: boolean }>`
+export const ApplyButtonStyles = styled.button<{ $isActive: boolean }>`
   display: flex;
   width: 10.81rem;
   height: 1.5rem;
@@ -40,12 +40,12 @@ export const ApplyButtonStyles = styled.button<{ isActive: boolean }>`
   align-items: center;
   cursor: pointer;
   color: ${COLORS.white};
-  opacity: ${({ isActive }) => (isActive ? '1' : '0.50')};
+  opacity: ${({ $isActive }) => ($isActive ? '1' : '0.50')};
   line-height: normal;
   border: none;
   margin: 1rem auto 0 auto;
-  cursor: ${({ isActive }) => (isActive ? 'pointer' : 'not-allowed')};
-  pointer-events: ${({ isActive }) => (isActive ? 'auto' : 'none')};
+  cursor: ${({ $isActive }) => ($isActive ? 'pointer' : 'not-allowed')};
+  pointer-events: ${({ $isActive }) => ($isActive ? 'auto' : 'none')};
 `;
 
 export const ButtonStyles = styled.button`
@@ -83,7 +83,7 @@ export const IconStyles = styled.div`
   height: '3rem',
 `;
 
-export const ClearButtonStyles = styled.button<{ isActive: boolean }>`
+export const ClearButtonStyles = styled.button<{ $isActive: boolean }>`
   width: 10.81rem;
   height: 1.5rem;
   flex-shrink: 0;
@@ -91,12 +91,12 @@ export const ClearButtonStyles = styled.button<{ isActive: boolean }>`
   border-style: solid;
   border-width: 0.09rem;
   border-color: ${COLORS.electricBlue};
-  opacity: ${({ isActive }) => (isActive ? '1' : '0.5')};
+  opacity: ${({ $isActive }) => ($isActive ? '1' : '0.5')};
   background: ${COLORS.white};
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 0.5rem auto auto auto;
-  pointer-events: ${({ isActive }) => (isActive ? 'auto' : 'none')};
-  cursor: ${({ isActive }) => (isActive ? 'pointer' : 'not-allowed')};
+  pointer-events: ${({ $isActive }) => ($isActive ? 'auto' : 'none')};
+  cursor: ${({ $isActive }) => ($isActive ? 'pointer' : 'not-allowed')};
 `;

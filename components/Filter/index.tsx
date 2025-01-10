@@ -29,7 +29,7 @@ export default function Filter({
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
 }) {
   return (
-    <FilterBackgroundStyles isActive={isActive}>
+    <FilterBackgroundStyles $isActive={isActive}>
       {isActive ? (
         filter.id === 'technology' ? (
           <TechnologyDropdown

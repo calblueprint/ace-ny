@@ -43,7 +43,7 @@ export default function KeyDevelopmentMilestone({
   }
 
   return (
-    <Milestone completed={completed}>
+    <Milestone $completed={completed}>
       <MilestoneTitle>
         {milestoneLabels[index]}
         {completed ? (
@@ -52,7 +52,7 @@ export default function KeyDevelopmentMilestone({
           <DotDotDotIcon />
         )}
       </MilestoneTitle>
-      <MilestoneLabel status={completed}>{statusLabel}</MilestoneLabel>
+      <MilestoneLabel $status={completed}>{statusLabel}</MilestoneLabel>
     </Milestone>
   );
 }

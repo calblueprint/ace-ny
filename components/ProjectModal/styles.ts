@@ -69,7 +69,7 @@ export const ProjectOverview = styled.div`
 export const Developer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const DeveloperText = styled.div<{ $isDeveloperEmpty: boolean }>`
@@ -95,6 +95,14 @@ export const CloseButton = styled.button`
   box-shadow: none;
   background: none;
   border: none;
+  cursor: pointer;
+  z-index: 5;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.4rem;
+`;
+
+export const OpenLink = styled.a`
   cursor: pointer;
 `;
 
@@ -126,6 +134,18 @@ export const SizeLabel = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+`;
+
+export const ProjectStorageDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 16.95rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px 8px 12px 12px;
+  border: 1px solid rgba(46, 58, 89, 0.05);
+  box-shadow: 0px -2px 5px 0px rgba(255, 255, 255, 0.1);
 `;
 
 export const SizeInfo = styled.div`

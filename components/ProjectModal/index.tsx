@@ -1,15 +1,16 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { FiX, FiZap } from 'react-icons/fi';
+import { FiZap } from 'react-icons/fi';
 import Modal from 'react-modal';
 import Image from 'next/image';
-import { DeveloperIcon } from '@/assets/Project-Icons/icons';
-import COLORS from '@/styles/colors';
 import {
-  queryDefaultImages,
-  queryProjectbyId,
-} from '../../api/supabase/queries/query';
+  DeveloperIcon,
+  ExitModalIcon,
+  OpenLinkIcon,
+} from '@/assets/Project-Icons/icons';
+import COLORS from '@/styles/colors';
+import { queryDefaultImages } from '../../api/supabase/queries/query';
 import {
   AccentText1,
   AccentText2,
@@ -31,12 +32,14 @@ import {
   LastUpdatedDiv,
   modalContentStyles,
   modalOverlayStyles,
+  OpenLink,
   ProjectDetails,
   ProjectFilterWrapper,
   projectImageStyles,
   ProjectName,
   ProjectOverview,
   ProjectSizeDiv,
+  ProjectStorageDiv,
   SizeInfo,
   SizeLabel,
   TechnologyDiv,
@@ -48,18 +51,20 @@ import {
 export default function ProjectModal({
   selectedProjectId,
   setSelectedProjectId,
+  project,
 }: {
   selectedProjectId: number | null;
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
+  project: Project | undefined;
 }) {
-  const [project, setProject] = useState<Project | null>(null);
+  //const [project, setProject] = useState<Project | null>(null);
   const [defaultImage, setDefaultImage] = useState<string | null>(null);
 
-  useEffect(() => {
+  /*useEffect(() => {
     queryProjectbyId(selectedProjectId ?? 0).then(data => {
       setProject(data);
     });
-  }, [selectedProjectId]);
+  }, [selectedProjectId]);*/
 
   useEffect(() => {
     // Fetch default image when project data is available
@@ -107,6 +112,7 @@ export default function ProjectModal({
     has_energy_storage,
     has_pumped_storage,
     storage_size,
+    project_website_link,
   } = project || {};
 
   // Map KDMs
@@ -127,12 +133,13 @@ export default function ProjectModal({
     setSelectedProjectId(null); // close modal
   };
 
+  /* If they decide to move project size + storage size together again, use this to display it!
   const getProjectSize = () => {
     if (has_energy_storage || has_pumped_storage) {
       return size + ' + ' + storage_size;
     }
     return size;
-  };
+  };*/
 
   function convertLastUpdatedDateToString() {
     if (!last_updated_display) return '';
@@ -150,7 +157,11 @@ export default function ProjectModal({
         overlay: modalOverlayStyles,
         content: modalContentStyles,
       }}
+      ariaHideApp={false}
     >
+      <CloseButton onClick={closeModal}>
+        <ExitModalIcon />
+      </CloseButton>
       <ProjectDetails>
         <Image
           src={getProjectImageSrc()}
@@ -171,9 +182,15 @@ export default function ProjectModal({
                 {developer}
               </BodyText1>
             </DeveloperText>
-            <CloseButton onClick={closeModal}>
-              <FiX size={20} color="#000" />
-            </CloseButton>
+            {project_website_link ? (
+              <OpenLink
+                href={project_website_link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <OpenLinkIcon />
+              </OpenLink>
+            ) : null}
           </Developer>
           <ProjectName>
             <Heading1>{project_name?.toUpperCase()}</Heading1>
@@ -206,10 +223,20 @@ export default function ProjectModal({
           </SizeLabel>
           <SizeInfo>
             <FiZap color={COLORS.electricBlue} size={25} />
-            <AccentText1>{getProjectSize()}</AccentText1>
+            <AccentText1>{size}</AccentText1>
             <AccentText2>MW</AccentText2>
           </SizeInfo>
         </ProjectSizeDiv>
+        {storage_size ? (
+          <ProjectStorageDiv>
+            <SubHeading2>STORAGE CAPACITY</SubHeading2>
+            <SizeInfo>
+              <FiZap color={COLORS.electricBlue} size={25} />
+              <AccentText1>{storage_size}</AccentText1>
+              <AccentText2>MW</AccentText2>
+            </SizeInfo>
+          </ProjectStorageDiv>
+        ) : null}
         <TechnologyDiv>
           <TechnologyLabel>
             <SubHeading2>TECHNOLOGY</SubHeading2>
