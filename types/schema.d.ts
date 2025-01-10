@@ -29,6 +29,7 @@ export type Project = {
   has_energy_storage: boolean;
   has_pumped_storage: boolean;
   storage_size: number | null;
+  project_website_link: string | null;
 };
 
 export interface Option {
