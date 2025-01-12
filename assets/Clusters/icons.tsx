@@ -20,14 +20,14 @@ export const ClusterIcon = ({ count }: { count: number }) => (
       >
         <rect fill="white" x="4" y="6" width="56" height="63" />
         <path
-          fill-rule="evenodd"
-          clip-rule="evenodd"
+          fillRule="evenodd"
+          clipRule="evenodd"
           d="M47.6912 54.6986C53.3686 49.9885 57 42.7773 57 34.6944C57 20.5038 45.8071 9 32 9C18.1929 9 7 20.5038 7 34.6944C7 42.7771 10.6312 49.9882 16.3084 54.6983C16.4044 54.8026 16.5145 54.9002 16.6395 54.9894L16.9134 55.1847C17.471 55.6191 18.0469 56.03 18.6397 56.4159L30.8387 65.1162C31.5335 65.6118 32.4664 65.6118 33.1613 65.1162L45.3594 56.4165C45.9528 56.0302 46.5293 55.6189 47.0875 55.1841L47.3604 54.9894C47.4853 54.9003 47.5954 54.8028 47.6912 54.6986Z"
         />
       </mask>
       <path
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M47.6912 54.6986C53.3686 49.9885 57 42.7773 57 34.6944C57 20.5038 45.8071 9 32 9C18.1929 9 7 20.5038 7 34.6944C7 42.7771 10.6312 49.9882 16.3084 54.6983C16.4044 54.8026 16.5145 54.9002 16.6395 54.9894L16.9134 55.1847C17.471 55.6191 18.0469 56.03 18.6397 56.4159L30.8387 65.1162C31.5335 65.6118 32.4664 65.6118 33.1613 65.1162L45.3594 56.4165C45.9528 56.0302 46.5293 55.6189 47.0875 55.1841L47.3604 54.9894C47.4853 54.9003 47.5954 54.8028 47.6912 54.6986Z"
         fill="white"
       />
@@ -39,8 +39,8 @@ export const ClusterIcon = ({ count }: { count: number }) => (
     </g>
     <ellipse cx="32" cy="34.6944" rx="20.8333" ry="21.5278" fill="#4974E0" />
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M32 60.3889C45.8071 60.3889 57 48.8851 57 34.6944C57 20.5038 45.8071 9 32 9C18.1929 9 7 20.5038 7 34.6944C7 48.8851 18.1929 60.3889 32 60.3889ZM32 56.2222C43.5059 56.2222 52.8333 46.5839 52.8333 34.6944C52.8333 22.805 43.5059 13.1667 32 13.1667C20.4941 13.1667 11.1667 22.805 11.1667 34.6944C11.1667 46.5839 20.4941 56.2222 32 56.2222Z"
       fill="white"
     />
@@ -63,9 +63,9 @@ export const ClusterIcon = ({ count }: { count: number }) => (
         width="64"
         height="74.4879"
         filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
+        colorInterpolationFilters="sRGB"
       >
-        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
         <feColorMatrix
           in="SourceAlpha"
           type="matrix"

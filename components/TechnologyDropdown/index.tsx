@@ -184,13 +184,13 @@ export default function TechnologyDropdown({
           </div>
         ))}
         <ApplyButtonStyles
-          isActive={isApplyButtonActive}
+          $isActive={isApplyButtonActive}
           onClick={handleApplyButtonClick}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
         <ClearButtonStyles
-          isActive={isApplyButtonActive}
+          $isActive={isApplyButtonActive}
           onClick={clearFilters}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>

@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import {
-  queryDefaultImages,
-  queryProjectbyId,
-} from '@/api/supabase/queries/query';
+import { queryDefaultImages } from '@/api/supabase/queries/query';
 import { DeveloperIcon } from '@/assets/Project-Icons/icons';
 import { SmallSizeIcon } from '@/assets/Size-Icons/icons';
 import {
@@ -22,7 +19,7 @@ import {
   SolarPvIcon,
 } from '@/assets/Technology-Tag-Icons/icons';
 import COLORS from '@/styles/colors';
-import { BodyText1, Heading2, TagText1, TagText2 } from '@/styles/texts';
+import { BodyText1, Heading2, TagText1 } from '@/styles/texts';
 import { Project } from '@/types/schema';
 import {
   DeveloperInfo,
@@ -41,19 +38,21 @@ export default function ProjectItem({
   project_id,
   map,
   setSelectedProjectId,
+  project,
 }: {
   project_id: number;
   map: google.maps.Map | null;
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
+  project: Project;
 }) {
-  const [project, setProject] = useState<Project | null>(null);
+  //const [project, setProject] = useState<Project | null>(null);
   const [defaultImage, setDefaultImage] = useState<string | null>(null);
 
-  useEffect(() => {
+  /*useEffect(() => {
     queryProjectbyId(project_id).then(data => {
       setProject(data);
     });
-  }, [project_id]);
+  }, [project_id]);*/
 
   useEffect(() => {
     // Fetch default image when project data is available
@@ -91,6 +90,8 @@ export default function ProjectItem({
     // key_development_milestones,
     // proposed_cod,
     // approved
+    has_energy_storage,
+    has_pumped_storage,
   } = project || {};
 
   const getProjectImageSrc = () => {
@@ -158,14 +159,16 @@ export default function ProjectItem({
   return (
     <StyledProjectItem onClick={handleProjectClick}>
       <ProjectInfo>
-        <Heading2>
-          <ProjectName>{project_name?.toUpperCase()}</ProjectName>
-        </Heading2>
+        <ProjectName>
+          <Heading2>{project_name?.toUpperCase()}</Heading2>
+        </ProjectName>
+
         <DeveloperInfo $isDeveloperEmpty={!developer}>
           <DeveloperIcon width={'0.5rem'} height={'0.5rem'} />
-          <BodyText1>
-            <DeveloperOverflow>{developer}</DeveloperOverflow>
-          </BodyText1>
+
+          <DeveloperOverflow>
+            <BodyText1>{developer}</BodyText1>
+          </DeveloperOverflow>
         </DeveloperInfo>
         <ProjectSizeAndType>
           <ProjectStatus>
@@ -174,21 +177,39 @@ export default function ProjectItem({
           </ProjectStatus>
           <ProjectSize>
             <SmallSizeIcon />
-            <TagText2>{size} MW</TagText2>
+            <TagText1>{size} MW</TagText1>
           </ProjectSize>
           <ProjectType>
             {energyTypeIconMap[renewable_energy_technology ?? '']}
+            {has_energy_storage ? (
+              <EnergyStorageIcon
+                fill={COLORS.teal}
+                stroke={COLORS.white}
+                width={'13'}
+                height={'9'}
+              />
+            ) : null}
+            {has_pumped_storage ? (
+              <PumpedStorageIcon
+                fill={COLORS.cyanBlue}
+                width={'12'}
+                height={'9'}
+              />
+            ) : null}
           </ProjectType>
         </ProjectSizeAndType>
       </ProjectInfo>
       <Image
-        src={getProjectImageSrc()}
+        src={
+          getProjectImageSrc() ||
+          'https://odgsveffrfpkumjyuere.supabase.co/storage/v1/object/public/project_images/blur_image.jpg'
+        }
         alt={projectImageAlt}
         width={340}
         height={250}
         style={projectImageStyles}
         placeholder="blur"
-        blurDataURL="../../assets/blur_image.png"
+        blurDataURL="https://odgsveffrfpkumjyuere.supabase.co/storage/v1/object/public/project_images/blur_image.jpg"
       />
     </StyledProjectItem>
   );

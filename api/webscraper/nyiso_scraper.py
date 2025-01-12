@@ -74,9 +74,10 @@ def query_nyiso():
                 "project_image": None,
                 "interconnection_queue_number": item.get("Queue Pos.", None),
                 "approved": False,
-                # the following fields are used for updating kdms when updating the database
+                # the following 2 fields are used for updating kdms when updating the database
                 "date_of_ir": item.get("Date of IR", None),  # already a datetime object
                 "ia_tender_date": item.get("IA Tender Date", None),
+                "utility_service_provider": item.get("Utility", None),
             }
             filtered_list.append(project_dict)
 
@@ -119,7 +120,8 @@ def filter_nyiso_list(project_list, sheet_name):
             "proposed_cod": item.get(
                 "Proposed COD", None
             ),  # NOTE: non-serializable into JSON --> can't directly write to file
-            "county": [item.get("County")] or None,
+            # County labelled as "County" for Cluster Projects and "Location County" for In Service
+            "county": [item.get("County") if sheet_name == "Cluster Projects" else item.get("Location County", None)] or None,
             "region": None,  # missing
             "zipcode": None,  # missing
             "latitude": None,
@@ -140,8 +142,9 @@ def filter_nyiso_list(project_list, sheet_name):
             "approved": False,
             # the following fields are used for updating kdms when updating the database
             "date_of_ir": item.get("Date of IR", None),  # datetime object
-            "ia_tender_date": item.get("IA Tender Date", None),  # timestamp object
-            "utility": item.get("Utility", None),
+            "ia_tender_date": item.get("IA Tender Date", None),  # timestamp objects
+            # Utility labelled as "Utility" (no space) for Cluster projects sheet and "Utility " (space) for In service
+            "utility_service_provider": item.get("Utility", None) if sheet_name == "Cluster Projects" else item.get("Utility ", None),
         }
         if sheet_name == "In Service":
             project_dict["developer"] = item.get("Owner/Developer", None)
@@ -150,17 +153,18 @@ def filter_nyiso_list(project_list, sheet_name):
     return filtered_list
 
 
-def filter_nyiso_iq_sheet():
-    all_sheets = query_nyiso_excel()
-    sheet_names = list(all_sheets.keys())
-    iq_key = sheet_names[0]
+# ** NO LONGER NEEDED SINCE Interconnection Queue INACCURATE **
+# def filter_nyiso_iq_sheet():
+#     all_sheets = query_nyiso_excel()
+#     sheet_names = list(all_sheets.keys())
+#     iq_key = sheet_names[0]
 
-    iq_df = all_sheets[iq_key]  # Interconnection Queue
-    iq_df = clean_df_data(iq_df)
-    iq_list = iq_df.to_dict(orient="records")
+#     iq_df = all_sheets[iq_key]  # Interconnection Queue
+#     iq_df = clean_df_data(iq_df)
+#     iq_list = iq_df.to_dict(orient="records")
 
-    filtered_list = filter_nyiso_list(iq_list, "Interconnection Queue")
-    return filtered_list
+#     filtered_list = filter_nyiso_list(iq_list, "Interconnection Queue")
+#     return filtered_list
 
 
 def filter_nyiso_cluster_sheet():

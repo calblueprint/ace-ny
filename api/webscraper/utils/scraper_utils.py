@@ -18,8 +18,9 @@ def check_status(status: str):
     """
     if status is None:
         return None
+    # Want to return proposed even if project is cancelled for NYSERDA
     if status.lower() == "cancelled":
-        return "Cancelled"
+        return "Proposed"
     elif status.lower() == "operational" or status.lower() == "completed":
         return "Operational"
     elif status.lower() == "under development":

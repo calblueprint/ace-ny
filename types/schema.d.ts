@@ -16,7 +16,7 @@ export type Project = {
   assembly_district: number;
   project_image: string | null;
   additional_information: string | null;
-  key_development_milestones: Milestone[] | null;
+  key_development_milestones: Milestone[];
   permit_process: string | null;
   proposed_cod: Date;
   approved: boolean;
@@ -24,6 +24,12 @@ export type Project = {
   permit_process: string | null;
   permit_application_number: string | null;
   last_updated: Date;
+  utility: string | null;
+  last_updated_display: Date;
+  has_energy_storage: boolean;
+  has_pumped_storage: boolean;
+  storage_size: number | null;
+  project_website_link: string | null;
 };
 
 export interface Option {

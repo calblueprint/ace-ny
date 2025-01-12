@@ -37,6 +37,8 @@ export const ProjectDetails = styled.div`
   background: ${COLORS.white};
   width: 21.6rem;
   overflow-y: auto;
+  gap: 0.75rem;
+  padding-bottom: 0.75rem;
 `;
 
 export const projectImageStyles: CSSProperties = {
@@ -67,7 +69,7 @@ export const ProjectOverview = styled.div`
 export const Developer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const DeveloperText = styled.div<{ $isDeveloperEmpty: boolean }>`
@@ -94,48 +96,118 @@ export const CloseButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;
+  z-index: 5;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.4rem;
 `;
 
-export const ProjectSize = styled.div`
+export const OpenLink = styled.a`
+  cursor: pointer;
+`;
+
+export const UtilityDiv = styled.div`
   display: flex;
-  align-items: baseline;
-  width: 16.25rem;
-  padding-top: 1.2rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 16.95rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 12px 12px 8px 8px;
+  border: 1px solid rgba(46, 58, 89, 0.05);
+  box-shadow: 0px -2px 5px 0px rgba(255, 255, 255, 0.1);
+`;
+
+export const ProjectSizeDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 16.95rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 8px 8px 12px 12px;
+  border: 1px solid rgba(46, 58, 89, 0.05);
+  box-shadow: 0px -2px 5px 0px rgba(255, 255, 255, 0.1);
+`;
+
+export const SizeLabel = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 `;
 
-export const Divider = styled.hr`
-  width: 16.25rem;
-  border: 0;
-  height: 1px;
-  margin: 0px 0;
-  background: rgba(46, 58, 89, 0.1);
+export const ProjectStorageDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 16.95rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px 8px 12px 12px;
+  border: 1px solid rgba(46, 58, 89, 0.05);
+  box-shadow: 0px -2px 5px 0px rgba(255, 255, 255, 0.1);
+`;
+
+export const SizeInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.3rem;
+  align-items: flex-end;
+`;
+
+export const TechnologyDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 16.95rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 8px 8px 12px 12px;
+  border: 1px solid rgba(46, 58, 89, 0.05);
+  box-shadow: 0px -2px 5px 0px rgba(255, 255, 255, 0.1);
+`;
+
+export const TechnologyLabel = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+
+export const TechnologyInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 `;
 
 export const AdditionalInfo = styled.div`
-  width: 16.25rem;
-  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  width: 16.95rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 8px 8px 12px 12px;
+  border: 1px solid rgba(46, 58, 89, 0.05);
+  box-shadow:
+    0px 2px 4px 0px rgba(77, 87, 114, 0.08),
+    0px -2px 5px 0px rgba(255, 255, 255, 0.1);
+  gap: 0.75rem;
 `;
 
-export const DetailsContainer = styled.div<{ $isDetailsEmpty: boolean }>`
+export const DetailsContainer = styled.div`
   display: flex;
-  visibility: ${({ $isDetailsEmpty }) =>
-    $isDetailsEmpty ? 'hidden' : 'visible'};
   align-items: center;
   width: 100%;
   gap: 0.5rem;
 `;
 
-export const AdditionalText = styled.div`
-  padding-top: 1.25rem;
-`;
-
-export const AllKDMS = styled.div`
+export const LastUpdatedDiv = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  width: 16.625rem;
-  height: 8.25rem;
-  margin-top: 1.9375rem;
-  margin-bottom: 1.25rem;
-  gap: 0.75rem;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 16.95rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 8px 8px 12px 12px;
+  border: 1px solid rgba(46, 58, 89, 0.05);
+  box-shadow: 0px -2px 5px 0px rgba(255, 255, 255, 0.1);
 `;

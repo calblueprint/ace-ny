@@ -1,58 +1,70 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { FiX, FiZap } from 'react-icons/fi';
+import { FiZap } from 'react-icons/fi';
 import Modal from 'react-modal';
 import Image from 'next/image';
-import { DeveloperIcon } from '@/assets/Project-Icons/icons';
 import {
-  queryDefaultImages,
-  queryProjectbyId,
-} from '../../api/supabase/queries/query';
+  DeveloperIcon,
+  ExitModalIcon,
+  OpenLinkIcon,
+} from '@/assets/Project-Icons/icons';
+import COLORS from '@/styles/colors';
+import { queryDefaultImages } from '../../api/supabase/queries/query';
 import {
   AccentText1,
   AccentText2,
   BodyText1,
   Heading1,
+  SubHeading2,
 } from '../../styles/texts';
-import { Milestone, Project } from '../../types/schema';
-import KeyDevelopmentMilestone from '../KeyDevelopmentMilestone';
+import { Project } from '../../types/schema';
+import DefaultTag from '../DefaultTag';
+import KDMDropdown from '../KDMDropdown';
 import StatusTags from '../StatusTag';
 import TechnologyTags from '../TechnologyTag';
 import {
   AdditionalInfo,
-  AdditionalText,
-  AllKDMS,
   CloseButton,
   DetailsContainer,
   Developer,
   DeveloperText,
-  Divider,
+  LastUpdatedDiv,
   modalContentStyles,
   modalOverlayStyles,
+  OpenLink,
   ProjectDetails,
   ProjectFilterWrapper,
   projectImageStyles,
   ProjectName,
   ProjectOverview,
-  ProjectSize,
+  ProjectSizeDiv,
+  ProjectStorageDiv,
+  SizeInfo,
+  SizeLabel,
+  TechnologyDiv,
+  TechnologyInfo,
+  TechnologyLabel,
+  UtilityDiv,
 } from './styles';
 
 export default function ProjectModal({
   selectedProjectId,
   setSelectedProjectId,
+  project,
 }: {
   selectedProjectId: number | null;
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
+  project: Project | undefined;
 }) {
-  const [project, setProject] = useState<Project | null>(null);
+  //const [project, setProject] = useState<Project | null>(null);
   const [defaultImage, setDefaultImage] = useState<string | null>(null);
 
-  useEffect(() => {
+  /*useEffect(() => {
     queryProjectbyId(selectedProjectId ?? 0).then(data => {
       setProject(data);
     });
-  }, [selectedProjectId]);
+  }, [selectedProjectId]);*/
 
   useEffect(() => {
     // Fetch default image when project data is available
@@ -91,21 +103,20 @@ export default function ProjectModal({
     key_development_milestones,
     proposed_cod,
     // approved
+    // interconnection_number,
+    // permit_process: string | null;
+    // permit_application_number: string | null;
+    // last_updated: Date;
+    utility,
+    last_updated_display,
+    has_energy_storage,
+    has_pumped_storage,
+    storage_size,
+    project_website_link,
   } = project || {};
 
   // Map KDMs
-  const KDMs = key_development_milestones?.map(
-    (milestone: Milestone, i: number) => {
-      return (
-        <KeyDevelopmentMilestone
-          key={i}
-          index={i}
-          completed={milestone.completed}
-          date={milestone.date}
-        ></KeyDevelopmentMilestone>
-      );
-    },
-  );
+  const [isKDMOpen, setIsKDMOpen] = useState<boolean>(false);
 
   const getProjectImageSrc = () => {
     return project_image || defaultImage || '';
@@ -122,6 +133,23 @@ export default function ProjectModal({
     setSelectedProjectId(null); // close modal
   };
 
+  /* If they decide to move project size + storage size together again, use this to display it!
+  const getProjectSize = () => {
+    if (has_energy_storage || has_pumped_storage) {
+      return size + ' + ' + storage_size;
+    }
+    return size;
+  };*/
+
+  function convertLastUpdatedDateToString() {
+    if (!last_updated_display) return '';
+    const res = new Date(last_updated_display);
+    const year = String(res.getFullYear());
+    const month = res.toLocaleString('default', { month: 'long' });
+    const day = String(res.getDate()).padStart(2, '0');
+    return `${month} ${day}, ${year}`;
+  }
+
   return (
     <Modal
       isOpen={selectedProjectId !== null}
@@ -129,7 +157,11 @@ export default function ProjectModal({
         overlay: modalOverlayStyles,
         content: modalContentStyles,
       }}
+      ariaHideApp={false}
     >
+      <CloseButton onClick={closeModal}>
+        <ExitModalIcon />
+      </CloseButton>
       <ProjectDetails>
         <Image
           src={getProjectImageSrc()}
@@ -150,36 +182,96 @@ export default function ProjectModal({
                 {developer}
               </BodyText1>
             </DeveloperText>
-            <CloseButton onClick={closeModal}>
-              <FiX size={20} color="#000" />
-            </CloseButton>
+            {project_website_link ? (
+              <OpenLink
+                href={project_website_link}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <OpenLinkIcon />
+              </OpenLink>
+            ) : null}
           </Developer>
           <ProjectName>
             <Heading1>{project_name?.toUpperCase()}</Heading1>
           </ProjectName>
           <ProjectFilterWrapper>
-            <StatusTags projectStatus={project_status} cod={proposed_cod} />
-            <TechnologyTags technology={renewable_energy_technology} />
+            <StatusTags
+              projectStatus={project_status ? project_status : ''}
+              cod={proposed_cod}
+            />
           </ProjectFilterWrapper>
         </ProjectOverview>
-        <ProjectSize>
-          <AccentText1>
-            <FiZap size={38} />
-            {size}
-          </AccentText1>
-          <AccentText2>Megawatts</AccentText2>
-        </ProjectSize>
-        <Divider />
-        <AllKDMS>{KDMs}</AllKDMS>
-        <AdditionalInfo>
-          <DetailsContainer $isDetailsEmpty={!additional_information}>
-            <BodyText1>DETAILS</BodyText1>
-            <Divider />
-          </DetailsContainer>
-          <AdditionalText>
-            <BodyText1>{additional_information}</BodyText1>
-          </AdditionalText>
-        </AdditionalInfo>
+        {utility ? (
+          <UtilityDiv>
+            <SubHeading2>UTILITY</SubHeading2>
+            <DefaultTag
+              content={utility}
+              icon_category={'Utility Service Territory'}
+              size={0}
+            />
+          </UtilityDiv>
+        ) : null}
+        <ProjectSizeDiv>
+          <SizeLabel>
+            <SubHeading2>PROJECT SIZE</SubHeading2>
+            <DefaultTag
+              content={''}
+              icon_category={'Project Size'}
+              size={size}
+            />
+          </SizeLabel>
+          <SizeInfo>
+            <FiZap color={COLORS.electricBlue} size={25} />
+            <AccentText1>{size}</AccentText1>
+            <AccentText2>MW</AccentText2>
+          </SizeInfo>
+        </ProjectSizeDiv>
+        {storage_size ? (
+          <ProjectStorageDiv>
+            <SubHeading2>STORAGE CAPACITY</SubHeading2>
+            <SizeInfo>
+              <FiZap color={COLORS.electricBlue} size={25} />
+              <AccentText1>{storage_size}</AccentText1>
+              <AccentText2>MW</AccentText2>
+            </SizeInfo>
+          </ProjectStorageDiv>
+        ) : null}
+        <TechnologyDiv>
+          <TechnologyLabel>
+            <SubHeading2>TECHNOLOGY</SubHeading2>
+          </TechnologyLabel>
+          <TechnologyInfo>
+            <TechnologyTags technology={renewable_energy_technology} />
+            {has_pumped_storage ? (
+              <TechnologyTags technology={'Pumped Storage'} />
+            ) : null}
+            {has_energy_storage ? (
+              <TechnologyTags technology={'Energy Storage'} />
+            ) : null}
+          </TechnologyInfo>
+        </TechnologyDiv>
+        <KDMDropdown
+          key_development_milestones={key_development_milestones}
+          isOpen={isKDMOpen}
+          setIsOpen={setIsKDMOpen}
+        />
+        {additional_information ? (
+          <AdditionalInfo>
+            <DetailsContainer>
+              <BodyText1>DETAILS</BodyText1>
+              <BodyText1>{additional_information}</BodyText1>
+            </DetailsContainer>
+          </AdditionalInfo>
+        ) : null}
+        <LastUpdatedDiv>
+          <SubHeading2>LAST UPDATED</SubHeading2>
+          <DefaultTag
+            content={convertLastUpdatedDateToString()}
+            icon_category={'Last Updated'}
+            size={0}
+          />
+        </LastUpdatedDiv>
       </ProjectDetails>
     </Modal>
   );
