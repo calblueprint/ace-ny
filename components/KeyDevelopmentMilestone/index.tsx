@@ -1,12 +1,6 @@
 import React from 'react';
 import { CheckmarkIcon, DotDotDotIcon } from '../../assets/KDM-Icons/icons';
-import {
-  KDMInfoHoverContainer,
-  KDMInfoText,
-  Milestone,
-  MilestoneLabel,
-  MilestoneTitle,
-} from './styles';
+import { Milestone, MilestoneLabel } from './styles';
 
 export default function KeyDevelopmentMilestone({
   completed,
@@ -86,16 +80,12 @@ export default function KeyDevelopmentMilestone({
   };
 
   return (
-    <Milestone $completed={completed}>
-      <MilestoneTitle>
-        {renderWithTooltip(milestoneLabels[index])}
-        {completed ? (
-          <CheckmarkIcon width={'9'} height={'8'} />
-        ) : (
-          <DotDotDotIcon />
-        )}
-      </MilestoneTitle>
-      <MilestoneLabel $status={completed}>{statusLabel}</MilestoneLabel>
+    <Milestone completed={completed}>
+      {milestoneLabels[index]}
+      <MilestoneLabel status={completed}>
+        {completed ? <CheckmarkIcon /> : <DotDotDotIcon />}
+        {statusLabel}
+      </MilestoneLabel>
     </Milestone>
   );
 }
