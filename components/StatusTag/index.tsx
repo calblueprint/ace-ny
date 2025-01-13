@@ -5,12 +5,14 @@ import {
   GreenDotOperationalIcon,
   GreyDotInProgressIcon,
 } from '../../assets/Status-Tag-Icons/icons';
-import { TagText1 } from '../../styles/texts';
+import { InfoHoverText, TagText1 } from '../../styles/texts';
 import {
   AllTagStyles,
   CODInfoHoverContainer,
   CODInfoText,
   CODTagStyles,
+  ProposedCODTagStyles,
+  StatusTagStyles,
   TagStyle,
 } from './styles';
 
