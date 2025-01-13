@@ -57,30 +57,31 @@ export default function KeyDevelopmentMilestone({
   }
 
   const renderWithTooltip = (text: string) => {
-    // Find the abbreviation in the KDMs (ex. NYISO)
+    // Find the abbreviation in the text
     const abbreviation = Object.keys(abbreviationMap).find(abbr =>
       text.includes(abbr),
     );
 
-    // If an abbreviation is found, render it with a tooltip
+    // If an abbreviation is found, replace it with a React component (tooltip)
     if (abbreviation) {
-      const parts = text.split(abbreviation);
-      const fullText = abbreviationMap[abbreviation];
-
       return (
-        <span>
-          <KDMInfoHoverContainer>
-            <React.Fragment>
-              {abbreviation}
-              <KDMInfoText>{fullText}</KDMInfoText>
+        <KDMInfoHoverContainer>
+          {text.split(abbreviation).map((part, index) => (
+            <React.Fragment key={index}>
+              {part}
+              {index < 1 && ( // Only show the tooltip after the abbreviation
+                <>
+                  {abbreviation}
+                  <KDMInfoText>{abbreviationMap[abbreviation]}</KDMInfoText>
+                </>
+              )}
             </React.Fragment>
-          </KDMInfoHoverContainer>
-          {parts[1]} {/* Text after the abbreviation */}
-        </span>
+          ))}
+        </KDMInfoHoverContainer>
       );
     }
 
-    // If no abbreviation is found, return plain text
+    // If no abbreviation is found, just return the text
     return text;
   };
 
