@@ -54,14 +54,9 @@ export default function StatusTag({
           <CODTagStyles>
             <CODInfoHoverContainer>
               <CODInfoText>
-                <TagText1 $color={COLORS.navy}>
-                  <span style={{ color: COLORS.electricBlue }}>COD</span> stands
-                  for{' '}
-                  <span style={{ color: COLORS.electricBlue }}>
-                    Commercial Operations Date
-                  </span>
-                  . It is the predicted date that this project will begin to
-                  produce electricity.
+                <TagText1>
+                  COD stands for Commercial Operations Date. It is the predicted
+                  date that this project will begin to produce electricity.
                 </TagText1>
               </CODInfoText>
               <CalendarIcon />
