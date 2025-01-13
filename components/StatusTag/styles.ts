@@ -28,7 +28,7 @@ export const AllTagStyles = styled.div`
   align-items: center;
 `;
 
-export const CODInfoHoverContainer = styled.div`
+export const InfoHoverContainer = styled.div`
   position: relative;
   display: flex;
   cursor: pointer;
@@ -40,9 +40,9 @@ export const CODInfoHoverContainer = styled.div`
   }
 `;
 
-export const CODInfoText = styled.div`
+export const InfoHoverText = styled.div`
   visibility: hidden;
-  width: 11.25rem;
+  width: 7rem;
   background-color: white;
   text-align: center;
   border-radius: 0.25rem;

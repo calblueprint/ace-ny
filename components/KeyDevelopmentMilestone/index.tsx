@@ -11,21 +11,40 @@ export default function KeyDevelopmentMilestone({
   date: string | null;
   index: number;
 }) {
-  let statusLabel = '';
-  const milestoneLabels = [
-    'NYISO queue entered',
-    'ORES permit applied',
-    'ORES permit issued',
-    'NYSERDA contracted',
-    'IA tendered',
-    'Operations begun',
+  const milestones = [
+    {
+      label: 'NYISO queue entered',
+      description:
+        'This means a project has submitted a formal request to be studied for possible connection to the NYS power grid. Projects may also connect to the grid without this step at a lower voltage.',
+    },
+    {
+      label: 'ORES permit applied',
+      description:
+        'This means a project has submitted its application to the NY Office of Renewable Energy Siting (ORES) for its primary environmental review.',
+    },
+    {
+      label: 'ORES permit issued',
+      description:
+        'This means a project has been issued its final permit by the NY Office of Renewable Energy Siting (ORES).',
+    },
+    {
+      label: 'NYSERDA contracted',
+      description: 'New York State Energy Research and Development Authority',
+    },
+    {
+      label: 'IA tendered',
+      description:
+        'This means the project has completed all interconnection studies and has been offered an interconnection contract with the NYS grid.',
+    },
+    {
+      label: 'Operations begun',
+      description:
+        'The project is operational, delivering power to the NYS grid.',
+    },
   ];
-  // Abbreviation to full text mapping
-  const abbreviationMap: Record<string, string> = {
-    NYISO: 'New York Independent System Operator',
-    NYSERDA: 'New York State Energy Research and Development Authority',
-    IA: 'Interconnection Agreement',
-  };
+
+  const milestone = milestones[index];
+  let statusLabel = '';
 
   function getDate() {
     if (!date) return null;
@@ -33,7 +52,7 @@ export default function KeyDevelopmentMilestone({
     return res;
   }
   // Sets status label to date of completion or 'Pending' if incomplete
-  if (milestoneLabels[index] === 'NYSERDA contracted' && date) {
+  if (milestone.label === 'NYSERDA contracted' && date) {
     const date_object = getDate();
     statusLabel = String(date_object?.getFullYear());
   } else if (date) {
@@ -50,42 +69,32 @@ export default function KeyDevelopmentMilestone({
     statusLabel = 'Pending';
   }
 
-  const renderWithTooltip = (text: string) => {
-    // Find the abbreviation in the text
-    const abbreviation = Object.keys(abbreviationMap).find(abbr =>
-      text.includes(abbr),
-    );
+  const renderWithTooltip = (milestone: (typeof milestones)[number]) => {
+    const { label, description } = milestone;
 
-    // If an abbreviation is found, replace it with a React component (tooltip)
-    if (abbreviation) {
-      return (
+    return (
+      <span>
         <KDMInfoHoverContainer>
-          {text.split(abbreviation).map((part, index) => (
-            <React.Fragment key={index}>
-              {part}
-              {index < 1 && ( // Only show the tooltip after the abbreviation
-                <>
-                  {abbreviation}
-                  <KDMInfoText>{abbreviationMap[abbreviation]}</KDMInfoText>
-                </>
-              )}
-            </React.Fragment>
-          ))}
+          <React.Fragment>
+            {label}
+            {description && <KDMInfoText>{description}</KDMInfoText>}
+          </React.Fragment>
         </KDMInfoHoverContainer>
-      );
-    }
-
-    // If no abbreviation is found, just return the text
-    return text;
+      </span>
+    );
   };
 
   return (
     <Milestone completed={completed}>
-      {milestoneLabels[index]}
-      <MilestoneLabel status={completed}>
-        {completed ? <CheckmarkIcon /> : <DotDotDotIcon />}
-        {statusLabel}
-      </MilestoneLabel>
+      <MilestoneTitle>
+        {renderWithTooltip(milestone)}
+        {completed ? (
+          <CheckmarkIcon width={'9'} height={'8'} />
+        ) : (
+          <DotDotDotIcon />
+        )}
+      </MilestoneTitle>
+      <MilestoneLabel status={completed}>{statusLabel}</MilestoneLabel>
     </Milestone>
   );
 }

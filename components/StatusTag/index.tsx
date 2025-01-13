@@ -1,25 +1,41 @@
+import React from 'react';
 import COLORS from '@/styles/colors';
 import {
   CalendarIcon,
   GreenDotOperationalIcon,
   GreyDotInProgressIcon,
 } from '../../assets/Status-Tag-Icons/icons';
-import { InfoHoverText, TagText1 } from '../../styles/texts';
+import { TagText1 } from '../../styles/texts';
 import {
   AllTagStyles,
-  CODInfoHoverContainer,
-  CODInfoText,
   CODTagStyles,
+  InfoHoverContainer,
+  InfoHoverText,
   ProposedCODTagStyles,
   StatusTagStyles,
   TagStyle,
 } from './styles';
 
+const statusDetails = {
+  Operational: {
+    icon: <GreenDotOperationalIcon />,
+    color: COLORS.aceGreen,
+    info: 'The project has been built and delivers power to the NYS grid.',
+  },
+  Proposed: {
+    icon: <GreyDotInProgressIcon />,
+    color: COLORS.ashGrey,
+    info: 'The project is still in the planning stages and has not begun delivering power.',
+  },
+};
+
+type ProjectStatus = keyof typeof statusDetails;
+
 export default function StatusTag({
   projectStatus,
   cod,
 }: {
-  projectStatus: string;
+  projectStatus: ProjectStatus;
   cod: Date | undefined;
 }) {
   function convertDateToString() {
@@ -31,48 +47,42 @@ export default function StatusTag({
     return `${month}.${day}.${year}`;
   }
 
-  const statusIcon: { [key: string]: JSX.Element } = {
-    Operational: <GreenDotOperationalIcon />,
-    Proposed: <GreyDotInProgressIcon />,
-  };
-  const statusTextColor: { [key: string]: string } = {
-    Operational: COLORS.aceGreen,
-    Proposed: COLORS.ashGrey,
+  // Use a default status if projectStatus is invalid
+  const status = statusDetails[projectStatus] || {
+    icon: null,
+    color: COLORS.grey, // Fallback color
+    info: 'Status information unavailable.',
   };
 
   return (
     <div>
-      {cod ? (
-        <AllTagStyles>
-          <TagStyle $color={statusTextColor[projectStatus]}>
-            {statusIcon[projectStatus]}{' '}
-            <TagText1 $color={statusTextColor[projectStatus]}>
-              {projectStatus}
-            </TagText1>
-          </TagStyle>
+      <AllTagStyles>
+        <TagStyle $color={status.color}>
+          <InfoHoverContainer>
+            {status.icon}
+            <TagText1 $color={status.color}>{projectStatus}</TagText1>
+            <InfoHoverText>
+              <TagText1 $color={COLORS.navy}>{status.info}</TagText1>
+            </InfoHoverText>
+          </InfoHoverContainer>
+        </TagStyle>
+
+        {cod && (
           <CODTagStyles>
-            <CODInfoHoverContainer>
-              <CODInfoText>
-                <TagText1>
-                  COD stands for Commercial Operations Date. It is the predicted
-                  date that this project will begin to produce electricity.
+            <InfoHoverContainer>
+              <InfoHoverText>
+                <TagText1 $color={COLORS.navy}>
+                  The date on which the project begins delivering power.
                 </TagText1>
-              </CODInfoText>
+              </InfoHoverText>
               <CalendarIcon />
               <TagText1 $color={COLORS.electricBlue}>
                 COD {convertDateToString()}
               </TagText1>
-            </CODInfoHoverContainer>
+            </InfoHoverContainer>
           </CODTagStyles>
-        </AllTagStyles>
-      ) : (
-        <TagStyle $color={statusTextColor[projectStatus]}>
-          {statusIcon[projectStatus]}{' '}
-          <TagText1 $color={statusTextColor[projectStatus]}>
-            {projectStatus}
-          </TagText1>
-        </TagStyle>
-      )}
+        )}
+      </AllTagStyles>
     </div>
   );
 }

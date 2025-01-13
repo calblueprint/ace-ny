@@ -68,7 +68,7 @@ export const KDMInfoHoverContainer = styled.div`
 export const KDMInfoText = styled.div`
   color: ${COLORS.navy};
   visibility: hidden;
-  width: 8rem;
+  width: 11rem;
   background-color: white;
   text-align: center;
   border-radius: 0.25rem;
