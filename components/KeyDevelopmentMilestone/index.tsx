@@ -1,4 +1,3 @@
-import React from 'react';
 import { CheckmarkIcon, DotDotDotIcon } from '../../assets/KDM-Icons/icons';
 import {
   KDMInfoHoverContainer,
@@ -81,10 +80,8 @@ export default function KeyDevelopmentMilestone({
     return (
       <span>
         <KDMInfoHoverContainer>
-          <React.Fragment>
-            {label}
-            {description && <KDMInfoText>{description}</KDMInfoText>}
-          </React.Fragment>
+          {label}
+          {description && <KDMInfoText>{description}</KDMInfoText>}
         </KDMInfoHoverContainer>
       </span>
     );
