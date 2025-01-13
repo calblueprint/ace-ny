@@ -82,9 +82,6 @@ export const KDMInfoText = styled.div`
     0rem 0.0625rem 0.0625rem 0rem rgba(46, 58, 89, 0.15);
   transform: translateX(-5%);
 
-  left: 50%;
-  transform: translateX(-70%);
-
   /* Tooltip arrow */
   &::after {
     content: '';
