@@ -164,6 +164,9 @@ def find_keyword(project_name):
         last_non_digit_index = len(project_name) - 1
         while last_non_digit_index > 0 and project_name[last_non_digit_index].isdigit():
             last_non_digit_index -= 1
+
+        # return the substring up to but not including the last non-digit
+        # if there are no non-digit characters, return the whole project name
         return (
             project_name[: last_non_digit_index + 1].strip()
             if last_non_digit_index < len(project_name) - 1
