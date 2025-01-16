@@ -161,13 +161,14 @@ def find_keyword(project_name):
         i = project_name.lower().find("wind")
         return project_name[:i].strip()
     else:
-        j = 0
-        while j < len(project_name):
-            if project_name[j].isdigit():
-                break
-            else:
-                j += 1
-        return project_name[:j].strip()
+        last_non_digit_index = len(project_name) - 1
+        while last_non_digit_index > 0 and project_name[last_non_digit_index].isdigit():
+            last_non_digit_index -= 1
+        return (
+            project_name[: last_non_digit_index + 1].strip()
+            if last_non_digit_index < len(project_name) - 1
+            else project_name.strip()
+        )
 
 
 def combine_projects(existing_project: dict, new_project: dict) -> dict:

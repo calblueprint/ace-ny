@@ -980,7 +980,7 @@ def merge_projects():
                 # otherwise, combine fields of current project with duplicate's data
                 update = combine_projects(update, matching_project)
 
-                # add sizes of duplicate proejcts together
+                # add sizes of duplicate projects together
                 if (
                     update.get("size", None) is not None
                     and matching_project.get("size", None) is not None
