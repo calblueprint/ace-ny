@@ -127,7 +127,7 @@ def query_nyserda_solar(offset=0, limit=1000):
                 "project_status": check_status(
                     item.get("project_status", None)
                 ),  # NYSERDA small-scale solar projects do not have a project status
-                "renewable_energy_technology": "Solar PV",
+                "renewable_energy_technology": renewable_energy_map["Solar"],
                 "size": size_in_mw,
                 "developer": item.get("developer", None),
                 "proposed_cod": item.get("interconnection_date", None),
