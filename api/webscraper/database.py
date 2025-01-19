@@ -32,7 +32,7 @@ url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 supabase: Client = create_client(url, key)
 supabase_table: str = (
-    "Projects_test_julee"  # TODO: modify based on which table in supabase we want to edit
+    "Projects_test_deena_1"  # TODO: modify based on which table in supabase we want to edit
 )
 
 geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
@@ -78,7 +78,7 @@ def offset_lat_long(lat, long):
     return lat, long
 
 
-def nyserda_large_to_database() -> None:
+def nyserda_large_to_database() -> dict:
     """
     This function pushes all the projects quered from the NYSERDA large-scale renewable energy projects
     database to the Supabase database.
@@ -106,7 +106,9 @@ def nyserda_large_to_database() -> None:
         if len(existing_data.data) > 0:
             existing_project = existing_data.data[0]
             if (
-                existing_project.get("last_updated", {}).get("NYSERDA_large_scale")
+                existing_project.get("last_updated", {}).get(
+                    "NYSERDA_large_scale", None
+                )
                 is not None
             ):
                 last_nyserda_update = datetime.fromisoformat(
@@ -278,7 +280,7 @@ def nyserda_large_to_database() -> None:
     return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
-def nyserda_solar_to_database() -> None:
+def nyserda_solar_to_database() -> dict:
     """
     This function pushes all the projects quered from the NYSERDA small-scale solar projects
     database to the Supabase database.
@@ -305,7 +307,7 @@ def nyserda_solar_to_database() -> None:
         if len(existing_data.data) > 0:
             existing_project = existing_data.data[0]
             if (
-                existing_project.get("last_updated", {}).get("NYSERDA_solar")
+                existing_project.get("last_updated", {}).get("NYSERDA_solar", None)
                 is not None
             ):
                 # get the last time this project was updated by turning the string into a datetime object
@@ -322,7 +324,9 @@ def nyserda_solar_to_database() -> None:
                 ).replace(tzinfo=nyt)
                 < last_nyserda_solar_update
             ):
-                update_object = (existing_project, project, "NYSERDA")
+                update_object = create_update_object(
+                    existing_project, project, "NYSERDA"
+                )
                 if (
                     existing_project["key_development_milestones"] is None
                     or len(existing_project["key_development_milestones"]) < 0
@@ -348,6 +352,8 @@ def nyserda_solar_to_database() -> None:
                 )
                 if "id" in update_object:
                     del update_object["id"]
+                if "data_through_date" in update_object:
+                    del update_object["data_through_date"]
                 # update last_updated_display field to reflect when when the webscraper last ran
                 update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                     "%Y-%m-%dT%H:%M:%S.%f%z"
@@ -375,10 +381,14 @@ def nyserda_solar_to_database() -> None:
             if lat is not None and long is not None:
                 project["latitude"] = lat
                 project["longitude"] = long
-                geocodio_result = geocodio.reverse(
-                    (project.get("latitude"), project.get("longitude")),
-                    fields=["stateleg"],
-                ).get("results", None)
+                try:
+                    geocodio_result = geocodio.reverse(
+                        (project.get("latitude"), project.get("longitude")),
+                        fields=["stateleg"],
+                    ).get("results", None)
+                except Exception as exception:
+                    print(exception)
+                    geocodio_result = None
                 if geocodio_result is not None:
                     location = geocodio_result[0]
                     state_senate_district = int(
@@ -430,7 +440,7 @@ def nyserda_solar_to_database() -> None:
     return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
-def nyiso_to_database() -> None:
+def nyiso_to_database() -> dict:
     """
     This function takes the data from the NYISO website and pushes it to Supabase.
     The helper function first checks if an existing project with a matching name exists in Supabase.
@@ -469,7 +479,10 @@ def nyiso_to_database() -> None:
             )
             if len(existing_data.data) > 0:
                 existing_project = existing_data.data[0]
-                if existing_project.get("last_updated", {}).get("NYISO") is not None:
+                if (
+                    existing_project.get("last_updated", {}).get("NYISO", None)
+                    is not None
+                ):
                     last_nyiso_update = datetime.fromisoformat(
                         existing_project["last_updated"]["NYISO"]
                     )
@@ -615,8 +628,9 @@ def nyiso_to_database() -> None:
                 except Exception as exception:
                     print(exception)
 
+    # TODO: update slicing for testing vs development
     # call helper function for each sheet with the corresponding sheet name
-    # nyiso_to_database_helper(filter_nyiso_iq_sheet()[:10], "Interconnection Queue") ** NO LONGER NEEDED **
+    # nyiso_to_database_helper(filter_nyiso_iq_sheet(), "Interconnection Queue") ** NO LONGER NEEDED **
     nyiso_to_database_helper(filter_nyiso_cluster_sheet(), "Cluster Projects")
     nyiso_to_database_helper(filter_nyiso_in_service_sheet(), "In Service")
 
@@ -725,7 +739,7 @@ def ores_noi_to_database():
     return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
-def ores_under_review_to_database() -> None:
+def ores_under_review_to_database() -> dict:
     updated_ids = set()
     inserted_ids = set()
     database = []
@@ -825,7 +839,7 @@ def ores_under_review_to_database() -> None:
     return {"inserted_ids": inserted_ids, "updated_ids": updated_ids}
 
 
-def ores_permitted_to_database() -> None:
+def ores_permitted_to_database() -> dict:
     updated_ids = set()
     inserted_ids = set()
     database = []
@@ -940,6 +954,8 @@ def merge_projects():
     for project in all_projects:
         if project["id"] in duplicates_to_delete:
             continue  # skip any duplicate projects that have already been processed and marked for deletion
+        if project.get("last_updated", {}).get("NYSERDA_solar", None) is not None:
+            continue  # skip looking for keywords in project names for NYSERDA solar projects because their names are their project_ids from the data source
         else:
             update = copy.deepcopy(project)
             keyword = find_keyword(project["project_name"])
@@ -964,7 +980,7 @@ def merge_projects():
                 # otherwise, combine fields of current project with duplicate's data
                 update = combine_projects(update, matching_project)
 
-                # add sizes of duplicate proejcts together
+                # add sizes of duplicate projects together
                 if (
                     update.get("size", None) is not None
                     and matching_project.get("size", None) is not None

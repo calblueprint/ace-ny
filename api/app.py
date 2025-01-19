@@ -26,7 +26,6 @@ def hello_world():
 @app.route("/api/nyserda_large", methods=["GET"])
 async def run_nyserda_large():
     result = nyserda_large_to_database()
-    print("result", result)
     return {"message": "Hello NYSERDA Large"}
 
 

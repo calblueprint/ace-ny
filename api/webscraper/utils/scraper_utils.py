@@ -39,6 +39,11 @@ def geocode_lat_long(address):
     response = requests.get(
         f"https://maps.googleapis.com/maps/api/geocode/json?address={parameters}&key={google_maps_api_key}"
     )
+    if response.status_code != 200:
+        raise ValueError(
+            "Request to NYSERDA failed. Status code: %d\n%s"
+            % (response.status_code, response.text)
+        )
     if response.status_code == 200:
         geocode_info = response.json()
         latitude = geocode_info["results"][0]["geometry"]["location"]["lat"]
@@ -142,6 +147,7 @@ def turn_timestamp_to_string(timestamp):
     return timestamp.to_pydatetime().strftime("%Y-%m-%d")
 
 
+# TODO: update this to also work with NYSERDA solar project names which are mostly all numbers
 def find_keyword(project_name):
     if " " not in project_name:
         return project_name
@@ -155,13 +161,17 @@ def find_keyword(project_name):
         i = project_name.lower().find("wind")
         return project_name[:i].strip()
     else:
-        j = 0
-        while j < len(project_name):
-            if project_name[j].isdigit():
-                break
-            else:
-                j += 1
-        return project_name[:j].strip()
+        last_non_digit_index = len(project_name) - 1
+        while last_non_digit_index > 0 and project_name[last_non_digit_index].isdigit():
+            last_non_digit_index -= 1
+
+        # return the substring up to but not including the last non-digit
+        # if there are no non-digit characters, return the whole project name
+        return (
+            project_name[: last_non_digit_index + 1].strip()
+            if last_non_digit_index < len(project_name) - 1
+            else project_name.strip()
+        )
 
 
 def combine_projects(existing_project: dict, new_project: dict) -> dict:
