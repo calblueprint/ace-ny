@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import COLORS from '@/styles/colors';
+import { FilterCategoryText1 } from '@/styles/texts';
 
 export const FilterDropdownStyles = styled.div`
   display: flex;
   background: #fff;
-  width: 18rem;
+  width: 21rem;
   heightL 18.375rem;
   border-radius: 0.5rem;
 `;
@@ -12,7 +13,7 @@ export const FilterDropdownStyles = styled.div`
 export const FilterContentDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0.625rem 1.1rem 0.9rem 1.1rem;
+  margin: 0.9rem 1.1rem 0.9rem 1.3rem;
   align-content: space-between;
 `;
 
@@ -43,5 +44,13 @@ export const ButtonStyles = styled.button`
 
 export const ExitStyles = styled.div`
   display: flex;
-  padding-left: 6.5rem;
+  padding-left: 9rem;
+`;
+
+export const BlueTextStyles = styled.span`
+  color: ${COLORS.electricBlue};
+`;
+
+export const FilterCategoryText1WithPadding = styled(FilterCategoryText1)`
+  padding-top: 10px;
 `;

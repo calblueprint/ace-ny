@@ -2,9 +2,11 @@ import { FilterHeadingUnused } from '@/styles/texts';
 import { FilterType, projectSizeType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import {
+  BlueTextStyles,
   ButtonStyles,
   ButtonWithIconStyles,
   ExitStyles,
+  FilterCategoryText1WithPadding,
   FilterContentDiv,
   FilterDropdownStyles,
   FilterIconStyles,
@@ -35,17 +37,20 @@ export default function ProjectSizeDropdown({
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
-        <ButtonWithIconStyles>
-          <FilterIconStyles onClick={() => handleButtonClick(currFilter)}>
-            {icon}
-          </FilterIconStyles>
-          <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
+        <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
+          <FilterIconStyles>{icon}</FilterIconStyles>
+          <ButtonStyles>
             <FilterHeadingUnused>{label}</FilterHeadingUnused>
           </ButtonStyles>
           <ExitStyles>
             <ExitIcon />
           </ExitStyles>
         </ButtonWithIconStyles>
+
+        <FilterCategoryText1WithPadding>
+          The average expected project output is{' '}
+          <BlueTextStyles>2900 MW</BlueTextStyles>.
+        </FilterCategoryText1WithPadding>
       </FilterContentDiv>
     </FilterDropdownStyles>
   );
