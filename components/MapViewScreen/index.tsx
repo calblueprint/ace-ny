@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 //import { useMap } from '@vis.gl/react-google-maps';
 import {
+  ProjectSizeIcon,
   /*LocationIcon,
 ProjectSizeIcon,*/
   StatusIcon,
@@ -33,16 +34,16 @@ export default function MapViewScreen({
       label: 'TECHNOLOGY',
       icon: <TechnologyIcon />,
     },
-    /*{
+    {
       id: 'projectSize',
       label: 'PROJECT SIZE',
       icon: <ProjectSizeIcon />,
     },
-    {
-      id: 'location',
-      label: 'LOCATION',
-      icon: <LocationIcon />,
-    },*/
+    // {
+    //   id: 'location',
+    //   label: 'LOCATION',
+    //   icon: <LocationIcon />,
+    // },
   ];
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
@@ -52,8 +53,8 @@ export default function MapViewScreen({
   const [selectedFilters, setSelectedFilters] = useState<Filters>({
     status: [],
     technology: [],
-    /*projectSize: { min: 0, max: 0 },
-    location: [],*/
+    projectSize: { min: 0, max: 0 },
+    // location: [],
   });
   const [filteredProjectsFromDropdowns, setFilteredProjectsFromDropdowns] =
     useState<Project[]>(projects);
@@ -66,8 +67,8 @@ export default function MapViewScreen({
     setSelectedFilters({
       status: [],
       technology: [],
-      /*projectSize: { min: 0, max: 0 },
-      location: [],*/
+      projectSize: { min: 0, max: 0 },
+      // location: [],
     });
     setFilteredProjects(projects);
     setFilteredProjectsFromDropdowns(projects);

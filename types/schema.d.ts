@@ -40,11 +40,11 @@ export interface Option {
 export interface Filters {
   status: string[];
   technology: string[];
-  /*projectSize: {
+  projectSize: {
     min: number;
     max: number;
   };
-  location: string[];*/
+  // location: string[];
 }
 
 export interface FilterType {
