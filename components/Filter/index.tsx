@@ -1,3 +1,4 @@
+import ProjectSizeDropdown from '@/components/ProjectSizeDropdown';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
 import { FilterHeadingUnused } from '@/styles/texts';
@@ -55,6 +56,18 @@ export default function Filter({
             clearFilters={clearFilters}
             setActiveFilter={setActiveFilter}
           />
+        ) : filter.id === 'projectSize' ? (
+          <ProjectSizeDropdown
+            selectedSize={selectedFilters.projectSize}
+            setSelectedSize={filterChangeHandlers.projectSize}
+            handleButtonClick={handleButtonClick}
+            icon={filter.icon}
+            label={filter.label}
+            currFilter={filter}
+            handleFilterButtonClick={handleFilterButtonClick}
+            clearFilters={clearFilters}
+            setActiveFilter={setActiveFilter}
+          ></ProjectSizeDropdown>
         ) : // Add other filter dropdown components here
         null
       ) : (
