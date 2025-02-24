@@ -1,6 +1,8 @@
 'use client';
 
+import React from 'react';
 import Modal from 'react-modal';
+import { OpenIcon } from '@/assets/KDM-Icons/icons';
 import { GlobeIcon } from '@/assets/Project-Icons/icons';
 import { SubHeading2 } from '@/styles/texts';
 import { Project } from '../../types/schema';
@@ -8,11 +10,13 @@ import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
 import {
   AllProjectsHeader,
+  Headers,
   ModalContents,
   modalContentStyles,
   modalOverlayStyles,
   ProjectDetails,
   ProjectItemsDiv,
+  SortByButton,
 } from './styles';
 
 export default function ProjectsListingModal({
@@ -55,10 +59,16 @@ export default function ProjectsListingModal({
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
           ></SearchBar>
-          <AllProjectsHeader>
-            <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
-            <SubHeading2>ALL PROJECTS</SubHeading2>
-          </AllProjectsHeader>
+          <Headers>
+            <AllProjectsHeader>
+              <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
+              <SubHeading2>ALL PROJECTS</SubHeading2>
+            </AllProjectsHeader>
+            <SortByButton onClick={() => {}}>
+              <SubHeading2>SORT BY</SubHeading2>
+              <OpenIcon />
+            </SortByButton>
+          </Headers>
           <ProjectItemsDiv>{projectItems}</ProjectItemsDiv>
         </ModalContents>
       </ProjectDetails>
