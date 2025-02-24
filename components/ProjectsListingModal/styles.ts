@@ -73,7 +73,7 @@ export const SortByButton = styled.div`
   flex-direction: row;
   background: ${COLORS.navy30};
   padding: 0.2rem 0.5rem;
-  border-radius: 20px;
+  border-radius: 1.25rem;
   gap: 0.3rem;
 `;
 

@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import Modal from 'react-modal';
 import { OpenIcon } from '@/assets/KDM-Icons/icons';
 import { GlobeIcon } from '@/assets/Project-Icons/icons';
