@@ -32,7 +32,7 @@ url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 supabase: Client = create_client(url, key)
 supabase_table: str = (
-    "Projects_test_julee"  # TODO: modify based on which table in supabase we want to edit
+    "Projects_test_deena"  # TODO: modify based on which table in supabase we want to edit
 )
 
 geocode_api: str = os.environ.get("NEXT_PUBLIC_GEOCODIO_API_KEY")
