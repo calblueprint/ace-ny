@@ -66,7 +66,7 @@ export default function ProjectsListingModal({
             </AllProjectsHeader>
             <SortByButton onClick={() => {}}>
               <SubHeading2>SORT BY</SubHeading2>
-              <OpenIcon />
+              <OpenIcon width={'10'} height={'14'} />
             </SortByButton>
           </Headers>
           <ProjectItemsDiv>{projectItems}</ProjectItemsDiv>

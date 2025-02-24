@@ -60,7 +60,7 @@ export default function KDMDropdown({
           <CheckmarkIcon width={'8'} height={'7'} />
           <TagText2>{totalCompletedKDMs}/6</TagText2>
         </CompletionIndicatorTag>
-        {isOpen ? <CloseIcon /> : <OpenIcon />}
+        {isOpen ? <CloseIcon /> : <OpenIcon width={'10'} height={'7'} />}
       </Header>
       {isOpen ? KDMs : <ProgressBar>{ProgressBarContent}</ProgressBar>}
     </KDMContainer>
