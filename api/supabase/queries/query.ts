@@ -41,3 +41,22 @@ export async function queryDefaultImages(category: string) {
 
   return defaultImage;
 }
+
+
+export async function getStuff(parameter: any) {
+  const { data: defaultImage, error } = await supabase
+    .from('Projects')
+    .select('*')
+    // .eq('category', parameter)
+    .single();
+
+  console.log('defaultImage', defaultImage);
+  console.log('error', error);
+  console.log('parameter', parameter);
+
+  // if (error) {
+  //   throw new Error(`Error fetching default image: ${error.message}`);
+  // }
+
+  return defaultImage;
+}

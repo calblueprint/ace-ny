@@ -141,13 +141,13 @@ export default function ProjectModal({
     return size;
   };*/
 
-  function convertLastUpdatedDateToString() {
+  function convert() {
     if (!last_updated_display) return '';
-    const res = new Date(last_updated_display);
-    const year = String(res.getFullYear());
-    const month = res.toLocaleString('default', { month: 'long' });
-    const day = String(res.getDate()).padStart(2, '0');
-    return `${month} ${day}, ${year}`;
+    const x = new Date(last_updated_display);
+    const y = String(x.getFullYear());
+    const z = x.toLocaleString('default', { month: 'long' });
+    const a = String(x.getDate()).padStart(2, '0');
+    return `${z} ${a}, ${y}`;
   }
 
   return (
@@ -267,7 +267,7 @@ export default function ProjectModal({
         <LastUpdatedDiv>
           <SubHeading2>LAST UPDATED</SubHeading2>
           <DefaultTag
-            content={convertLastUpdatedDateToString()}
+            content={convert()}
             icon_category={'Last Updated'}
             size={0}
           />
