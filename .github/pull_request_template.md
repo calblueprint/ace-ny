@@ -35,4 +35,4 @@
 
 
 
-CC: @itsliterallymonique
+CC: @jjstnlee
