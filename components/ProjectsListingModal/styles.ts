@@ -44,7 +44,7 @@ export const AllProjectsHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 19.5rem;
+  width: 13rem;
   gap: 0.4rem;
   align-items: center;
 `;
@@ -66,4 +66,19 @@ export const ProjectItemsDiv = styled.div`
   justify-self: center;
   justify-content: space-between;
   gap: 0.75rem;
+`;
+
+export const SortByButton = styled.div`
+  display: flex;
+  flex-direction: row;
+  background: ${COLORS.navy30};
+  padding: 0.2rem 0.5rem;
+  border-radius: 1.25rem;
+  gap: 0.3rem;
+`;
+
+export const Headers = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
