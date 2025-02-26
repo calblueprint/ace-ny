@@ -6,16 +6,17 @@ import { FilterCategoryText1 } from '@/styles/texts';
 export const FilterDropdownStyles = styled.div`
   display: flex;
   background: #fff;
-  width: 18.25rem;
-  height: 18.375rem;
+  width: 18.5rem;
+  height: 16.25rem;
   border-radius: 0.5rem;
+  justify-content: center;
+  padding-top: 1rem;
+  padding-bottom: 1.125rem;
 `;
 
 export const FilterContentDiv = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 0.9rem 1.1rem 0.9rem 1.3rem;
-  align-content: space-between;
 `;
 
 export const FilterIconStyles = styled.div`
@@ -27,7 +28,6 @@ export const FilterIconStyles = styled.div`
 export const ButtonWithIconStyles = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
@@ -41,6 +41,8 @@ export const ButtonStyles = styled.button`
   border-radius: 6.25rem;
   align-items: center;
   cursor: pointer;
+  padding-left: 0rem;
+  padding-right: 0rem;
 `;
 
 export const ExitStyles = styled.div`
@@ -66,7 +68,7 @@ export const Box = styled.div`
 
 export const BoxContainer = styled.div`
   display: flex;
-  gap: 0.75rem;
+  gap: 0.5rem;
   padding: 0.5rem 0;
 `;
 
@@ -93,7 +95,7 @@ export const Value = styled.div`
 
 export const ApplyButtonStyles = styled.button<{ $isActive: boolean }>`
   display: flex;
-  width: 16rem;
+  width: 15.625rem;
   height: 1.5rem;
   border-radius: 0.25rem;
   background: ${COLORS.electricBlue};
@@ -104,7 +106,8 @@ export const ApplyButtonStyles = styled.button<{ $isActive: boolean }>`
   opacity: ${({ $isActive }) => ($isActive ? '1' : '0.50')};
   line-height: normal;
   border: none;
-  margin: 0.1rem auto 0 auto;
   cursor: ${({ $isActive }) => ($isActive ? 'pointer' : 'not-allowed')};
   pointer-events: ${({ $isActive }) => ($isActive ? 'auto' : 'none')};
+  padding-left: 0rem;
+  padding-right: 0rem;
 `;
