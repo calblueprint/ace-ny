@@ -59,14 +59,14 @@ export const FilterCategoryText1WithPadding = styled(FilterCategoryText1)`
   padding-top: 0.3125rem;
 `;
 
-export const Box = styled.div`
+export const MinMaxBox = styled.div`
   width: 7.5rem;
   height: 3.1875rem;
   border-radius: 0.25rem;
   border: 0.015625rem solid ${COLORS.electricBlue};
 `;
 
-export const BoxContainer = styled.div`
+export const MinMaxBoxContainer = styled.div`
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem 0;

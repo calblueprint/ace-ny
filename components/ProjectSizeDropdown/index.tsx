@@ -4,8 +4,6 @@ import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   ApplyButtonStyles,
   BlueTextStyles,
-  Box,
-  BoxContainer,
   ButtonStyles,
   ButtonWithIconStyles,
   ExitStyles,
@@ -14,6 +12,8 @@ import {
   FilterDropdownStyles,
   FilterIconStyles,
   Label,
+  MinMaxBox,
+  MinMaxBoxContainer,
   Value,
 } from './styles';
 
@@ -57,16 +57,16 @@ export default function ProjectSizeDropdown({
           <BlueTextStyles>2900 MW</BlueTextStyles>.
         </FilterCategoryText1WithPadding>
 
-        <BoxContainer>
-          <Box>
+        <MinMaxBoxContainer>
+          <MinMaxBox>
             <Label>Minimum</Label>
             <Value>100 MW</Value>
-          </Box>
-          <Box>
+          </MinMaxBox>
+          <MinMaxBox>
             <Label>Maximum</Label>
             <Value>12,000 MW</Value>
-          </Box>
-        </BoxContainer>
+          </MinMaxBox>
+        </MinMaxBoxContainer>
 
         <ApplyButtonStyles $isActive={true} onClick={handleFilterButtonClick}>
           <ApplyFiltersText>APPLY</ApplyFiltersText>
