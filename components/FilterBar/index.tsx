@@ -39,8 +39,8 @@ export const FilterBar = ({
     // Add other filter change handlers here
     status: handleStatusChange,
     technology: handleTechnologyChange,
-    /*projectSize: () => {},
-    location: () => {},*/
+    projectSize: () => {},
+    // location: () => {},
   };
 
   return (
