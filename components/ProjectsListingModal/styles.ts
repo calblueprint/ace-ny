@@ -82,3 +82,45 @@ export const Headers = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
+
+// Open Modal Button - Floating Button
+export const OpenModalButton = styled.button`
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: #007bff; /* Blue */
+  color: white;
+  border: none;
+  padding: 14px 18px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #0056b3; /* Darker Blue */
+    transform: scale(1.05);
+  }
+`;
+
+export const CloseModalButton = styled.div`
+  position: relative;
+  background: white;
+  cursor: pointer;
+  width: 38px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  justify-content: center;
+`;
+
+export const ModalContainer = styled.div`
+  // position: relative;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // width: fit-content;
+`;

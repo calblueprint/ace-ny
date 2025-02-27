@@ -76,3 +76,20 @@ export const ExitModalIcon = () => (
     />
   </svg>
 );
+
+export const CloseModalIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="8"
+    height="13"
+    viewBox="0 0 8 13"
+    fill="none"
+  >
+    <path
+      id="coolicon"
+      d="M4.91142e-05 6.01L6.01005 12.02L7.42505 10.607L2.82505 6.01L7.42505 1.414L6.01105 0L4.91142e-05 6.01Z"
+      fill="#2E3A59"
+      fill-opacity="0.5"
+    />
+  </svg>
+);
