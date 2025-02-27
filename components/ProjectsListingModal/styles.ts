@@ -83,44 +83,56 @@ export const Headers = styled.div`
   justify-content: space-between;
 `;
 
-// Open Modal Button - Floating Button
-export const OpenModalButton = styled.button`
+export const SearchButtonBackgroundStyles = styled.div`
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  background-color: #007bff; /* Blue */
-  color: white;
-  border: none;
-  padding: 14px 18px;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 50px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  left: 2rem;
+  margin-right: 0.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 0.32) 0%,
+    rgba(238, 238, 238, 0.65) 100%
+  );
+  backdrop-filter: blur(7.5px);
+  padding: 0.25rem;
+  // z-index: 5;
+  border: 'none';
+  border-radius: 6.25rem;
+  margin-top: 0.45rem;
+`;
 
-  &:hover {
-    background-color: #0056b3; /* Darker Blue */
-    transform: scale(1.05);
-  }
+export const SearchButtonStyles = styled.button`
+  position: relative;
+  background: ${COLORS.white};
+  border: none;
+  border-radius: 6.25rem;
+  cursor: pointer;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1rem;
+  color: rgba(46, 58, 89, 0.85);
+  height: 2.2rem;
+`;
+
+export const SearchIconStyle = styled.div`
+  align-self: center;
+  width: 0.8rem;
+  height: 0.8rem;
 `;
 
 export const CloseModalButton = styled.div`
-  position: relative;
+  display: flex;
+  // fix these below
+  position: fixed;
+  top: 2.3rem;
+  right: 36rem;
+
   background: white;
   cursor: pointer;
-  width: 38px;
-  height: 46px;
-  display: flex;
+  width: 2.375rem;
+  height: 2.875rem;
   align-items: center;
   border-radius: 5px;
   justify-content: center;
-`;
-
-export const ModalContainer = styled.div`
-  // position: relative;
-  // display: flex;
-  // align-items: center;
-  // justify-content: center;
-  // width: fit-content;
 `;
