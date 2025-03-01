@@ -1,6 +1,6 @@
 import MultiRangeSlider from 'multi-range-slider-react';
 import COLORS from '@/styles/colors';
-import './multirangeslider.css';
+import './styles.css';
 
 interface ProjectSizeSliderProps {
   setMinRange: (value: number) => void;
