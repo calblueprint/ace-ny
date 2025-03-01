@@ -29,11 +29,11 @@ export default function ProjectSizeHistogram({
       size => size >= minRange && size <= maxRange,
     );
 
-    if (filteredSizes.length > 0) {
+    if (filteredSizes && filteredSizes.length > 0) {
       setMinSize(Math.min(...filteredSizes));
       setMaxSize(Math.max(...filteredSizes));
     }
-  }, [minRange, maxRange]);
+  }, [minRange, maxRange, projectSizes, setMinSize, setMaxSize]);
 
   projectSizes.forEach(value => {
     const binIndex = Math.min(

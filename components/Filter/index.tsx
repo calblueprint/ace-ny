@@ -10,6 +10,18 @@ import {
   IconStyle,
 } from './styles';
 
+interface FilterProps {
+  filter: FilterType;
+  isActive: boolean;
+  selectedFilters: Filters;
+  filterChangeHandlers: FilterChangeHandlers;
+  handleButtonClick: (filter: FilterType) => void;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
+  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  projectSizes: number[];
+}
+
 export default function Filter({
   filter,
   isActive,
@@ -20,17 +32,7 @@ export default function Filter({
   clearFilters,
   setActiveFilter,
   projectSizes,
-}: {
-  filter: FilterType;
-  isActive: boolean;
-  selectedFilters: Filters;
-  filterChangeHandlers: FilterChangeHandlers;
-  handleButtonClick: (filter: FilterType) => void;
-  handleFilterButtonClick: () => void;
-  clearFilters: () => void;
-  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
-  projectSizes: number[];
-}) {
+}: FilterProps) {
   return (
     <FilterBackgroundStyles $isActive={isActive}>
       {isActive ? (

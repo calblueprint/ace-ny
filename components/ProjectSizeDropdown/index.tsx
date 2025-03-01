@@ -19,6 +19,19 @@ import {
   Value,
 } from './styles';
 
+interface ProjectSizeDropdownProps {
+  selectedSize: projectSizeType;
+  setSelectedSize: (projectSize: projectSizeType) => void;
+  handleButtonClick: (filter: FilterType) => void;
+  icon: React.ReactNode;
+  label: string;
+  currFilter: FilterType;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
+  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  projectSizes: number[];
+}
+
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export default function ProjectSizeDropdown({
   selectedSize,
@@ -31,18 +44,7 @@ export default function ProjectSizeDropdown({
   clearFilters,
   setActiveFilter,
   projectSizes,
-}: {
-  selectedSize: projectSizeType;
-  setSelectedSize: (projectSize: projectSizeType) => void;
-  handleButtonClick: (filter: FilterType) => void;
-  icon: React.ReactNode;
-  label: string;
-  currFilter: FilterType;
-  handleFilterButtonClick: () => void;
-  clearFilters: () => void;
-  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
-  projectSizes: number[];
-}) {
+}: ProjectSizeDropdownProps) {
   const [minSize, setMinSize] = useState(Math.min(...projectSizes));
   const [maxSize, setMaxSize] = useState(Math.max(...projectSizes));
 
