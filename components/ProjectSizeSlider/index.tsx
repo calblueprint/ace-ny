@@ -6,12 +6,16 @@ interface ProjectSizeSliderProps {
   setMinRange: (value: number) => void;
   setMaxRange: (value: number) => void;
   maxValue: number;
+  minRange: number;
+  maxRange: number;
 }
 
 export default function ProjectSizeSlider({
   setMinRange,
   setMaxRange,
   maxValue,
+  minRange,
+  maxRange,
 }: ProjectSizeSliderProps) {
   return (
     <MultiRangeSlider
@@ -31,8 +35,8 @@ export default function ProjectSizeSlider({
       barRightColor={COLORS.electricBlue40}
       min={-150}
       max={maxValue + 150}
-      minValue={-100}
-      maxValue={maxValue + 100}
+      minValue={minRange}
+      maxValue={maxRange}
     ></MultiRangeSlider>
   );
 }

@@ -30,6 +30,10 @@ interface ProjectSizeDropdownProps {
   clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   projectSizes: number[];
+  minRange: number;
+  setMinRange: (value: number) => void;
+  maxRange: number;
+  setMaxRange: (value: number) => void;
 }
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
@@ -44,6 +48,10 @@ export default function ProjectSizeDropdown({
   clearFilters,
   setActiveFilter,
   projectSizes,
+  minRange,
+  setMinRange,
+  maxRange,
+  setMaxRange,
 }: ProjectSizeDropdownProps) {
   const [minSize, setMinSize] = useState(Math.min(...projectSizes));
   const [maxSize, setMaxSize] = useState(Math.max(...projectSizes));
@@ -70,6 +78,10 @@ export default function ProjectSizeDropdown({
           projectSizes={projectSizes}
           setMinSize={setMinSize}
           setMaxSize={setMaxSize}
+          minRange={minRange}
+          setMinRange={setMinRange}
+          maxRange={maxRange}
+          setMaxRange={setMaxRange}
         ></ProjectSizeHistogram>
 
         <MinMaxBoxContainer>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ProjectSizeDropdown from '@/components/ProjectSizeDropdown';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
@@ -33,6 +34,11 @@ export default function Filter({
   setActiveFilter,
   projectSizes,
 }: FilterProps) {
+  const maxValue = Math.max(...projectSizes);
+
+  const [minRange, setMinRange] = useState(-100);
+  const [maxRange, setMaxRange] = useState(maxValue + 100);
+
   return (
     <FilterBackgroundStyles $isActive={isActive}>
       {isActive ? (
@@ -72,6 +78,10 @@ export default function Filter({
             clearFilters={clearFilters}
             setActiveFilter={setActiveFilter}
             projectSizes={projectSizes}
+            minRange={minRange}
+            setMinRange={setMinRange}
+            maxRange={maxRange}
+            setMaxRange={setMaxRange}
           ></ProjectSizeDropdown>
         ) : // Add other filter dropdown components here
         null
