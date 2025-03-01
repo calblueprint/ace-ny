@@ -13,7 +13,6 @@ export default function Home() {
     queryProjects().then(data => {
       setProjects(data);
       setFilteredProjects(data);
-      console.log(data);
     });
   }, []);
 
