@@ -19,6 +19,7 @@ export default function Filter({
   handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
+  projectSizes,
 }: {
   filter: FilterType;
   isActive: boolean;
@@ -28,6 +29,7 @@ export default function Filter({
   handleFilterButtonClick: () => void;
   clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  projectSizes: number[];
 }) {
   return (
     <FilterBackgroundStyles $isActive={isActive}>
@@ -67,6 +69,7 @@ export default function Filter({
             handleFilterButtonClick={handleFilterButtonClick}
             clearFilters={clearFilters}
             setActiveFilter={setActiveFilter}
+            projectSizes={projectSizes}
           ></ProjectSizeDropdown>
         ) : // Add other filter dropdown components here
         null

@@ -9,12 +9,14 @@ export const FilterBar = ({
   setSelectedFilters,
   handleFilterButtonClick,
   clearFilters,
+  projectSizes,
 }: {
   filters: FilterType[];
   selectedFilters: Filters;
   setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
   handleFilterButtonClick: () => void;
   clearFilters: () => void;
+  projectSizes: number[];
 }) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
@@ -56,6 +58,7 @@ export const FilterBar = ({
           handleFilterButtonClick={handleFilterButtonClick}
           clearFilters={clearFilters}
           setActiveFilter={setActiveFilter}
+          projectSizes={projectSizes}
         />
       ))}
     </FilterContainerStyles>

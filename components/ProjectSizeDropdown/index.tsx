@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { ApplyFiltersText, FilterHeadingUnused } from '@/styles/texts';
 import { FilterType, projectSizeType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
+import ProjectSizeHistogram from '../ProjectSizeHistogram';
 import {
   ApplyButtonStyles,
   BlueTextStyles,
@@ -28,6 +30,7 @@ export default function ProjectSizeDropdown({
   handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
+  projectSizes,
 }: {
   selectedSize: projectSizeType;
   setSelectedSize: (projectSize: projectSizeType) => void;
@@ -38,7 +41,11 @@ export default function ProjectSizeDropdown({
   handleFilterButtonClick: () => void;
   clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  projectSizes: number[];
 }) {
+  const [minRange, setMinRange] = useState(Math.min(...projectSizes));
+  const [maxRange, setMaxRange] = useState(Math.max(...projectSizes));
+
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
@@ -57,14 +64,16 @@ export default function ProjectSizeDropdown({
           <BlueTextStyles>2900 MW</BlueTextStyles>.
         </FilterCategoryText1WithPadding>
 
+        <ProjectSizeHistogram data={projectSizes}></ProjectSizeHistogram>
+
         <MinMaxBoxContainer>
           <MinMaxBox>
             <Label>Minimum</Label>
-            <Value>100 MW</Value>
+            <Value>{minRange} MW</Value>
           </MinMaxBox>
           <MinMaxBox>
             <Label>Maximum</Label>
-            <Value>12,000 MW</Value>
+            <Value>{maxRange} MW</Value>
           </MinMaxBox>
         </MinMaxBoxContainer>
 

@@ -14,6 +14,10 @@ import { Project } from '../../types/schema';
 import ProjectModal from '../ProjectModal';
 import ProjectsListingModal from '../ProjectsListingModal';
 
+function GetProjectsSize(projects: Project[]) {
+  return projects.map(project => project.size);
+}
+
 export default function MapViewScreen({
   projects,
   filteredProjects,
@@ -136,6 +140,7 @@ export default function MapViewScreen({
         setSelectedFilters={setSelectedFilters}
         handleFilterButtonClick={handleFilterButtonClick}
         clearFilters={clearFilters}
+        projectSizes={GetProjectsSize(projects)}
       />
       <Map
         projects={projects}
