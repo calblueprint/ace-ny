@@ -82,3 +82,57 @@ export const Headers = styled.div`
   flex-direction: row;
   justify-content: space-between;
 `;
+
+export const SearchButtonBackgroundStyles = styled.div`
+  position: fixed;
+  left: 2rem;
+  margin-right: 0.5rem;
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 0.32) 0%,
+    rgba(238, 238, 238, 0.65) 100%
+  );
+  backdrop-filter: blur(7.5px);
+  padding: 0.25rem;
+  // z-index: 5;
+  border: 'none';
+  border-radius: 6.25rem;
+  margin-top: 0.45rem;
+`;
+
+export const SearchButtonStyles = styled.button`
+  position: relative;
+  background: ${COLORS.white};
+  border: none;
+  border-radius: 6.25rem;
+  cursor: pointer;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.5rem 1rem;
+  color: rgba(46, 58, 89, 0.85);
+  height: 2.2rem;
+`;
+
+export const SearchIconStyle = styled.div`
+  align-self: center;
+  width: 0.8rem;
+  height: 0.8rem;
+`;
+
+export const CloseModalButton = styled.div`
+  display: flex;
+  // fix these below
+  position: fixed;
+  top: 2.3rem;
+  right: 36rem;
+
+  background: white;
+  cursor: pointer;
+  width: 2.375rem;
+  height: 2.875rem;
+  align-items: center;
+  border-radius: 5px;
+  justify-content: center;
+`;
