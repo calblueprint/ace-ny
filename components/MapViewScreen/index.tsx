@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 //import { useMap } from '@vis.gl/react-google-maps';
 import {
   ProjectSizeIcon,
-  /*LocationIcon,
-ProjectSizeIcon,*/
   StatusIcon,
   TechnologyIcon,
 } from '@/assets/Dropdown-Icons/icons';
