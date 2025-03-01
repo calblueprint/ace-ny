@@ -1,23 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 import COLORS from '@/styles/colors';
 import ProjectSizeSlider from '../ProjectSizeSlider';
+import { HistogramContainer } from './styles';
 
 interface HistogramProps {
-  data: number[];
+  projectSizes: number[];
+  setMinSize: (value: number) => void;
+  setMaxSize: (value: number) => void;
 }
 
-export default function ProjectSizeHistogram({ data }: HistogramProps) {
+export default function ProjectSizeHistogram({
+  projectSizes,
+  setMinSize,
+  setMaxSize,
+}: HistogramProps) {
   const [minRange, setMinRange] = useState(0);
   const [maxRange, setMaxRange] = useState(0);
 
   const numBins = 10;
-  const minValue = Math.min(...data);
-  const maxValue = Math.max(...data);
+  const minValue = Math.min(...projectSizes);
+  const maxValue = Math.max(...projectSizes);
   const binSize = (maxValue - minValue) / numBins;
   const bins = Array(numBins).fill(0);
 
-  data.forEach(value => {
+  useEffect(() => {
+    const filteredSizes = projectSizes.filter(
+      size => size >= minRange && size <= maxRange,
+    );
+
+    if (filteredSizes.length > 0) {
+      setMinSize(Math.min(...filteredSizes));
+      setMaxSize(Math.max(...filteredSizes));
+    }
+  }, [minRange, maxRange]);
+
+  projectSizes.forEach(value => {
     const binIndex = Math.min(
       Math.floor((value - minValue) / binSize),
       numBins - 1,
@@ -42,18 +60,20 @@ export default function ProjectSizeHistogram({ data }: HistogramProps) {
 
   return (
     <div>
-      <ResponsiveContainer width="100%" height={100}>
-        <BarChart
-          data={chartData}
-          margin={{ top: -30, right: 50, left: 50, bottom: 5 }}
-        >
-          <Bar
-            dataKey="count"
-            fill={COLORS.electricBlue}
-            radius={[2, 2, 0, 0]}
-          />
-        </BarChart>
-      </ResponsiveContainer>
+      <HistogramContainer>
+        <ResponsiveContainer width="100%" height={100}>
+          <BarChart
+            data={chartData}
+            margin={{ top: -30, right: 50, left: 50, bottom: 5 }}
+          >
+            <Bar
+              dataKey="count"
+              fill={COLORS.electricBlue}
+              radius={[2, 2, 0, 0]}
+            />
+          </BarChart>
+        </ResponsiveContainer>
+      </HistogramContainer>
 
       <ProjectSizeSlider
         setMinRange={setMinRange}
