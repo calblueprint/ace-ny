@@ -35,8 +35,10 @@ export default function ProjectSizeHistogram({
     );
 
     if (filteredSizes && filteredSizes.length > 0) {
-      setMinSize(Math.min(...filteredSizes));
-      setMaxSize(Math.max(...filteredSizes));
+      const minSize = Math.min(...filteredSizes);
+      const maxSize = Math.max(...filteredSizes);
+      setMinSize(minSize);
+      setMaxSize(maxSize);
     }
   }, [minRange, maxRange, projectSizes, setMinSize, setMaxSize]);
 
