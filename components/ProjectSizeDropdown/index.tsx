@@ -56,6 +56,10 @@ export default function ProjectSizeDropdown({
   const [minSize, setMinSize] = useState(Math.min(...projectSizes));
   const [maxSize, setMaxSize] = useState(Math.max(...projectSizes));
 
+  const averageProjectSize = (
+    projectSizes.reduce((a, b) => a + b) / projectSizes.length
+  ).toFixed(2);
+
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
@@ -71,7 +75,7 @@ export default function ProjectSizeDropdown({
 
         <FilterCategoryText1WithPadding>
           The average expected project output is{' '}
-          <BlueTextStyles>2900 MW</BlueTextStyles>.
+          <BlueTextStyles>{averageProjectSize} MW</BlueTextStyles>.
         </FilterCategoryText1WithPadding>
 
         <ProjectSizeHistogram
