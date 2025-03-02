@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ProjectSizeDropdown from '@/components/ProjectSizeDropdown';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
@@ -10,6 +11,18 @@ import {
   IconStyle,
 } from './styles';
 
+interface FilterProps {
+  filter: FilterType;
+  isActive: boolean;
+  selectedFilters: Filters;
+  filterChangeHandlers: FilterChangeHandlers;
+  handleButtonClick: (filter: FilterType) => void;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
+  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  projectSizes: number[];
+}
+
 export default function Filter({
   filter,
   isActive,
@@ -19,16 +32,13 @@ export default function Filter({
   handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
-}: {
-  filter: FilterType;
-  isActive: boolean;
-  selectedFilters: Filters;
-  filterChangeHandlers: FilterChangeHandlers;
-  handleButtonClick: (filter: FilterType) => void;
-  handleFilterButtonClick: () => void;
-  clearFilters: () => void;
-  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
-}) {
+  projectSizes,
+}: FilterProps) {
+  const maxValue = Math.max(...projectSizes);
+
+  const [minRange, setMinRange] = useState(-100);
+  const [maxRange, setMaxRange] = useState(maxValue + 100);
+
   return (
     <FilterBackgroundStyles $isActive={isActive}>
       {isActive ? (
@@ -67,6 +77,11 @@ export default function Filter({
             handleFilterButtonClick={handleFilterButtonClick}
             clearFilters={clearFilters}
             setActiveFilter={setActiveFilter}
+            projectSizes={projectSizes}
+            minRange={minRange}
+            setMinRange={setMinRange}
+            maxRange={maxRange}
+            setMaxRange={setMaxRange}
           ></ProjectSizeDropdown>
         ) : // Add other filter dropdown components here
         null

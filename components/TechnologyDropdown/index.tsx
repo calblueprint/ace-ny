@@ -156,10 +156,10 @@ export default function TechnologyDropdown({
           </FilterIconStyles>
           <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
             <FilterHeadingUnused>{label}</FilterHeadingUnused>
+            <ExitStyles>
+              <ExitIcon />
+            </ExitStyles>
           </ButtonStyles>
-          <ExitStyles>
-            <ExitIcon />
-          </ExitStyles>
         </ButtonWithIconStyles>
         {filter.categories.map(category => (
           <div key={category.category}>

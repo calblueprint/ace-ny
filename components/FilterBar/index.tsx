@@ -3,19 +3,23 @@ import Filter from '@/components/Filter';
 import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
 import { FilterContainerStyles } from './styles';
 
+interface FilterBarProps {
+  filters: FilterType[];
+  selectedFilters: Filters;
+  setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  handleFilterButtonClick: () => void;
+  clearFilters: () => void;
+  projectSizes: number[];
+}
+
 export const FilterBar = ({
   filters,
   selectedFilters,
   setSelectedFilters,
   handleFilterButtonClick,
   clearFilters,
-}: {
-  filters: FilterType[];
-  selectedFilters: Filters;
-  setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
-  handleFilterButtonClick: () => void;
-  clearFilters: () => void;
-}) => {
+  projectSizes,
+}: FilterBarProps) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
   const handleButtonClick = (filter: FilterType) => {
@@ -56,6 +60,7 @@ export const FilterBar = ({
           handleFilterButtonClick={handleFilterButtonClick}
           clearFilters={clearFilters}
           setActiveFilter={setActiveFilter}
+          projectSizes={projectSizes}
         />
       ))}
     </FilterContainerStyles>
