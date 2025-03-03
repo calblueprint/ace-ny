@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Modal from 'react-modal';
 import { OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
@@ -11,7 +11,7 @@ import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
 import {
   AllProjectsHeader,
-  CloseModalButton,
+  CloseModalButtonStyles,
   Headers,
   ModalContents,
   modalContentStyles,
@@ -20,8 +20,8 @@ import {
   ProjectItemsDiv,
   SearchButtonBackgroundStyles,
   SearchButtonStyles,
-  SearchIconStyle,
-  SortByButton,
+  SearchIconStyles,
+  SortByButtonStyles,
 } from './styles';
 
 export default function ProjectsListingModal({
@@ -57,49 +57,47 @@ export default function ProjectsListingModal({
 
   return (
     <>
-      {!isModalOpen && (
+      {!isModalOpen ? (
         <SearchButtonBackgroundStyles>
           <SearchButtonStyles onClick={openModal}>
-            <SearchIconStyle>{<SearchIcon fill={'#4C5671'} />}</SearchIconStyle>
+            <SearchIconStyles>
+              <SearchIcon fill={'#4C5671'} />
+            </SearchIconStyles>
             <FilterNameText>SEARCH</FilterNameText>
           </SearchButtonStyles>
         </SearchButtonBackgroundStyles>
+      ) : (
+        <>
+          <CloseModalButtonStyles onClick={closeModal}>
+            <CloseModalIcon />
+          </CloseModalButtonStyles>
+          <Modal
+            isOpen={isModalOpen}
+            style={{ overlay: modalOverlayStyles, content: modalContentStyles }}
+            ariaHideApp={false}
+          >
+            <ProjectDetails>
+              <ModalContents>
+                <SearchBar
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                />
+                <Headers>
+                  <AllProjectsHeader>
+                    <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
+                    <SubHeading2>ALL PROJECTS</SubHeading2>
+                  </AllProjectsHeader>
+                  <SortByButtonStyles onClick={() => {}}>
+                    <SubHeading2>SORT BY</SubHeading2>
+                    <OpenIcon width={'10'} height={'14'} />
+                  </SortByButtonStyles>
+                </Headers>
+                <ProjectItemsDiv>{projectItems}</ProjectItemsDiv>
+              </ModalContents>
+            </ProjectDetails>
+          </Modal>
+        </>
       )}
-
-      {isModalOpen && (
-        <CloseModalButton onClick={closeModal}>
-          <CloseModalIcon />
-        </CloseModalButton>
-      )}
-
-      <Modal
-        isOpen={isModalOpen}
-        style={{
-          overlay: modalOverlayStyles,
-          content: modalContentStyles,
-        }}
-        ariaHideApp={false}
-      >
-        <ProjectDetails>
-          <ModalContents>
-            <SearchBar
-              searchTerm={searchTerm}
-              setSearchTerm={setSearchTerm}
-            ></SearchBar>
-            <Headers>
-              <AllProjectsHeader>
-                <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
-                <SubHeading2>ALL PROJECTS</SubHeading2>
-              </AllProjectsHeader>
-              <SortByButton onClick={() => {}}>
-                <SubHeading2>SORT BY</SubHeading2>
-                <OpenIcon width={'10'} height={'14'} />
-              </SortByButton>
-            </Headers>
-            <ProjectItemsDiv>{projectItems}</ProjectItemsDiv>
-          </ModalContents>
-        </ProjectDetails>
-      </Modal>
     </>
   );
 }

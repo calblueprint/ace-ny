@@ -68,9 +68,10 @@ export const ProjectItemsDiv = styled.div`
   gap: 0.75rem;
 `;
 
-export const SortByButton = styled.div`
+export const SortByButtonStyles = styled.button`
   display: flex;
   flex-direction: row;
+  border: none;
   background: ${COLORS.navy30};
   padding: 0.2rem 0.5rem;
   border-radius: 1.25rem;
@@ -94,7 +95,6 @@ export const SearchButtonBackgroundStyles = styled.div`
   );
   backdrop-filter: blur(7.5px);
   padding: 0.25rem;
-  // z-index: 5;
   border: 'none';
   border-radius: 6.25rem;
   margin-top: 0.45rem;
@@ -115,19 +115,18 @@ export const SearchButtonStyles = styled.button`
   height: 2.2rem;
 `;
 
-export const SearchIconStyle = styled.div`
+export const SearchIconStyles = styled.div`
   align-self: center;
   width: 0.8rem;
   height: 0.8rem;
 `;
 
-export const CloseModalButton = styled.div`
+export const CloseModalButtonStyles = styled.button`
   display: flex;
-  // fix these below
   position: fixed;
+  left: 24rem;
   top: 2.3rem;
-  right: 36rem;
-
+  border: none;
   background: white;
   cursor: pointer;
   width: 2.375rem;
