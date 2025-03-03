@@ -30,6 +30,7 @@ import {
   Developer,
   DeveloperText,
   EconomicBenefits,
+  EconomicBenefitsContainer,
   LastUpdatedDiv,
   modalContentStyles,
   modalOverlayStyles,
@@ -259,12 +260,12 @@ export default function ProjectModal({
           setIsOpen={setIsKDMOpen}
         />
         {economic_benefits ? (
-          <AdditionalInfo>
-            <EconomicBenefits>
+          <EconomicBenefits>
+            <EconomicBenefitsContainer>
               <SubHeading2>ECONOMIC BENEFITS</SubHeading2>
               <BodyText1>{economic_benefits}</BodyText1>
-            </EconomicBenefits>
-          </AdditionalInfo>
+            </EconomicBenefitsContainer>
+          </EconomicBenefits>
         ) : null}
         {additional_information ? (
           <AdditionalInfo>
