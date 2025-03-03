@@ -10,6 +10,7 @@ import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
 import { Filters, FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
+import DownloadData from '../DownloadData';
 import ProjectModal from '../ProjectModal';
 import ProjectsListingModal from '../ProjectsListingModal';
 
