@@ -29,6 +29,7 @@ import {
   DetailsContainer,
   Developer,
   DeveloperText,
+  EconomicBenefits,
   LastUpdatedDiv,
   modalContentStyles,
   modalOverlayStyles,
@@ -113,6 +114,7 @@ export default function ProjectModal({
     has_pumped_storage,
     storage_size,
     project_website_link,
+    economic_benefits,
   } = project || {};
 
   // Map KDMs
@@ -256,10 +258,18 @@ export default function ProjectModal({
           isOpen={isKDMOpen}
           setIsOpen={setIsKDMOpen}
         />
+        {economic_benefits ? (
+          <AdditionalInfo>
+            <EconomicBenefits>
+              <SubHeading2>ECONOMIC BENEFITS</SubHeading2>
+              <BodyText1>{economic_benefits}</BodyText1>
+            </EconomicBenefits>
+          </AdditionalInfo>
+        ) : null}
         {additional_information ? (
           <AdditionalInfo>
             <DetailsContainer>
-              <BodyText1>DETAILS</BodyText1>
+              <SubHeading2>DETAILS</SubHeading2>
               <BodyText1>{additional_information}</BodyText1>
             </DetailsContainer>
           </AdditionalInfo>
