@@ -62,7 +62,7 @@ export const SubHeading1 = styled.h2<TextProps>`
 export const SubHeading2 = styled.h2<TextProps>`
   ${TextStylesCoinbaseMono}
   font-size: 0.7rem;
-  color: ${COLORS.navy75};
+  color: ${COLORS.navy85};
   font-style: normal;
   font-weight: 400;
   line-height: 120%;
@@ -70,7 +70,7 @@ export const SubHeading2 = styled.h2<TextProps>`
 
 export const BodyText1 = styled.p<TextProps>`
   ${TextStylesCoinbaseMono}
-  color: ${COLORS.navy75};
+  color: ${COLORS.navy85};
   font-size: 0.625rem;
   font-style: normal;
   font-weight: 400;
@@ -111,7 +111,7 @@ export const TagText1 = styled.p<TextProps>`
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  color: ${({ $color }) => $color || COLORS.navy75};
+  color: ${({ $color }) => $color || COLORS.navy85};
 `;
 
 export const TagText2 = styled.p<TextProps>`

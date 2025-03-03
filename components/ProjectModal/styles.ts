@@ -190,14 +190,22 @@ export const AdditionalInfo = styled.div`
   box-shadow:
     0px 2px 4px 0px rgba(77, 87, 114, 0.08),
     0px -2px 5px 0px rgba(255, 255, 255, 0.1);
-  gap: 0.75rem;
 `;
 
 export const DetailsContainer = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
-  gap: 0.5rem;
+  gap: 0.75rem;
+`;
+
+export const EconomicBenefits = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  gap: 0.75rem;
 `;
 
 export const LastUpdatedDiv = styled.div`
