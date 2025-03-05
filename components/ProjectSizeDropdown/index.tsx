@@ -60,6 +60,12 @@ export default function ProjectSizeDropdown({
     projectSizes.reduce((a, b) => a + b) / projectSizes.length
   ).toFixed(2);
 
+  const handleApplyButtonClick = () => {
+    // setSelectedSize({ min: minSize, max: maxSize });
+    handleFilterButtonClick();
+    setActiveFilter(null);
+  };
+
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
@@ -86,6 +92,7 @@ export default function ProjectSizeDropdown({
           setMinRange={setMinRange}
           maxRange={maxRange}
           setMaxRange={setMaxRange}
+          setSelectedSize={setSelectedSize}
         ></ProjectSizeHistogram>
 
         <MinMaxBoxContainer>
@@ -99,7 +106,7 @@ export default function ProjectSizeDropdown({
           </MinMaxBox>
         </MinMaxBoxContainer>
 
-        <ApplyButtonStyles $isActive={true} onClick={handleFilterButtonClick}>
+        <ApplyButtonStyles $isActive={true} onClick={handleApplyButtonClick}>
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
       </FilterContentDiv>

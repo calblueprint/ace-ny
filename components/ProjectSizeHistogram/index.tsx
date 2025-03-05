@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 import COLORS from '@/styles/colors';
+import { projectSizeType } from '@/types/schema';
 import ProjectSizeSlider from '../ProjectSizeSlider';
 import { HistogramContainer } from './styles';
 
@@ -12,6 +13,7 @@ interface HistogramProps {
   setMinRange: (value: number) => void;
   maxRange: number;
   setMaxRange: (value: number) => void;
+  setSelectedSize: (value: projectSizeType) => void;
 }
 
 export default function ProjectSizeHistogram({
@@ -22,6 +24,7 @@ export default function ProjectSizeHistogram({
   setMinRange,
   maxRange,
   setMaxRange,
+  setSelectedSize,
 }: HistogramProps) {
   const numBins = 10;
   const minValue = Math.min(...projectSizes);
@@ -88,6 +91,7 @@ export default function ProjectSizeHistogram({
         maxValue={maxValue}
         minRange={minRange}
         maxRange={maxRange}
+        setSelectedSize={setSelectedSize}
       />
     </div>
   );
