@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
@@ -30,12 +30,14 @@ export default function ProjectsListingModal({
   setSelectedProjectId,
   searchTerm,
   setSearchTerm,
+  selectedProjectId,
 }: {
   projects: Project[] | null;
   map: google.maps.Map | null;
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
   searchTerm: string | null;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+  selectedProjectId: number | null;
 }) {
   // State to control the modal's visibility
   const [isModalOpen, setIsModalOpen] = useState(true);
@@ -68,9 +70,11 @@ export default function ProjectsListingModal({
         </SearchButtonBackgroundStyles>
       ) : (
         <>
-          <CloseModalButtonStyles onClick={closeModal}>
-            <CloseModalIcon />
-          </CloseModalButtonStyles>
+          {!selectedProjectId && (
+            <CloseModalButtonStyles onClick={closeModal}>
+              <CloseModalIcon />
+            </CloseModalButtonStyles>
+          )}
           <Modal
             isOpen={isModalOpen}
             style={{ overlay: modalOverlayStyles, content: modalContentStyles }}
