@@ -69,12 +69,13 @@ export const SubHeading2 = styled.h2<TextProps>`
 `;
 
 export const BodyText1 = styled.p<TextProps>`
-  ${TextStylesCoinbaseMono}
+  ${TextStylesCoinbaseSans}
   color: ${COLORS.navy85};
-  font-size: 0.625rem;
+  font-size: 0.688rem;
   font-style: normal;
-  font-weight: 400;
-  line-height: 120%;
+  font-weight: 300;
+  line-height: 150%; /* 16.5px */
+  letter-spacing: 0.25px;
 `;
 
 export const BodyText2 = styled.p<TextProps>`
