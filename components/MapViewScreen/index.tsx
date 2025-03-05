@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 //import { useMap } from '@vis.gl/react-google-maps';
 import {
   ProjectSizeIcon,
-  /*LocationIcon,
-ProjectSizeIcon,*/
   StatusIcon,
   TechnologyIcon,
 } from '@/assets/Dropdown-Icons/icons';
@@ -13,6 +11,10 @@ import { Filters, FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
 import ProjectModal from '../ProjectModal';
 import ProjectsListingModal from '../ProjectsListingModal';
+
+function GetProjectsSize(projects: Project[]) {
+  return projects.map(project => project.size);
+}
 
 export default function MapViewScreen({
   projects,
@@ -136,6 +138,7 @@ export default function MapViewScreen({
         setSelectedFilters={setSelectedFilters}
         handleFilterButtonClick={handleFilterButtonClick}
         clearFilters={clearFilters}
+        projectSizes={GetProjectsSize(projects)}
       />
       <Map
         projects={projects}
