@@ -61,7 +61,6 @@ export default function ProjectSizeDropdown({
   ).toFixed(2);
 
   const handleApplyButtonClick = () => {
-    // setSelectedSize({ min: minSize, max: maxSize });
     handleFilterButtonClick();
     setActiveFilter(null);
   };
