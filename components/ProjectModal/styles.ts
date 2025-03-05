@@ -206,8 +206,8 @@ export const EconomicBenefits = styled.div`
 
 export const DetailsContainer = styled.div`
   display: flex;
-  flex-direction: column;
   word-break: break-word;
+  flex-direction: column;
   align-items: flex-start;
   width: 100%;
   gap: 0.75rem;
