@@ -206,8 +206,8 @@ export const EconomicBenefits = styled.div`
 
 export const DetailsContainer = styled.div`
   display: flex;
-  word-break: break-word;
   flex-direction: column;
+  word-break: break-word;
   align-items: flex-start;
   width: 100%;
   gap: 0.75rem;
@@ -215,8 +215,8 @@ export const DetailsContainer = styled.div`
 
 export const EconomicBenefitsContainer = styled.div`
   display: flex;
-  word-break: break-word;
   flex-direction: column;
+  word-break: break-word;
   align-items: flex-start;
   width: 100%;
   gap: 0.75rem;
