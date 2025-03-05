@@ -23,7 +23,7 @@ export default function ProjectSizeSlider({
 }: ProjectSizeSliderProps) {
   useEffect(() => {
     setSelectedSize({ min: minRange, max: maxRange });
-  }, [minRange, maxRange]);
+  }, [minRange, maxRange, setSelectedSize]);
 
   return (
     <MultiRangeSlider
