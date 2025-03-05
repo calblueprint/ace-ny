@@ -20,14 +20,12 @@ import {
 } from './styles';
 
 interface ProjectSizeDropdownProps {
-  selectedSize: projectSizeType;
   setSelectedSize: (projectSize: projectSizeType) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
   handleFilterButtonClick: () => void;
-  clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   projectSizes: number[];
   minRange: number;
@@ -36,16 +34,13 @@ interface ProjectSizeDropdownProps {
   setMaxRange: (value: number) => void;
 }
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 export default function ProjectSizeDropdown({
-  selectedSize,
   setSelectedSize,
   handleButtonClick,
   icon,
   label,
   currFilter,
   handleFilterButtonClick,
-  clearFilters,
   setActiveFilter,
   projectSizes,
   minRange,

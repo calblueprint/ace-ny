@@ -34,7 +34,6 @@ export default function ProjectSizeSlider({
       onChange={e => {
         setMinRange(e.minValue);
         setMaxRange(e.maxValue);
-        // setSelectedSize({ min: e.minValue, max: e.maxValue });
       }}
       label={false}
       ruler={false}
