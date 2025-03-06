@@ -47,8 +47,8 @@ export default function ProjectSizeSlider({
       barInnerColor={COLORS.electricBlue}
       barLeftColor={COLORS.electricBlue40}
       barRightColor={COLORS.electricBlue40}
-      min={-150}
-      max={maxValue + 150}
+      min={-100}
+      max={maxValue + 100}
       minValue={minRange}
       maxValue={maxRange}
     ></MultiRangeSlider>
