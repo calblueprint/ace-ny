@@ -90,10 +90,10 @@
 }
 
 .multi-range-slider .thumb:active .caption {
-  display: none;
+  display: none; /* modified */
 }
 .multi-range-slider .input-type-range:focus + .thumb .caption {
-  display: none;
+  display: none; /* modified */
 }
 .multi-range-slider .input-type-range {
   position: absolute;
