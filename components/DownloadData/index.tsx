@@ -9,7 +9,6 @@ export default function DownloadData({
   const downloadFilteredProjects = async () => {
     let csvContent = '';
     const headers = Object.keys(filteredProjects[0]) as (keyof Project)[];
-    console.log(headers);
     csvContent += headers.join(',') + '\n'; // add headers to csv
     for (const project of filteredProjects) {
       // add each project to csv
@@ -18,7 +17,6 @@ export default function DownloadData({
         if (header === 'key_development_milestones') {
           // destructuring array of objects to string
           const milestonesToAdd = project[header]?.map(milestone => {
-            console.log(milestone);
             return JSON.stringify(milestone).replace(/"/g, '""');
           });
           row += `"${milestonesToAdd.join(',')}",`;
