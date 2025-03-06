@@ -1,3 +1,4 @@
+/* adjusted from https://github.com/developergovindgupta/multi-range-slider-react-ts/blob/master/src/components/multirangeslider.css */
 .multi-range-slider * {
   box-sizing: border-box;
   padding: 0px;
@@ -20,20 +21,20 @@
 }
 .multi-range-slider .bar {
   display: flex;
-  height: 3px;
+  height: 3px; /* added */
 }
 .multi-range-slider .bar-left {
   width: 25%;
   background-color: #f0f0f0;
   border-radius: 10px 0px 0px 10px;
-  box-shadow: none;
-  padding: 0px 0px;
+  box-shadow: none; /* modified */
+  padding: 0px 0px; /* modified */
 }
 .multi-range-slider .bar-right {
   width: 25%;
   background-color: #f0f0f0;
   border-radius: 0px 10px 10px 0px;
-  box-shadow: none;
+  box-shadow: none; /* modified */
 }
 .multi-range-slider .bar-inner {
   background-color: lime;
@@ -44,7 +45,7 @@
   position: relative;
   border: none;
   justify-content: space-between;
-  box-shadow: none;
+  box-shadow: none; /* modified */
 }
 .multi-range-slider .bar-inner-left {
   width: 50%;
@@ -70,8 +71,8 @@
   z-index: 1;
   margin: -8px -8px;
   cursor: pointer;
-  top: 50%;
-  left: 50%;
+  top: 50%; /* added */
+  left: 50%; /* added */
 }
 .multi-range-slider .input-type-range:focus + .thumb::after {
   content: '';
