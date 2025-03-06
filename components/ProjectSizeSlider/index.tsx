@@ -23,6 +23,7 @@ export default function ProjectSizeSlider({
 }: ProjectSizeSliderProps) {
   useEffect(() => {
     setSelectedSize({ min: minRange, max: maxRange });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [minRange, maxRange]);
 
   return (
