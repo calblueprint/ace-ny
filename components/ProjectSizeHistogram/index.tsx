@@ -34,7 +34,8 @@ export default function ProjectSizeHistogram({
 
   useEffect(() => {
     const filteredSizes = projectSizes.filter(
-      size => size >= minRange && size <= maxRange,
+      size =>
+        size >= Math.max(0, minRange) && size <= Math.max(minValue, maxRange),
     );
 
     if (filteredSizes && filteredSizes.length > 0) {
@@ -43,7 +44,7 @@ export default function ProjectSizeHistogram({
       setMinSize(minSize);
       setMaxSize(maxSize);
     }
-  }, [minRange, maxRange, projectSizes, setMinSize, setMaxSize]);
+  }, [minRange, maxRange, projectSizes, minValue, setMinSize, setMaxSize]);
 
   projectSizes.forEach(value => {
     const binIndex = Math.min(
@@ -88,6 +89,7 @@ export default function ProjectSizeHistogram({
       <ProjectSizeSlider
         setMinRange={setMinRange}
         setMaxRange={setMaxRange}
+        minValue={minValue}
         maxValue={maxValue}
         minRange={minRange}
         maxRange={maxRange}
