@@ -68,7 +68,7 @@ export const ProjectItemsDiv = styled.div`
   gap: 0.75rem;
 `;
 
-export const SortByButtonStyles = styled.button`
+export const SortByButton = styled.button`
   display: flex;
   flex-direction: row;
   border: none;
@@ -84,10 +84,10 @@ export const Headers = styled.div`
   justify-content: space-between;
 `;
 
-export const SearchButtonBackgroundStyles = styled.div`
-  position: fixed;
+export const SearchButtonBackground = styled.div`
+  position: absolute;
   left: 2rem;
-  margin-right: 0.5rem;
+  top: 1.6rem;
   background: linear-gradient(
     180deg,
     rgba(250, 250, 250, 0.32) 0%,
@@ -95,12 +95,16 @@ export const SearchButtonBackgroundStyles = styled.div`
   );
   backdrop-filter: blur(7.5px);
   padding: 0.25rem;
-  border: 'none';
+  border: none;
   border-radius: 6.25rem;
-  margin-top: 0.45rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: fit-content;
 `;
 
-export const SearchButtonStyles = styled.button`
+export const SearchButton = styled.button`
   position: relative;
   background: ${COLORS.white};
   border: none;
@@ -121,7 +125,7 @@ export const SearchIconStyles = styled.div`
   height: 0.8rem;
 `;
 
-export const CloseModalButtonStyles = styled.button`
+export const CloseModalButton = styled.button`
   display: flex;
   position: fixed;
   left: 24rem;

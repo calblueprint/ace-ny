@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Modal from 'react-modal';
 import { OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
@@ -11,17 +11,17 @@ import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
 import {
   AllProjectsHeader,
-  CloseModalButtonStyles,
+  CloseModalButton,
   Headers,
   ModalContents,
   modalContentStyles,
   modalOverlayStyles,
   ProjectDetails,
   ProjectItemsDiv,
-  SearchButtonBackgroundStyles,
-  SearchButtonStyles,
+  SearchButton,
+  SearchButtonBackground,
   SearchIconStyles,
-  SortByButtonStyles,
+  SortByButton,
 } from './styles';
 
 export default function ProjectsListingModal({
@@ -39,7 +39,6 @@ export default function ProjectsListingModal({
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   selectedProjectId: number | null;
 }) {
-  // State to control the modal's visibility
   const [isModalOpen, setIsModalOpen] = useState(true);
 
   const closeModal = () => setIsModalOpen(false);
@@ -60,20 +59,20 @@ export default function ProjectsListingModal({
   return (
     <>
       {!isModalOpen ? (
-        <SearchButtonBackgroundStyles>
-          <SearchButtonStyles onClick={openModal}>
+        <SearchButtonBackground>
+          <SearchButton onClick={openModal}>
             <SearchIconStyles>
               <SearchIcon fill={'#4C5671'} />
             </SearchIconStyles>
             <FilterNameText>SEARCH</FilterNameText>
-          </SearchButtonStyles>
-        </SearchButtonBackgroundStyles>
+          </SearchButton>
+        </SearchButtonBackground>
       ) : (
         <>
           {!selectedProjectId && (
-            <CloseModalButtonStyles onClick={closeModal}>
+            <CloseModalButton onClick={closeModal}>
               <CloseModalIcon />
-            </CloseModalButtonStyles>
+            </CloseModalButton>
           )}
           <Modal
             isOpen={isModalOpen}
@@ -91,10 +90,10 @@ export default function ProjectsListingModal({
                     <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
                     <SubHeading2>ALL PROJECTS</SubHeading2>
                   </AllProjectsHeader>
-                  <SortByButtonStyles onClick={() => {}}>
+                  <SortByButton onClick={() => {}}>
                     <SubHeading2>SORT BY</SubHeading2>
                     <OpenIcon width={'10'} height={'14'} />
-                  </SortByButtonStyles>
+                  </SortByButton>
                 </Headers>
                 <ProjectItemsDiv>{projectItems}</ProjectItemsDiv>
               </ModalContents>
