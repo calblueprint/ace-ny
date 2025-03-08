@@ -113,15 +113,14 @@ export const SearchButton = styled.button`
   line-height: normal;
   display: flex;
   align-items: center;
-  gap: 0.625rem;
-  padding: 0.5rem 1rem;
-  color: rgba(46, 58, 89, 0.85);
   height: 2.2rem;
+  padding: 0.875rem 1.375rem 0.875rem 1.25rem;
+  gap: 0.75rem;
 `;
 
 export const SearchIconStyles = styled.div`
   align-self: center;
-  width: 0.8rem;
+  width: 0.875rem;
   height: 0.8rem;
 `;
 
