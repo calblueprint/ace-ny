@@ -85,7 +85,7 @@ export default function Filter({
             setMaxRange={setMaxRange}
           ></ProjectSizeDropdown>
         ) : filter.id === 'location' ? (
-          <LocationDropdown></LocationDropdown>
+          <div></div>
         ) : // Add other filter dropdown components here
         null
       ) : (
