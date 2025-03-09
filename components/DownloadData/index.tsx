@@ -6,7 +6,7 @@ export default function DownloadData({
 }: {
   filteredProjects: Project[];
 }) {
-  const downloadFilteredProjects = async () => {
+  const downloadFilteredProjects = () => {
     let csvContent = '';
     const headers = Object.keys(filteredProjects[0]) as (keyof Project)[];
     csvContent += headers.join(',') + '\n'; // add headers to csv
