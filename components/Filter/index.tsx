@@ -68,14 +68,12 @@ export default function Filter({
           />
         ) : filter.id === 'projectSize' ? (
           <ProjectSizeDropdown
-            selectedSize={selectedFilters.projectSize}
             setSelectedSize={filterChangeHandlers.projectSize}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
             handleFilterButtonClick={handleFilterButtonClick}
-            clearFilters={clearFilters}
             setActiveFilter={setActiveFilter}
             projectSizes={projectSizes}
             minRange={minRange}

@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import Filter from '@/components/Filter';
-import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
+import {
+  FilterChangeHandlers,
+  Filters,
+  FilterType,
+  projectSizeType,
+} from '@/types/schema';
 import { FilterContainerStyles } from './styles';
 
 interface FilterBarProps {
@@ -26,6 +31,13 @@ export const FilterBar = ({
     setActiveFilter(activeFilter?.id === filter.id ? null : filter);
   };
 
+  const handleProjectSizeChange = (projectSize: projectSizeType) => {
+    setSelectedFilters(prevFilters => ({
+      ...prevFilters,
+      projectSize: projectSize,
+    }));
+  };
+
   const handleTechnologyChange = (options: string[]) => {
     setSelectedFilters(prevFilters => ({
       ...prevFilters,
@@ -43,7 +55,7 @@ export const FilterBar = ({
     // Add other filter change handlers here
     status: handleStatusChange,
     technology: handleTechnologyChange,
-    projectSize: () => {},
+    projectSize: handleProjectSizeChange,
     // location: () => {},
   };
 
