@@ -44,7 +44,7 @@ export const FilterBar = ({
     status: handleStatusChange,
     technology: handleTechnologyChange,
     projectSize: () => {},
-    // location: () => {},
+    location: () => {},
   };
 
   return (

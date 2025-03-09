@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import LocationDropdown from '@/components/LocationDropdown';
 import ProjectSizeDropdown from '@/components/ProjectSizeDropdown';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
@@ -83,6 +84,8 @@ export default function Filter({
             maxRange={maxRange}
             setMaxRange={setMaxRange}
           ></ProjectSizeDropdown>
+        ) : filter.id === 'location' ? (
+          <LocationDropdown></LocationDropdown>
         ) : // Add other filter dropdown components here
         null
       ) : (

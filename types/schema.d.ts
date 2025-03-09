@@ -47,7 +47,7 @@ export interface Filters {
   status: string[];
   technology: string[];
   projectSize: projectSizeType;
-  // location: string[];
+  location: string[];
 }
 
 export interface FilterType {
