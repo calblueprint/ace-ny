@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import LocationDropdown from '@/components/LocationDropdown';
 import ProjectSizeDropdown from '@/components/ProjectSizeDropdown';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
