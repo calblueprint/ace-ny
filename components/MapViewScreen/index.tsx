@@ -154,6 +154,7 @@ export default function MapViewScreen({
         setSelectedProjectId={setSelectedProjectId}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
+        selectedProjectId={selectedProjectId}
       />
       {selectedProjectId && (
         <ProjectModal
