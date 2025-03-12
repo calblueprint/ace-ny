@@ -9,6 +9,7 @@ import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
 import { Filters, FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
+import InfoModalButton from '../InfoModalButton';
 import ProjectModal from '../ProjectModal';
 import ProjectsListingModal from '../ProjectsListingModal';
 
@@ -163,6 +164,7 @@ export default function MapViewScreen({
           project={projects.find(i => i.id === selectedProjectId)}
         />
       )}
+      <InfoModalButton />
     </>
   );
 }
