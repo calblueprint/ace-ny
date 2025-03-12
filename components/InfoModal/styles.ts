@@ -1,21 +1,6 @@
 import { styled } from 'styled-components';
 import { CoinbaseText } from '@/styles/fonts';
 
-// export const InfoModalStyles = styled.div`
-//   display: inline-flex;
-//   padding: 12px;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: flex-start;
-//   border-radius: 12px;
-//   background: #fff;
-//   box-shadow:
-//     0px 16px 20px 0px rgba(46, 58, 89, 0.1),
-//     0px 1px 1px 0px rgba(46, 58, 89, 0.15);
-
-//   z-index: 100;
-// `;
-
 export const InfoModalStyles = styled.div`
   position: absolute;
   bottom: 100px; /* Adjust to place it above the button */
@@ -36,15 +21,23 @@ export const InfoModalStyles = styled.div`
 `;
 
 export const InfoModalText = styled.div`
+
   display: flex;
-  align-items: center;
-  gap: 12px;
+  // height: 282px;
+  flex-direction: column;
+  justify-content: center;
+  
+
   color: var(--navy, rgba(46, 58, 89, 0.75));
   font-family: ${CoinbaseText.style};
   font-size: 10px;
   font-style: normal;
   font-weight: 250;
-  line-height: 160%; /* 16px */
+  line-height: 16px;
+  padding: 5px 16px;
+  white-space: pre-line;
+
+
 `;
 
 export const InfoModalTriangleStyles = styled.div`
