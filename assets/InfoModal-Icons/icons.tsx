@@ -1,4 +1,4 @@
-export const InfoIcon = () => {
+export const InfoModalIcon = () => {
   return (
     <svg
       width="42"
@@ -37,3 +37,57 @@ export const InfoIcon = () => {
     </svg>
   );
 };
+
+export const InfoModalTriangle = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="25"
+    height="16"
+    viewBox="0 0 25 16"
+    fill="none"
+  >
+    <g filter="url(#filter0_d_2681_2224)">
+      <path
+        d="M12.5 12.3506L1.67468 3.08768L23.3253 3.08768L12.5 12.3506Z"
+        fill="white"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_d_2681_2224"
+        x="0.674683"
+        y="3.08765"
+        width="23.6506"
+        height="12.2629"
+        filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="2" />
+        <feGaussianBlur stdDeviation="0.5" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0.180392 0 0 0 0 0.22817 0 0 0 0 0.34902 0 0 0 0.1 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_2681_2224"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_2681_2224"
+          result="shape"
+        />
+      </filter>
+    </defs>
+  </svg>
+);
