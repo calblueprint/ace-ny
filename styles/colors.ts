@@ -31,6 +31,7 @@ const COLORS = {
   grayBlue: '#ABB1BD',
   lightGray: '#2E3A59D9',
   lightGray2: '#2E3A5980',
+  lightGray3: '#2E3A59BF',
 };
 
 export default COLORS;

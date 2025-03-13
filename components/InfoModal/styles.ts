@@ -7,7 +7,7 @@ export const InfoModalStyles = styled.div`
   bottom: 100px;
   right: 30px;
   width: 215px;
-  max-width: 90vw;
+  height: 305px;
   padding: 16px;
   justify-content: center;
   display: flex;
@@ -49,27 +49,15 @@ export const InfoModalTriangleStyles = styled.div`
 export const InfoModalLeftArrowStyles = styled.div`
   width: 12.02px;
   height: 7.425px;
-  fill: rgba(46, 58, 89, 0.5);
+  fill: ${COLORS.lightGray2};
   cursor: pointer;
   rotate: 180deg;
 `;
 
-// export const InfoModalLeftArrowStyles = styled.div`
-//   position: absolute; /* Ensures positioning relative to the parent */
-//   left: -16px; /* Moves it outside the modal */
-//   top: 50%; /* Centers it vertically */
-//   transform: translateY(-50%) rotate(180deg); /* Adjusts for exact centering and keeps the rotation */
-//   width: 12.02px;
-//   height: 7.425px;
-//   fill: rgba(46, 58, 89, 0.5);
-//   cursor: pointer;
-//   z-index: 100;
-// `;
-
 export const InfoModalRightArrowStyles = styled.div`
   width: 12.02px;
   height: 7.425px;
-  fill: rgba(46, 58, 89, 0.5);
+  fill: ${COLORS.lightGray2};
   cursor: pointer;
 `;
 
@@ -78,7 +66,10 @@ export const InfoModalCircleWrapper = styled.div`
   align-items: center;
   gap: 7px;
   z-index: 100;
-  transform: translateY(5px);
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const HeaderStyles = styled.div`
@@ -97,13 +88,13 @@ export const TitleStyles = styled.div`
   font-style: normal;
   font-weight: 400;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
 `;
 
 export const TechnologyStyles = styled.div`
   display: flex;
   gap: 10px;
-  color: rgba(46, 58, 89, 0.75);
+  color: ${COLORS.lightGray3};
   font-family: ${CoinbaseText.style};
   font-size: 12px;
   font-style: normal;
@@ -112,6 +103,7 @@ export const TechnologyStyles = styled.div`
   align-items: center;
   justify-content: center;
   padding-left: 10px;
+  padding-bottom: 4px;
 `;
 
 export const TechnologyWrapperStyles = styled.div`
