@@ -1,7 +1,7 @@
 import requests
 import json
 from .utils.scraper_utils import check_status, geocode_lat_long, standardize_label
-from .database_constants import renewable_energy_map, initial_kdm
+from .utils.database_constants import renewable_energy_map, initial_kdm
 
 """
 This scrapes data from the NYSERDA Large-scale Renewable Projects database.
@@ -95,7 +95,7 @@ def query_nyserda_solar(offset=0, limit=1000):
     latitude and longitude of a project based on the town
     """
     nyserda_small_response = requests.get(
-        f"https://data.ny.gov/resource/wgsj-jt5f.json?$limit={limit}&$offset={offset}"
+        f"https://data.ny.gov/resource/wgsj-jt5f.json?$limit={limit}&$offset={offset}&$where=pv_system_size_kwac > 2000 OR estimated_pv_system_size > 2000"
     )
     if nyserda_small_response.status_code != 200:
         raise ValueError(

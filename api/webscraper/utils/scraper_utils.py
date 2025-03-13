@@ -5,6 +5,9 @@ from dotenv import load_dotenv
 import os
 import pandas as pd
 from datetime import datetime
+from .database_constants import (
+    project_fields,
+)
 
 load_dotenv(".env.local")
 
@@ -35,6 +38,7 @@ def geocode_lat_long(address):
     This function uses the google maps geocoding api to get the estimated latitude and longitude of a city
     returns a tuple of the form (latitude, longitude)
     """
+    google_maps_api_key: str = os.environ.get("GOOGLE_MAPS_API_KEY")
     parameters = urllib.parse.quote_plus(address)
     response = requests.get(
         f"https://maps.googleapis.com/maps/api/geocode/json?address={parameters}&key={google_maps_api_key}"
@@ -71,7 +75,9 @@ def create_update_object(
             and new_project.get(key, None) is not None
         ):
             update_object[key] = new_project[key]
-    return update_object
+        
+    result = remove_non_supabase_fields(update_object)
+    return result
 
 
 def clean_df_data(df):
@@ -173,7 +179,9 @@ def combine_projects(existing_project: dict, new_project: dict) -> dict:
         # add field if existing project doesn't have it but new project does
         if value is None and new_project.get(key, None) is not None:
             existing_project[key] = new_project[key]
-    return existing_project
+    
+    result = remove_non_supabase_fields(existing_project)
+    return result
 
 
 def pass_all_kdms(kdm: dict) -> dict:
@@ -181,7 +189,12 @@ def pass_all_kdms(kdm: dict) -> dict:
         milestone["completed"] = True
     return kdm
 
-
-# commands for creating requirements.txt file
-# python -m pipreqs.pipreqs --savepath=requirements.in && pip-compile
-# python -m piptools compile requirements.in
+def remove_non_supabase_fields(project):
+    """
+    Supabase will throw an error if we try to push a project or update to the database that contains a field not defined in the schema.
+    To avoid the error, remove any fields from the proejct that are't in the Supabase project table schema
+    """
+    for key in list(project.keys()): 
+        if key not in database_constants.project_fields:
+            del project[key]
+    return project

@@ -10,6 +10,10 @@ app = Flask(__name__)
 
 # flask run --port 5328 --debug
 
+# commands for creating requirements.txt file
+# python -m pipreqs.pipreqs --savepath=requirements.in && pip-compile
+# python -m piptools compile requirements.in
+
 load_dotenv(os.path.join(os.path.dirname(__file__), "../.env.local"))
 aceny_app_password = os.environ.get("NEXT_PUBLIC_ACENY_APP_PASSWORD")
 aceny_email = os.environ.get("NEXT_PUBLIC_ACENY_EMAIL")
@@ -24,14 +28,14 @@ def hello_world():
 
 
 @app.route("/api/nyserda_large", methods=["GET"])
-async def run_nyserda_large():
+def run_nyserda_large():
     result = nyserda_large_to_database()
     print("result", result)
     return {"message": "Hello NYSERDA Large"}
 
 
 @app.route("/api/nyserda_solar", methods=["GET"])
-async def run_nyserda_solar():
+def run_nyserda_solar():
     result = nyserda_solar_to_database()
     return {"message": "Helo NYSERDA Solar"}
 

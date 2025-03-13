@@ -21,8 +21,9 @@ from .utils.scraper_utils import (
     find_keyword,
     combine_projects,
     pass_all_kdms,
+    remove_non_supabase_fields
 )
-from .database_constants import (
+from .utils.database_constants import (
     initial_kdm,
 )
 
@@ -78,7 +79,7 @@ def offset_lat_long(lat, long):
     return lat, long
 
 
-def nyserda_large_to_database() -> None:
+def nyserda_large_to_database(silent=True):
     """
     This function pushes all the projects quered from the NYSERDA large-scale renewable energy projects
     database to the Supabase database.
@@ -161,9 +162,6 @@ def nyserda_large_to_database() -> None:
                     completed=True,
                     kdm=update_object["key_development_milestones"],
                 )
-                # delete nyserda_contract_date used for KDMs before pushing to Supabase
-                if "nyserda_contract_date" in project:
-                    del project["nyserda_contract_date"]
                 # if project status is operational, also update "Start of operations" key development milestone
                 update_object["key_development_milestones"] = update_kdm(
                     "Start of operations",
@@ -182,13 +180,15 @@ def nyserda_large_to_database() -> None:
                     datetime.now(tz=nyt),
                     existing_project.get("last_updated", {}),
                 )
-                if "id" in update_object:
-                    del update_object["id"]
-
                 # update last_updated_display field to reflect when when the webscraper last ran
                 update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                     "%Y-%m-%dT%H:%M:%S.%f%z"
                 )
+
+                # Supabase will throw an error if there is a field that is not in the supabase schema.
+                # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+                update_object = remove_non_supabase_fields(update_object)
+
                 try:
                     response = (
                         supabase.table(supabase_table)
@@ -247,17 +247,10 @@ def nyserda_large_to_database() -> None:
                 completed=True,
                 kdm=initial_kdm,
             )
-            # delete nyserda_contract_date used for updating KDMs before pushing to Supabase
-            if "nyserda_contract_date" in project:
-                del project["nyserda_contract_date"]
-
             # mark when this project was last updated with NYSERDA data
             project["last_updated"] = update_last_updated(
                 "NYSERDA_large_scale", datetime.now(tz=nyt), {}
             )
-            # because the data_through_date field doesn't exist in supabase schema, first delete data_through_date before pushing to supabase
-            if "data_through_date" in project:
-                del project["data_through_date"]
 
             # offset latitude and longitude to avoid overlaps
             project["latitude"], project["longitude"] = offset_lat_long(
@@ -269,6 +262,10 @@ def nyserda_large_to_database() -> None:
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
 
+            # Supabase will throw an error if there is a field that is not in the supabase schema.
+            # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+            project = remove_non_supabase_fields(project)
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -278,7 +275,7 @@ def nyserda_large_to_database() -> None:
     return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
-def nyserda_solar_to_database() -> None:
+def nyserda_solar_to_database():
     """
     This function pushes all the projects quered from the NYSERDA small-scale solar projects
     database to the Supabase database.
@@ -322,7 +319,7 @@ def nyserda_solar_to_database() -> None:
                 ).replace(tzinfo=nyt)
                 < last_nyserda_solar_update
             ):
-                update_object = (existing_project, project, "NYSERDA")
+                update_object = create_update_object(existing_project, project, "NYSERDA")
                 if (
                     existing_project["key_development_milestones"] is None
                     or len(existing_project["key_development_milestones"]) < 0
@@ -346,16 +343,19 @@ def nyserda_solar_to_database() -> None:
                     datetime.now(tz=nyt),
                     existing_project.get("last_updated", {}),
                 )
-                if "id" in update_object:
-                    del update_object["id"]
                 # update last_updated_display field to reflect when when the webscraper last ran
                 update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                     "%Y-%m-%dT%H:%M:%S.%f%z"
                 )
+
+                # Supabase will throw an error if there is a field that is not in the supabase schema.
+                # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+                update_object = remove_non_supabase_fields(update_object)
+
                 try:
                     response = (
                         supabase.table(supabase_table)
-                        .update(project)
+                        .update(update_object)
                         .eq("project_name", project["project_name"])
                         .execute()
                     )
@@ -408,10 +408,6 @@ def nyserda_solar_to_database() -> None:
             project["last_updated"] = update_last_updated(
                 "NYSERDA_solar", datetime.now(tz=nyt), {}
             )
-            # because the data_through_date field doesn't exist in supabase schema, first delete data_through_date before pushing to supabase
-            if "data_through_date" in project:
-                del project["data_through_date"]
-
             # offset latitude and longitude to avoid overlaps
             project["latitude"], project["longitude"] = offset_lat_long(
                 project.get("latitude", None), project.get("longitude", None)
@@ -421,6 +417,11 @@ def nyserda_solar_to_database() -> None:
             project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
+
+            # Supabase will throw an error if there is a field that is not in the supabase schema.
+            # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+            project = remove_non_supabase_fields(project)
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -430,7 +431,7 @@ def nyserda_solar_to_database() -> None:
     return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
-def nyiso_to_database() -> None:
+def nyiso_to_database():
     """
     This function takes the data from the NYISO website and pushes it to Supabase.
     The helper function first checks if an existing project with a matching name exists in Supabase.
@@ -483,9 +484,6 @@ def nyiso_to_database() -> None:
                     .replace(tzinfo=nyt)
                     > last_nyiso_update
                 ):
-                    # delete nyiso_last_updated Timestamp object
-                    if "nyiso_last_updated" in project:
-                        del project["nyiso_last_updated"]
                     # This helper function creates a dict of only fields that the existing project is missing
                     # but the NYISO data has
                     update_object = create_update_object(
@@ -538,13 +536,15 @@ def nyiso_to_database() -> None:
                         datetime.now(tz=nyt),
                         existing_project.get("last_updated", {}),
                     )
-                    # delete project id primary key before pushing to supabase
-                    if "id" in update_object:
-                        del update_object["id"]
                     # update last_updated_display field to reflect when when the webscraper last ran
                     update_object["last_updated_display"] = datetime.now(
                         tz=nyt
                     ).strftime("%Y-%m-%dT%H:%M:%S.%f%z")
+
+                    # Supabase will throw an error if there is a field that is not in the supabase schema.
+                    # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+                    update_object = remove_non_supabase_fields(update_object)
+
                     try:
                         response = (
                             supabase.table(supabase_table)
@@ -586,12 +586,6 @@ def nyiso_to_database() -> None:
                         date=ia_date,
                         kdm=project["key_development_milestones"],
                     )
-                if "date_of_ir" in project:
-                    del project["date_of_ir"]
-                if "ia_tender_date" in project:
-                    del project["ia_tender_date"]
-                if "nyiso_last_updated" in project:
-                    del project["nyiso_last_updated"]
                 # update last_updated field of project to be current time before pushing
                 project["last_updated"] = update_last_updated(
                     "NYISO",
@@ -608,6 +602,11 @@ def nyiso_to_database() -> None:
                 project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                     "%Y-%m-%dT%H:%M:%S.%f%z"
                 )
+
+                # Supabase will throw an error if there is a field that is not in the supabase schema.
+                # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+                project = remove_non_supabase_fields(project)
+
                 try:
                     response = supabase.table(supabase_table).insert(project).execute()
                     print("INSERT", response, "\n")
@@ -624,7 +623,7 @@ def nyiso_to_database() -> None:
 
 
 # NOTE: currently commenting out function to delete withdrawn projects for now
-# def check_withdrawn_nyiso_in_database() -> None:
+# def check_withdrawn_nyiso_in_database():
 #     """
 #     This function uses projects queried from the Withdrawn and Cluster Projects-Withdrawn sheet of NYISO
 #     to delete any currently stored projects in the databasethat have been withdrawn.
@@ -674,12 +673,15 @@ def ores_noi_to_database():
                 datetime.now(tz=nyt),
                 existing_project.get("last_updated", {}),
             )
-            if "id" in update_object:
-                del update_object["id"]
             # update last_updated_display field to reflect when when the webscraper last ran
             update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
+
+            # Supabase will throw an error if there is a field that is not in the supabase schema.
+            # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+            update_object = remove_non_supabase_fields(update_object)
+
             try:
                 response = (
                     supabase.table(supabase_table)
@@ -716,6 +718,11 @@ def ores_noi_to_database():
             project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
+
+            # Supabase will throw an error if there is a field that is not in the supabase schema.
+            # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+            project = remove_non_supabase_fields(project)
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -725,7 +732,7 @@ def ores_noi_to_database():
     return {"updated_ids": updated_ids, "inserted_ids": inserted_ids}
 
 
-def ores_under_review_to_database() -> None:
+def ores_under_review_to_database():
     updated_ids = set()
     inserted_ids = set()
     database = []
@@ -767,12 +774,15 @@ def ores_under_review_to_database() -> None:
                 datetime.now(tz=nyt),
                 existing_project.get("last_updated", {}),
             )
-            if "id" in update_object:
-                del update_object["id"]
             # update last_updated_display field to reflect when when the webscraper last ran
             update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
+
+            # Supabase will throw an error if there is a field that is not in the supabase schema.
+            # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+            update_object = remove_non_supabase_fields(update_object)
+
             try:
                 response = (
                     supabase.table(supabase_table)
@@ -816,6 +826,11 @@ def ores_under_review_to_database() -> None:
             project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
+
+            # Supabase will throw an error if there is a field that is not in the supabase schema.
+            # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+            project = remove_non_supabase_fields(project)
+
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -825,7 +840,7 @@ def ores_under_review_to_database() -> None:
     return {"inserted_ids": inserted_ids, "updated_ids": updated_ids}
 
 
-def ores_permitted_to_database() -> None:
+def ores_permitted_to_database():
     updated_ids = set()
     inserted_ids = set()
     database = []
@@ -867,12 +882,15 @@ def ores_permitted_to_database() -> None:
                 datetime.now(tz=nyt),
                 existing_project.get("last_updated", {}),
             )
-            if "id" in update_object:
-                del update_object["id"]
             # update last_updated_display field to reflect when when the webscraper last ran
             update_object["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
+
+            # Supabase will throw an error if there is a field that is not in the supabase schema.
+            # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+            update_object = remove_non_supabase_fields(update_object)
+
             try:
                 response = (
                     supabase.table(supabase_table)
@@ -916,6 +934,11 @@ def ores_permitted_to_database() -> None:
             project["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
+
+            # Supabase will throw an error if there is a field that is not in the supabase schema.
+            # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+            project = remove_non_supabase_fields(project)
+            
             try:
                 response = supabase.table(supabase_table).insert(project).execute()
                 print("INSERT", response, "\n")
@@ -997,14 +1020,17 @@ def merge_projects():
                     update["key_development_milestones"]
                 )
 
-            # delete id from update object because supabase uses id as the primary key
-            del update["id"]
             # update data pushed to Supabase to include the first project name
             update["project_name"] = project["project_name"]
             # update last_updated_display field to reflect when when the webscraper last ran
             update["last_updated_display"] = datetime.now(tz=nyt).strftime(
                 "%Y-%m-%dT%H:%M:%S.%f%z"
             )
+
+            # Supabase will throw an error if there is a field that is not in the supabase schema.
+            # To avoid the error, remove any fields from the project that are not in the Supabase project table schema
+            update = remove_non_supabase_fields(update)
+
             try:
                 response = (
                     supabase.table(supabase_table)

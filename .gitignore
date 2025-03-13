@@ -37,3 +37,4 @@ next-env.d.ts
 
 /ace-ny-venv
 __pycache__/
+.vscode/
