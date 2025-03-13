@@ -17,12 +17,13 @@ import {
 import {
   HeaderStyles,
   InfoModalCircleWrapper,
+  InfoModalLeftArrowStyles,
+  InfoModalLegendContent,
   InfoModalRightArrowStyles,
   InfoModalStyles,
   InfoModalText,
   InfoModalTriangleStyles,
-  InfoModalWrapper2ndStyles,
-  InfoModalWrapperStyles,
+  InfoModalWrapper,
   TechnologyStyles,
   TechnologyWrapperStyles,
   TitleStyles,
@@ -38,12 +39,12 @@ export default function InfoModal() {
       {page == 1 ? (
         <>
           <InfoModalStyles>
-            <InfoModalWrapperStyles>
+            <InfoModalWrapper>
               <InfoModalText>{text}</InfoModalText>
               <InfoModalRightArrowStyles onClick={() => setPage(2)}>
                 <InfoModalArrow />
               </InfoModalRightArrowStyles>
-            </InfoModalWrapperStyles>
+            </InfoModalWrapper>
 
             <InfoModalCircleWrapper>
               <InfoModalCircle color={COLORS.electricBlue} />
@@ -53,86 +54,88 @@ export default function InfoModal() {
         </>
       ) : (
         <InfoModalStyles>
-          {/* <InfoModalWrapperStyles>
-            
-          </InfoModalWrapperStyles> */}
+          <InfoModalWrapper>
+            <InfoModalLeftArrowStyles onClick={() => setPage(1)}>
+              <InfoModalArrow></InfoModalArrow>
+            </InfoModalLeftArrowStyles>
 
-          <InfoModalWrapper2ndStyles>
-            <HeaderStyles>LEGEND</HeaderStyles>
+            <InfoModalLegendContent>
+              <HeaderStyles>LEGEND</HeaderStyles>
 
-            <TitleStyles>TECHNOLOGY SOURCE</TitleStyles>
+              <TitleStyles>TECHNOLOGY SOURCE</TitleStyles>
 
-            <TechnologyWrapperStyles>
-              <TechnologyStyles>
-                <LandBasedWindIcon
-                  fill={COLORS.skyBlue}
-                  width="9.811px"
-                  height="13px"
-                ></LandBasedWindIcon>
-                Land-Based Wind
-              </TechnologyStyles>
+              <TechnologyWrapperStyles>
+                <TechnologyStyles>
+                  <LandBasedWindIcon
+                    fill={COLORS.skyBlue}
+                    width="9.811px"
+                    height="13px"
+                  ></LandBasedWindIcon>
+                  Land-Based Wind
+                </TechnologyStyles>
 
-              <TechnologyStyles>
-                <HydroelectricIcon
-                  fill={COLORS.frenchBlue}
-                  width="12px"
-                  height="9px"
-                ></HydroelectricIcon>
-                Hydroelectric
-              </TechnologyStyles>
+                <TechnologyStyles>
+                  <HydroelectricIcon
+                    fill={COLORS.frenchBlue}
+                    width="12px"
+                    height="9px"
+                  ></HydroelectricIcon>
+                  Hydroelectric
+                </TechnologyStyles>
 
-              <TechnologyStyles>
-                <OffshoreWindIcon
-                  fill={COLORS.electricBlue}
-                  stroke={COLORS.navy}
-                  width="10.547px"
-                  height="13px"
-                ></OffshoreWindIcon>
-                Offshore Wind
-              </TechnologyStyles>
+                <TechnologyStyles>
+                  <OffshoreWindIcon
+                    fill={COLORS.electricBlue}
+                    stroke={COLORS.navy}
+                    width="10.547px"
+                    height="13px"
+                  ></OffshoreWindIcon>
+                  Offshore Wind
+                </TechnologyStyles>
 
-              <TechnologyStyles>
-                <SolarPvIcon
-                  fill={COLORS.solarYellow}
-                  width="13.112px"
-                  height="13px"
-                ></SolarPvIcon>
-                Solar PV
-              </TechnologyStyles>
+                <TechnologyStyles>
+                  <SolarPvIcon
+                    fill={COLORS.solarYellow}
+                    width="13.112px"
+                    height="13px"
+                  ></SolarPvIcon>
+                  Solar PV
+                </TechnologyStyles>
 
-              <TechnologyStyles>
-                <GeothermalIcon
-                  fill={COLORS.earthyGreen}
-                  width="11px"
-                  height="11px"
-                ></GeothermalIcon>
-                Geothermal
-              </TechnologyStyles>
-            </TechnologyWrapperStyles>
+                <TechnologyStyles>
+                  <GeothermalIcon
+                    fill={COLORS.earthyGreen}
+                    width="11px"
+                    height="11px"
+                  ></GeothermalIcon>
+                  Geothermal
+                </TechnologyStyles>
+              </TechnologyWrapperStyles>
 
-            <TitleStyles>TECHNOLOGY STORAGE</TitleStyles>
+              <TitleStyles>TECHNOLOGY STORAGE</TitleStyles>
 
-            <TechnologyWrapperStyles>
-              <TechnologyStyles>
-                <EnergyStorageIcon
-                  fill={COLORS.teal}
-                  stroke={COLORS.white}
-                  width="12.8px"
-                  height="8.4px"
-                ></EnergyStorageIcon>
-                Energy Storage
-              </TechnologyStyles>
+              <TechnologyWrapperStyles>
+                <TechnologyStyles>
+                  <EnergyStorageIcon
+                    fill={COLORS.teal}
+                    stroke={COLORS.white}
+                    width="12.8px"
+                    height="8.4px"
+                  ></EnergyStorageIcon>
+                  Energy Storage
+                </TechnologyStyles>
 
-              <TechnologyStyles>
-                <PumpedStorageIcon
-                  fill={COLORS.cyanBlue}
-                  width="11.815px"
-                  height="10px"
-                ></PumpedStorageIcon>
-                Pumped Storage
-              </TechnologyStyles>
-            </TechnologyWrapperStyles>
-          </InfoModalWrapper2ndStyles>
+                <TechnologyStyles>
+                  <PumpedStorageIcon
+                    fill={COLORS.cyanBlue}
+                    width="11.815px"
+                    height="10px"
+                  ></PumpedStorageIcon>
+                  Pumped Storage
+                </TechnologyStyles>
+              </TechnologyWrapperStyles>
+            </InfoModalLegendContent>
+          </InfoModalWrapper>
 
           <InfoModalCircleWrapper>
             <InfoModalCircle color={COLORS.grayBlue} />

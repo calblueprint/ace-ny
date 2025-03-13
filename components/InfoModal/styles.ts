@@ -46,6 +46,26 @@ export const InfoModalTriangleStyles = styled.div`
   right: 40px;
 `;
 
+export const InfoModalLeftArrowStyles = styled.div`
+  width: 12.02px;
+  height: 7.425px;
+  fill: rgba(46, 58, 89, 0.5);
+  cursor: pointer;
+  rotate: 180deg;
+`;
+
+// export const InfoModalLeftArrowStyles = styled.div`
+//   position: absolute; /* Ensures positioning relative to the parent */
+//   left: -16px; /* Moves it outside the modal */
+//   top: 50%; /* Centers it vertically */
+//   transform: translateY(-50%) rotate(180deg); /* Adjusts for exact centering and keeps the rotation */
+//   width: 12.02px;
+//   height: 7.425px;
+//   fill: rgba(46, 58, 89, 0.5);
+//   cursor: pointer;
+//   z-index: 100;
+// `;
+
 export const InfoModalRightArrowStyles = styled.div`
   width: 12.02px;
   height: 7.425px;
@@ -55,17 +75,10 @@ export const InfoModalRightArrowStyles = styled.div`
 
 export const InfoModalCircleWrapper = styled.div`
   display: flex;
-
   align-items: center;
   gap: 7px;
   z-index: 100;
   transform: translateY(5px);
-`;
-
-export const InfoModalWrapperStyles = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
 `;
 
 export const HeaderStyles = styled.div`
@@ -109,7 +122,12 @@ export const TechnologyWrapperStyles = styled.div`
   padding-bottom: 10px;
 `;
 
-export const InfoModalWrapper2ndStyles = styled.div`
+export const InfoModalLegendContent = styled.div`
   width: 191px;
   padding: 8px 12px;
+`;
+
+export const InfoModalWrapper = styled.div`
+  display: flex;
+  align-items: center;
 `;
