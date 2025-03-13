@@ -28,6 +28,9 @@ const COLORS = {
   navy30: '#FAFAFB',
   navy85: '#4C5671',
   grey80: '#A1A6B4CC',
+  grayBlue: '#ABB1BD',
+  lightGray: '#2E3A59D9',
+  lightGray2: '#2E3A5980',
 };
 
 export default COLORS;
