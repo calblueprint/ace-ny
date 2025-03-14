@@ -108,38 +108,6 @@ export const InfoModalArrow = () => (
   </svg>
 );
 
-// export const InfoModalRightArrow = () => (
-//   <svg
-//     xmlns="http://www.w3.org/2000/svg"
-//     width="8"
-//     height="12"
-//     viewBox="0 0 8 12"
-//     fill="none"
-//   >
-//     <path
-//       d="M7.85005 6.00001L1.84005 -0.00999069L0.425049 1.40301L5.02505 6.00001L0.425049 10.596L1.83905 12.01L7.85005 6.00001Z"
-//       fill="#2E3A59"
-//       fill-opacity="0.5"
-//     />
-//   </svg>
-// );
-
-// export const InfoModalLeftArrow = () => (
-//   <svg
-//     xmlns="http://www.w3.org/2000/svg"
-//     width="8"
-//     height="12"
-//     viewBox="0 0 8 12"
-//     fill="none"
-//   >
-//     <path
-//       d="M4.91142e-05 5.99999L6.01005 12.01L7.42505 10.597L2.82505 5.99999L7.42505 1.40399L6.01105 -0.0100098L4.91142e-05 5.99999Z"
-//       fill="#2E3A59"
-//       fill-opacity="0.5"
-//     />
-//   </svg>
-// );
-
 export const InfoModalCircle = (props: { color: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
