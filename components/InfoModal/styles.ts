@@ -33,7 +33,23 @@ export const InfoModalText = styled.div`
   font-weight: 250;
   line-height: 16px;
   padding: 5px 16px;
-  white-space: pre-line;
+  white-space: normal;
+  display: inline;
+`;
+
+export const InfoModalBoldedText = styled.div`
+  color: ${COLORS.electricBlue};
+  font-family: ${CoinbaseText.style};
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  display: inline;
+`;
+
+export const InfoModalBoldedUnderlinedText = styled(InfoModalBoldedText)`
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 export const InfoModalTriangleStyles = styled.div`
@@ -46,19 +62,15 @@ export const InfoModalTriangleStyles = styled.div`
   right: 40px;
 `;
 
-export const InfoModalLeftArrowStyles = styled.div`
-  width: 12.02px;
-  height: 7.425px;
-  fill: ${COLORS.lightGray2};
-  cursor: pointer;
-  rotate: 180deg;
-`;
-
 export const InfoModalRightArrowStyles = styled.div`
   width: 12.02px;
   height: 7.425px;
   fill: ${COLORS.lightGray2};
   cursor: pointer;
+`;
+
+export const InfoModalLeftArrowStyles = styled(InfoModalRightArrowStyles)`
+  rotate: 180deg;
 `;
 
 export const InfoModalCircleWrapper = styled.div`
