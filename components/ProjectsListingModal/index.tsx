@@ -44,7 +44,9 @@ export default function ProjectsListingModal({
   selectedProjectId: number | null;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const [sortedProjects, setSortedProjects] = useState<Project[] | null>(projects);
+  const [sortedProjects, setSortedProjects] = useState<Project[] | null>(
+    projects,
+  );
 
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
@@ -55,7 +57,9 @@ export default function ProjectsListingModal({
   const handleSortAZ = () => {
     if (projects) {
       setSortedProjects(
-        projects.toSorted((a, b) => a.project_name.localeCompare(b.project_name))
+        projects.toSorted((a, b) =>
+          a.project_name.localeCompare(b.project_name),
+        ),
       );
     }
   };
@@ -63,29 +67,29 @@ export default function ProjectsListingModal({
   const handleSortZA = () => {
     if (projects) {
       setSortedProjects(
-        projects.toSorted((a, b) => b.project_name.localeCompare(a.project_name))
+        projects.toSorted((a, b) =>
+          b.project_name.localeCompare(a.project_name),
+        ),
       );
     }
   };
   const handleSortSizeAscending = () => {
     if (projects) {
-      setSortedProjects(
-        projects.toSorted((a, b) => a.size - b.size)
-      );
+      setSortedProjects(projects.toSorted((a, b) => a.size - b.size));
     }
   };
 
   const handleSortSizeDescending = () => {
     if (projects) {
-      setSortedProjects(
-        projects.toSorted((a, b) => b.size - a.size)
-      );
+      setSortedProjects(projects.toSorted((a, b) => b.size - a.size));
     }
   };
   const handleSortCODAscending = () => {
     if (projects) {
       setSortedProjects(
-        projects.toSorted((a, b) => a.proposed_cod.toString().localeCompare(b.proposed_cod.toString()))
+        projects.toSorted((a, b) =>
+          a.proposed_cod.toString().localeCompare(b.proposed_cod.toString()),
+        ),
       );
     }
   };
@@ -93,7 +97,9 @@ export default function ProjectsListingModal({
   const handleSortCODDescending = () => {
     if (projects) {
       setSortedProjects(
-        projects.toSorted((a, b) => b.proposed_cod.toString().localeCompare(a.proposed_cod.toString()))
+        projects.toSorted((a, b) =>
+          b.proposed_cod.toString().localeCompare(a.proposed_cod.toString()),
+        ),
       );
     }
   };
@@ -186,4 +192,3 @@ export default function ProjectsListingModal({
     </>
   );
 }
-
