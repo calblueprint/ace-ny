@@ -4,11 +4,11 @@ import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
 
 export const InfoModalStyles = styled.div`
   position: absolute;
-  bottom: 6.25rem;
+  bottom: 100px;
   right: 1.875rem;
   width: 14.6875rem;
   height: 20.625rem;
-  padding: 1rem 1rem;
+  padding: 16px 16px;
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -31,11 +31,11 @@ export const InfoModalText = styled.div`
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 250;
-  line-height: 1rem;
-  padding: 0.3125rem 1rem;
+  line-height: 16px;
+  padding: 5px 16px;
   white-space: normal;
   display: inline;
-  padding-bottom: 0.9375rem;
+  padding-bottom: 15px;
   margin-top: -0.3125rem;
 `;
 
@@ -45,7 +45,7 @@ export const InfoModalBoldedText = styled.div`
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 1rem;
+  line-height: 16px;
   display: inline;
 `;
 
@@ -60,8 +60,8 @@ export const InfoModalTriangleStyles = styled.div`
   height: 0.7719rem;
   flex-shrink: 0;
   z-index: 100;
-  bottom: 5.8125rem;
-  right: 2.5rem;
+  bottom: 93px;
+  right: 40px;
 `;
 
 export const InfoModalRightArrowStyles = styled.div`
@@ -74,17 +74,17 @@ export const InfoModalRightArrowStyles = styled.div`
 export const InfoModalLeftArrowStyles = styled(InfoModalRightArrowStyles)`
   rotate: 180deg;
   position: relative;
-  top: 0.625rem;
-  right: 0.1875rem;
+  top: 10px;
+  right: 3px;
 `;
 
 export const InfoModalCircleWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.4375rem;
+  gap: 7px;
   z-index: 100;
   position: absolute;
-  bottom: 1.25rem;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
 `;
@@ -104,13 +104,13 @@ export const TitleStyles = styled.div`
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;
-  padding-top: 0.625rem;
-  padding-bottom: 0.75rem;
+  padding-top: 10px;
+  padding-bottom: 12px;
 `;
 
 export const TechnologyStyles = styled.div`
   display: flex;
-  gap: 0.625rem;
+  gap: 10px;
   color: ${COLORS.navy75};
   font-family: ${CoinbaseText.style};
   font-size: 0.75rem;
@@ -119,21 +119,21 @@ export const TechnologyStyles = styled.div`
   line-height: normal;
   align-items: center;
   justify-content: center;
-  padding-left: 0.625rem;
-  padding-bottom: 0.25rem;
+  padding-left: 10px;
+  padding-bottom: 4px;
 `;
 
 export const TechnologyWrapperStyles = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.5rem;
-  padding-bottom: 0.625rem;
+  gap: 8px;
+  padding-bottom: 10px;
 `;
 
 export const InfoModalLegendContent = styled.div`
   width: 11.9375rem;
-  padding: 0.5rem 0.75rem;
+  padding: 8px 12px;
 `;
 
 export const InfoModalWrapper = styled.div`
