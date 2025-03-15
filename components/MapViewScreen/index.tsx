@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 //import { useMap } from '@vis.gl/react-google-maps';
 import {
+  LocationIcon,
   ProjectSizeIcon,
   StatusIcon,
   TechnologyIcon,
@@ -41,11 +42,11 @@ export default function MapViewScreen({
       label: 'PROJECT SIZE',
       icon: <ProjectSizeIcon />,
     },
-    // {
-    //   id: 'location',
-    //   label: 'LOCATION',
-    //   icon: <LocationIcon />,
-    // },
+    {
+      id: 'location',
+      label: 'LOCATION',
+      icon: <LocationIcon />,
+    },
   ];
 
   const defaultFilters = {
@@ -55,7 +56,7 @@ export default function MapViewScreen({
       min: Math.min(...getProjectsSize(projects)),
       max: Math.max(...getProjectsSize(projects)),
     },
-    // location: [],
+    location: [],
   };
 
   const [map, setMap] = useState<google.maps.Map | null>(null);
@@ -67,7 +68,7 @@ export default function MapViewScreen({
     status: [],
     technology: [],
     projectSize: { min: 0, max: 0 },
-    // location: [],
+    location: [],
   });
 
   const [tempFilters, setTempFilters] = useState<Filters>(defaultFilters);

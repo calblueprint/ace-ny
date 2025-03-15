@@ -50,12 +50,19 @@ export const FilterBar = ({
       status: options,
     }));
   };
+  const handleLocationChange = (options: string[]) => {
+    setSelectedFilters(prevFilters => ({
+      ...prevFilters,
+      status: options,
+    }));
+  };
 
   const filterChangeHandlers: FilterChangeHandlers = {
     // Add other filter change handlers here
     status: handleStatusChange,
     technology: handleTechnologyChange,
     projectSize: handleProjectSizeChange,
+    location: handleLocationChange,
     // location: () => {},
   };
 

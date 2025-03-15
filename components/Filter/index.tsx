@@ -5,6 +5,7 @@ import TechnologyDropdown from '@/components/TechnologyDropdown';
 import { FilterHeadingUnused } from '@/styles/texts';
 import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
 import { DropIcon } from '../../assets/Dropdown-Icons/icons';
+import LocationDropdown from '../LocationDropdown';
 import {
   FilterBackgroundStyles,
   FilterButtonStyles,
@@ -81,6 +82,14 @@ export default function Filter({
             maxRange={maxRange}
             setMaxRange={setMaxRange}
           ></ProjectSizeDropdown>
+        ) : filter.id === 'location' ? (
+          <LocationDropdown
+            handleButtonClick={handleButtonClick}
+            icon={filter.icon}
+            label={filter.label}
+            currFilter={filter}
+            clearFilters={clearFilters}
+          ></LocationDropdown>
         ) : // Add other filter dropdown components here
         null
       ) : (
