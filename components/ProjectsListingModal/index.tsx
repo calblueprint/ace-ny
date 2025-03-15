@@ -10,10 +10,11 @@ import { Project } from '../../types/schema';
 import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
 import {
+  SortByText,
+} from '../../styles/texts';
+import {
   AllProjectsHeader,
   CloseModalButton,
-  DropdownItem,
-  DropdownMenu,
   Headers,
   ModalContents,
   modalContentStyles,
@@ -23,7 +24,10 @@ import {
   SearchButton,
   SearchButtonBackground,
   SearchIconStyles,
+  SortBy,
   SortByButton,
+  SortByItem,
+  SortByMenu,
 } from './styles';
 
 export default function ProjectsListingModal({
@@ -46,8 +50,8 @@ export default function ProjectsListingModal({
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
 
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const toggleDropdown = () => setIsDropdownOpen(prev => !prev);
+  const [isSortByOpen, setIsSortByOpen] = useState(false);
+  const toggleSortBy = () => setIsSortByOpen(prev => !prev);
 
   const projectItems = projects?.map((project: Project) => {
     return (
@@ -95,34 +99,38 @@ export default function ProjectsListingModal({
                     <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
                     <SubHeading2>ALL PROJECTS</SubHeading2>
                   </AllProjectsHeader>
-                  <div style={{ position: 'relative' }}>
-                    <SortByButton onClick={toggleDropdown}>
+                  <SortBy>
+                    <SortByButton onClick={toggleSortBy}>
                       <SubHeading2>SORT BY</SubHeading2>
-                      {isDropdownOpen ? (
+                      {isSortByOpen ? (
                         <CloseIcon />
                       ) : (
                         <OpenIcon width={'10'} height={'14'} />
                       )}
                     </SortByButton>
-                    {isDropdownOpen && (
-                      <DropdownMenu>
-                        <DropdownItem onClick={() => {}}>Name A-Z</DropdownItem>
-                        <DropdownItem onClick={() => {}}>Name Z-A</DropdownItem>
-                        <DropdownItem onClick={() => {}}>
-                          Size Ascending
-                        </DropdownItem>
-                        <DropdownItem onClick={() => {}}>
-                          Size Descending
-                        </DropdownItem>
-                        <DropdownItem onClick={() => {}}>
-                          COD Ascending
-                        </DropdownItem>
-                        <DropdownItem onClick={() => {}}>
-                          COD Descending
-                        </DropdownItem>
-                      </DropdownMenu>
+                    {isSortByOpen && (
+                      <SortByMenu>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>Name A-Z</SortByText>
+                        </SortByItem>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>Name Z-A</SortByText>
+                        </SortByItem>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>Size Ascending</SortByText>
+                        </SortByItem>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>Size Descending</SortByText>
+                        </SortByItem>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>COD Ascending</SortByText>
+                        </SortByItem>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>COD Descending</SortByText>
+                        </SortByItem>
+                      </SortByMenu>
                     )}
-                  </div>
+                  </SortBy>
                 </Headers>
                 <ProjectItemsDiv>{projectItems}</ProjectItemsDiv>
               </ModalContents>

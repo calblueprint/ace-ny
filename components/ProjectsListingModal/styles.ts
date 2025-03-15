@@ -88,7 +88,11 @@ export const Headers = styled.div`
   width: 102%;
 `;
 
-export const DropdownMenu = styled.div`
+export const SortBy = styled.div`
+  position: relative;
+`;
+
+export const SortByMenu = styled.div`
   display: flex;
   position: absolute;
   width: 120px;
@@ -108,7 +112,7 @@ export const DropdownMenu = styled.div`
   right: 0;
 `;
 
-export const DropdownItem = styled.button`
+export const SortByItem = styled.button`
   display: flex;
   align-items: center;
   width: 100%;
@@ -118,14 +122,14 @@ export const DropdownItem = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--navy, rgba(46, 58, 89, 0.76));
-  font-family: 'Coinbase Text', sans-serif;
-  font-size: 0.688rem;
-  letter-spacing: 0.22px;
+  
   &:hover {
     background: rgba(73, 116, 224, 0.05);
-    color: var(--not-ace-blue, #4974e0);
     border-radius: 5px;
+
+    p {
+      color: var(--not-ace-blue, #4974e0);
+    }
   }
 `;
 
