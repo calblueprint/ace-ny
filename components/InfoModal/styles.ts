@@ -4,11 +4,11 @@ import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
 
 export const InfoModalStyles = styled.div`
   position: absolute;
-  bottom: 100px;
-  right: 30px;
-  width: 235px;
-  height: 330px;
-  padding: 16px 16px;
+  bottom: 6.25rem;
+  right: 1.875rem;
+  width: 14.6875rem;
+  height: 20.625rem;
+  padding: 1rem 1rem;
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -28,24 +28,24 @@ export const InfoModalText = styled.div`
   justify-content: center;
   color: var(--navy, rgba(46, 58, 89, 0.75));
   font-family: ${CoinbaseText.style};
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 250;
-  line-height: 16px;
-  padding: 5px 16px;
+  line-height: 1rem;
+  padding: 0.3125rem 1rem;
   white-space: normal;
   display: inline;
-  padding-bottom: 15px;
-  margin-top: -5px;
+  padding-bottom: 0.9375rem;
+  margin-top: -0.3125rem;
 `;
 
 export const InfoModalBoldedText = styled.div`
   color: ${COLORS.electricBlue};
   font-family: ${CoinbaseText.style};
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 1rem;
   display: inline;
 `;
 
@@ -56,17 +56,17 @@ export const InfoModalBoldedUnderlinedText = styled(InfoModalBoldedText)`
 
 export const InfoModalTriangleStyles = styled.div`
   position: absolute;
-  width: 25px;
-  height: 12.351px;
+  width: 1.5625rem;
+  height: 0.7719rem;
   flex-shrink: 0;
   z-index: 100;
-  bottom: 93px;
-  right: 40px;
+  bottom: 5.8125rem;
+  right: 2.5rem;
 `;
 
 export const InfoModalRightArrowStyles = styled.div`
-  width: 12.02px;
-  height: 7.425px;
+  width: 0.7513rem;
+  height: 0.4641rem;
   fill: ${COLORS.navy50};
   cursor: pointer;
 `;
@@ -74,17 +74,17 @@ export const InfoModalRightArrowStyles = styled.div`
 export const InfoModalLeftArrowStyles = styled(InfoModalRightArrowStyles)`
   rotate: 180deg;
   position: relative;
-  top: 10px;
-  right: 3px;
+  top: 0.625rem;
+  right: 0.1875rem;
 `;
 
 export const InfoModalCircleWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 0.4375rem;
   z-index: 100;
   position: absolute;
-  bottom: 20px;
+  bottom: 1.25rem;
   left: 50%;
   transform: translateX(-50%);
 `;
@@ -92,7 +92,7 @@ export const InfoModalCircleWrapper = styled.div`
 export const HeaderStyles = styled.div`
   color: ${COLORS.navy85};
   font-family: ${CoinbaseSans.style};
-  font-size: 14px;
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -101,39 +101,39 @@ export const HeaderStyles = styled.div`
 export const TitleStyles = styled.div`
   color: ${COLORS.navy50};
   font-family: ${CoinbaseMono.style};
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;
-  padding-top: 10px;
-  padding-bottom: 12px;
+  padding-top: 0.625rem;
+  padding-bottom: 0.75rem;
 `;
 
 export const TechnologyStyles = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 0.625rem;
   color: ${COLORS.navy75};
   font-family: ${CoinbaseText.style};
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
   align-items: center;
   justify-content: center;
-  padding-left: 10px;
-  padding-bottom: 4px;
+  padding-left: 0.625rem;
+  padding-bottom: 0.25rem;
 `;
 
 export const TechnologyWrapperStyles = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
-  padding-bottom: 10px;
+  gap: 0.5rem;
+  padding-bottom: 0.625rem;
 `;
 
 export const InfoModalLegendContent = styled.div`
-  width: 191px;
-  padding: 8px 12px;
+  width: 11.9375rem;
+  padding: 0.5rem 0.75rem;
 `;
 
 export const InfoModalWrapper = styled.div`
