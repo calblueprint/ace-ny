@@ -4,10 +4,10 @@ import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
 
 export const InfoModalStyles = styled.div`
   position: absolute;
-  bottom: 100px;
-  right: 30px;
-  width: 235px;
-  height: 330px;
+  bottom: 6.25rem;
+  right: 1.875rem;
+  width: 14.6875rem;
+  height: 20.625rem;
   padding: 16px 16px;
   justify-content: center;
   display: flex;
@@ -26,9 +26,9 @@ export const InfoModalText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--navy, rgba(46, 58, 89, 0.75));
+  color: ${COLORS.navy75};
   font-family: ${CoinbaseText.style};
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 250;
   line-height: 16px;
@@ -42,7 +42,7 @@ export const InfoModalText = styled.div`
 export const InfoModalBoldedText = styled.div`
   color: ${COLORS.electricBlue};
   font-family: ${CoinbaseText.style};
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
@@ -56,8 +56,8 @@ export const InfoModalBoldedUnderlinedText = styled(InfoModalBoldedText)`
 
 export const InfoModalTriangleStyles = styled.div`
   position: absolute;
-  width: 25px;
-  height: 12.351px;
+  width: 1.5625rem;
+  height: 0.7719rem;
   flex-shrink: 0;
   z-index: 100;
   bottom: 93px;
@@ -65,8 +65,8 @@ export const InfoModalTriangleStyles = styled.div`
 `;
 
 export const InfoModalRightArrowStyles = styled.div`
-  width: 12.02px;
-  height: 7.425px;
+  width: 0.7513rem;
+  height: 0.4641rem;
   fill: ${COLORS.navy50};
   cursor: pointer;
 `;
@@ -92,7 +92,7 @@ export const InfoModalCircleWrapper = styled.div`
 export const HeaderStyles = styled.div`
   color: ${COLORS.navy85};
   font-family: ${CoinbaseSans.style};
-  font-size: 14px;
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -101,7 +101,7 @@ export const HeaderStyles = styled.div`
 export const TitleStyles = styled.div`
   color: ${COLORS.navy50};
   font-family: ${CoinbaseMono.style};
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;
   padding-top: 10px;
@@ -113,7 +113,7 @@ export const TechnologyStyles = styled.div`
   gap: 10px;
   color: ${COLORS.navy75};
   font-family: ${CoinbaseText.style};
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
@@ -132,7 +132,7 @@ export const TechnologyWrapperStyles = styled.div`
 `;
 
 export const InfoModalLegendContent = styled.div`
-  width: 191px;
+  width: 11.9375rem;
   padding: 8px 12px;
 `;
 
