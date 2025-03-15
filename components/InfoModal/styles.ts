@@ -4,7 +4,7 @@ import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
 
 export const InfoModalStyles = styled.div`
   position: absolute;
-  bottom: 100px;
+  bottom: 6.25rem;
   right: 1.875rem;
   width: 14.6875rem;
   height: 20.625rem;
