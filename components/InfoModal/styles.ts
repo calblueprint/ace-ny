@@ -36,7 +36,7 @@ export const InfoModalText = styled.div`
   white-space: normal;
   display: inline;
   padding-bottom: 15px;
-  margin-top: -0.3125rem;
+  margin-top: -5px;
 `;
 
 export const InfoModalBoldedText = styled.div`
