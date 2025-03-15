@@ -12,7 +12,7 @@ import { Project } from '../../types/schema';
 import ProjectModal from '../ProjectModal';
 import ProjectsListingModal from '../ProjectsListingModal';
 
-function GetProjectsSize(projects: Project[]) {
+function getProjectsSize(projects: Project[]) {
   return projects.map(project => project.size);
 }
 
@@ -47,6 +47,17 @@ export default function MapViewScreen({
     //   icon: <LocationIcon />,
     // },
   ];
+
+  const defaultFilters = {
+    status: [],
+    technology: [],
+    projectSize: {
+      min: Math.min(...getProjectsSize(projects)),
+      max: Math.max(...getProjectsSize(projects)),
+    },
+    // location: [],
+  };
+
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [selectedProjectId, setSelectedProjectId] = useState<number | null>(
     null,
@@ -58,6 +69,9 @@ export default function MapViewScreen({
     projectSize: { min: 0, max: 0 },
     // location: [],
   });
+
+  const [tempFilters, setTempFilters] = useState<Filters>(defaultFilters);
+
   const [filteredProjectsFromDropdowns, setFilteredProjectsFromDropdowns] =
     useState<Project[]>(projects);
 
@@ -66,20 +80,19 @@ export default function MapViewScreen({
 
   // clear filters
   const clearFilters = () => {
-    setSelectedFilters({
-      status: [],
-      technology: [],
-      projectSize: { min: 0, max: 0 },
-      // location: [],
-    });
+    setSelectedFilters(defaultFilters);
+    setTempFilters(defaultFilters);
     setFilteredProjects(projects);
     setFilteredProjectsFromDropdowns(projects);
   };
 
   // show projects based on selected filters
   const handleFilterButtonClick = () => {
-    /* eslint-disable @typescript-eslint/no-unused-vars */
-    const { status, technology /*projectSize, location*/ } = selectedFilters;
+    setSelectedFilters(tempFilters);
+  };
+
+  useEffect(() => {
+    const { status, technology, projectSize } = selectedFilters;
     let filteredProjects = projects;
 
     // add all filtering logic here
@@ -94,8 +107,14 @@ export default function MapViewScreen({
         status.includes(project.project_status),
       );
     }
+
+    filteredProjects = filteredProjects.filter(
+      project =>
+        project.size >= projectSize.min && project.size <= projectSize.max,
+    );
+
     setFilteredProjectsFromDropdowns(filteredProjects);
-  };
+  }, [selectedFilters, projects]);
 
   // search within all projects or filtered projects from dropdowns
   useEffect(() => {
@@ -134,11 +153,11 @@ export default function MapViewScreen({
     <>
       <FilterBar
         filters={filters}
-        selectedFilters={selectedFilters}
-        setSelectedFilters={setSelectedFilters}
+        selectedFilters={tempFilters}
+        setSelectedFilters={setTempFilters}
         handleFilterButtonClick={handleFilterButtonClick}
         clearFilters={clearFilters}
-        projectSizes={GetProjectsSize(projects)}
+        projectSizes={getProjectsSize(projects)}
       />
       <Map
         projects={projects}

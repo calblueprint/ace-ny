@@ -20,14 +20,12 @@ import {
 } from './styles';
 
 interface ProjectSizeDropdownProps {
-  selectedSize: projectSizeType;
   setSelectedSize: (projectSize: projectSizeType) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
   handleFilterButtonClick: () => void;
-  clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   projectSizes: number[];
   minRange: number;
@@ -36,16 +34,13 @@ interface ProjectSizeDropdownProps {
   setMaxRange: (value: number) => void;
 }
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 export default function ProjectSizeDropdown({
-  selectedSize,
   setSelectedSize,
   handleButtonClick,
   icon,
   label,
   currFilter,
   handleFilterButtonClick,
-  clearFilters,
   setActiveFilter,
   projectSizes,
   minRange,
@@ -59,6 +54,11 @@ export default function ProjectSizeDropdown({
   const averageProjectSize = (
     projectSizes.reduce((a, b) => a + b) / projectSizes.length
   ).toFixed(2);
+
+  const handleApplyButtonClick = () => {
+    handleFilterButtonClick();
+    setActiveFilter(null);
+  };
 
   return (
     <FilterDropdownStyles>
@@ -86,6 +86,7 @@ export default function ProjectSizeDropdown({
           setMinRange={setMinRange}
           maxRange={maxRange}
           setMaxRange={setMaxRange}
+          setSelectedSize={setSelectedSize}
         ></ProjectSizeHistogram>
 
         <MinMaxBoxContainer>
@@ -99,7 +100,7 @@ export default function ProjectSizeDropdown({
           </MinMaxBox>
         </MinMaxBoxContainer>
 
-        <ApplyButtonStyles $isActive={true} onClick={handleFilterButtonClick}>
+        <ApplyButtonStyles $isActive={true} onClick={handleApplyButtonClick}>
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
       </FilterContentDiv>
