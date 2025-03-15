@@ -26,7 +26,7 @@ export const InfoModalText = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--navy, rgba(46, 58, 89, 0.75));
+  color: ${COLORS.navy75};
   font-family: ${CoinbaseText.style};
   font-size: 0.75rem;
   font-style: normal;
