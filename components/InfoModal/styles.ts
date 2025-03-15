@@ -74,7 +74,7 @@ export const InfoModalRightArrowStyles = styled.div`
 export const InfoModalLeftArrowStyles = styled(InfoModalRightArrowStyles)`
   rotate: 180deg;
   position: relative;
-  top: 7px;
+  top: 10px;
   right: 3px;
 `;
 
