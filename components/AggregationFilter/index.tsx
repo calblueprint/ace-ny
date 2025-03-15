@@ -1,10 +1,20 @@
 import { AggregationFilterBackground, AggregationFilterStyles } from './styles';
 
-export default function AggregationFilter() {
+interface AggregationFilterProps {
+  aggFilterisVisible: boolean;
+  setAggFilterisVisible: (visible: boolean) => void;
+}
+
+export default function AggregationFilter({
+  aggFilterisVisible,
+  setAggFilterisVisible,
+}: AggregationFilterProps) {
   return (
     <AggregationFilterBackground>
       <AggregationFilterStyles>
-        <div>Filter</div>
+        <button onClick={() => setAggFilterisVisible(!aggFilterisVisible)}>
+          close
+        </button>
       </AggregationFilterStyles>
     </AggregationFilterBackground>
   );

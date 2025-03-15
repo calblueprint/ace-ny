@@ -6,8 +6,6 @@ export const InfoModalStyles = styled.div`
   position: absolute;
   bottom: 60px;
   right: 5px;
-  // bottom: 6.25rem;
-  // right: 1.875rem;
   width: 14.6875rem;
   height: 20.625rem;
   padding: 16px 16px;

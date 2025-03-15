@@ -5,6 +5,6 @@ export const BottomBarContainer = styled.div`
   bottom: 40px;
   right: 25px;
   display: flex;
-  align-items: center;
+  align-items: end;
   gap: 10px;
 `;
