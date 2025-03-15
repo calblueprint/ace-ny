@@ -44,6 +44,7 @@ export default function ProjectsListingModal({
   selectedProjectId: number | null;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [sortedProjects, setSortedProjects] = useState<Project[] | null>(projects);
 
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
@@ -51,7 +52,53 @@ export default function ProjectsListingModal({
   const [isSortByOpen, setIsSortByOpen] = useState(false);
   const toggleSortBy = () => setIsSortByOpen(prev => !prev);
 
-  const projectItems = projects?.map((project: Project) => {
+  const handleSortAZ = () => {
+    if (projects) {
+      setSortedProjects(
+        projects.toSorted((a, b) => a.project_name.localeCompare(b.project_name))
+      );
+    }
+  };
+
+  const handleSortZA = () => {
+    if (projects) {
+      setSortedProjects(
+        projects.toSorted((a, b) => b.project_name.localeCompare(a.project_name))
+      );
+    }
+  };
+  const handleSortSizeAscending = () => {
+    if (projects) {
+      setSortedProjects(
+        projects.toSorted((a, b) => a.size - b.size)
+      );
+    }
+  };
+
+  const handleSortSizeDescending = () => {
+    if (projects) {
+      setSortedProjects(
+        projects.toSorted((a, b) => b.size - a.size)
+      );
+    }
+  };
+  const handleSortCODAscending = () => {
+    if (projects) {
+      setSortedProjects(
+        projects.toSorted((a, b) => a.proposed_cod.toString().localeCompare(b.proposed_cod.toString()))
+      );
+    }
+  };
+
+  const handleSortCODDescending = () => {
+    if (projects) {
+      setSortedProjects(
+        projects.toSorted((a, b) => b.proposed_cod.toString().localeCompare(a.proposed_cod.toString()))
+      );
+    }
+  };
+
+  const projectItems = sortedProjects?.map((project: Project) => {
     return (
       <ProjectItem
         key={project.id}
@@ -108,22 +155,22 @@ export default function ProjectsListingModal({
                     </SortByButton>
                     {isSortByOpen && (
                       <SortByMenu>
-                        <SortByItem onClick={() => {}}>
+                        <SortByItem onClick={handleSortAZ}>
                           <SortByText>Name A-Z</SortByText>
                         </SortByItem>
-                        <SortByItem onClick={() => {}}>
+                        <SortByItem onClick={handleSortZA}>
                           <SortByText>Name Z-A</SortByText>
                         </SortByItem>
-                        <SortByItem onClick={() => {}}>
+                        <SortByItem onClick={handleSortSizeAscending}>
                           <SortByText>Size Ascending</SortByText>
                         </SortByItem>
-                        <SortByItem onClick={() => {}}>
+                        <SortByItem onClick={handleSortSizeDescending}>
                           <SortByText>Size Descending</SortByText>
                         </SortByItem>
-                        <SortByItem onClick={() => {}}>
+                        <SortByItem onClick={handleSortCODAscending}>
                           <SortByText>COD Ascending</SortByText>
                         </SortByItem>
-                        <SortByItem onClick={() => {}}>
+                        <SortByItem onClick={handleSortCODDescending}>
                           <SortByText>COD Descending</SortByText>
                         </SortByItem>
                       </SortByMenu>
@@ -139,3 +186,4 @@ export default function ProjectsListingModal({
     </>
   );
 }
+
