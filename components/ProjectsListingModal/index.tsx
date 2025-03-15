@@ -6,12 +6,10 @@ import { CloseIcon, OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
 import { SearchIcon } from '@/assets/SearchBar-Icons/icons';
 import { FilterNameText, SubHeading2 } from '@/styles/texts';
+import { SortByText } from '../../styles/texts';
 import { Project } from '../../types/schema';
 import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
-import {
-  SortByText,
-} from '../../styles/texts';
 import {
   AllProjectsHeader,
   CloseModalButton,

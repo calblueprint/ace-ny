@@ -122,7 +122,7 @@ export const SortByItem = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  
+
   &:hover {
     background: rgba(73, 116, 224, 0.05);
     border-radius: 5px;
