@@ -56,13 +56,21 @@ export default function ProjectsListingModal({
 
   const handleSortAZ = () => {
     if (projects) {
-      setSortedProjects(projects.toSorted((a, b) => a.project_name.localeCompare(b.project_name)));
+      setSortedProjects(
+        projects.toSorted((a, b) =>
+          a.project_name.localeCompare(b.project_name),
+        ),
+      );
     }
   };
 
   const handleSortZA = () => {
     if (projects) {
-      setSortedProjects(projects.toSorted((a, b) => b.project_name.localeCompare(a.project_name)));
+      setSortedProjects(
+        projects.toSorted((a, b) =>
+          b.project_name.localeCompare(a.project_name),
+        ),
+      );
     }
   };
   const handleSortSizeAscending = () => {
@@ -78,13 +86,21 @@ export default function ProjectsListingModal({
   };
   const handleSortCODAscending = () => {
     if (projects) {
-      setSortedProjects(projects.toSorted((a, b) => a.proposed_cod.toString().localeCompare(b.proposed_cod.toString())));
+      setSortedProjects(
+        projects.toSorted((a, b) =>
+          a.proposed_cod.toString().localeCompare(b.proposed_cod.toString()),
+        ),
+      );
     }
   };
 
   const handleSortCODDescending = () => {
     if (projects) {
-      setSortedProjects(projects.toSorted((a, b) => b.proposed_cod.toString().localeCompare(a.proposed_cod.toString())));
+      setSortedProjects(
+        projects.toSorted((a, b) =>
+          b.proposed_cod.toString().localeCompare(a.proposed_cod.toString()),
+        ),
+      );
     }
   };
 
