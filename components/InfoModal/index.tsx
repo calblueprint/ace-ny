@@ -48,8 +48,7 @@ export default function InfoModal() {
                 <InfoModalBoldedText>{ACENY}</InfoModalBoldedText> to showcase
                 the renewable energy projects being proposed, constructed, and
                 operated across New York.
-                <br />
-                <br />
+                <p></p>
                 The Alliance for Clean Energy New York has compiled this map
                 from various public sources and updates it regularly. We make
                 our best effort to ensure that all information is accurate and

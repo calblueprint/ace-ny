@@ -6,9 +6,9 @@ export const InfoModalStyles = styled.div`
   position: absolute;
   bottom: 100px;
   right: 30px;
-  width: 215px;
-  height: 305px;
-  padding: 16px;
+  width: 235px;
+  height: 330px;
+  padding: 16px 16px;
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -28,19 +28,21 @@ export const InfoModalText = styled.div`
   justify-content: center;
   color: var(--navy, rgba(46, 58, 89, 0.75));
   font-family: ${CoinbaseText.style};
-  font-size: 10px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 250;
   line-height: 16px;
   padding: 5px 16px;
   white-space: normal;
   display: inline;
+  padding-bottom: 15px;
+  margin-top: -5px;
 `;
 
 export const InfoModalBoldedText = styled.div`
   color: ${COLORS.electricBlue};
   font-family: ${CoinbaseText.style};
-  font-size: 10px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
@@ -65,12 +67,15 @@ export const InfoModalTriangleStyles = styled.div`
 export const InfoModalRightArrowStyles = styled.div`
   width: 12.02px;
   height: 7.425px;
-  fill: ${COLORS.lightGray2};
+  fill: ${COLORS.navy50};
   cursor: pointer;
 `;
 
 export const InfoModalLeftArrowStyles = styled(InfoModalRightArrowStyles)`
   rotate: 180deg;
+  position: relative;
+  top: 7px;
+  right: 3px;
 `;
 
 export const InfoModalCircleWrapper = styled.div`
@@ -79,13 +84,13 @@ export const InfoModalCircleWrapper = styled.div`
   gap: 7px;
   z-index: 100;
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
 `;
 
 export const HeaderStyles = styled.div`
-  color: ${COLORS.lightGray};
+  color: ${COLORS.navy85};
   font-family: ${CoinbaseSans.style};
   font-size: 14px;
   font-style: normal;
@@ -94,7 +99,7 @@ export const HeaderStyles = styled.div`
 `;
 
 export const TitleStyles = styled.div`
-  color: ${COLORS.lightGray2};
+  color: ${COLORS.navy50};
   font-family: ${CoinbaseMono.style};
   font-size: 12px;
   font-style: normal;
@@ -106,7 +111,7 @@ export const TitleStyles = styled.div`
 export const TechnologyStyles = styled.div`
   display: flex;
   gap: 10px;
-  color: ${COLORS.lightGray3};
+  color: ${COLORS.navy75};
   font-family: ${CoinbaseText.style};
   font-size: 12px;
   font-style: normal;
