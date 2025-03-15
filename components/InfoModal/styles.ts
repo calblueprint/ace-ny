@@ -4,8 +4,10 @@ import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
 
 export const InfoModalStyles = styled.div`
   position: absolute;
-  bottom: 6.25rem;
-  right: 1.875rem;
+  bottom: 60px;
+  right: 5px;
+  // bottom: 6.25rem;
+  // right: 1.875rem;
   width: 14.6875rem;
   height: 20.625rem;
   padding: 16px 16px;
@@ -60,8 +62,8 @@ export const InfoModalTriangleStyles = styled.div`
   height: 0.7719rem;
   flex-shrink: 0;
   z-index: 100;
-  bottom: 93px;
-  right: 40px;
+  bottom: 53px;
+  right: 15px;
 `;
 
 export const InfoModalRightArrowStyles = styled.div`
