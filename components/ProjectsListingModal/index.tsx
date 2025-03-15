@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import Modal from 'react-modal';
-import { OpenIcon } from '@/assets/KDM-Icons/icons';
+import { CloseIcon, OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
 import { SearchIcon } from '@/assets/SearchBar-Icons/icons';
 import { FilterNameText, SubHeading2 } from '@/styles/texts';
+import { SortByText } from '../../styles/texts';
 import { Project } from '../../types/schema';
 import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
@@ -21,7 +22,10 @@ import {
   SearchButton,
   SearchButtonBackground,
   SearchIconStyles,
+  SortBy,
   SortByButton,
+  SortByItem,
+  SortByMenu,
 } from './styles';
 
 export default function ProjectsListingModal({
@@ -43,6 +47,9 @@ export default function ProjectsListingModal({
 
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
+
+  const [isSortByOpen, setIsSortByOpen] = useState(false);
+  const toggleSortBy = () => setIsSortByOpen(prev => !prev);
 
   const projectItems = projects?.map((project: Project) => {
     return (
@@ -90,10 +97,38 @@ export default function ProjectsListingModal({
                     <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
                     <SubHeading2>ALL PROJECTS</SubHeading2>
                   </AllProjectsHeader>
-                  <SortByButton onClick={() => {}}>
-                    <SubHeading2>SORT BY</SubHeading2>
-                    <OpenIcon width={'10'} height={'14'} />
-                  </SortByButton>
+                  <SortBy>
+                    <SortByButton onClick={toggleSortBy}>
+                      <SubHeading2>SORT BY</SubHeading2>
+                      {isSortByOpen ? (
+                        <CloseIcon />
+                      ) : (
+                        <OpenIcon width={'10'} height={'14'} />
+                      )}
+                    </SortByButton>
+                    {isSortByOpen && (
+                      <SortByMenu>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>Name A-Z</SortByText>
+                        </SortByItem>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>Name Z-A</SortByText>
+                        </SortByItem>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>Size Ascending</SortByText>
+                        </SortByItem>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>Size Descending</SortByText>
+                        </SortByItem>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>COD Ascending</SortByText>
+                        </SortByItem>
+                        <SortByItem onClick={() => {}}>
+                          <SortByText>COD Descending</SortByText>
+                        </SortByItem>
+                      </SortByMenu>
+                    )}
+                  </SortBy>
                 </Headers>
                 <ProjectItemsDiv>{projectItems}</ProjectItemsDiv>
               </ModalContents>

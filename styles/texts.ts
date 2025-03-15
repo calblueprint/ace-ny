@@ -135,6 +135,16 @@ export const MarkerInfoWindowText1 = styled.p<TextProps>`
   padding-left: 0.4rem;
 `;
 
+export const SortByText = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.navy75};
+  font-size: 0.688rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.22px;
+`;
+
 export const FilterHeadingUnused = styled.h3<TextProps>`
   ${TextStylesCoinbaseText}
   color: ${COLORS.navy85};
