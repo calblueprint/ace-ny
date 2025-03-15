@@ -10,6 +10,7 @@ const COLORS = {
   navy: '#2E3A59',
   navy30: '#FAFAFB',
   navy50: '#2E3A5980',
+  navy75: '#626C83',
   navy85: '#4C5671',
   electricBlue: '#4974E0',
   electricBlue10: '#F6F8FD',
@@ -27,9 +28,8 @@ const COLORS = {
   black: '#000000',
   white: '#FFFFFF',
   babyBlue: '#A4B9EF',
-  navy75: '#626C83',
   grey80: '#A1A6B4CC',
-  grayBlue: '#ABB1BD',
+  aluminium: '#ABB1BD',
 };
 
 export default COLORS;

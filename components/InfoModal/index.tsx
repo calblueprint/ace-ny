@@ -70,7 +70,7 @@ export default function InfoModal() {
 
             <InfoModalCircleWrapper>
               <InfoModalCircle color={COLORS.electricBlue} />
-              <InfoModalCircle color={COLORS.grayBlue} />
+              <InfoModalCircle color={COLORS.aluminium} />
             </InfoModalCircleWrapper>
           </InfoModalStyles>
         </>
@@ -160,7 +160,7 @@ export default function InfoModal() {
           </InfoModalWrapper>
 
           <InfoModalCircleWrapper>
-            <InfoModalCircle color={COLORS.grayBlue} />
+            <InfoModalCircle color={COLORS.aluminium} />
             <InfoModalCircle color={COLORS.electricBlue} />
           </InfoModalCircleWrapper>
         </InfoModalStyles>
