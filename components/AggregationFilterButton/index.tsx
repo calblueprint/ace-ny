@@ -1,4 +1,5 @@
 import {
+  Arrow,
   LightningIcon,
   Line,
   WorldIcon,
@@ -28,6 +29,7 @@ export default function AggregationFilterButton({
         <Line />
         <LightningIcon />
         <TextStyles>10,820 MW</TextStyles>
+        <Arrow />
       </AggregationFilterButtonStyles>
     </AggregationFilterButtonBackground>
   );

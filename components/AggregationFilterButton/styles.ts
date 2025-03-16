@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import COLORS from '@/styles/colors';
-import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
+import { Arrow } from '@/assets/Aggregation-Filter-Icons/icons';
+import { CoinbaseSans } from '@/styles/fonts';
 
 export const AggregationFilterButtonBackground = styled.button`
   background: linear-gradient(
@@ -13,7 +13,7 @@ export const AggregationFilterButtonBackground = styled.button`
   z-index: 5;
   border-radius: 100px;
   border: none;
-  width: 289px;
+  width: 313px;
   height: 49px;
 `;
 
@@ -29,7 +29,7 @@ export const AggregationFilterButtonStyles = styled.button`
   gap: 0.625rem;
   padding: 0.5rem 1rem;
   border-radius: 100px;
-  width: 281px;
+  width: 305px;
   height: 40px;
 `;
 

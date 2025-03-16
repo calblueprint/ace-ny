@@ -1,4 +1,14 @@
-import { AggregationFilterBackground, AggregationFilterStyles } from './styles';
+import { Arrow } from '@/assets/Aggregation-Filter-Icons/icons';
+import {
+  AggregationFilterBackground,
+  AggregationFilterStyles,
+  Header,
+  HeaderContainer,
+  HeaderText,
+  Tab,
+  TotalText,
+  UpsideDownArrow,
+} from './styles';
 
 interface AggregationFilterProps {
   aggFilterisVisible: boolean;
@@ -12,9 +22,23 @@ export default function AggregationFilter({
   return (
     <AggregationFilterBackground>
       <AggregationFilterStyles>
-        <button onClick={() => setAggFilterisVisible(!aggFilterisVisible)}>
-          close
-        </button>
+        <HeaderContainer>
+          <Header>
+            {/* <Tab>
+            <HeaderText>PROJECTS</HeaderText>
+          </Tab>
+          <Tab>
+            <HeaderText>ENERGY</HeaderText>
+          </Tab> */}
+          </Header>
+          <UpsideDownArrow
+            onClick={() => setAggFilterisVisible(!aggFilterisVisible)}
+          >
+            <Arrow />
+          </UpsideDownArrow>
+        </HeaderContainer>
+
+        <TotalText>TOTAL: 1234</TotalText>
       </AggregationFilterStyles>
     </AggregationFilterBackground>
   );

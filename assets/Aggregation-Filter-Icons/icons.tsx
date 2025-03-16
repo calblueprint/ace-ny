@@ -50,3 +50,21 @@ export const Line = () => {
     </svg>
   );
 };
+
+export const Arrow = () => {
+  return (
+    <svg
+      width="13"
+      height="8"
+      viewBox="0 0 13 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        opacity="0.5"
+        d="M6.76454 0.287647L0.754536 6.29765L2.16754 7.71265L6.76454 3.11265L11.3605 7.71265L12.7745 6.29865L6.76454 0.287647Z"
+        fill="#2E3A59"
+      />
+    </svg>
+  );
+};
