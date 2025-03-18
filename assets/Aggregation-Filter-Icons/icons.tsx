@@ -68,3 +68,30 @@ export const Arrow = () => {
     </svg>
   );
 };
+
+export const DownloadIcon = () => {
+  return (
+    <svg
+      width="7"
+      height="10"
+      viewBox="0 0 7 10"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M1 8.73926H6.60889"
+        stroke="#949AA9"
+        stroke-width="0.701111"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <path
+        d="M3.80438 1.26074V6.86963M3.80438 6.86963L5.44031 5.23371M3.80438 6.86963L2.16846 5.23371"
+        stroke="#949AA9"
+        stroke-width="0.701111"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  );
+};

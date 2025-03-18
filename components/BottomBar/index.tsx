@@ -6,6 +6,7 @@ import { BottomBarContainer } from './styles';
 
 export default function BottomBar() {
   const [aggFilterisVisible, setAggFilterisVisible] = useState(false);
+  const [infoModalisVisible, setInfoModalisVisible] = useState(false);
 
   return (
     <BottomBarContainer>
@@ -13,6 +14,8 @@ export default function BottomBar() {
         <AggregationFilterButton
           aggFilterisVisible={aggFilterisVisible}
           setAggFilterisVisible={setAggFilterisVisible}
+          infoModalisVisible={infoModalisVisible}
+          setInfoModalisVisible={setInfoModalisVisible}
         />
       )}
       {aggFilterisVisible && (
@@ -21,7 +24,13 @@ export default function BottomBar() {
           setAggFilterisVisible={setAggFilterisVisible}
         />
       )}
-      <InfoModalButton></InfoModalButton>
+
+      <InfoModalButton
+        aggFilterisVisible={aggFilterisVisible}
+        setAggFilterisVisible={setAggFilterisVisible}
+        infoModalisVisible={infoModalisVisible}
+        setInfoModalisVisible={setInfoModalisVisible}
+      ></InfoModalButton>
     </BottomBarContainer>
   );
 }

@@ -1,11 +1,14 @@
-import { Arrow } from '@/assets/Aggregation-Filter-Icons/icons';
+import { Arrow, DownloadIcon } from '@/assets/Aggregation-Filter-Icons/icons';
 import {
   AggregationFilterBackground,
   AggregationFilterStyles,
+  ContentContainer,
+  DownloadButton,
+  // DownloadText,
   Header,
   HeaderContainer,
-  HeaderText,
-  Tab,
+  // HeaderText,
+  // Tab,
   TotalText,
   UpsideDownArrow,
 } from './styles';
@@ -38,7 +41,14 @@ export default function AggregationFilter({
           </UpsideDownArrow>
         </HeaderContainer>
 
-        <TotalText>TOTAL: 1234</TotalText>
+        <ContentContainer>
+          <TotalText>TOTAL: 1234</TotalText>
+
+          <DownloadButton>
+            {/* <DownloadText>DOWNLOAD</DownloadText> */}
+            <DownloadIcon />
+          </DownloadButton>
+        </ContentContainer>
       </AggregationFilterStyles>
     </AggregationFilterBackground>
   );

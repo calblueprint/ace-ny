@@ -1,5 +1,4 @@
 import { styled } from 'styled-components';
-import { Arrow } from '@/assets/Aggregation-Filter-Icons/icons';
 import COLORS from '@/styles/colors';
 import { CoinbaseMono, CoinbaseSans } from '@/styles/fonts';
 
@@ -85,6 +84,14 @@ export const UpsideDownArrow = styled.div`
   align-self: center;
 `;
 
+export const ContentContainer = styled.div`
+  display: flex;
+  align-self: center;
+  width: 235px;
+  height: 149px;
+  flex-shrink: 0;
+`;
+
 export const TotalText = styled.div`
   color: ${COLORS.navy50};
   font-family: ${CoinbaseMono.style};
@@ -92,4 +99,29 @@ export const TotalText = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 14.4px */
+`;
+
+export const DownloadText = styled.div`
+  color: ${COLORS.navy};
+  font-family: ${CoinbaseMono.style};
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%; /* 12px */
+`;
+
+export const DownloadButton = styled.button`
+  display: flex;
+  flex-direction: col;
+  width: 74px;
+  height: 20px;
+  display: flex;
+  padding: 4px 6px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background: #fafafb;
+  border-radius: 20px;
+  border: none;
 `;

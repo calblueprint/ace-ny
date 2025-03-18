@@ -13,16 +13,24 @@ import {
 interface AggregationFilterButtonProps {
   aggFilterisVisible: boolean;
   setAggFilterisVisible: (visible: boolean) => void;
+  infoModalisVisible: boolean;
+  setInfoModalisVisible: (visible: boolean) => void;
 }
 
 export default function AggregationFilterButton({
   aggFilterisVisible,
   setAggFilterisVisible,
+  infoModalisVisible,
+  setInfoModalisVisible,
 }: AggregationFilterButtonProps) {
+  function handleClick() {
+    setAggFilterisVisible(!aggFilterisVisible);
+    if (infoModalisVisible) {
+      setInfoModalisVisible(false);
+    }
+  }
   return (
-    <AggregationFilterButtonBackground
-      onClick={() => setAggFilterisVisible(!aggFilterisVisible)}
-    >
+    <AggregationFilterButtonBackground onClick={handleClick}>
       <AggregationFilterButtonStyles>
         <WorldIcon />
         <TextStyles>114 PROJECTS</TextStyles>
