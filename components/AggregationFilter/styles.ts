@@ -133,4 +133,5 @@ export const DownloadButton = styled.button`
   background: #fafafb;
   border-radius: 20px;
   border: none;
+  cursor: pointer;
 `;
