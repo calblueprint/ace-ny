@@ -1,4 +1,9 @@
-import { Arrow, DownloadIcon } from '@/assets/Aggregation-Filter-Icons/icons';
+import {
+  Arrow,
+  DownloadIcon,
+  LightningIcon,
+  WorldIcon,
+} from '@/assets/Aggregation-Filter-Icons/icons';
 import {
   AggregationFilterBackground,
   AggregationFilterStyles,
@@ -7,8 +12,8 @@ import {
   // DownloadText,
   Header,
   HeaderContainer,
-  // HeaderText,
-  // Tab,
+  HeaderText,
+  Tab,
   TotalText,
   UpsideDownArrow,
 } from './styles';
@@ -27,12 +32,14 @@ export default function AggregationFilter({
       <AggregationFilterStyles>
         <HeaderContainer>
           <Header>
-            {/* <Tab>
-            <HeaderText>PROJECTS</HeaderText>
-          </Tab>
-          <Tab>
-            <HeaderText>ENERGY</HeaderText>
-          </Tab> */}
+            <Tab>
+              <WorldIcon />
+              <HeaderText>PROJECTS</HeaderText>
+            </Tab>
+            <Tab>
+              <LightningIcon />
+              <HeaderText>ENERGY</HeaderText>
+            </Tab>
           </Header>
           <UpsideDownArrow
             onClick={() => setAggFilterisVisible(!aggFilterisVisible)}

@@ -42,35 +42,45 @@ export const HeaderContainer = styled.div`
 
 export const Header = styled.div`
   display: flex;
-  height: 40px;
-  align-self: stretch;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
   border-radius: 40px;
   border-top: 0px solid rgba(46, 58, 89, 0.1);
   border-right: 1px solid rgba(46, 58, 89, 0.1);
   border-bottom: 1px solid rgba(46, 58, 89, 0.1);
   border-left: 1px solid rgba(46, 58, 89, 0.1);
   background: #fff;
-  width: 230px;
-  padding: 10px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
+  width: 251px;
+  height: 40px;
+  gap: 0px;
   margin-top: 10px;
   margin-left: 15px;
+  overflow: hidden;
 `;
 
 export const Tab = styled.div`
   display: flex;
   height: 40px;
-  padding: 14px 22px 14px 20px;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   border-radius: 40px;
-  background: rgba(73, 116, 224, 0.05);
+  padding: 0 18px;
+  background: rgba(24, 26, 29, 0.05);
 `;
 
+// export const TabBackground = styled.div`
+//   position: absolute;
+//   width: 50%; // Takes half the header width
+//   height: 100%;
+//   background: rgba(24, 26, 29, 0.1);
+//   border-radius: 40px;
+//   transition: transform 0.3s ease-in-out; // Smooth transition
+//   z-index: 0; // Places it below the tabs
+// `;
+
 export const HeaderText = styled.div`
-  color: ${COLORS.electricBlue};
+  color: ${COLORS.navy};
   font-family: ${CoinbaseSans.style};
   font-size: 14px;
   font-style: normal;
