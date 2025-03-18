@@ -38,6 +38,8 @@ export const HeaderContainer = styled.div`
   flex-direction: row;
   align-items: flex-start;
   gap: 10px;
+  margin-top: 10px;
+  margin-left: 15px;
 `;
 
 export const Header = styled.div`
@@ -54,8 +56,6 @@ export const Header = styled.div`
   width: 251px;
   height: 40px;
   gap: 0px;
-  margin-top: 10px;
-  margin-left: 15px;
   overflow: hidden;
 `;
 
