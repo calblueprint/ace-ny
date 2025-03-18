@@ -9,7 +9,7 @@ import {
   AggregationFilterStyles,
   ContentContainer,
   DownloadButton,
-  // DownloadText,
+  DownloadText,
   Header,
   HeaderContainer,
   HeaderText,
@@ -52,7 +52,7 @@ export default function AggregationFilter({
           <TotalText>TOTAL: 1234</TotalText>
 
           <DownloadButton>
-            {/* <DownloadText>DOWNLOAD</DownloadText> */}
+            <DownloadText>DOWNLOAD</DownloadText>
             <DownloadIcon />
           </DownloadButton>
         </ContentContainer>

@@ -97,9 +97,9 @@ export const UpsideDownArrow = styled.div`
 export const ContentContainer = styled.div`
   display: flex;
   align-self: center;
-  width: 235px;
+  width: 250px;
   height: 149px;
-  flex-shrink: 0;
+  gap: 90px;
 `;
 
 export const TotalText = styled.div`
@@ -123,14 +123,13 @@ export const DownloadText = styled.div`
 export const DownloadButton = styled.button`
   display: flex;
   flex-direction: col;
-  width: 74px;
+  width: 85px;
   height: 20px;
   display: flex;
-  padding: 4px 6px;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   background: #fafafb;
   border-radius: 20px;
   border: none;
