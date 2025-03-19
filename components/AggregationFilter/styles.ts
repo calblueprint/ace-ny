@@ -153,7 +153,6 @@ export const TechnologyWrapperStyles = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  // padding-top: 10px;
   padding-bottom: 10px;
 `;
 

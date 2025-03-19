@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Arrow } from '@/assets/Aggregation-Filter-Icons/icons';
 import { CoinbaseSans } from '@/styles/fonts';
 
 export const AggregationFilterButtonBackground = styled.button`
