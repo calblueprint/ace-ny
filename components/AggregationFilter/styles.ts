@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import COLORS from '@/styles/colors';
-import { CoinbaseMono, CoinbaseSans } from '@/styles/fonts';
+import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
 
 export const AggregationFilterBackground = styled.div`
   width: 331px;
@@ -67,6 +67,7 @@ export const Tab = styled.div`
   border-radius: 40px;
   padding: 0 18px;
   background: rgba(24, 26, 29, 0.05);
+  cursor: pointer;
 `;
 
 // export const TabBackground = styled.div`
@@ -99,7 +100,13 @@ export const ContentContainer = styled.div`
   align-self: center;
   width: 250px;
   height: 149px;
-  gap: 90px;
+  flex-direction: column;
+`;
+
+export const ContentContainerHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
 
 export const TotalText = styled.div`
@@ -108,7 +115,7 @@ export const TotalText = styled.div`
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 120%; /* 14.4px */
+  line-height: 120%;
 `;
 
 export const DownloadText = styled.div`
@@ -117,7 +124,7 @@ export const DownloadText = styled.div`
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
-  line-height: 120%; /* 12px */
+  line-height: 120%;
 `;
 
 export const DownloadButton = styled.button`
@@ -134,4 +141,35 @@ export const DownloadButton = styled.button`
   border-radius: 20px;
   border: none;
   cursor: pointer;
+`;
+
+export const TechnologyStyles = styled.div`
+  display: flex;
+  gap: 10px;
+  line-height: normal;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 4px;
+`;
+
+export const TechnologyWrapperStyles = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
+
+export const TechnologyRowStyles = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  color: ${COLORS.navy75};
+  font-family: ${CoinbaseText.style};
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 300;
+  justify-content: space-between;
+  width: 100%;
 `;
