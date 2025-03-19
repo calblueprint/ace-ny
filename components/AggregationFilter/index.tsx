@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Arrow,
   DownloadIcon,
@@ -39,17 +40,32 @@ export default function AggregationFilter({
   aggFilterisVisible,
   setAggFilterisVisible,
 }: AggregationFilterProps) {
+  const [activeTab, setActiveTab] = useState('PROJECTS');
   return (
     <AggregationFilterBackground>
       <AggregationFilterStyles>
         <HeaderContainer>
           <Header>
-            <Tab>
-              <WorldIcon />
+            <Tab
+              $isActive={activeTab === 'PROJECTS'}
+              onClick={() => setActiveTab('PROJECTS')}
+            >
+              <WorldIcon
+                stroke={
+                  activeTab === 'PROJECTS' ? COLORS.electricBlue : COLORS.navy
+                }
+              />
               <HeaderText>PROJECTS</HeaderText>
             </Tab>
-            <Tab>
-              <LightningIcon />
+            <Tab
+              $isActive={activeTab === 'ENERGY'}
+              onClick={() => setActiveTab('ENERGY')}
+            >
+              <LightningIcon
+                stroke={
+                  activeTab === 'ENERGY' ? COLORS.electricBlue : COLORS.navy
+                }
+              />
               <HeaderText>ENERGY</HeaderText>
             </Tab>
           </Header>
@@ -62,7 +78,7 @@ export default function AggregationFilter({
 
         <ContentContainer>
           <ContentContainerHeader>
-            <TotalText>TOTAL: 1234</TotalText>
+            <TotalText>TOTAL: &nbsp; 1234</TotalText>
 
             <DownloadButton>
               <DownloadText>DOWNLOAD</DownloadText>

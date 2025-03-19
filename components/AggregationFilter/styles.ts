@@ -59,29 +59,21 @@ export const Header = styled.div`
   overflow: hidden;
 `;
 
-export const Tab = styled.div`
+export const Tab = styled.div<{ $isActive: boolean }>`
   display: flex;
   height: 40px;
   align-items: center;
   gap: 10px;
   border-radius: 40px;
   padding: 0 18px;
-  background: rgba(24, 26, 29, 0.05);
+  background: ${({ $isActive }) =>
+    $isActive ? COLORS.electricBlue05 : COLORS.white};
   cursor: pointer;
+  color: ${({ $isActive }) => ($isActive ? COLORS.electricBlue : COLORS.navy)};
+  transition: background 0.2s ease-in-out;
 `;
 
-// export const TabBackground = styled.div`
-//   position: absolute;
-//   width: 50%; // Takes half the header width
-//   height: 100%;
-//   background: rgba(24, 26, 29, 0.1);
-//   border-radius: 40px;
-//   transition: transform 0.3s ease-in-out; // Smooth transition
-//   z-index: 0; // Places it below the tabs
-// `;
-
 export const HeaderText = styled.div`
-  color: ${COLORS.navy};
   font-family: ${CoinbaseSans.style};
   font-size: 14px;
   font-style: normal;
@@ -107,6 +99,8 @@ export const ContentContainerHeader = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding-top: 5px;
+  padding-bottom: 5px;
 `;
 
 export const TotalText = styled.div`
@@ -157,7 +151,7 @@ export const TechnologyWrapperStyles = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 8px;
-  padding-top: 10px;
+  // padding-top: 10px;
   padding-bottom: 10px;
 `;
 

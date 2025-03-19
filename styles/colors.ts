@@ -13,6 +13,7 @@ const COLORS = {
   navy75: '#626C83',
   navy85: '#4C5671',
   electricBlue: '#4974E0',
+  electricBlue05: '#4974E00D',
   electricBlue10: '#F6F8FD',
   electricBlue40: '#4974E040',
   electricBlue50: '#4974E099',

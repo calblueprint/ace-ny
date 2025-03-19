@@ -4,6 +4,7 @@ import {
   Line,
   WorldIcon,
 } from '@/assets/Aggregation-Filter-Icons/icons';
+import COLORS from '@/styles/colors';
 import {
   AggregationFilterButtonBackground,
   AggregationFilterButtonStyles,
@@ -32,10 +33,10 @@ export default function AggregationFilterButton({
   return (
     <AggregationFilterButtonBackground onClick={handleClick}>
       <AggregationFilterButtonStyles>
-        <WorldIcon />
+        <WorldIcon stroke={COLORS.navy} />
         <TextStyles>114 PROJECTS</TextStyles>
         <Line />
-        <LightningIcon />
+        <LightningIcon stroke={COLORS.navy} />
         <TextStyles>10,820 MW</TextStyles>
         <Arrow />
       </AggregationFilterButtonStyles>
