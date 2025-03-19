@@ -41,6 +41,51 @@ export default function AggregationFilter({
   setAggFilterisVisible,
 }: AggregationFilterProps) {
   const [activeTab, setActiveTab] = useState('PROJECTS');
+
+  const technologies = [
+    {
+      name: 'Land-Based Wind',
+      icon: LandBasedWindIcon,
+      color: COLORS.skyBlue,
+      width: '9.811px',
+      height: '13px',
+    },
+    {
+      name: 'Hydroelectric',
+      icon: HydroelectricIcon,
+      color: COLORS.frenchBlue,
+      width: '12px',
+      height: '9px',
+    },
+    {
+      name: 'Offshore Wind',
+      icon: OffshoreWindIcon,
+      color: COLORS.electricBlue,
+      stroke: COLORS.navy,
+      width: '10.547px',
+      height: '13px',
+    },
+    {
+      name: 'Solar PV',
+      icon: SolarPvIcon,
+      color: COLORS.solarYellow,
+      width: '13.112px',
+      height: '13px',
+    },
+    {
+      name: 'Geothermal',
+      icon: GeothermalIcon,
+      color: COLORS.earthyGreen,
+      width: '11px',
+      height: '11px',
+    },
+  ];
+
+  const totalNumProjects = 1234;
+  const totalProjectSizes = '10820 MW';
+  const numProjects = [10, 20, 30, 40, 50];
+  const projectSizes = ['100 MW', '200 MW', '300 MW', '400 MW', '500 MW'];
+
   return (
     <AggregationFilterBackground>
       <AggregationFilterStyles>
@@ -78,7 +123,10 @@ export default function AggregationFilter({
 
         <ContentContainer>
           <ContentContainerHeader>
-            <TotalText>TOTAL: &nbsp; 1234</TotalText>
+            <TotalText>
+              TOTAL: &nbsp;{' '}
+              {activeTab === 'PROJECTS' ? totalNumProjects : totalProjectSizes}
+            </TotalText>
 
             <DownloadButton>
               <DownloadText>DOWNLOAD</DownloadText>
@@ -87,66 +135,25 @@ export default function AggregationFilter({
           </ContentContainerHeader>
 
           <TechnologyWrapperStyles>
-            <TechnologyRowStyles>
-              <TechnologyStyles>
-                <LandBasedWindIcon
-                  fill={COLORS.skyBlue}
-                  width="9.811px"
-                  height="13px"
-                />
-                Land-Based Wind
-              </TechnologyStyles>
-              1
-            </TechnologyRowStyles>
-
-            <TechnologyRowStyles>
-              <TechnologyStyles>
-                <HydroelectricIcon
-                  fill={COLORS.frenchBlue}
-                  width="12px"
-                  height="9px"
-                />
-                Hydroelectric
-              </TechnologyStyles>
-              2
-            </TechnologyRowStyles>
-
-            <TechnologyRowStyles>
-              <TechnologyStyles>
-                <OffshoreWindIcon
-                  fill={COLORS.electricBlue}
-                  stroke={COLORS.navy}
-                  width="10.547px"
-                  height="13px"
-                />
-                Offshore Wind
-              </TechnologyStyles>
-              3
-            </TechnologyRowStyles>
-
-            <TechnologyRowStyles>
-              <TechnologyStyles>
-                <SolarPvIcon
-                  fill={COLORS.solarYellow}
-                  width="13.112px"
-                  height="13px"
-                />
-                Solar PV
-              </TechnologyStyles>
-              4
-            </TechnologyRowStyles>
-
-            <TechnologyRowStyles>
-              <TechnologyStyles>
-                <GeothermalIcon
-                  fill={COLORS.earthyGreen}
-                  width="11px"
-                  height="11px"
-                />
-                Geothermal
-              </TechnologyStyles>
-              5
-            </TechnologyRowStyles>
+            {technologies.map((tech, index) => {
+              const Icon = tech.icon;
+              return (
+                <TechnologyRowStyles key={tech.name}>
+                  <TechnologyStyles>
+                    <Icon
+                      fill={tech.color}
+                      stroke={tech.stroke}
+                      width={tech.width}
+                      height={tech.height}
+                    />
+                    {tech.name}
+                  </TechnologyStyles>
+                  {activeTab === 'PROJECTS'
+                    ? numProjects[index]
+                    : projectSizes[index]}
+                </TechnologyRowStyles>
+              );
+            })}
           </TechnologyWrapperStyles>
         </ContentContainer>
       </AggregationFilterStyles>

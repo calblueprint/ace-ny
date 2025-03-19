@@ -70,7 +70,9 @@ export const Tab = styled.div<{ $isActive: boolean }>`
     $isActive ? COLORS.electricBlue05 : COLORS.white};
   cursor: pointer;
   color: ${({ $isActive }) => ($isActive ? COLORS.electricBlue : COLORS.navy)};
-  transition: background 0.2s ease-in-out;
+  transition:
+    background 0.2s ease-in-out,
+    color 0.2s ease-in-out;
 `;
 
 export const HeaderText = styled.div`
