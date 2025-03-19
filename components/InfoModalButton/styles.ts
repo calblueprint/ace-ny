@@ -1,9 +1,6 @@
 import { styled } from 'styled-components';
 
 export const InfoModalButtonBackground = styled.div`
-  // position: fixed;
-  // bottom: 40px;
-  // right: 25px;
   position: relative;
   display: flex;
   justify-content: center;
