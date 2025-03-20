@@ -1,15 +1,31 @@
-import { useState } from 'react';
 import { InfoModalIcon } from '@/assets/InfoModal-Icons/icons';
 import InfoModal from '../InfoModal';
 import { InfoModalButtonBackground } from './styles';
 
-export default function InfoModalButton() {
-  const [isVisible, setIsVisible] = useState(false);
+interface InfoModalButtonProps {
+  infoModalisVisible: boolean;
+  setInfoModalisVisible: (isVisible: boolean) => void;
+  aggFilterisVisible: boolean;
+  setAggFilterisVisible: (isVisible: boolean) => void;
+}
+
+export default function InfoModalButton({
+  infoModalisVisible,
+  setInfoModalisVisible,
+  aggFilterisVisible,
+  setAggFilterisVisible,
+}: InfoModalButtonProps) {
+  function handleClick() {
+    setInfoModalisVisible(!infoModalisVisible);
+    if (aggFilterisVisible) {
+      setAggFilterisVisible(false);
+    }
+  }
 
   return (
     <>
-      {isVisible && <InfoModal />}
-      <InfoModalButtonBackground onClick={() => setIsVisible(!isVisible)}>
+      {infoModalisVisible && <InfoModal />}
+      <InfoModalButtonBackground onClick={handleClick}>
         <InfoModalIcon />
       </InfoModalButtonBackground>
     </>
