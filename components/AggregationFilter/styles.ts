@@ -48,10 +48,10 @@ export const Header = styled.div`
   position: relative;
   align-items: center;
   border-radius: 40px;
-  border-top: 0px solid rgba(46, 58, 89, 0.1);
-  border-right: 1px solid rgba(46, 58, 89, 0.1);
-  border-bottom: 1px solid rgba(46, 58, 89, 0.1);
-  border-left: 1px solid rgba(46, 58, 89, 0.1);
+  border-top: 0.3px solid ${COLORS.navy1A};
+  border-right: 0.5px solid ${COLORS.navy1A};
+  border-bottom: 1px solid ${COLORS.navy1A};
+  border-left: 0.5px solid ${COLORS.navy1A};
   background: #fff;
   width: 251px;
   height: 40px;

@@ -8,6 +8,7 @@ const COLORS = {
   chateauGreen: '#3D9458',
   aceGreen: '#1BA546',
   navy: '#2E3A59',
+  navy1A: '#2E3A591A',
   navy30: '#FAFAFB',
   navy50: '#2E3A5980',
   navy75: '#626C83',
