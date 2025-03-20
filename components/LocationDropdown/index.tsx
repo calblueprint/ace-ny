@@ -1,12 +1,22 @@
 import { FilterType } from '@/types/schema';
-import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
+import { UpIcon } from '../../assets/Dropdown-Icons/icons';
+import {
+  AssemblyDistrictIcon,
+  CountyIcon,
+  RegionIcon,
+  StateSenateDistrictIcon,
+  TownIcon,
+  UtilityServiceTerritoryIcon,
+} from '../../assets/Location-Category-Icons/icons';
 import { FilterHeadingUnused, FilterNameText } from '../../styles/texts';
+import LocationCategory from '../LocationCategory';
 import {
   ButtonStyles,
   ButtonWithIconStyles,
-  ExitStyles,
-  FilterContentDiv,
-  FilterDropdownStyles,
+  CategoryComponentContainer,
+  LocationContentDiv,
+  LocationIconWithTestContainer,
+  LocationStyleDiv,
 } from './styles';
 
 export default function LocationDropdown({
@@ -14,7 +24,6 @@ export default function LocationDropdown({
   icon,
   label,
   currFilter,
-  clearFilters,
 }: {
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
@@ -23,20 +32,37 @@ export default function LocationDropdown({
   clearFilters: () => void;
 }) {
   return (
-    <FilterDropdownStyles>
-      <FilterContentDiv>
+    <LocationStyleDiv>
+      <LocationContentDiv>
         <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-          <FilterNameText>
-            <FilterHeadingUnused>{icon}</FilterHeadingUnused>
-          </FilterNameText>
-          <ButtonStyles>
-            <FilterNameText>{label}</FilterNameText>
-          </ButtonStyles>
-          <ExitStyles onClick={clearFilters}>
-            <ExitIcon />
-          </ExitStyles>
+          <LocationIconWithTestContainer>
+            <FilterNameText>
+              <FilterHeadingUnused>{icon}</FilterHeadingUnused>
+            </FilterNameText>
+            <ButtonStyles>
+              <FilterNameText>{label}</FilterNameText>
+            </ButtonStyles>
+          </LocationIconWithTestContainer>
+          <UpIcon />
         </ButtonWithIconStyles>
-      </FilterContentDiv>
-    </FilterDropdownStyles>
+        <CategoryComponentContainer>
+          <LocationCategory icon={<CountyIcon />} name="County" />
+          <LocationCategory icon={<TownIcon />} name="Town" />
+          <LocationCategory icon={<RegionIcon />} name="Region" />
+          <LocationCategory
+            icon={<UtilityServiceTerritoryIcon />}
+            name="Utility Service Territory"
+          />
+          <LocationCategory
+            icon={<StateSenateDistrictIcon />}
+            name="State Senate District"
+          />
+          <LocationCategory
+            icon={<AssemblyDistrictIcon />}
+            name="Assembly District"
+          />
+        </CategoryComponentContainer>
+      </LocationContentDiv>
+    </LocationStyleDiv>
   );
 }

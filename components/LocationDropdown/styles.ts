@@ -1,51 +1,28 @@
 import styled from 'styled-components';
 import COLORS from '@/styles/colors';
 
-export const FilterDropdownStyles = styled.div`
+export const LocationContentDiv = styled.div`
   display: flex;
-  background: #fff;
-  width: 13rem;
-  border-radius: 0.5rem;
-`;
-
-export const FilterContentDiv = styled.div`
-  display: flex;
+  width: 168px;
+  padding: 10px 18px 16px 18px;
   flex-direction: column;
-  margin: 0.625rem 1.1rem 0.9rem 1.1rem;
-  align-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
 `;
 
-export const CheckboxContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  column-gap: 0.875rem;
-  margin-top: 0.35rem;
+export const LocationStyleDiv = styled.div`
+  border-radius: 12px;
+  border-right: 0.5px solid rgba(46, 58, 89, 0.1);
+  border-bottom: 1px solid rgba(46, 58, 89, 0.1);
+  border-left: 0.5px solid rgba(46, 58, 89, 0.1);
+  background: #fff;
 `;
 
-export const CheckboxStyles = styled.input`
+export const CategoryComponentContainer = styled.div`
   display: flex;
-  cursor: pointer;
-  margin-left: auto;
-`;
-
-export const ApplyButtonStyles = styled.button<{ $isActive: boolean }>`
-  display: flex;
-  width: 10.81rem;
-  height: 1.5rem;
-  border-radius: 0.25rem;
-  background: ${COLORS.electricBlue};
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  color: ${COLORS.white};
-  opacity: ${({ $isActive }) => ($isActive ? '1' : '0.50')};
-  line-height: normal;
-  border: none;
-  margin: 1rem auto 0 auto;
-  cursor: ${({ $isActive }) => ($isActive ? 'pointer' : 'not-allowed')};
-  pointer-events: ${({ $isActive }) => ($isActive ? 'auto' : 'none')};
+  width: 168px;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 export const ButtonStyles = styled.button`
@@ -58,11 +35,6 @@ export const ButtonStyles = styled.button`
   cursor: pointer;
 `;
 
-export const ExitStyles = styled.div`
-  display: flex;
-  padding-left: 1.5rem;
-`;
-
 export const ButtonWithIconStyles = styled.div`
   display: flex;
   align-items: center;
@@ -70,6 +42,13 @@ export const ButtonWithIconStyles = styled.div`
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
+  width: 100%;
+`;
+
+export const LocationIconWithTestContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 export const FilterIconStyles = styled.div`
@@ -81,22 +60,4 @@ export const FilterIconStyles = styled.div`
 export const IconStyles = styled.div`
   width: '3rem',
   height: '3rem',
-`;
-
-export const ClearButtonStyles = styled.button<{ $isActive: boolean }>`
-  width: 10.81rem;
-  height: 1.5rem;
-  flex-shrink: 0;
-  border-radius: 0.25rem;
-  border-style: solid;
-  border-width: 0.09rem;
-  border-color: ${COLORS.electricBlue};
-  opacity: ${({ $isActive }) => ($isActive ? '1' : '0.5')};
-  background: ${COLORS.white};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0.5rem auto auto auto;
-  pointer-events: ${({ $isActive }) => ($isActive ? 'auto' : 'none')};
-  cursor: ${({ $isActive }) => ($isActive ? 'pointer' : 'not-allowed')};
 `;
