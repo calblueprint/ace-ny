@@ -40,6 +40,18 @@ export default function AggregationFilter({
   aggFilterisVisible,
   setAggFilterisVisible,
 }: AggregationFilterProps) {
+  function intToString(num: number) {
+    return num.toLocaleString();
+  }
+
+  function intArrToStringArr(arr: number[]) {
+    const res = [];
+    for (let i = 0; i < arr.length; i++) {
+      res.push(intToString(arr[i]));
+    }
+    return res;
+  }
+
   const [activeTab, setActiveTab] = useState('PROJECTS');
 
   const technologies = [
@@ -81,10 +93,13 @@ export default function AggregationFilter({
     },
   ];
 
-  const totalNumProjects = 1234;
-  const totalProjectSizes = '10820 MW';
-  const numProjects = [10, 20, 30, 40, 50];
-  const projectSizes = ['100 MW', '200 MW', '300 MW', '400 MW', '500 MW'];
+  const totalNumProjects = intToString(1234);
+  const totalProjectSizes = intToString(10820) + ' MW';
+  const numProjects = intArrToStringArr([1000, 20, 30, 40, 50]);
+  const projectSizes = intArrToStringArr([100, 200, 300, 400, 5000]);
+  for (let i = 0; i < projectSizes.length; i++) {
+    projectSizes[i] = projectSizes[i] + ' MW';
+  }
 
   return (
     <AggregationFilterBackground>
