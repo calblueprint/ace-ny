@@ -244,6 +244,16 @@ export const ClearFiltersText = styled.p<TextProps>`
   color: ${COLORS.electricBlue};
 `;
 
+export const LocationCategoryText = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  color: ${COLORS.navy};
+`;
+
 /*
 
 export const FilterFont = styled.h1`

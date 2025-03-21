@@ -1,11 +1,11 @@
 import React from 'react';
 import { ArrowIcon } from '../../assets/Location-Category-Icons/icons';
+import { LocationCategoryText } from '../../styles/texts';
 import {
   Arrow,
   IconTextContainer,
   LocationCategoryContent,
   LocationCategoryIcon,
-  LocationCategoryText,
 } from './styles';
 
 interface LocationCategoryProps {

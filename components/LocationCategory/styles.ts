@@ -16,16 +16,6 @@ export const IconTextContainer = styled.div`
   gap: 12px;
 `;
 
-export const LocationCategoryText = styled.p`
-  color: rgba(46, 58, 89, 0.75);
-  text-align: center;
-  font-family: 'Coinbase Text';
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-`;
-
 export const LocationCategoryIcon = styled.div`
   width: 12px;
   height: 12.316px;

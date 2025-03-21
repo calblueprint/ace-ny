@@ -3,7 +3,7 @@ import COLORS from '@/styles/colors';
 
 export const LocationContentDiv = styled.div`
   display: flex;
-  width: 168px;
+  width: 188px;
   padding: 10px 18px 16px 18px;
   flex-direction: column;
   align-items: flex-start;
@@ -20,7 +20,7 @@ export const LocationStyleDiv = styled.div`
 
 export const CategoryComponentContainer = styled.div`
   display: flex;
-  width: 168px;
+  width: 188px;
   flex-direction: column;
   align-items: flex-start;
 `;
