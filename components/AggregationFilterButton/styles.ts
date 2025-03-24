@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import COLORS from '@/styles/colors';
 import { CoinbaseSans } from '@/styles/fonts';
 
 export const AggregationFilterButtonBackground = styled.button`
@@ -12,8 +13,8 @@ export const AggregationFilterButtonBackground = styled.button`
   z-index: 5;
   border-radius: 100px;
   border: none;
-  width: 313px;
-  height: 49px;
+  width: 19.5625rem;
+  height: 3.0625rem;
 `;
 
 export const AggregationFilterButtonStyles = styled.button`
@@ -28,12 +29,12 @@ export const AggregationFilterButtonStyles = styled.button`
   gap: 0.625rem;
   padding: 0.5rem 1rem;
   border-radius: 100px;
-  width: 305px;
-  height: 40px;
+  width: 19.0625rem;
+  height: 2.5rem;
 `;
 
 export const TextStyles = styled.div`
-  color: rgba(46, 58, 89, 0.85);
+  color: ${COLORS.navy85};
   font-family: ${CoinbaseSans.style};
   font-size: 14px;
   font-style: normal;

@@ -3,8 +3,8 @@ import COLORS from '@/styles/colors';
 import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
 
 export const AggregationFilterBackground = styled.div`
-  width: 331px;
-  height: 235px;
+  width: 20.6875rem;
+  height: 14.6875rem;
   background: linear-gradient(
     180deg,
     rgba(250, 250, 250, 0.32) 0%,
@@ -29,8 +29,8 @@ export const AggregationFilterStyles = styled.div`
   flex-direction: column;
   gap: 0.625rem;
   border-radius: 12px;
-  width: 323px;
-  height: 226px;
+  width: 20.1875rem;
+  height: 14.125rem;
 `;
 
 export const HeaderContainer = styled.div`
@@ -53,15 +53,15 @@ export const Header = styled.div`
   border-bottom: 1px solid ${COLORS.navy1A};
   border-left: 0.5px solid ${COLORS.navy1A};
   background: #fff;
-  width: 251px;
-  height: 40px;
+  width: 15.6875rem;
+  height: 2.5rem;
   gap: 0px;
   overflow: hidden;
 `;
 
 export const Tab = styled.div<{ $isActive: boolean }>`
   display: flex;
-  height: 40px;
+  height: 2.5rem;
   align-items: center;
   gap: 10px;
   border-radius: 40px;
@@ -92,21 +92,22 @@ export const UpsideDownArrow = styled.div`
 export const ContentContainer = styled.div`
   display: flex;
   align-self: center;
-  width: 250px;
-  height: 149px;
+  width: 15.625rem;
+  height: 9.3125rem;
   flex-direction: column;
 `;
 
 export const ContentContainerHeader = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding-top: 2px;
+  padding-bottom: 9px;
 `;
 
 export const TotalText = styled.div`
-  color: ${COLORS.navy50};
+  color: ${COLORS.navy75};
   font-family: ${CoinbaseMono.style};
   font-size: 12px;
   font-style: normal;
@@ -115,9 +116,9 @@ export const TotalText = styled.div`
 `;
 
 export const DownloadText = styled.div`
-  color: ${COLORS.navy};
+  color: ${COLORS.navy75};
   font-family: ${CoinbaseMono.style};
-  font-size: 10px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 120%;
@@ -126,8 +127,8 @@ export const DownloadText = styled.div`
 export const DownloadButton = styled.button`
   display: flex;
   flex-direction: col;
-  width: 85px;
-  height: 20px;
+  width: 5.3125rem;
+  height: 1.25rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
