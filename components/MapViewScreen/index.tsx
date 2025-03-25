@@ -183,7 +183,7 @@ export default function MapViewScreen({
           project={projects.find(i => i.id === selectedProjectId)}
         />
       )}
-      <BottomBar></BottomBar>
+      <BottomBar projects={filteredProjects}></BottomBar>
     </>
   );
 }

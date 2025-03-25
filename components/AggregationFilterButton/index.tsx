@@ -16,6 +16,8 @@ interface AggregationFilterButtonProps {
   setAggFilterisVisible: (visible: boolean) => void;
   infoModalisVisible: boolean;
   setInfoModalisVisible: (visible: boolean) => void;
+  numProjects: string;
+  totalEnergy: string;
 }
 
 export default function AggregationFilterButton({
@@ -23,6 +25,8 @@ export default function AggregationFilterButton({
   setAggFilterisVisible,
   infoModalisVisible,
   setInfoModalisVisible,
+  numProjects,
+  totalEnergy,
 }: AggregationFilterButtonProps) {
   function handleClick() {
     setAggFilterisVisible(!aggFilterisVisible);
@@ -34,10 +38,10 @@ export default function AggregationFilterButton({
     <AggregationFilterButtonBackground onClick={handleClick}>
       <AggregationFilterButtonStyles>
         <WorldIcon stroke={COLORS.navy} />
-        <TextStyles>114 PROJECTS</TextStyles>
+        <TextStyles>{numProjects} PROJECTS</TextStyles>
         <Line />
         <LightningIcon stroke={COLORS.navy} />
-        <TextStyles>10,820 MW</TextStyles>
+        <TextStyles>{totalEnergy} MW</TextStyles>
         <Arrow />
       </AggregationFilterButtonStyles>
     </AggregationFilterButtonBackground>
