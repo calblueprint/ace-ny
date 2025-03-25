@@ -86,6 +86,7 @@ export default function BottomBar({ projects }: BottomBarProps) {
           totalEnergy={totalEnergy}
           numProjectsArr={numProjectsArr}
           totalEnergyArr={totalEnergyArr}
+          projects={projects}
         />
       )}
 

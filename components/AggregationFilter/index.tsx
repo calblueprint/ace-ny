@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import {
   Arrow,
-  DownloadIcon,
   LightningIcon,
   WorldIcon,
 } from '@/assets/Aggregation-Filter-Icons/icons';
 import COLORS from '@/styles/colors';
+import { Project } from '@/types/schema';
 import {
   GeothermalIcon,
   HydroelectricIcon,
@@ -13,13 +13,12 @@ import {
   OffshoreWindIcon,
   SolarPvIcon,
 } from '../../assets/Technology-Tag-Icons/icons';
+import DownloadData from '../DownloadData';
 import {
   AggregationFilterBackground,
   AggregationFilterStyles,
   ContentContainer,
   ContentContainerHeader,
-  DownloadButton,
-  DownloadText,
   Header,
   HeaderContainer,
   HeaderText,
@@ -38,6 +37,7 @@ interface AggregationFilterProps {
   totalEnergy: string;
   numProjectsArr: string[];
   totalEnergyArr: string[];
+  projects: Project[];
 }
 
 export default function AggregationFilter({
@@ -47,6 +47,7 @@ export default function AggregationFilter({
   totalEnergy,
   numProjectsArr,
   totalEnergyArr,
+  projects,
 }: AggregationFilterProps) {
   const [activeTab, setActiveTab] = useState('PROJECTS');
 
@@ -131,10 +132,7 @@ export default function AggregationFilter({
               {activeTab === 'PROJECTS' ? numProjects : totalEnergy}
             </TotalText>
 
-            <DownloadButton>
-              <DownloadText>DOWNLOAD</DownloadText>
-              <DownloadIcon />
-            </DownloadButton>
+            <DownloadData filteredProjects={projects} />
           </ContentContainerHeader>
 
           <TechnologyWrapperStyles>
