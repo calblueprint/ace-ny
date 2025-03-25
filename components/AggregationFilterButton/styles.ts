@@ -31,6 +31,7 @@ export const AggregationFilterButtonStyles = styled.button`
   border-radius: 100px;
   width: 19.0625rem;
   height: 2.5rem;
+  justify-content: space-between;
 `;
 
 export const TextStyles = styled.div`
