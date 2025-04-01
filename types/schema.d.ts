@@ -30,6 +30,7 @@ export type Project = {
   has_pumped_storage: boolean;
   storage_size: number | null;
   project_website_link: string | null;
+  economic_benefits: string | null;
 };
 
 export interface Option {

@@ -10,6 +10,7 @@ import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
 import { Filters, FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
+import BottomBar from '../BottomBar';
 import ProjectModal from '../ProjectModal';
 import ProjectsListingModal from '../ProjectsListingModal';
 
@@ -174,6 +175,7 @@ export default function MapViewScreen({
         setSelectedProjectId={setSelectedProjectId}
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
+        selectedProjectId={selectedProjectId}
       />
       {selectedProjectId && (
         <ProjectModal
@@ -182,6 +184,7 @@ export default function MapViewScreen({
           project={projects.find(i => i.id === selectedProjectId)}
         />
       )}
+      <BottomBar></BottomBar>
     </>
   );
 }

@@ -62,19 +62,20 @@ export const SubHeading1 = styled.h2<TextProps>`
 export const SubHeading2 = styled.h2<TextProps>`
   ${TextStylesCoinbaseMono}
   font-size: 0.7rem;
-  color: ${COLORS.navy75};
+  color: ${COLORS.navy85};
   font-style: normal;
   font-weight: 400;
   line-height: 120%;
 `;
 
 export const BodyText1 = styled.p<TextProps>`
-  ${TextStylesCoinbaseMono}
-  color: ${COLORS.navy75};
-  font-size: 0.625rem;
+  ${TextStylesCoinbaseSans}
+  color: ${COLORS.navy85};
+  font-size: 0.688rem;
   font-style: normal;
-  font-weight: 400;
-  line-height: 120%;
+  font-weight: 300;
+  line-height: 150%; /* 16.5px */
+  letter-spacing: 0.25px;
 `;
 
 export const BodyText2 = styled.p<TextProps>`
@@ -111,7 +112,7 @@ export const TagText1 = styled.p<TextProps>`
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-  color: ${({ $color }) => $color || COLORS.navy75};
+  color: ${({ $color }) => $color || COLORS.navy85};
 `;
 
 export const TagText2 = styled.p<TextProps>`
@@ -132,6 +133,16 @@ export const MarkerInfoWindowText1 = styled.p<TextProps>`
   font-weight: 300;
   line-height: 0.77;
   padding-left: 0.4rem;
+`;
+
+export const SortByText = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.navy75};
+  font-size: 0.688rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 0.22px;
 `;
 
 export const FilterHeadingUnused = styled.h3<TextProps>`

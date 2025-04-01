@@ -190,14 +190,36 @@ export const AdditionalInfo = styled.div`
   box-shadow:
     0px 2px 4px 0px rgba(77, 87, 114, 0.08),
     0px -2px 5px 0px rgba(255, 255, 255, 0.1);
-  gap: 0.75rem;
+`;
+
+export const EconomicBenefits = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 16.95rem;
+  padding: 1.25rem 1.4rem;
+  border-radius: 8px 8px 12px 12px;
+  border: 1px solid rgba(46, 58, 89, 0.05);
+  box-shadow:
+    0px 2px 4px 0px rgba(77, 87, 114, 0.08),
+    0px -2px 5px 0px rgba(255, 255, 255, 0.1);
 `;
 
 export const DetailsContainer = styled.div`
   display: flex;
-  align-items: center;
+  word-break: break-word;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
-  gap: 0.5rem;
+  gap: 0.75rem;
+`;
+
+export const EconomicBenefitsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  word-break: break-word;
+  align-items: flex-start;
+  width: 100%;
+  gap: 0.75rem;
 `;
 
 export const LastUpdatedDiv = styled.div`

@@ -12,7 +12,7 @@ export const FilterBackgroundStyles = styled.div<{ $isActive: boolean }>`
   z-index: 5;
   border: 'none';
 
-  margin-top: 0.45rem;
+  margin-top: 1.1rem;
   max-height: ${({ $isActive }) => ($isActive ? 'auto' : '2.2rem')};
   border-radius: ${({ $isActive }) => ($isActive ? '0.8rem' : '6.25rem')};
 
