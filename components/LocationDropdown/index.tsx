@@ -8,7 +8,11 @@ import {
   TownIcon,
   UtilityServiceTerritoryIcon,
 } from '../../assets/Location-Category-Icons/icons';
-import { FilterHeadingUnused, FilterNameText } from '../../styles/texts';
+import {
+  FilterHeadingUnused,
+  FilterLocationText,
+  FilterNameText,
+} from '../../styles/texts';
 import LocationCategory from '../LocationCategory';
 import {
   ButtonStyles,
@@ -40,7 +44,7 @@ export default function LocationDropdown({
               <FilterHeadingUnused>{icon}</FilterHeadingUnused>
             </FilterNameText>
             <ButtonStyles>
-              <FilterHeadingUnused>{label}</FilterHeadingUnused>
+              <FilterLocationText>{label}</FilterLocationText>
             </ButtonStyles>
           </LocationIconWithTestContainer>
           <UpIcon />

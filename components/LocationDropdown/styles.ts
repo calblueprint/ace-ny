@@ -23,6 +23,7 @@ export const CategoryComponentContainer = styled.div`
   width: 188px;
   flex-direction: column;
   align-items: flex-start;
+  gap: 3px;
 `;
 
 export const ButtonStyles = styled.button`
@@ -48,7 +49,7 @@ export const ButtonWithIconStyles = styled.div`
 export const LocationIconWithTestContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
 `;
 
 export const FilterIconStyles = styled.div`

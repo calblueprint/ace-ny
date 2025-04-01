@@ -39,14 +39,14 @@ export default function MapViewScreen({
       icon: <TechnologyIcon />,
     },
     {
-      id: 'projectSize',
-      label: 'PROJECT SIZE',
-      icon: <ProjectSizeIcon />,
-    },
-    {
       id: 'location',
       label: 'LOCATION',
       icon: <LocationIcon />,
+    },
+    {
+      id: 'projectSize',
+      label: 'PROJECT SIZE',
+      icon: <ProjectSizeIcon />,
     },
   ];
 

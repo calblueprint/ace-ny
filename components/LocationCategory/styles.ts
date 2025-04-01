@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-// import COLORS from '@/styles/colors';
-
 export const LocationCategoryContent = styled.div`
   display: flex;
   justify-content: space-between;
