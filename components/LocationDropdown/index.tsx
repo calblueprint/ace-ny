@@ -40,7 +40,7 @@ export default function LocationDropdown({
               <FilterHeadingUnused>{icon}</FilterHeadingUnused>
             </FilterNameText>
             <ButtonStyles>
-              <FilterNameText>{label}</FilterNameText>
+              <FilterHeadingUnused>{label}</FilterHeadingUnused>
             </ButtonStyles>
           </LocationIconWithTestContainer>
           <UpIcon />
