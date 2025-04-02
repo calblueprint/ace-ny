@@ -4,12 +4,12 @@ import { CoinbaseMono } from '@/styles/fonts';
 
 export const DownloadButton = styled.button`
   display: flex;
-  width: 100px;
-  height: 23px;
+  width: 6.25rem;
+  height: 1.4375rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 0.3125rem;
   background: #fafafb;
   border-radius: 20px;
   border: none;
@@ -19,7 +19,7 @@ export const DownloadButton = styled.button`
 export const DownloadText = styled.div`
   color: ${COLORS.navy75};
   font-family: ${CoinbaseMono.style};
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 400;
   line-height: 120%;
