@@ -53,7 +53,7 @@ export const FilterBar = ({
   const handleLocationChange = (options: string[]) => {
     setSelectedFilters(prevFilters => ({
       ...prevFilters,
-      status: options,
+      location: options,
     }));
   };
 
