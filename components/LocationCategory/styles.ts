@@ -5,26 +5,26 @@ export const LocationCategoryContent = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 20px;
+  height: 1.25rem;
 `;
 
 export const IconTextContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0.75rem;
 `;
 
 export const LocationCategoryIcon = styled.div`
-  width: 12px;
-  height: 12.316px;
+  width: 0.75rem;
+  height: 0.77rem;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 export const Arrow = styled.div`
-  width: 14px;
-  height: 7px;
+  width: 0.875rem;
+  height: 0.438rem;
   display: flex;
   align-items: center;
   justify-content: center;

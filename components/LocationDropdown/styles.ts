@@ -3,11 +3,11 @@ import COLORS from '@/styles/colors';
 
 export const LocationContentDiv = styled.div`
   display: flex;
-  width: 188px;
-  padding: 10px 18px 16px 18px;
+  width: 11.75rem;
+  padding: 0.625rem 1.125rem 1rem 1.125rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 0.625rem;
 `;
 
 export const LocationStyleDiv = styled.div`
@@ -20,10 +20,10 @@ export const LocationStyleDiv = styled.div`
 
 export const CategoryComponentContainer = styled.div`
   display: flex;
-  width: 188px;
+  width: 11.75rem;
   flex-direction: column;
   align-items: flex-start;
-  gap: 3px;
+  gap: 0.188rem;
 `;
 
 export const ButtonStyles = styled.button`
@@ -31,7 +31,7 @@ export const ButtonStyles = styled.button`
   color: rgba(46, 58, 89, 0.85);
   background: ${COLORS.white};
   border: none;
-  border-radius: 6.25rem;
+  border-radius: 100px;
   align-items: center;
   cursor: pointer;
 `;
@@ -49,7 +49,7 @@ export const ButtonWithIconStyles = styled.div`
 export const LocationIconWithTestContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 0.375rem;
 `;
 
 export const FilterIconStyles = styled.div`

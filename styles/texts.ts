@@ -268,7 +268,7 @@ export const ClearFiltersText = styled.p<TextProps>`
 export const LocationCategoryText = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
   text-align: center;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 250;
   line-height: normal;
