@@ -1,5 +1,6 @@
-import React from 'react';
+import { DownloadIcon } from '@/assets/Aggregation-Filter-Icons/icons';
 import { Project } from '@/types/schema';
+import { DownloadButton, DownloadText } from './styles';
 
 export default function DownloadData({
   filteredProjects,
@@ -43,5 +44,10 @@ export default function DownloadData({
     link.click();
     URL.revokeObjectURL(url);
   };
-  return <button onClick={downloadFilteredProjects}>Download Projects</button>;
+  return (
+    <DownloadButton onClick={downloadFilteredProjects}>
+      <DownloadText>DOWNLOAD</DownloadText>
+      <DownloadIcon />
+    </DownloadButton>
+  );
 }

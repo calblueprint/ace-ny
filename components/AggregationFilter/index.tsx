@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import {
   Arrow,
-  DownloadIcon,
   LightningIcon,
   WorldIcon,
 } from '@/assets/Aggregation-Filter-Icons/icons';
 import COLORS from '@/styles/colors';
+import { Project } from '@/types/schema';
 import {
   GeothermalIcon,
   HydroelectricIcon,
@@ -13,13 +13,12 @@ import {
   OffshoreWindIcon,
   SolarPvIcon,
 } from '../../assets/Technology-Tag-Icons/icons';
+import DownloadData from '../DownloadData';
 import {
   AggregationFilterBackground,
   AggregationFilterStyles,
   ContentContainer,
   ContentContainerHeader,
-  DownloadButton,
-  DownloadText,
   Header,
   HeaderContainer,
   HeaderText,
@@ -34,24 +33,22 @@ import {
 interface AggregationFilterProps {
   aggFilterisVisible: boolean;
   setAggFilterisVisible: (visible: boolean) => void;
+  numProjects: string;
+  totalEnergy: string;
+  numProjectsArr: string[];
+  totalEnergyArr: string[];
+  projects: Project[];
 }
 
 export default function AggregationFilter({
   aggFilterisVisible,
   setAggFilterisVisible,
+  numProjects,
+  totalEnergy,
+  numProjectsArr,
+  totalEnergyArr,
+  projects,
 }: AggregationFilterProps) {
-  function intToString(num: number) {
-    return num.toLocaleString();
-  }
-
-  function intArrToStringArr(arr: number[]) {
-    const res = [];
-    for (let i = 0; i < arr.length; i++) {
-      res.push(intToString(arr[i]));
-    }
-    return res;
-  }
-
   const [activeTab, setActiveTab] = useState('PROJECTS');
 
   const technologies = [
@@ -93,14 +90,6 @@ export default function AggregationFilter({
     },
   ];
 
-  const totalNumProjects = intToString(1234);
-  const totalProjectSizes = intToString(10820) + ' MW';
-  const numProjects = intArrToStringArr([1000, 20, 30, 40, 50]);
-  const projectSizes = intArrToStringArr([100, 200, 300, 400, 5000]);
-  for (let i = 0; i < projectSizes.length; i++) {
-    projectSizes[i] = projectSizes[i] + ' MW';
-  }
-
   return (
     <AggregationFilterBackground>
       <AggregationFilterStyles>
@@ -140,13 +129,10 @@ export default function AggregationFilter({
           <ContentContainerHeader>
             <TotalText>
               TOTAL: &nbsp;{' '}
-              {activeTab === 'PROJECTS' ? totalNumProjects : totalProjectSizes}
+              {activeTab === 'PROJECTS' ? numProjects : totalEnergy}
             </TotalText>
 
-            <DownloadButton>
-              <DownloadText>DOWNLOAD</DownloadText>
-              <DownloadIcon />
-            </DownloadButton>
+            <DownloadData filteredProjects={projects} />
           </ContentContainerHeader>
 
           <TechnologyWrapperStyles>
@@ -164,8 +150,8 @@ export default function AggregationFilter({
                     {tech.name}
                   </TechnologyStyles>
                   {activeTab === 'PROJECTS'
-                    ? numProjects[index]
-                    : projectSizes[index]}
+                    ? numProjectsArr[index]
+                    : totalEnergyArr[index]}
                 </TechnologyRowStyles>
               );
             })}
