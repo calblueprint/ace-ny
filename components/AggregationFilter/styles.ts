@@ -115,31 +115,6 @@ export const TotalText = styled.div`
   line-height: 120%;
 `;
 
-export const DownloadText = styled.div`
-  color: ${COLORS.navy75};
-  font-family: ${CoinbaseMono.style};
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120%;
-`;
-
-export const DownloadButton = styled.button`
-  display: flex;
-  flex-direction: col;
-  width: 5.3125rem;
-  height: 1.25rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-  background: #fafafb;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-`;
-
 export const TechnologyStyles = styled.div`
   display: flex;
   gap: 10px;
