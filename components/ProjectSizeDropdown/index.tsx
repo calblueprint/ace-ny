@@ -78,6 +78,15 @@ export default function ProjectSizeDropdown({
     }));
   };
 
+  // const clearButtonHandler = () => {
+  //   setMinDefault(minBound);
+  //   setMaxDefault(maxBound);
+  //   setSelectedSize({
+  //     min: minBound,
+  //     max: maxBound,
+  //   });
+  // }
+
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
