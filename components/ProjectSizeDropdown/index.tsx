@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { ApplyFiltersText, FilterHeadingUnused } from '@/styles/texts';
+import {
+  ApplyFiltersText,
+  ClearFiltersText,
+  FilterHeadingUnused,
+} from '@/styles/texts';
 import { FiltersApplied, FilterType, ProjectSizeType } from '@/types/schema';
 import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import ProjectSizeHistogram from '../ProjectSizeHistogram';
@@ -8,6 +12,7 @@ import {
   BlueTextStyles,
   ButtonStyles,
   ButtonWithIconStyles,
+  ClearButtonStyles,
   ExitStyles,
   FilterCategoryText1WithPadding,
   FilterContentDiv,
@@ -119,6 +124,10 @@ export default function ProjectSizeDropdown({
         <ApplyButtonStyles $isActive={true} onClick={handleApplyButtonClick}>
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
+
+        <ClearButtonStyles $isActive={true} onClick={() => null}>
+          <ClearFiltersText>CLEAR</ClearFiltersText>
+        </ClearButtonStyles>
       </FilterContentDiv>
     </FilterDropdownStyles>
   );
