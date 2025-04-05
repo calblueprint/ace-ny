@@ -102,6 +102,7 @@ export default function MapViewScreen({
     setTempFilters(defaultFilters);
     setFilteredProjects(projects);
     setFilteredProjectsFromDropdowns(projects);
+    setProjectSizes(getProjectsSize(projects));
   };
 
   // show projects based on selected filters
