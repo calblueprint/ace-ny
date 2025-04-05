@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ApplyFiltersText, FilterHeadingUnused } from '@/styles/texts';
-import { FiltersApplied, FilterType, projectSizeType } from '@/types/schema';
+import { FiltersApplied, FilterType, ProjectSizeType } from '@/types/schema';
 import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import ProjectSizeHistogram from '../ProjectSizeHistogram';
 import {
@@ -20,7 +20,7 @@ import {
 } from './styles';
 
 interface ProjectSizeDropdownProps {
-  setSelectedSize: (projectSize: projectSizeType) => void;
+  setSelectedSize: (projectSize: ProjectSizeType) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;

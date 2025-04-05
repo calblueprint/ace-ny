@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import MultiRangeSlider from 'multi-range-slider-react';
 import COLORS from '@/styles/colors';
 import './styles.css';
-import { projectSizeType } from '@/types/schema';
+import { ProjectSizeType } from '@/types/schema';
 
 interface ProjectSizeSliderProps {
   setMinDefault: (value: number) => void;
@@ -12,7 +12,7 @@ interface ProjectSizeSliderProps {
   maxDefault: number;
   minBound: number;
   maxBound: number;
-  setSelectedSize: (value: projectSizeType) => void;
+  setSelectedSize: (value: ProjectSizeType) => void;
 }
 
 export default function ProjectSizeSlider({
