@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ApplyFiltersText, FilterHeadingUnused } from '@/styles/texts';
-import { FilterType, projectSizeType } from '@/types/schema';
+import { FiltersApplied, FilterType, projectSizeType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import ProjectSizeHistogram from '../ProjectSizeHistogram';
 import {
@@ -28,10 +28,14 @@ interface ProjectSizeDropdownProps {
   handleFilterButtonClick: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   projectSizes: number[];
-  minRange: number;
-  setMinRange: (value: number) => void;
-  maxRange: number;
-  setMaxRange: (value: number) => void;
+  minDefault: number;
+  setMinDefault: (value: number) => void;
+  maxDefault: number;
+  setMaxDefault: (value: number) => void;
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
+  minBound: number;
+  maxBound: number;
+  setFiltersApplied: React.Dispatch<React.SetStateAction<FiltersApplied>>;
 }
 
 export default function ProjectSizeDropdown({
@@ -43,10 +47,14 @@ export default function ProjectSizeDropdown({
   handleFilterButtonClick,
   setActiveFilter,
   projectSizes,
-  minRange,
-  setMinRange,
-  maxRange,
-  setMaxRange,
+  minDefault,
+  setMinDefault,
+  maxDefault,
+  setMaxDefault,
+  setLastAppliedFilter,
+  minBound,
+  maxBound,
+  setFiltersApplied,
 }: ProjectSizeDropdownProps) {
   const [minSize, setMinSize] = useState(Math.min(...projectSizes));
   const [maxSize, setMaxSize] = useState(Math.max(...projectSizes));
@@ -58,6 +66,11 @@ export default function ProjectSizeDropdown({
   const handleApplyButtonClick = () => {
     handleFilterButtonClick();
     setActiveFilter(null);
+    setLastAppliedFilter('projectSize');
+    setFiltersApplied((prevState: FiltersApplied) => ({
+      ...prevState,
+      projectSize: true,
+    }));
   };
 
   return (
@@ -82,11 +95,14 @@ export default function ProjectSizeDropdown({
           projectSizes={projectSizes}
           setMinSize={setMinSize}
           setMaxSize={setMaxSize}
-          minRange={minRange}
-          setMinRange={setMinRange}
-          maxRange={maxRange}
-          setMaxRange={setMaxRange}
+          minDefault={minDefault}
+          setMinDefault={setMinDefault}
+          maxDefault={maxDefault}
+          setMaxDefault={setMaxDefault}
           setSelectedSize={setSelectedSize}
+          minBound={minBound}
+          maxBound={maxBound}
+          setFiltersApplied={setFiltersApplied}
         ></ProjectSizeHistogram>
 
         <MinMaxBoxContainer>

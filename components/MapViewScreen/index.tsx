@@ -8,7 +8,7 @@ import {
 } from '@/assets/Dropdown-Icons/icons';
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
-import { Filters, FilterType } from '@/types/schema';
+import { Filters, FiltersApplied, FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
 import BottomBar from '../BottomBar';
 import ProjectModal from '../ProjectModal';
@@ -72,13 +72,30 @@ export default function MapViewScreen({
     location: [],
   });
 
+  // checks if filters have been applied
+  const [filtersApplied, setFiltersApplied] = useState<FiltersApplied>({
+    status: false,
+    technology: false,
+    projectSize: false,
+    // location: false
+  });
+
   const [tempFilters, setTempFilters] = useState<Filters>(defaultFilters);
 
   const [filteredProjectsFromDropdowns, setFilteredProjectsFromDropdowns] =
     useState<Project[]>(projects);
 
+  const [
+    filteredProjectsFromDropdownNoSize,
+    setFilteredProjectsFromDropdownNoSize,
+  ] = useState<Project[]>(projects);
+
   const [filteredProjectsFromSearch, setFilteredProjectsFromSearch] =
     useState<Project[]>(projects);
+
+  const [projectSizes, setProjectSizes] = useState<number[]>(
+    getProjectsSize(projects),
+  );
 
   // clear filters
   const clearFilters = () => {
@@ -98,22 +115,26 @@ export default function MapViewScreen({
     let filteredProjects = projects;
 
     // add all filtering logic here
-    if (technology.length > 0) {
+    if (technology.length > 0 && filtersApplied.technology) {
       filteredProjects = filteredProjects.filter(project =>
         technology.includes(project.renewable_energy_technology),
       );
     }
 
-    if (status.length > 0) {
+    if (status.length > 0 && filtersApplied.status) {
       filteredProjects = filteredProjects.filter(project =>
         status.includes(project.project_status),
       );
     }
 
-    filteredProjects = filteredProjects.filter(
-      project =>
-        project.size >= projectSize.min && project.size <= projectSize.max,
-    );
+    setFilteredProjectsFromDropdownNoSize(filteredProjects);
+
+    if (filtersApplied.projectSize) {
+      filteredProjects = filteredProjects.filter(
+        project =>
+          project.size >= projectSize.min && project.size <= projectSize.max,
+      );
+    }
 
     setFilteredProjectsFromDropdowns(filteredProjects);
   }, [selectedFilters, projects]);
@@ -145,7 +166,12 @@ export default function MapViewScreen({
 
   useEffect(() => {
     setFilteredProjects(filteredProjectsFromDropdowns);
-  }, [filteredProjectsFromDropdowns, setFilteredProjects]);
+    setProjectSizes(getProjectsSize(filteredProjectsFromDropdownNoSize));
+  }, [
+    filteredProjectsFromDropdowns,
+    filteredProjectsFromDropdownNoSize,
+    setFilteredProjects,
+  ]);
 
   useEffect(() => {
     setFilteredProjects(filteredProjectsFromSearch);
@@ -159,7 +185,8 @@ export default function MapViewScreen({
         setSelectedFilters={setTempFilters}
         handleFilterButtonClick={handleFilterButtonClick}
         clearFilters={clearFilters}
-        projectSizes={getProjectsSize(projects)}
+        projectSizes={projectSizes}
+        setFiltersApplied={setFiltersApplied}
       />
       <Map
         projects={projects}

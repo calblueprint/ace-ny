@@ -1,4 +1,4 @@
-import { FilterType } from '@/types/schema';
+import { FiltersApplied, FilterType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
@@ -31,6 +31,8 @@ export default function StatusDropdown({
   handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
+  setLastAppliedFilter,
+  setFiltersApplied,
 }: {
   selectedStatus: string[];
   setSelectedStatus: (status: string[]) => void;
@@ -41,10 +43,17 @@ export default function StatusDropdown({
   handleFilterButtonClick: () => void;
   clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
+  setFiltersApplied: React.Dispatch<React.SetStateAction<FiltersApplied>>;
 }) {
   const handleApplyButtonClick = () => {
     handleFilterButtonClick();
     setActiveFilter(null);
+    setLastAppliedFilter('status');
+    setFiltersApplied((prevState: FiltersApplied) => ({
+      ...prevState,
+      status: true,
+    }));
   };
 
   const filterOptions = [
@@ -54,6 +63,10 @@ export default function StatusDropdown({
 
   const handleStatusChange = (status: string) => {
     setSelectedStatus(selectedStatus[0] === status ? [] : [status]);
+    setFiltersApplied((prevState: FiltersApplied) => ({
+      ...prevState,
+      status: false,
+    }));
   };
 
   const isApplyButtonActive = selectedStatus.length > 0;

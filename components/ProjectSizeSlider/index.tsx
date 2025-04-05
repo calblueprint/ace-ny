@@ -5,41 +5,43 @@ import './styles.css';
 import { projectSizeType } from '@/types/schema';
 
 interface ProjectSizeSliderProps {
-  setMinRange: (value: number) => void;
-  setMaxRange: (value: number) => void;
-  minValue: number;
-  maxValue: number;
-  minRange: number;
-  maxRange: number;
+  setMinDefault: (value: number) => void;
+  setMaxDefault: (value: number) => void;
+  minSize: number;
+  minDefault: number;
+  maxDefault: number;
+  minBound: number;
+  maxBound: number;
   setSelectedSize: (value: projectSizeType) => void;
 }
 
 export default function ProjectSizeSlider({
-  setMinRange,
-  setMaxRange,
-  minValue,
-  maxValue,
-  minRange,
-  maxRange,
+  setMinDefault,
+  setMaxDefault,
+  minSize,
+  minDefault,
+  maxDefault,
+  minBound,
+  maxBound,
   setSelectedSize,
 }: ProjectSizeSliderProps) {
   useEffect(() => {
     setSelectedSize({
-      min: Math.max(0, minRange),
-      max: Math.max(minValue, maxRange),
+      min: Math.max(0, minDefault),
+      max: Math.max(minSize, maxDefault),
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [minRange, maxRange]);
+  }, [minDefault, maxDefault]);
 
   return (
     <MultiRangeSlider
       onInput={e => {
-        setMinRange(e.minValue);
-        setMaxRange(e.maxValue);
+        setMinDefault(e.minValue);
+        setMaxDefault(e.maxValue);
       }}
       onChange={e => {
-        setMinRange(e.minValue);
-        setMaxRange(e.maxValue);
+        setMinDefault(e.minValue);
+        setMaxDefault(e.maxValue);
       }}
       label={false}
       ruler={false}
@@ -47,10 +49,11 @@ export default function ProjectSizeSlider({
       barInnerColor={COLORS.electricBlue}
       barLeftColor={COLORS.electricBlue40}
       barRightColor={COLORS.electricBlue40}
-      min={-100}
-      max={maxValue + 100}
-      minValue={minRange}
-      maxValue={maxRange}
+      min={minBound} // need to make this dynamic
+      max={maxBound}
+      minValue={minDefault}
+      maxValue={maxDefault}
+      canMinMaxValueSame={true}
     ></MultiRangeSlider>
   );
 }

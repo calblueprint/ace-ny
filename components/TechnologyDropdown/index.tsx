@@ -5,7 +5,7 @@ import {
   FilterCategoryText1,
   FilterHeadingUnused,
 } from '@/styles/texts';
-import { FilterType } from '@/types/schema';
+import { FiltersApplied, FilterType } from '@/types/schema';
 import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
@@ -41,6 +41,8 @@ export default function TechnologyDropdown({
   handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
+  setLastAppliedFilter,
+  setFiltersApplied,
 }: {
   selectedTechnologies: string[];
   setSelectedTechnologies: (technologies: string[]) => void;
@@ -51,10 +53,17 @@ export default function TechnologyDropdown({
   handleFilterButtonClick: () => void;
   clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
+  setFiltersApplied: React.Dispatch<React.SetStateAction<FiltersApplied>>;
 }) {
   const handleApplyButtonClick = () => {
     handleFilterButtonClick();
     setActiveFilter(null);
+    setLastAppliedFilter('technology');
+    setFiltersApplied((prevState: FiltersApplied) => ({
+      ...prevState,
+      technology: true,
+    }));
   };
 
   const filter = {
@@ -147,6 +156,18 @@ export default function TechnologyDropdown({
   };
   const isApplyButtonActive = selectedTechnologies.length > 0;
 
+  function checkBoxClickHandler(title: string): void {
+    setSelectedTechnologies(
+      selectedTechnologies.includes(title)
+        ? selectedTechnologies.filter(o => o !== title)
+        : [...selectedTechnologies, title],
+    );
+    setFiltersApplied((prevState: FiltersApplied) => ({
+      ...prevState,
+      technology: false,
+    }));
+  }
+
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
@@ -171,13 +192,7 @@ export default function TechnologyDropdown({
                 <CheckboxStyles
                   type="checkbox"
                   checked={selectedTechnologies.includes(option.title)}
-                  onChange={() => {
-                    setSelectedTechnologies(
-                      selectedTechnologies.includes(option.title)
-                        ? selectedTechnologies.filter(o => o !== option.title)
-                        : [...selectedTechnologies, option.title],
-                    );
-                  }}
+                  onChange={() => checkBoxClickHandler(option.title)}
                 />
               </CheckboxContainer>
             ))}
