@@ -77,7 +77,7 @@ export const FilterBar = ({
   const [maxDefault, setMaxDefault] = useState(maxSize + 100);
 
   useEffect(() => {
-    // updates the min and max bounds and default slider positions when the histogram changes aka when dropdown filters except project size are applied
+    // updates the min and max bounds and default slider positions when the histogram changes (i.e when dropdown filters except project size are applied)
     if (lastAppliedFilter !== 'projectSize') {
       const maxValue = Math.max(...projectSizes);
       const minValue = Math.min(...projectSizes);
