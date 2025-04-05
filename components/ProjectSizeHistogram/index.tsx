@@ -56,7 +56,15 @@ export default function ProjectSizeHistogram({
       ...prevState,
       projectSize: false,
     }));
-  }, [minDefault, maxDefault, projectSizes, setMinSize, setMaxSize]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    minDefault,
+    maxDefault,
+    projectSizes,
+    setMinSize,
+    setMaxSize,
+    setFiltersApplied,
+  ]);
 
   projectSizes.forEach(value => {
     const binIndex = Math.min(

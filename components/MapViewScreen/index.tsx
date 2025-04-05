@@ -138,6 +138,7 @@ export default function MapViewScreen({
     }
 
     setFilteredProjectsFromDropdowns(filteredProjects);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFilters, projects]);
 
   // search within all projects or filtered projects from dropdowns
@@ -163,6 +164,7 @@ export default function MapViewScreen({
       ) ?? [];
 
     setFilteredProjectsFromSearch(searchedProjects);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projects, searchTerm, filteredProjectsFromDropdowns]);
 
   useEffect(() => {
