@@ -6,7 +6,7 @@ import {
   FilterHeadingUnused,
 } from '@/styles/texts';
 import { FiltersApplied, FilterType } from '@/types/schema';
-import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
+import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
   GeothermalIcon,
@@ -178,7 +178,7 @@ export default function TechnologyDropdown({
           <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
             <FilterHeadingUnused>{label}</FilterHeadingUnused>
             <ExitStyles>
-              <ExitIcon />
+              <CollapseIcon />
             </ExitStyles>
           </ButtonStyles>
         </ButtonWithIconStyles>
