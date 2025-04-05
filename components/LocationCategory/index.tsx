@@ -11,11 +11,12 @@ import {
 interface LocationCategoryProps {
   icon: React.ReactNode;
   name: string;
+  onClick: () => void;
 }
 
 export default function LocationCategory(props: LocationCategoryProps) {
   return (
-    <LocationCategoryContent>
+    <LocationCategoryContent onClick={props.onClick}>
       <IconTextContainer>
         <LocationCategoryIcon>{props.icon}</LocationCategoryIcon>
         <LocationCategoryText>{props.name}</LocationCategoryText>

@@ -14,6 +14,7 @@ import {
   FilterNameText,
 } from '../../styles/texts';
 import LocationCategory from '../LocationCategory';
+import LocationCategoryPanel from '../LocationCategoryPanel';
 import {
   ButtonStyles,
   ButtonWithIconStyles,
@@ -22,6 +23,9 @@ import {
   LocationIconWithTestContainer,
   LocationStyleDiv,
 } from './styles';
+import { useState } from 'react';
+
+
 
 export default function LocationDropdown({
   handleButtonClick,
@@ -35,38 +39,43 @@ export default function LocationDropdown({
   currFilter: FilterType;
   clearFilters: () => void;
 }) {
+
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
   return (
     <LocationStyleDiv>
-      <LocationContentDiv>
-        <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-          <LocationIconWithTestContainer>
-            <FilterNameText>
-              <FilterHeadingUnused>{icon}</FilterHeadingUnused>
-            </FilterNameText>
-            <ButtonStyles>
-              <FilterLocationText>{label}</FilterLocationText>
-            </ButtonStyles>
-          </LocationIconWithTestContainer>
-          <UpIcon />
-        </ButtonWithIconStyles>
-        <CategoryComponentContainer>
-          <LocationCategory icon={<CountyIcon />} name="County" />
-          <LocationCategory icon={<TownIcon />} name="Town" />
-          <LocationCategory icon={<RegionIcon />} name="Region" />
-          <LocationCategory
-            icon={<UtilityServiceTerritoryIcon />}
-            name="Utility Service Territory"
-          />
-          <LocationCategory
-            icon={<StateSenateDistrictIcon />}
-            name="State Senate District"
-          />
-          <LocationCategory
-            icon={<AssemblyDistrictIcon />}
-            name="Assembly District"
-          />
-        </CategoryComponentContainer>
-      </LocationContentDiv>
+        <LocationContentDiv>
+          {activeCategory === null ? (
+            <>
+              <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
+                <LocationIconWithTestContainer>
+                  <FilterNameText>
+                    <FilterHeadingUnused>{icon}</FilterHeadingUnused>
+                  </FilterNameText>
+                  <ButtonStyles>
+                    <FilterLocationText>{label}</FilterLocationText>
+                  </ButtonStyles>
+                </LocationIconWithTestContainer>
+                <UpIcon />
+              </ButtonWithIconStyles>
+
+              <CategoryComponentContainer>
+                  <LocationCategory icon={<CountyIcon />} name="County" onClick={() => setActiveCategory("County")} />
+                  <LocationCategory icon={<TownIcon />} name="Town" onClick={() => setActiveCategory("Town")} />
+                  <LocationCategory icon={<RegionIcon />} name="Region" onClick={() => setActiveCategory("Region")} />
+                  <LocationCategory icon={<UtilityServiceTerritoryIcon />} name="Utility Service Territory" onClick={() => setActiveCategory("Utility Service Territory")} />
+                  <LocationCategory icon={<StateSenateDistrictIcon />} name="State Senate District" onClick={() => setActiveCategory("State Senate District")} />
+                  <LocationCategory icon={<AssemblyDistrictIcon />} name="Assembly District" onClick={() => setActiveCategory("Assembly District")} />
+                </CategoryComponentContainer>
+            </>
+          ) : (
+            <LocationCategoryPanel
+              category={activeCategory}
+              onBack={() => setActiveCategory(null)}
+            />
+          )}
+        </LocationContentDiv>
+
     </LocationStyleDiv>
   );
 }
