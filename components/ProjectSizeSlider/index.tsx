@@ -49,7 +49,7 @@ export default function ProjectSizeSlider({
       barInnerColor={COLORS.electricBlue}
       barLeftColor={COLORS.electricBlue40}
       barRightColor={COLORS.electricBlue40}
-      min={minBound} // need to make this dynamic
+      min={minBound}
       max={maxBound}
       minValue={minDefault}
       maxValue={maxDefault}
