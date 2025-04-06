@@ -66,13 +66,17 @@ export default function ProjectSizeHistogram({
     setFiltersApplied,
   ]);
 
-  projectSizes.forEach(value => {
-    const binIndex = Math.min(
-      Math.floor((value - minSize) / binSize),
-      numBins - 1,
-    );
-    bins[binIndex]++;
-  });
+  if (projectSizes.length === 1) {
+    bins[0] = 1;
+  } else {
+    projectSizes.forEach(value => {
+      const binIndex = Math.min(
+        Math.floor((value - minSize) / binSize),
+        numBins - 1,
+      );
+      bins[binIndex]++;
+    });
+  }
 
   const chartData = bins.map((count, index) => {
     const binStart = minSize + index * binSize;
