@@ -11,6 +11,14 @@ import { Project } from '../../types/schema';
 import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
 import {
+  handleSortAZ,
+  handleSortCODAscending,
+  handleSortCODDescending,
+  handleSortSizeAscending,
+  handleSortSizeDescending,
+  handleSortZA,
+} from '../SortBy/index';
+import {
   AllProjectsHeader,
   CloseModalButton,
   Headers,
@@ -53,56 +61,6 @@ export default function ProjectsListingModal({
 
   const [isSortByOpen, setIsSortByOpen] = useState(false);
   const toggleSortBy = () => setIsSortByOpen(prev => !prev);
-
-  const handleSortAZ = () => {
-    if (projects) {
-      setSortedProjects(
-        projects.toSorted((a, b) =>
-          a.project_name.localeCompare(b.project_name),
-        ),
-      );
-    }
-  };
-
-  const handleSortZA = () => {
-    if (projects) {
-      setSortedProjects(
-        projects.toSorted((a, b) =>
-          b.project_name.localeCompare(a.project_name),
-        ),
-      );
-    }
-  };
-  const handleSortSizeAscending = () => {
-    if (projects) {
-      setSortedProjects(projects.toSorted((a, b) => a.size - b.size));
-    }
-  };
-
-  const handleSortSizeDescending = () => {
-    if (projects) {
-      setSortedProjects(projects.toSorted((a, b) => b.size - a.size));
-    }
-  };
-  const handleSortCODAscending = () => {
-    if (projects) {
-      setSortedProjects(
-        projects.toSorted((a, b) =>
-          a.proposed_cod.toString().localeCompare(b.proposed_cod.toString()),
-        ),
-      );
-    }
-  };
-
-  const handleSortCODDescending = () => {
-    if (projects) {
-      setSortedProjects(
-        projects.toSorted((a, b) =>
-          b.proposed_cod.toString().localeCompare(a.proposed_cod.toString()),
-        ),
-      );
-    }
-  };
 
   const projectItems = sortedProjects?.map((project: Project) => {
     return (
@@ -161,22 +119,54 @@ export default function ProjectsListingModal({
                     </SortByButton>
                     {isSortByOpen && (
                       <SortByMenu>
-                        <SortByItem onClick={handleSortAZ}>
+                        <SortByItem
+                          onClick={() =>
+                            projects &&
+                            setSortedProjects(handleSortAZ(projects))
+                          }
+                        >
                           <SortByText>Name A-Z</SortByText>
                         </SortByItem>
-                        <SortByItem onClick={handleSortZA}>
+                        <SortByItem
+                          onClick={() =>
+                            projects &&
+                            setSortedProjects(handleSortZA(projects))
+                          }
+                        >
                           <SortByText>Name Z-A</SortByText>
                         </SortByItem>
-                        <SortByItem onClick={handleSortSizeAscending}>
+                        <SortByItem
+                          onClick={() =>
+                            projects &&
+                            setSortedProjects(handleSortSizeAscending(projects))
+                          }
+                        >
                           <SortByText>Size Ascending</SortByText>
                         </SortByItem>
-                        <SortByItem onClick={handleSortSizeDescending}>
+                        <SortByItem
+                          onClick={() =>
+                            projects &&
+                            setSortedProjects(
+                              handleSortSizeDescending(projects),
+                            )
+                          }
+                        >
                           <SortByText>Size Descending</SortByText>
                         </SortByItem>
-                        <SortByItem onClick={handleSortCODAscending}>
+                        <SortByItem
+                          onClick={() =>
+                            projects &&
+                            setSortedProjects(handleSortCODAscending(projects))
+                          }
+                        >
                           <SortByText>COD Ascending</SortByText>
                         </SortByItem>
-                        <SortByItem onClick={handleSortCODDescending}>
+                        <SortByItem
+                          onClick={() =>
+                            projects &&
+                            setSortedProjects(handleSortCODDescending(projects))
+                          }
+                        >
                           <SortByText>COD Descending</SortByText>
                         </SortByItem>
                       </SortByMenu>
