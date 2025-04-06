@@ -1,5 +1,5 @@
 import { FilterType } from '@/types/schema';
-import { UpIcon } from '../../assets/Dropdown-Icons/icons';
+import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   AssemblyDistrictIcon,
   CountyIcon,
@@ -47,7 +47,7 @@ export default function LocationDropdown({
               <FilterLocationText>{label}</FilterLocationText>
             </ButtonStyles>
           </LocationIconWithTestContainer>
-          <UpIcon />
+          <CollapseIcon />
         </ButtonWithIconStyles>
         <CategoryComponentContainer>
           <LocationCategory icon={<CountyIcon />} name="County" />
