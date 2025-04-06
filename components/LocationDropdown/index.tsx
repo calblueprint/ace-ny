@@ -39,63 +39,61 @@ export default function LocationDropdown({
 }) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
-  return (
+  return activeCategory === null ? (
     <LocationStyleDiv>
       <LocationContentDiv>
-        {activeCategory === null ? (
-          <>
-            <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-              <LocationIconWithTestContainer>
-                <FilterNameText>
-                  <FilterHeadingUnused>{icon}</FilterHeadingUnused>
-                </FilterNameText>
-                <ButtonStyles>
-                  <FilterLocationText>{label}</FilterLocationText>
-                </ButtonStyles>
-              </LocationIconWithTestContainer>
-              <UpIcon />
-            </ButtonWithIconStyles>
+        <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
+          <LocationIconWithTestContainer>
+            <FilterNameText>
+              <FilterHeadingUnused>{icon}</FilterHeadingUnused>
+            </FilterNameText>
+            <ButtonStyles>
+              <FilterLocationText>{label}</FilterLocationText>
+            </ButtonStyles>
+          </LocationIconWithTestContainer>
+          <UpIcon />
+        </ButtonWithIconStyles>
 
-            <CategoryComponentContainer>
-              <LocationCategory
-                icon={<CountyIcon />}
-                name="County"
-                onClick={() => setActiveCategory('County')}
-              />
-              <LocationCategory
-                icon={<TownIcon />}
-                name="Town"
-                onClick={() => setActiveCategory('Town')}
-              />
-              <LocationCategory
-                icon={<RegionIcon />}
-                name="Region"
-                onClick={() => setActiveCategory('Region')}
-              />
-              <LocationCategory
-                icon={<UtilityServiceTerritoryIcon />}
-                name="Utility Service Territory"
-                onClick={() => setActiveCategory('Utility Service Territory')}
-              />
-              <LocationCategory
-                icon={<StateSenateDistrictIcon />}
-                name="State Senate District"
-                onClick={() => setActiveCategory('State Senate District')}
-              />
-              <LocationCategory
-                icon={<AssemblyDistrictIcon />}
-                name="Assembly District"
-                onClick={() => setActiveCategory('Assembly District')}
-              />
-            </CategoryComponentContainer>
-          </>
-        ) : (
-          <LocationCategoryPanel
-            category={activeCategory}
-            onBack={() => setActiveCategory(null)}
+        <CategoryComponentContainer>
+          <LocationCategory
+            icon={<CountyIcon />}
+            name="County"
+            onClick={() => setActiveCategory('County')}
           />
-        )}
+          <LocationCategory
+            icon={<TownIcon />}
+            name="Town"
+            onClick={() => setActiveCategory('Town')}
+          />
+          <LocationCategory
+            icon={<RegionIcon />}
+            name="Region"
+            onClick={() => setActiveCategory('Region')}
+          />
+          <LocationCategory
+            icon={<UtilityServiceTerritoryIcon />}
+            name="Utility Service Territory"
+            onClick={() => setActiveCategory('Utility Service Territory')}
+          />
+          <LocationCategory
+            icon={<StateSenateDistrictIcon />}
+            name="State Senate District"
+            onClick={() => setActiveCategory('State Senate District')}
+          />
+          <LocationCategory
+            icon={<AssemblyDistrictIcon />}
+            name="Assembly District"
+            onClick={() => setActiveCategory('Assembly District')}
+          />
+        </CategoryComponentContainer>
       </LocationContentDiv>
     </LocationStyleDiv>
+  ) : (
+    <LocationCategoryPanel
+      category={activeCategory}
+      onBack={() => setActiveCategory(null)}
+      handleButtonClick={handleButtonClick}
+      currFilter={currFilter}
+    />
   );
 }

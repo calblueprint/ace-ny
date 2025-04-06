@@ -275,6 +275,44 @@ export const LocationCategoryText = styled.p<TextProps>`
   color: ${COLORS.navy};
 `;
 
+export const LocationOptionText = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  text-align: center;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 250;
+  line-height: normal;
+  color: ${COLORS.navy};
+  padding-right: 0.46875rem;
+`;
+
+export const PanelTitle = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: ${COLORS.electricBlue};
+`;
+
+export const SearchInput = styled.input<TextProps>`
+  ${TextStylesCoinbaseText}
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+  color: rgba(46, 58, 89, 0.5);
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+`;
+
+export const OptionText = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: #4a4a4a;
+  font-size: 0.95rem;
+`;
 /*
 
 export const FilterFont = styled.h1`
