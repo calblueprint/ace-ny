@@ -38,7 +38,7 @@ export interface Option {
   icon: React.ReactNode;
 }
 
-export type projectSizeType = {
+export type ProjectSizeType = {
   min: number;
   max: number;
 };
@@ -46,7 +46,7 @@ export type projectSizeType = {
 export interface Filters {
   status: string[];
   technology: string[];
-  projectSize: projectSizeType;
+  projectSize: ProjectSizeType;
   location: string[];
 }
 
