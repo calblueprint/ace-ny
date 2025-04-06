@@ -270,16 +270,16 @@ export const BackArrowIcon = () => (
   </svg>
 );
 
-export const CloseIcon = () => (
+export const UpArrowIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="10"
-    height="10"
-    viewBox="0 0 10 10"
+    width="12"
+    height="8"
+    viewBox="0 0 12 8"
     fill="none"
   >
     <path
-      d="M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z"
+      d="M5.89458 0.287524L9.93035e-05 6.29752L1.38594 7.71252L5.89458 3.11252L10.4022 7.71252L11.7891 6.29852L5.89458 0.287524Z"
       fill="#4974E0"
     />
   </svg>
@@ -288,8 +288,8 @@ export const CloseIcon = () => (
 export const SearchIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="14"
-    height="15"
+    width="15.4"
+    height="16.5"
     viewBox="0 0 14 15"
     fill="none"
   >
@@ -298,5 +298,29 @@ export const SearchIcon = () => (
       fill="#2E3A59"
       fill-opacity="0.35"
     />
+  </svg>
+);
+
+export const SelectedRadioIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="12"
+    height="13"
+    viewBox="0 0 12 13"
+    fill="none"
+  >
+    <circle cx="6" cy="6.5" r="5.5" stroke="#4974E0" />
+    <circle cx="6" cy="6.5" r="2.5" fill="#4974E0" stroke="#4974E0" />
+  </svg>
+);
+export const UnselectedRadioIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="12"
+    height="13"
+    viewBox="0 0 12 13"
+    fill="none"
+  >
+    <circle cx="6" cy="6.5" r="5.5" stroke="#2E3A59" stroke-opacity="0.5" />
   </svg>
 );
