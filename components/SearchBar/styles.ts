@@ -8,13 +8,21 @@ export const SearchBarPaddingStyles = styled.div`
   gap: 0.4rem;
 `;
 
+export const SearchBarWrapperDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 1rem;
+  gap: 0.5rem;
+  width: 100%;
+`;
+
 export const SearchBarBackgroundStyles = styled.div`
   display: flex;
   width: 20rem;
   height: 2.75rem;
-  padding: 0.3rem 1.8rem;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-shrink: 0;
   gap: 0.5rem;
@@ -25,11 +33,9 @@ export const SearchBarBackgroundStyles = styled.div`
 `;
 
 export const SearchBarStyles = styled.input`
-  padding-left: 0.75rem;
   border: none;
   outline: none;
   box-shadow: none;
-  padding-right: 7rem;
   background: none;
   &::placeholder {
     ${CoinbaseText.style}
