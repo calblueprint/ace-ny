@@ -9,6 +9,7 @@ import {
   FilterType,
 } from '@/types/schema';
 import { DropIcon } from '../../assets/Dropdown-Icons/icons';
+import LocationDropdown from '../LocationDropdown';
 import {
   FilterBackgroundStyles,
   FilterButtonStyles,
@@ -104,6 +105,14 @@ export default function Filter({
             maxBound={maxBound}
             setFiltersApplied={setFiltersApplied}
           ></ProjectSizeDropdown>
+        ) : filter.id === 'location' ? (
+          <LocationDropdown
+            handleButtonClick={handleButtonClick}
+            icon={filter.icon}
+            label={filter.label}
+            currFilter={filter}
+            clearFilters={clearFilters}
+          ></LocationDropdown>
         ) : // Add other filter dropdown components here
         null
       ) : (
