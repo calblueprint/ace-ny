@@ -1,9 +1,11 @@
+import React from 'react';
 import { FilterType } from '@/types/schema';
-import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
+import { ExitIcon, ExitIconApplied } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
   ApplyFiltersText,
   ClearFiltersText,
+  FilterHeadingInUse,
   FilterHeadingUnused,
   FilterNameText,
   FilterOptionsText,
@@ -26,25 +28,32 @@ export default function StatusDropdown({
   setSelectedStatus,
   handleButtonClick,
   icon,
+  iconApplied,
   label,
   currFilter,
   handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
+  setStatusFiltersApplied,
+  statusFiltersApplied,
 }: {
   selectedStatus: string[];
   setSelectedStatus: (status: string[]) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
+  iconApplied: React.ReactNode;
   label: string;
   currFilter: FilterType;
   handleFilterButtonClick: () => void;
   clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  setStatusFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
+  statusFiltersApplied: boolean;
 }) {
   const handleApplyButtonClick = () => {
     handleFilterButtonClick();
     setActiveFilter(null);
+    setStatusFiltersApplied(true);
   };
 
   const filterOptions = [
@@ -62,16 +71,42 @@ export default function StatusDropdown({
     <FilterDropdownStyles>
       <FilterContentDiv>
         <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-          <FilterNameText>
-            <FilterHeadingUnused>{icon}</FilterHeadingUnused>
-          </FilterNameText>
-          <ButtonStyles>
-            <FilterNameText>{label}</FilterNameText>
-          </ButtonStyles>
-          <ExitStyles onClick={clearFilters}>
-            <ExitIcon />
-          </ExitStyles>
+          {statusFiltersApplied ? ( // If the filter is applied (statusFiltersApplied is true)
+            <>
+              <FilterNameText>
+                <FilterHeadingInUse>{iconApplied}</FilterHeadingInUse>
+              </FilterNameText>
+              <ButtonStyles>
+                <FilterNameText>
+                  <FilterHeadingInUse>{label}</FilterHeadingInUse>
+                </FilterNameText>
+              </ButtonStyles>
+              <ExitStyles
+                onClick={() => {
+                  clearFilters();
+                  setStatusFiltersApplied(false);
+                }}
+              >
+                <ExitIconApplied />
+              </ExitStyles>
+            </>
+          ) : (
+            <>
+              <FilterNameText>
+                <FilterHeadingUnused>{icon}</FilterHeadingUnused>
+              </FilterNameText>
+              <ButtonStyles>
+                <FilterNameText>
+                  <FilterHeadingUnused>{label}</FilterHeadingUnused>
+                </FilterNameText>
+              </ButtonStyles>
+              <ExitStyles onClick={clearFilters}>
+                <ExitIcon />
+              </ExitStyles>
+            </>
+          )}
         </ButtonWithIconStyles>
+
         <div>
           {filterOptions.map(option => (
             <CheckboxContainer key={option.title}>
@@ -97,7 +132,10 @@ export default function StatusDropdown({
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={clearFilters}
+          onClick={() => {
+            clearFilters();
+            setStatusFiltersApplied(false);
+          }}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>

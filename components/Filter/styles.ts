@@ -39,3 +39,9 @@ export const IconStyle = styled.div`
   width: 0.8rem;
   height: 0.8rem;
 `;
+
+export const ExitIconStyle = styled.div`
+  // align-self: center;
+  // width: 0.8rem;
+  // height: 0.8rem;
+`;

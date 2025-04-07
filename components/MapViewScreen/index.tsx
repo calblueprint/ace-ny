@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 //import { useMap } from '@vis.gl/react-google-maps';
 import {
   LocationIcon,
+  LocationIconApplied,
   ProjectSizeIcon,
+  ProjectSizeIconApplied,
   StatusIcon,
+  StatusIconApplied,
   TechnologyIcon,
+  TechnologyIconApplied,
 } from '@/assets/Dropdown-Icons/icons';
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
@@ -32,21 +36,25 @@ export default function MapViewScreen({
       id: 'status',
       label: 'STATUS',
       icon: <StatusIcon />,
+      iconApplied: <StatusIconApplied />,
     },
     {
       id: 'technology',
       label: 'TECHNOLOGY',
       icon: <TechnologyIcon />,
+      iconApplied: <TechnologyIconApplied />,
     },
     {
       id: 'location',
       label: 'LOCATION',
       icon: <LocationIcon />,
+      iconApplied: <LocationIconApplied />,
     },
     {
       id: 'projectSize',
       label: 'PROJECT SIZE',
       icon: <ProjectSizeIcon />,
+      iconApplied: <ProjectSizeIconApplied />,
     },
   ];
 
