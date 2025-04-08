@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { ApplyFiltersText, FilterHeadingUnused } from '@/styles/texts';
 import { FilterType, projectSizeType } from '@/types/schema';
-import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
+import { UpIcon } from '../../assets/Dropdown-Icons/icons';
 import ProjectSizeHistogram from '../ProjectSizeHistogram';
 import {
   ApplyButtonStyles,
@@ -69,7 +69,7 @@ export default function ProjectSizeDropdown({
             <FilterHeadingUnused>{label}</FilterHeadingUnused>
           </ButtonStyles>
           <ExitStyles>
-            <ExitIcon />
+            <UpIcon />
           </ExitStyles>
         </ButtonWithIconStyles>
 

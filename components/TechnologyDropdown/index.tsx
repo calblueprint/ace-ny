@@ -3,10 +3,11 @@ import {
   ClearFiltersText,
   FilterCategoryLabel,
   FilterCategoryText1,
+  FilterHeadingInUse,
   FilterHeadingUnused,
 } from '@/styles/texts';
-import { FilterType } from '@/types/schema';
-import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
+import { Filters, FilterType } from '@/types/schema';
+import { ExitIconApplied, UpIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
   GeothermalIcon,
@@ -36,25 +37,32 @@ export default function TechnologyDropdown({
   setSelectedTechnologies,
   handleButtonClick,
   icon,
+  iconApplied,
   label,
   currFilter,
   handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
+  setTechnologyFiltersApplied,
+  technologyFiltersApplied,
 }: {
   selectedTechnologies: string[];
   setSelectedTechnologies: (technologies: string[]) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
+  iconApplied: React.ReactNode;
   label: string;
   currFilter: FilterType;
   handleFilterButtonClick: () => void;
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  setTechnologyFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
+  technologyFiltersApplied: boolean;
 }) {
   const handleApplyButtonClick = () => {
     handleFilterButtonClick();
     setActiveFilter(null);
+    setTechnologyFiltersApplied(true);
   };
 
   const filter = {
@@ -151,16 +159,38 @@ export default function TechnologyDropdown({
     <FilterDropdownStyles>
       <FilterContentDiv>
         <ButtonWithIconStyles>
-          <FilterIconStyles onClick={() => handleButtonClick(currFilter)}>
-            {icon}
-          </FilterIconStyles>
-          <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
-            <FilterHeadingUnused>{label}</FilterHeadingUnused>
-            <ExitStyles>
-              <ExitIcon />
-            </ExitStyles>
-          </ButtonStyles>
+          {technologyFiltersApplied ? (
+            <>
+              <FilterIconStyles onClick={() => handleButtonClick(currFilter)}>
+                {iconApplied}
+              </FilterIconStyles>
+              <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
+                <FilterHeadingInUse>{label}</FilterHeadingInUse>
+                <ExitStyles
+                  onClick={() => {
+                    clearFilters('technology');
+                    setTechnologyFiltersApplied(false);
+                  }}
+                >
+                  <ExitIconApplied />
+                </ExitStyles>
+              </ButtonStyles>
+            </>
+          ) : (
+            <>
+              <FilterIconStyles onClick={() => handleButtonClick(currFilter)}>
+                {icon}
+              </FilterIconStyles>
+              <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
+                <FilterHeadingUnused>{label}</FilterHeadingUnused>
+                <ExitStyles>
+                  <UpIcon />
+                </ExitStyles>
+              </ButtonStyles>
+            </>
+          )}
         </ButtonWithIconStyles>
+
         {filter.categories.map(category => (
           <div key={category.category}>
             <FilterCategoryLabel>{category.category}</FilterCategoryLabel>
@@ -191,7 +221,10 @@ export default function TechnologyDropdown({
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={clearFilters}
+          onClick={() => {
+            clearFilters('technology');
+            setTechnologyFiltersApplied(false);
+          }}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>

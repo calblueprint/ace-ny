@@ -1,4 +1,4 @@
-import { FilterType } from '@/types/schema';
+import { Filters, FilterType } from '@/types/schema';
 import { UpIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   AssemblyDistrictIcon,
@@ -33,7 +33,7 @@ export default function LocationDropdown({
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
 }) {
   return (
     <LocationStyleDiv>

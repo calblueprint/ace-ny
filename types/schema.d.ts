@@ -54,6 +54,7 @@ export interface FilterType {
   id: keyof Filters;
   label: string;
   icon: React.ReactNode;
+  iconApplied: React.ReactNode;
 }
 
 export type Milestone = {

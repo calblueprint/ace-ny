@@ -48,6 +48,7 @@ export const ButtonStyles = styled.button`
 export const ExitStyles = styled.div`
   display: flex;
   padding-left: 6.5rem;
+  padding-bottom: 0.125rem;
 `;
 
 export const BlueTextStyles = styled.span`
