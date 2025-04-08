@@ -85,8 +85,6 @@ export const FilterBar = ({
       const padding = range * 0.25;
       setMinBound(minValue - padding);
       setMaxBound(maxValue + padding);
-      setMinDefault(minValue - padding);
-      setMaxDefault(maxValue + padding);
     }
   }, [lastAppliedFilter, projectSizes]);
 
