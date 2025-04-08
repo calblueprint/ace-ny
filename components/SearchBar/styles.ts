@@ -2,34 +2,30 @@ import styled from 'styled-components';
 import { CoinbaseText } from '@/styles/fonts';
 import COLORS from '../../styles/colors';
 
-export const SearchBarPaddingStyles = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-`;
-
-export const SearchBarWrapperDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-left: 1rem;
-  gap: 0.5rem;
-  width: 100%;
-`;
-
 export const SearchBarBackgroundStyles = styled.div`
   display: flex;
   width: 20rem;
   height: 2.75rem;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-  flex-shrink: 0;
-  gap: 0.5rem;
   border-radius: 12px 12px 8px 8px;
   background: ${COLORS.navy30};
   box-sizing: border-box;
   border-bottom: 1px solid var(--navy-50, #949aa9);
+`;
+
+export const SearchBarWrapperDiv = styled.div`
+  display: flex;
+  align-items: center;
+  padding-left: 1rem;
+  gap: 0.5rem;
+`;
+
+export const SearchExitButton = styled.button<{ $isZero?: boolean }>`
+  visibility: ${({ $isZero }) => ($isZero ? 'hidden' : 'visible')};
+  padding: 0;
+  box-shadow: none;
+  border: none;
+  background: none;
+  cursor: pointer;
 `;
 
 export const SearchBarStyles = styled.input`
@@ -51,20 +47,4 @@ export const SearchBarStyles = styled.input`
   font-weight: 300;
   line-height: normal;
   color: ${COLORS.electricBlue};
-`;
-
-export const SearchBarDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-export const SearchExitButton = styled.button<{ $isZero?: boolean }>`
-  visibility: ${({ $isZero }) => ($isZero ? 'hidden' : 'visible')};
-  padding: 0;
-  box-shadow: none;
-  border: none;
-  background: none;
-  cursor: pointer;
 `;
