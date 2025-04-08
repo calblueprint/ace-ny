@@ -41,7 +41,8 @@ export const IconStyle = styled.div`
 `;
 
 export const ExitIconStyle = styled.div`
-  // align-self: center;
-  // width: 0.8rem;
-  // height: 0.8rem;
+  margin-left: auto;
+  display: flex;
+  align-self: center;
+  padding-bottom: 0.125rem;
 `;

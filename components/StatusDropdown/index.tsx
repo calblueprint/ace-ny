@@ -1,6 +1,5 @@
-import React from 'react';
 import { FilterType } from '@/types/schema';
-import { ExitIcon, ExitIconApplied } from '../../assets/Dropdown-Icons/icons';
+import { ExitIconApplied, UpIcon } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
   ApplyFiltersText,
@@ -100,8 +99,8 @@ export default function StatusDropdown({
                   <FilterHeadingUnused>{label}</FilterHeadingUnused>
                 </FilterNameText>
               </ButtonStyles>
-              <ExitStyles onClick={clearFilters}>
-                <ExitIcon />
+              <ExitStyles>
+                <UpIcon />
               </ExitStyles>
             </>
           )}

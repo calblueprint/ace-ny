@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ApplyFiltersText,
   ClearFiltersText,
@@ -8,7 +7,7 @@ import {
   FilterHeadingUnused,
 } from '@/styles/texts';
 import { FilterType } from '@/types/schema';
-import { ExitIcon, ExitIconApplied } from '../../assets/Dropdown-Icons/icons';
+import { ExitIconApplied, UpIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
   GeothermalIcon,
@@ -167,7 +166,12 @@ export default function TechnologyDropdown({
               </FilterIconStyles>
               <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
                 <FilterHeadingInUse>{label}</FilterHeadingInUse>
-                <ExitStyles>
+                <ExitStyles
+                  onClick={() => {
+                    clearFilters();
+                    setTechnologyFiltersApplied(false);
+                  }}
+                >
                   <ExitIconApplied />
                 </ExitStyles>
               </ButtonStyles>
@@ -180,7 +184,7 @@ export default function TechnologyDropdown({
               <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
                 <FilterHeadingUnused>{label}</FilterHeadingUnused>
                 <ExitStyles>
-                  <ExitIcon />
+                  <UpIcon />
                 </ExitStyles>
               </ButtonStyles>
             </>

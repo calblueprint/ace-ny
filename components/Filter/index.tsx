@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import ProjectSizeDropdown from '@/components/ProjectSizeDropdown';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
@@ -104,15 +104,8 @@ export default function Filter({
         null
       ) : (
         <FilterButtonStyles onClick={() => handleButtonClick(filter)}>
-          {filter.id === 'status' && statusFiltersApplied ? (
-            <>
-              <IconStyle>{filter.iconApplied}</IconStyle>
-              <FilterHeadingInUse>{filter.label}</FilterHeadingInUse>
-              <ExitIconStyle>
-                <ExitIconApplied />
-              </ExitIconStyle>
-            </>
-          ) : filter.id === 'technology' && technologyFiltersApplied ? (
+          {(filter.id === 'status' && statusFiltersApplied) ||
+          (filter.id === 'technology' && technologyFiltersApplied) ? (
             <>
               <IconStyle>{filter.iconApplied}</IconStyle>
               <FilterHeadingInUse>{filter.label}</FilterHeadingInUse>

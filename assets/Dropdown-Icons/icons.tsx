@@ -178,21 +178,6 @@ export const LocationIconApplied = () => (
   </svg>
 );
 
-export const UpIconApplied = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="12"
-    height="8"
-    viewBox="0 0 12 8"
-    fill="none"
-  >
-    <path
-      d="M6.10552 0.287524L0.211037 6.29752L1.59688 7.71252L6.10552 3.11252L10.6132 7.71252L12 6.29852L6.10552 0.287524Z"
-      fill="#4974E0"
-    />
-  </svg>
-);
-
 export const ExitIconApplied = () => (
   <svg
     width="10"
