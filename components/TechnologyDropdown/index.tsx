@@ -6,7 +6,7 @@ import {
   FilterHeadingInUse,
   FilterHeadingUnused,
 } from '@/styles/texts';
-import { FilterType } from '@/types/schema';
+import { Filters, FilterType } from '@/types/schema';
 import { ExitIconApplied, UpIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
@@ -54,7 +54,7 @@ export default function TechnologyDropdown({
   label: string;
   currFilter: FilterType;
   handleFilterButtonClick: () => void;
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setTechnologyFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
   technologyFiltersApplied: boolean;
@@ -168,7 +168,7 @@ export default function TechnologyDropdown({
                 <FilterHeadingInUse>{label}</FilterHeadingInUse>
                 <ExitStyles
                   onClick={() => {
-                    clearFilters();
+                    clearFilters('technology');
                     setTechnologyFiltersApplied(false);
                   }}
                 >
@@ -222,7 +222,7 @@ export default function TechnologyDropdown({
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
           onClick={() => {
-            clearFilters();
+            clearFilters('technology');
             setTechnologyFiltersApplied(false);
           }}
         >

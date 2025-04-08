@@ -88,12 +88,24 @@ export default function MapViewScreen({
   const [filteredProjectsFromSearch, setFilteredProjectsFromSearch] =
     useState<Project[]>(projects);
 
-  // clear filters
-  const clearFilters = () => {
-    setSelectedFilters(defaultFilters);
-    setTempFilters(defaultFilters);
-    setFilteredProjects(projects);
-    setFilteredProjectsFromDropdowns(projects);
+  const clearFilters = (filterName?: keyof Filters) => {
+    if (filterName) {
+      // Clear specific filter
+      setSelectedFilters(prev => ({
+        ...prev,
+        [filterName]: defaultFilters[filterName],
+      }));
+      setTempFilters(prev => ({
+        ...prev,
+        [filterName]: defaultFilters[filterName],
+      }));
+    } else {
+      // Clear all filters if no argument is passed
+      setSelectedFilters(defaultFilters);
+      setTempFilters(defaultFilters);
+      setFilteredProjects(projects);
+      setFilteredProjectsFromDropdowns(projects);
+    }
   };
 
   // show projects based on selected filters

@@ -1,4 +1,4 @@
-import { FilterType } from '@/types/schema';
+import { Filters, FilterType } from '@/types/schema';
 import { ExitIconApplied, UpIcon } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
@@ -44,7 +44,7 @@ export default function StatusDropdown({
   label: string;
   currFilter: FilterType;
   handleFilterButtonClick: () => void;
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setStatusFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
   statusFiltersApplied: boolean;
@@ -70,7 +70,7 @@ export default function StatusDropdown({
     <FilterDropdownStyles>
       <FilterContentDiv>
         <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-          {statusFiltersApplied ? ( // If the filter is applied (statusFiltersApplied is true)
+          {statusFiltersApplied ? ( // If the filter is applied
             <>
               <FilterNameText>
                 <FilterHeadingInUse>{iconApplied}</FilterHeadingInUse>
@@ -82,7 +82,7 @@ export default function StatusDropdown({
               </ButtonStyles>
               <ExitStyles
                 onClick={() => {
-                  clearFilters();
+                  clearFilters('status');
                   setStatusFiltersApplied(false);
                 }}
               >
@@ -132,7 +132,7 @@ export default function StatusDropdown({
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
           onClick={() => {
-            clearFilters();
+            clearFilters('status');
             setStatusFiltersApplied(false);
           }}
         >
