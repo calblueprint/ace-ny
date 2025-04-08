@@ -6,18 +6,10 @@ import { CloseIcon, OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
 import { SearchIcon } from '@/assets/SearchBar-Icons/icons';
 import { FilterNameText, SubHeading2 } from '@/styles/texts';
-import { SortByText } from '../../styles/texts';
 import { Project } from '../../types/schema';
 import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
-import {
-  handleSortAZ,
-  handleSortCODAscending,
-  handleSortCODDescending,
-  handleSortSizeAscending,
-  handleSortSizeDescending,
-  handleSortZA,
-} from '../SortBy/index';
+import SortBy from '../SortBy/index';
 import {
   AllProjectsHeader,
   CloseModalButton,
@@ -30,9 +22,8 @@ import {
   SearchButton,
   SearchButtonBackground,
   SearchIconStyles,
-  SortBy,
   SortByButton,
-  SortByItem,
+  SortByDiv,
   SortByMenu,
 } from './styles';
 
@@ -108,7 +99,7 @@ export default function ProjectsListingModal({
                     <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
                     <SubHeading2>ALL PROJECTS</SubHeading2>
                   </AllProjectsHeader>
-                  <SortBy>
+                  <SortByDiv>
                     <SortByButton onClick={toggleSortBy}>
                       <SubHeading2>SORT BY</SubHeading2>
                       {isSortByOpen ? (
@@ -119,59 +110,39 @@ export default function ProjectsListingModal({
                     </SortByButton>
                     {isSortByOpen && (
                       <SortByMenu>
-                        <SortByItem
-                          onClick={() =>
-                            projects &&
-                            setSortedProjects(handleSortAZ(projects))
-                          }
-                        >
-                          <SortByText>Name A-Z</SortByText>
-                        </SortByItem>
-                        <SortByItem
-                          onClick={() =>
-                            projects &&
-                            setSortedProjects(handleSortZA(projects))
-                          }
-                        >
-                          <SortByText>Name Z-A</SortByText>
-                        </SortByItem>
-                        <SortByItem
-                          onClick={() =>
-                            projects &&
-                            setSortedProjects(handleSortSizeAscending(projects))
-                          }
-                        >
-                          <SortByText>Size Ascending</SortByText>
-                        </SortByItem>
-                        <SortByItem
-                          onClick={() =>
-                            projects &&
-                            setSortedProjects(
-                              handleSortSizeDescending(projects),
-                            )
-                          }
-                        >
-                          <SortByText>Size Descending</SortByText>
-                        </SortByItem>
-                        <SortByItem
-                          onClick={() =>
-                            projects &&
-                            setSortedProjects(handleSortCODAscending(projects))
-                          }
-                        >
-                          <SortByText>COD Ascending</SortByText>
-                        </SortByItem>
-                        <SortByItem
-                          onClick={() =>
-                            projects &&
-                            setSortedProjects(handleSortCODDescending(projects))
-                          }
-                        >
-                          <SortByText>COD Descending</SortByText>
-                        </SortByItem>
+                        <SortBy
+                          category="Name A-Z"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                        />
+                        <SortBy
+                          category="Name Z-A"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                        />
+                        <SortBy
+                          category="Size Ascending"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                        />
+                        <SortBy
+                          category="Size Descending"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                        />
+                        <SortBy
+                          category="COD Ascending"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                        />
+                        <SortBy
+                          category="COD Descending"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                        />
                       </SortByMenu>
                     )}
-                  </SortBy>
+                  </SortByDiv>
                 </Headers>
                 <ProjectItemsDiv>{projectItems}</ProjectItemsDiv>
               </ModalContents>
