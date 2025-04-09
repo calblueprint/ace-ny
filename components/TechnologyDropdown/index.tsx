@@ -65,7 +65,6 @@ export default function TechnologyDropdown({
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const handleApplyButtonClick = () => {
-    // handleFilterButtonClick();
     setSelectedTechnologies({ value: tempFilters.technology, isTemp: false });
     setActiveFilter(null);
     setTechnologyFiltersApplied(true);
