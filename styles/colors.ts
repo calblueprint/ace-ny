@@ -8,7 +8,13 @@ const COLORS = {
   chateauGreen: '#3D9458',
   aceGreen: '#1BA546',
   navy: '#2E3A59',
+  navy1A: '#2E3A591A',
+  navy30: '#FAFAFB',
+  navy50: '#2E3A5980',
+  navy75: '#626C83',
+  navy85: '#4C5671',
   electricBlue: '#4974E0',
+  electricBlue05: '#4974E00D',
   electricBlue10: '#F6F8FD',
   electricBlue40: '#4974E040',
   electricBlue50: '#4974E099',
@@ -24,10 +30,8 @@ const COLORS = {
   black: '#000000',
   white: '#FFFFFF',
   babyBlue: '#A4B9EF',
-  navy75: '#626C83',
-  navy30: '#FAFAFB',
-  navy85: '#4C5671',
   grey80: '#A1A6B4CC',
+  aluminium: '#ABB1BD',
 };
 
 export default COLORS;

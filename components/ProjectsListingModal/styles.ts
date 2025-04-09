@@ -37,6 +37,7 @@ export const ProjectDetails = styled.div`
   background: ${COLORS.white};
   width: 21.6rem;
   overflow-y: auto;
+  overflow-x: hidden;
   gap: 0.75rem;
 `;
 

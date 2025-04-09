@@ -182,6 +182,16 @@ export const FilterCategoryText1 = styled.p<TextProps>`
   color: ${COLORS.navy75};
 `;
 
+export const FilterLocationText = styled.h3<TextProps>`
+  ${TextStylesCoinbaseText}
+  color: ${COLORS.navy85};
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-bottom: 0.0625rem;
+`;
+
 export const MinMaxTextUnused = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
   color: ${COLORS.navy};
@@ -253,6 +263,16 @@ export const ClearFiltersText = styled.p<TextProps>`
   font-weight: 500;
   line-height: normal;
   color: ${COLORS.electricBlue};
+`;
+
+export const LocationCategoryText = styled.p<TextProps>`
+  ${TextStylesCoinbaseText}
+  text-align: center;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 250;
+  line-height: normal;
+  color: ${COLORS.navy};
 `;
 
 /*
