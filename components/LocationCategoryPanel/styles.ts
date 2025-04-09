@@ -56,7 +56,7 @@ export const PanelContainer = styled.div`
   border-right: 0.5px solid rgba(46, 58, 89, 0.1);
   border-bottom: 1px solid rgba(46, 58, 89, 0.1);
   border-left: 0.5px solid rgba(46, 58, 89, 0.1);
-  background: #fff;
+  background: ${COLORS.white};
 `;
 
 export const CategoryInnerContainer = styled.div`
@@ -137,36 +137,14 @@ export const CloseIconButton = styled.button`
   align-items: center;
 `;
 
-export const PanelTitle = styled.h2`
-  color: #4974e0;
-  font-family: 'Coinbase Text';
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-
 export const SearchIconWithTextContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
 `;
 
-export const SearchInput = styled.input`
-  border: none;
-  outline: none;
-  width: 100%;
-  background: transparent;
-  color: rgba(46, 58, 89, 0.5);
-  font-family: 'Coinbase Text';
-  font-size: 0.75rem;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-`;
-
 export const Underline = styled.div`
   width: 100%;
   height: 0.03125rem;
-  background: rgba(46, 58, 89, 0.5);
+  background: ${COLORS.navy50};
 `;

@@ -301,7 +301,7 @@ export const SearchInput = styled.input<TextProps>`
   outline: none;
   width: 100%;
   background: transparent;
-  color: rgba(46, 58, 89, 0.5);
+  color: ${COLORS.navy50};
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 300;

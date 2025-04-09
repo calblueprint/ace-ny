@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { SearchExit, SearchIcon } from '@/assets/SearchBar-Icons/icons';
+import COLORS from '../../styles/colors';
 import {
   SearchBarBackgroundStyles,
   SearchBarStyles,
@@ -35,7 +36,7 @@ export const SearchBar = ({
             <SearchExit />
           </SearchExitButton>
         ) : (
-          <SearchIcon fill={'#4C5671'} />
+          <SearchIcon fill={COLORS.navy85} />
         )}
         <SearchBarStyles
           type="text"
