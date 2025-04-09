@@ -116,6 +116,7 @@ export const FilterBar = ({
       setMinDefault(Math.min(maxValue + padding - 1, minDefault));
       setMaxDefault(Math.min(maxValue + padding, maxDefault));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastAppliedFilter, projectSizes]);
 
   return (
