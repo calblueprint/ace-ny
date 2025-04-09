@@ -45,7 +45,6 @@ export default function StatusDropdown({
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const handleApplyButtonClick = () => {
-    // handleFilterButtonClick();
     setSelectedStatus({ value: tempFilters.status, isTemp: false });
     setActiveFilter(null);
     setLastAppliedFilter('status');
