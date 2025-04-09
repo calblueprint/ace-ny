@@ -1,4 +1,4 @@
-import { FiltersApplied, FilterType } from '@/types/schema';
+import { Filters, FilterType } from '@/types/schema';
 import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
@@ -22,38 +22,33 @@ import {
 } from './styles';
 
 export default function StatusDropdown({
+  tempFilters,
   selectedStatus,
   setSelectedStatus,
   handleButtonClick,
   icon,
   label,
   currFilter,
-  handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
   setLastAppliedFilter,
-  setFiltersApplied,
 }: {
+  tempFilters: Filters;
   selectedStatus: string[];
-  setSelectedStatus: (status: string[]) => void;
+  setSelectedStatus: (args: { value: string[]; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  handleFilterButtonClick: () => void;
   clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
-  setFiltersApplied: React.Dispatch<React.SetStateAction<FiltersApplied>>;
 }) {
   const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+    // handleFilterButtonClick();
+    setSelectedStatus({ value: tempFilters.status, isTemp: false });
     setActiveFilter(null);
     setLastAppliedFilter('status');
-    setFiltersApplied((prevState: FiltersApplied) => ({
-      ...prevState,
-      status: true,
-    }));
   };
 
   const filterOptions = [
@@ -62,11 +57,8 @@ export default function StatusDropdown({
   ];
 
   const handleStatusChange = (status: string) => {
-    setSelectedStatus(selectedStatus[0] === status ? [] : [status]);
-    setFiltersApplied((prevState: FiltersApplied) => ({
-      ...prevState,
-      status: false,
-    }));
+    const value = selectedStatus[0] === status ? [] : [status];
+    setSelectedStatus({ value: value, isTemp: true });
   };
 
   const isApplyButtonActive = selectedStatus.length > 0;

@@ -12,7 +12,7 @@ interface ProjectSizeSliderProps {
   maxDefault: number;
   minBound: number;
   maxBound: number;
-  setSelectedSize: (value: ProjectSizeType) => void;
+  setSelectedSize: (args: { value: ProjectSizeType; isTemp: boolean }) => void;
 }
 
 export default function ProjectSizeSlider({
@@ -26,10 +26,11 @@ export default function ProjectSizeSlider({
   setSelectedSize,
 }: ProjectSizeSliderProps) {
   useEffect(() => {
-    setSelectedSize({
+    const value = {
       min: Math.max(0, minDefault),
       max: Math.max(minSize, maxDefault),
-    });
+    };
+    setSelectedSize({ value: value, isTemp: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [minDefault, maxDefault]);
 

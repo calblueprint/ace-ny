@@ -50,13 +50,6 @@ export interface Filters {
   location: string[];
 }
 
-export interface FiltersApplied {
-  status: boolean;
-  technology: boolean;
-  projectSize: boolean;
-  // location: boolean;
-}
-
 export interface FilterType {
   id: keyof Filters;
   label: string;
@@ -70,7 +63,10 @@ export type Milestone = {
 };
 
 type FilterHandlerArgs = {
-  [K in keyof Filters]: Filters[K];
+  [K in keyof Filters]: {
+    value: Filters[K];
+    isTemp: boolean;
+  };
 };
 
 export type FilterChangeHandlers = {

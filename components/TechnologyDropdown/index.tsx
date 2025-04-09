@@ -5,7 +5,7 @@ import {
   FilterCategoryText1,
   FilterHeadingUnused,
 } from '@/styles/texts';
-import { FiltersApplied, FilterType } from '@/types/schema';
+import { Filters, FilterType } from '@/types/schema';
 import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
@@ -32,38 +32,33 @@ import {
 } from './styles';
 
 export default function TechnologyDropdown({
+  tempFilters,
   selectedTechnologies,
   setSelectedTechnologies,
   handleButtonClick,
   icon,
   label,
   currFilter,
-  handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
   setLastAppliedFilter,
-  setFiltersApplied,
 }: {
+  tempFilters: Filters;
   selectedTechnologies: string[];
-  setSelectedTechnologies: (technologies: string[]) => void;
+  setSelectedTechnologies: (args: { value: string[]; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  handleFilterButtonClick: () => void;
   clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
-  setFiltersApplied: React.Dispatch<React.SetStateAction<FiltersApplied>>;
 }) {
   const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+    // handleFilterButtonClick();
+    setSelectedTechnologies({ value: tempFilters.technology, isTemp: false });
     setActiveFilter(null);
     setLastAppliedFilter('technology');
-    setFiltersApplied((prevState: FiltersApplied) => ({
-      ...prevState,
-      technology: true,
-    }));
   };
 
   const filter = {
@@ -157,15 +152,10 @@ export default function TechnologyDropdown({
   const isApplyButtonActive = selectedTechnologies.length > 0;
 
   function checkBoxClickHandler(title: string): void {
-    setSelectedTechnologies(
-      selectedTechnologies.includes(title)
-        ? selectedTechnologies.filter(o => o !== title)
-        : [...selectedTechnologies, title],
-    );
-    setFiltersApplied((prevState: FiltersApplied) => ({
-      ...prevState,
-      technology: false,
-    }));
+    const value = selectedTechnologies.includes(title)
+      ? selectedTechnologies.filter(o => o !== title)
+      : [...selectedTechnologies, title];
+    setSelectedTechnologies({ value: value, isTemp: true });
   }
 
   return (

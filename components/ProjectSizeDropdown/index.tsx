@@ -4,7 +4,7 @@ import {
   ClearFiltersText,
   FilterHeadingUnused,
 } from '@/styles/texts';
-import { FiltersApplied, FilterType, ProjectSizeType } from '@/types/schema';
+import { Filters, FilterType, ProjectSizeType } from '@/types/schema';
 import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import ProjectSizeHistogram from '../ProjectSizeHistogram';
 import {
@@ -25,12 +25,12 @@ import {
 } from './styles';
 
 interface ProjectSizeDropdownProps {
-  setSelectedSize: (projectSize: ProjectSizeType) => void;
+  tempFilters: Filters;
+  setSelectedSize: (args: { value: ProjectSizeType; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  handleFilterButtonClick: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   projectSizes: number[];
   minDefault: number;
@@ -40,16 +40,15 @@ interface ProjectSizeDropdownProps {
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
   minBound: number;
   maxBound: number;
-  setFiltersApplied: React.Dispatch<React.SetStateAction<FiltersApplied>>;
 }
 
 export default function ProjectSizeDropdown({
+  tempFilters,
   setSelectedSize,
   handleButtonClick,
   icon,
   label,
   currFilter,
-  handleFilterButtonClick,
   setActiveFilter,
   projectSizes,
   minDefault,
@@ -59,7 +58,6 @@ export default function ProjectSizeDropdown({
   setLastAppliedFilter,
   minBound,
   maxBound,
-  setFiltersApplied,
 }: ProjectSizeDropdownProps) {
   const [minSize, setMinSize] = useState(Math.min(...projectSizes));
   const [maxSize, setMaxSize] = useState(Math.max(...projectSizes));
@@ -69,13 +67,9 @@ export default function ProjectSizeDropdown({
   ).toFixed(2);
 
   const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+    setSelectedSize({ value: tempFilters.projectSize, isTemp: false });
     setActiveFilter(null);
     setLastAppliedFilter('projectSize');
-    setFiltersApplied((prevState: FiltersApplied) => ({
-      ...prevState,
-      projectSize: true,
-    }));
   };
 
   // const clearButtonHandler = () => {
@@ -116,7 +110,6 @@ export default function ProjectSizeDropdown({
           setSelectedSize={setSelectedSize}
           minBound={minBound}
           maxBound={maxBound}
-          setFiltersApplied={setFiltersApplied}
         ></ProjectSizeHistogram>
 
         <MinMaxBoxContainer>

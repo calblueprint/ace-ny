@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 import COLORS from '@/styles/colors';
-import { FiltersApplied, ProjectSizeType } from '@/types/schema';
+import { ProjectSizeType } from '@/types/schema';
 import ProjectSizeSlider from '../ProjectSizeSlider';
 import { HistogramContainer } from './styles';
 
@@ -13,10 +13,9 @@ interface HistogramProps {
   setMinDefault: (value: number) => void;
   maxDefault: number;
   setMaxDefault: (value: number) => void;
-  setSelectedSize: (value: ProjectSizeType) => void;
+  setSelectedSize: (args: { value: ProjectSizeType; isTemp: boolean }) => void;
   minBound: number;
   maxBound: number;
-  setFiltersApplied: React.Dispatch<React.SetStateAction<FiltersApplied>>;
 }
 
 export default function ProjectSizeHistogram({
@@ -30,7 +29,6 @@ export default function ProjectSizeHistogram({
   setSelectedSize,
   minBound,
   maxBound,
-  setFiltersApplied,
 }: HistogramProps) {
   const numBins = 10;
   const minSize = Math.min(...projectSizes);
@@ -51,20 +49,8 @@ export default function ProjectSizeHistogram({
       setMinSize(minSize);
       setMaxSize(maxSize);
     }
-
-    setFiltersApplied((prevState: FiltersApplied) => ({
-      ...prevState,
-      projectSize: false,
-    }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    minDefault,
-    maxDefault,
-    projectSizes,
-    setMinSize,
-    setMaxSize,
-    setFiltersApplied,
-  ]);
+  }, [minDefault, maxDefault, projectSizes, setMinSize, setMaxSize]);
 
   if (projectSizes.length === 1) {
     bins[0] = 1;

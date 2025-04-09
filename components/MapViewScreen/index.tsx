@@ -8,7 +8,7 @@ import {
 } from '@/assets/Dropdown-Icons/icons';
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
-import { Filters, FiltersApplied, FilterType } from '@/types/schema';
+import { Filters, FilterType } from '@/types/schema';
 import { Project } from '../../types/schema';
 import BottomBar from '../BottomBar';
 import ProjectModal from '../ProjectModal';
@@ -65,20 +65,8 @@ export default function MapViewScreen({
     null,
   );
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedFilters, setSelectedFilters] = useState<Filters>({
-    status: [],
-    technology: [],
-    projectSize: { min: 0, max: 0 },
-    location: [],
-  });
-
-  // checks if filters have been applied
-  const [filtersApplied, setFiltersApplied] = useState<FiltersApplied>({
-    status: false,
-    technology: false,
-    projectSize: false,
-    // location: false
-  });
+  const [selectedFilters, setSelectedFilters] =
+    useState<Filters>(defaultFilters);
 
   const [tempFilters, setTempFilters] = useState<Filters>(defaultFilters);
 
@@ -106,23 +94,18 @@ export default function MapViewScreen({
     setProjectSizes(getProjectsSize(projects));
   };
 
-  // show projects based on selected filters
-  const handleFilterButtonClick = () => {
-    setSelectedFilters(tempFilters);
-  };
-
   useEffect(() => {
+    // all filtering logic from dropdowns
     const { status, technology, projectSize } = selectedFilters;
     let filteredProjects = projects;
 
-    // add all filtering logic here
-    if (technology.length > 0 && filtersApplied.technology) {
+    if (technology.length > 0) {
       filteredProjects = filteredProjects.filter(project =>
         technology.includes(project.renewable_energy_technology),
       );
     }
 
-    if (status.length > 0 && filtersApplied.status) {
+    if (status.length > 0) {
       filteredProjects = filteredProjects.filter(project =>
         status.includes(project.project_status),
       );
@@ -130,12 +113,10 @@ export default function MapViewScreen({
 
     setFilteredProjectsFromDropdownNoSize(filteredProjects);
 
-    if (filtersApplied.projectSize) {
-      filteredProjects = filteredProjects.filter(
-        project =>
-          project.size >= projectSize.min && project.size <= projectSize.max,
-      );
-    }
+    filteredProjects = filteredProjects.filter(
+      project =>
+        project.size >= projectSize.min && project.size <= projectSize.max,
+    );
 
     setFilteredProjectsFromDropdowns(filteredProjects);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -184,12 +165,11 @@ export default function MapViewScreen({
     <>
       <FilterBar
         filters={filters}
-        selectedFilters={tempFilters}
-        setSelectedFilters={setTempFilters}
-        handleFilterButtonClick={handleFilterButtonClick}
+        setSelectedFilters={setSelectedFilters}
+        tempFilters={tempFilters}
+        setTempFilters={setTempFilters}
         clearFilters={clearFilters}
         projectSizes={projectSizes}
-        setFiltersApplied={setFiltersApplied}
       />
       <Map
         projects={projects}
