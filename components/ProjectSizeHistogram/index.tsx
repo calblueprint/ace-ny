@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 import COLORS from '@/styles/colors';
-import { projectSizeType } from '@/types/schema';
+import { ProjectSizeType } from '@/types/schema';
 import ProjectSizeSlider from '../ProjectSizeSlider';
 import { HistogramContainer } from './styles';
 
@@ -9,33 +9,38 @@ interface HistogramProps {
   projectSizes: number[];
   setMinSize: (value: number) => void;
   setMaxSize: (value: number) => void;
-  minRange: number;
-  setMinRange: (value: number) => void;
-  maxRange: number;
-  setMaxRange: (value: number) => void;
-  setSelectedSize: (value: projectSizeType) => void;
+  minDefault: number;
+  setMinDefault: (value: number) => void;
+  maxDefault: number;
+  setMaxDefault: (value: number) => void;
+  setSelectedSize: (args: { value: ProjectSizeType; isTemp: boolean }) => void;
+  minBound: number;
+  maxBound: number;
 }
 
 export default function ProjectSizeHistogram({
   projectSizes,
   setMinSize,
   setMaxSize,
-  minRange,
-  setMinRange,
-  maxRange,
-  setMaxRange,
+  minDefault,
+  setMinDefault,
+  maxDefault,
+  setMaxDefault,
   setSelectedSize,
+  minBound,
+  maxBound,
 }: HistogramProps) {
   const numBins = 10;
-  const minValue = Math.min(...projectSizes);
-  const maxValue = Math.max(...projectSizes);
-  const binSize = (maxValue - minValue) / numBins;
+  const minSize = Math.min(...projectSizes);
+  const maxSize = Math.max(...projectSizes);
+  const binSize = (maxSize - minSize) / numBins;
   const bins = Array(numBins).fill(0);
 
   useEffect(() => {
     const filteredSizes = projectSizes.filter(
       size =>
-        size >= Math.max(0, minRange) && size <= Math.max(minValue, maxRange),
+        size >= Math.max(0, minDefault) &&
+        size <= Math.max(minSize, maxDefault),
     );
 
     if (filteredSizes && filteredSizes.length > 0) {
@@ -44,21 +49,26 @@ export default function ProjectSizeHistogram({
       setMinSize(minSize);
       setMaxSize(maxSize);
     }
-  }, [minRange, maxRange, projectSizes, minValue, setMinSize, setMaxSize]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [minDefault, maxDefault, projectSizes, setMinSize, setMaxSize]);
 
-  projectSizes.forEach(value => {
-    const binIndex = Math.min(
-      Math.floor((value - minValue) / binSize),
-      numBins - 1,
-    );
-    bins[binIndex]++;
-  });
+  if (projectSizes.length === 1) {
+    bins[0] = 1;
+  } else {
+    projectSizes.forEach(value => {
+      const binIndex = Math.min(
+        Math.floor((value - minSize) / binSize),
+        numBins - 1,
+      );
+      bins[binIndex]++;
+    });
+  }
 
   const chartData = bins.map((count, index) => {
-    const binStart = minValue + index * binSize;
+    const binStart = minSize + index * binSize;
     const binEnd = binStart + binSize;
     const fill =
-      binStart >= minRange && binEnd <= maxRange
+      binStart >= minDefault && binEnd <= maxDefault
         ? COLORS.electricBlue
         : COLORS.electricBlue40;
 
@@ -87,12 +97,13 @@ export default function ProjectSizeHistogram({
       </HistogramContainer>
 
       <ProjectSizeSlider
-        setMinRange={setMinRange}
-        setMaxRange={setMaxRange}
-        minValue={minValue}
-        maxValue={maxValue}
-        minRange={minRange}
-        maxRange={maxRange}
+        setMinDefault={setMinDefault}
+        setMaxDefault={setMaxDefault}
+        minSize={minSize}
+        minDefault={minDefault}
+        maxDefault={maxDefault}
+        minBound={minBound}
+        maxBound={maxBound}
         setSelectedSize={setSelectedSize}
       />
     </div>
