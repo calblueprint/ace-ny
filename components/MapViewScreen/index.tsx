@@ -18,6 +18,15 @@ function getProjectsSize(projects: Project[]) {
   return projects.map(project => project.size);
 }
 
+const locationCategoryKeyMap: Record<string, keyof Project> = {
+  Region: 'region',
+  County: 'county',
+  Town: 'town',
+  'State Senate District': 'state_senate_district',
+  'Assembly District': 'assembly_district',
+  'Utility Service Territory': 'utility',
+};
+
 export default function MapViewScreen({
   projects,
   filteredProjects,
@@ -93,8 +102,12 @@ export default function MapViewScreen({
     setSelectedFilters(tempFilters);
   };
 
+  const [activeLocationCategory, setActiveLocationCategory] = useState<
+    string | null
+  >(null);
+
   useEffect(() => {
-    const { status, technology, projectSize } = selectedFilters;
+    const { status, technology, projectSize, location } = selectedFilters;
     let filteredProjects = projects;
 
     // add all filtering logic here
@@ -108,6 +121,17 @@ export default function MapViewScreen({
       filteredProjects = filteredProjects.filter(project =>
         status.includes(project.project_status),
       );
+    }
+
+    if (location.length > 0 && activeLocationCategory) {
+      const key = locationCategoryKeyMap[activeLocationCategory];
+
+      if (key) {
+        filteredProjects = filteredProjects.filter(project => {
+          const value = project[key];
+          return location.includes(String(value));
+        });
+      }
     }
 
     filteredProjects = filteredProjects.filter(
@@ -160,6 +184,7 @@ export default function MapViewScreen({
         handleFilterButtonClick={handleFilterButtonClick}
         clearFilters={clearFilters}
         projectSizes={getProjectsSize(projects)}
+        setActiveLocationCategory={setActiveLocationCategory}
       />
       <Map
         projects={projects}

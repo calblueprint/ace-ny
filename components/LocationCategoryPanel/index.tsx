@@ -32,13 +32,20 @@ interface LocationCategoryPanelProps {
   onBack: () => void;
   category: string;
   handleButtonClick: (filter: FilterType) => void;
+  handleFilterButtonClick: () => void;
   currFilter: FilterType;
+  selectedLocationFilters: string[];
+  clearFilters: () => void;
+  setSelectedLocationFilters: (value: string[]) => void;
+  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
 }
 
 export default function LocationCategoryPanel(
   props: LocationCategoryPanelProps,
 ) {
-  const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [selectedItem, setSelectedItem] = useState<string | null>(
+    props.selectedLocationFilters[0] ?? null,
+  );
 
   const counties = [
     'Albany County',
@@ -202,6 +209,11 @@ export default function LocationCategoryPanel(
 
   const options = getOptionsForCategory(props.category);
 
+  const handleApplyButtonClick = () => {
+    props.handleFilterButtonClick();
+    props.setActiveFilter(null);
+  };
+
   return (
     <PanelContainer>
       <CategoryInnerContainer>
@@ -237,17 +249,30 @@ export default function LocationCategoryPanel(
               key={item}
               label={item}
               selected={selectedItem === item}
-              onClick={() => setSelectedItem(item)}
+              onClick={() => {
+                props.setSelectedLocationFilters([item]);
+                setSelectedItem(item);
+              }}
             />
           ))}
         </ItemContainer>
       </CategoryInnerContainer>
 
       <ApplyClearButtonContainer>
-        <ApplyButtonStyles $isActive={selectedItem !== null}>
+        <ApplyButtonStyles
+          $isActive={selectedItem !== null}
+          onClick={() => {
+            if (selectedItem) {
+              handleApplyButtonClick();
+            }
+          }}
+        >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
-        <ClearButtonStyles $isActive={selectedItem !== null}>
+        <ClearButtonStyles
+          $isActive={selectedItem !== null}
+          onClick={props.clearFilters}
+        >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>
       </ApplyClearButtonContainer>

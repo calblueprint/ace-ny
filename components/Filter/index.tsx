@@ -22,6 +22,9 @@ interface FilterProps {
   clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   projectSizes: number[];
+  setActiveLocationCategory: React.Dispatch<
+    React.SetStateAction<string | null>
+  >;
 }
 
 export default function Filter({
@@ -34,6 +37,7 @@ export default function Filter({
   clearFilters,
   setActiveFilter,
   projectSizes,
+  setActiveLocationCategory,
 }: FilterProps) {
   const maxValue = Math.max(...projectSizes);
 
@@ -89,6 +93,11 @@ export default function Filter({
             label={filter.label}
             currFilter={filter}
             clearFilters={clearFilters}
+            handleFilterButtonClick={handleFilterButtonClick}
+            setActiveFilter={setActiveFilter}
+            selectedLocationFilters={selectedFilters.location}
+            setSelectedLocationFilters={filterChangeHandlers.location}
+            setActiveLocationCategory={setActiveLocationCategory}
           ></LocationDropdown>
         ) : // Add other filter dropdown components here
         null
