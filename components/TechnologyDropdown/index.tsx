@@ -50,13 +50,18 @@ export default function TechnologyDropdown({
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const handleApplyButtonClick = () => {
+  const applyButtonHandler = () => {
     setSelectedTechnologies({ value: tempFilters.technology, isTemp: false });
     setActiveFilter(null);
+    setLastAppliedFilter('technology');
+  };
+
+  const clearButtonHandler = () => {
+    clearFilters('technology');
     setLastAppliedFilter('technology');
   };
 
@@ -189,13 +194,13 @@ export default function TechnologyDropdown({
         ))}
         <ApplyButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={handleApplyButtonClick}
+          onClick={applyButtonHandler}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={clearFilters}
+          onClick={clearButtonHandler}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>

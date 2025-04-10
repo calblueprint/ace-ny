@@ -86,12 +86,24 @@ export default function MapViewScreen({
   );
 
   // clear filters
-  const clearFilters = () => {
-    setSelectedFilters(defaultFilters);
-    setTempFilters(defaultFilters);
-    setFilteredProjects(projects);
-    setFilteredProjectsFromDropdowns(projects);
-    setProjectSizes(getProjectsSize(projects));
+  const clearFilters = (filterName?: keyof Filters) => {
+    if (filterName) {
+      // Clear specific filter
+      setSelectedFilters(prev => ({
+        ...prev,
+        [filterName]: defaultFilters[filterName],
+      }));
+      setTempFilters(prev => ({
+        ...prev,
+        [filterName]: defaultFilters[filterName],
+      }));
+    } else {
+      // Clear all filters if no argument is passed
+      setSelectedFilters(defaultFilters);
+      setTempFilters(defaultFilters);
+      setFilteredProjects(projects);
+      setFilteredProjectsFromDropdowns(projects);
+    }
   };
 
   useEffect(() => {

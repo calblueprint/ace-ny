@@ -92,6 +92,7 @@ export default function Filter({
             setLastAppliedFilter={setLastAppliedFilter}
             minBound={minBound}
             maxBound={maxBound}
+            clearFilters={clearFilters}
           ></ProjectSizeDropdown>
         ) : filter.id === 'location' ? (
           <LocationDropdown

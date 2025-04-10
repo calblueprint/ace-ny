@@ -40,13 +40,18 @@ export default function StatusDropdown({
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const handleApplyButtonClick = () => {
+  const applyButtonHandler = () => {
     setSelectedStatus({ value: tempFilters.status, isTemp: false });
     setActiveFilter(null);
+    setLastAppliedFilter('status');
+  };
+
+  const clearButtonHandler = () => {
+    clearFilters('status');
     setLastAppliedFilter('status');
   };
 
@@ -95,13 +100,13 @@ export default function StatusDropdown({
         </div>
         <ApplyButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={handleApplyButtonClick}
+          onClick={applyButtonHandler}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={clearFilters}
+          onClick={clearButtonHandler}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>

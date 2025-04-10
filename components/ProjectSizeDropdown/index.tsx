@@ -40,6 +40,7 @@ interface ProjectSizeDropdownProps {
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
   minBound: number;
   maxBound: number;
+  clearFilters: (filterName?: keyof Filters) => void;
 }
 
 export default function ProjectSizeDropdown({
@@ -58,6 +59,7 @@ export default function ProjectSizeDropdown({
   setLastAppliedFilter,
   minBound,
   maxBound,
+  clearFilters,
 }: ProjectSizeDropdownProps) {
   const [minSize, setMinSize] = useState(Math.min(...projectSizes));
   const [maxSize, setMaxSize] = useState(Math.max(...projectSizes));
@@ -66,20 +68,18 @@ export default function ProjectSizeDropdown({
     projectSizes.reduce((a, b) => a + b) / projectSizes.length
   ).toFixed(2);
 
-  const handleApplyButtonClick = () => {
+  const applyButtonHandler = () => {
     setSelectedSize({ value: tempFilters.projectSize, isTemp: false });
     setActiveFilter(null);
     setLastAppliedFilter('projectSize');
   };
 
-  // const clearButtonHandler = () => {
-  //   setMinDefault(minBound);
-  //   setMaxDefault(maxBound);
-  //   setSelectedSize({
-  //     min: minBound,
-  //     max: maxBound,
-  //   });
-  // }
+  const clearButtonHandler = () => {
+    setMinDefault(minBound);
+    setMaxDefault(maxBound);
+    clearFilters('projectSize');
+    setLastAppliedFilter('projectSize');
+  };
 
   return (
     <FilterDropdownStyles>
@@ -123,11 +123,11 @@ export default function ProjectSizeDropdown({
           </MinMaxBox>
         </MinMaxBoxContainer>
 
-        <ApplyButtonStyles $isActive={true} onClick={handleApplyButtonClick}>
+        <ApplyButtonStyles $isActive={true} onClick={applyButtonHandler}>
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
 
-        <ClearButtonStyles $isActive={true} onClick={() => null}>
+        <ClearButtonStyles $isActive={true} onClick={clearButtonHandler}>
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>
       </FilterContentDiv>
