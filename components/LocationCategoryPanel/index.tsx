@@ -28,7 +28,17 @@ import {
   Underline,
 } from './styles';
 
-interface LocationCategoryPanelProps {
+export default function LocationCategoryPanel({
+  onBack,
+  category,
+  handleButtonClick,
+  handleFilterButtonClick,
+  currFilter,
+  selectedLocationFilters,
+  clearFilters,
+  setSelectedLocationFilters,
+  setActiveFilter,
+}: {
   onBack: () => void;
   category: string;
   handleButtonClick: (filter: FilterType) => void;
@@ -38,13 +48,9 @@ interface LocationCategoryPanelProps {
   clearFilters: () => void;
   setSelectedLocationFilters: (value: string[]) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
-}
-
-export default function LocationCategoryPanel(
-  props: LocationCategoryPanelProps,
-) {
+}) {
   const [selectedItem, setSelectedItem] = useState<string | null>(
-    props.selectedLocationFilters[0] ?? null,
+    selectedLocationFilters[0] ?? null,
   );
 
   const counties = [
@@ -92,7 +98,7 @@ export default function LocationCategoryPanel(
     'Rensselaer County',
     'Richmond County',
     'Rockland County',
-    'St. Lawrence County',
+    'St Lawrence County',
     'Saratoga County',
     'Schenectady County',
     'Schoharie County',
@@ -184,6 +190,9 @@ export default function LocationCategoryPanel(
     'Municipal Utility: FREEPORT',
   ];
 
+  const stateSenateDistrictCount = 63;
+  const assemblyDistrictCount = 150;
+
   const getOptionsForCategory = (category: string): string[] => {
     switch (category) {
       case 'County':
@@ -194,12 +203,12 @@ export default function LocationCategoryPanel(
         return utilityServiceTerritories; // the list from earlier
       case 'State Senate District':
         return Array.from(
-          { length: 63 },
+          { length: stateSenateDistrictCount },
           (_, i) => `State Senate District ${i + 1}`,
         );
       case 'Assembly District':
         return Array.from(
-          { length: 150 },
+          { length: assemblyDistrictCount },
           (_, i) => `Assembly District ${i + 1}`,
         );
       default:
@@ -207,11 +216,11 @@ export default function LocationCategoryPanel(
     }
   };
 
-  const options = getOptionsForCategory(props.category);
+  const options = getOptionsForCategory(category);
 
   const handleApplyButtonClick = () => {
-    props.handleFilterButtonClick();
-    props.setActiveFilter(null);
+    handleFilterButtonClick();
+    setActiveFilter(null);
   };
 
   return (
@@ -219,14 +228,12 @@ export default function LocationCategoryPanel(
       <CategoryInnerContainer>
         <PanelHeader>
           <BackArrowWithTitleContainer>
-            <BackArrowIconButton onClick={props.onBack}>
+            <BackArrowIconButton onClick={onBack}>
               <BackArrowIcon />
             </BackArrowIconButton>
-            <PanelTitle>{props.category}</PanelTitle>
+            <PanelTitle>{category}</PanelTitle>
           </BackArrowWithTitleContainer>
-          <CloseIconButton
-            onClick={() => props.handleButtonClick(props.currFilter)}
-          >
+          <CloseIconButton onClick={() => handleButtonClick(currFilter)}>
             <UpArrowIcon />
           </CloseIconButton>
         </PanelHeader>
@@ -250,7 +257,7 @@ export default function LocationCategoryPanel(
               label={item}
               selected={selectedItem === item}
               onClick={() => {
-                props.setSelectedLocationFilters([item]);
+                setSelectedLocationFilters([item]);
                 setSelectedItem(item);
               }}
             />
@@ -271,7 +278,7 @@ export default function LocationCategoryPanel(
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={selectedItem !== null}
-          onClick={props.clearFilters}
+          onClick={clearFilters}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>

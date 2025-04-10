@@ -128,8 +128,19 @@ export default function MapViewScreen({
 
       if (key) {
         filteredProjects = filteredProjects.filter(project => {
-          const value = project[key];
-          return location.includes(String(value));
+          const value = String(project[key]);
+          if (activeLocationCategory === 'County') {
+            return location.map(l => l.replace(' County', '')).includes(value);
+          }
+          if (
+            activeLocationCategory === 'State Senate District' ||
+            activeLocationCategory === 'Assembly District'
+          ) {
+            return location
+              .map(l => parseInt(l.split(' ').at(-1) || ''))
+              .includes(Number(value));
+          }
+          return location.includes(value);
         });
       }
     }
