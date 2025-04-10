@@ -114,31 +114,37 @@ export default function ProjectsListingModal({
                           category="Name A-Z"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
                         />
                         <SortBy
                           category="Name Z-A"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
                         />
                         <SortBy
                           category="Size Ascending"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
                         />
                         <SortBy
                           category="Size Descending"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
                         />
                         <SortBy
                           category="COD Ascending"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
                         />
                         <SortBy
                           category="COD Descending"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
                         />
                       </SortByMenu>
                     )}
