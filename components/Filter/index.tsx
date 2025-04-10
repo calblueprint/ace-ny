@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import ProjectSizeDropdown from '@/components/ProjectSizeDropdown';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
@@ -15,72 +14,85 @@ import {
 interface FilterProps {
   filter: FilterType;
   isActive: boolean;
-  selectedFilters: Filters;
+  tempFilters: Filters;
   filterChangeHandlers: FilterChangeHandlers;
   handleButtonClick: (filter: FilterType) => void;
-  handleFilterButtonClick: () => void;
   clearFilters: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   projectSizes: number[];
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
+  minBound: number;
+  maxBound: number;
+  minDefault: number;
+  setMinDefault: React.Dispatch<React.SetStateAction<number>>;
+  maxDefault: number;
+  setMaxDefault: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function Filter({
   filter,
   isActive,
-  selectedFilters,
+  tempFilters,
   filterChangeHandlers,
   handleButtonClick,
-  handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
   projectSizes,
+  setLastAppliedFilter,
+  minBound,
+  maxBound,
+  minDefault,
+  setMinDefault,
+  maxDefault,
+  setMaxDefault,
 }: FilterProps) {
-  const maxValue = Math.max(...projectSizes);
-
-  const [minRange, setMinRange] = useState(-100);
-  const [maxRange, setMaxRange] = useState(maxValue + 100);
-
   return (
     <FilterBackgroundStyles $isActive={isActive}>
       {isActive ? (
         filter.id === 'technology' ? (
           <TechnologyDropdown
-            selectedTechnologies={selectedFilters.technology}
+            tempFilters={tempFilters}
+            selectedTechnologies={tempFilters.technology}
             setSelectedTechnologies={filterChangeHandlers.technology}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
-            handleFilterButtonClick={handleFilterButtonClick}
             clearFilters={clearFilters}
             setActiveFilter={setActiveFilter}
+            setLastAppliedFilter={setLastAppliedFilter}
           />
         ) : filter.id === 'status' ? (
           <StatusDropdown
-            selectedStatus={selectedFilters.status}
+            tempFilters={tempFilters}
+            selectedStatus={tempFilters.status}
             setSelectedStatus={filterChangeHandlers.status}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
-            handleFilterButtonClick={handleFilterButtonClick}
             clearFilters={clearFilters}
             setActiveFilter={setActiveFilter}
+            setLastAppliedFilter={setLastAppliedFilter}
           />
         ) : filter.id === 'projectSize' ? (
           <ProjectSizeDropdown
+            tempFilters={tempFilters}
             setSelectedSize={filterChangeHandlers.projectSize}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
-            handleFilterButtonClick={handleFilterButtonClick}
             setActiveFilter={setActiveFilter}
             projectSizes={projectSizes}
-            minRange={minRange}
-            setMinRange={setMinRange}
-            maxRange={maxRange}
-            setMaxRange={setMaxRange}
+            minDefault={minDefault}
+            setMinDefault={setMinDefault}
+            maxDefault={maxDefault}
+            setMaxDefault={setMaxDefault}
+            setLastAppliedFilter={setLastAppliedFilter}
+            minBound={minBound}
+            maxBound={maxBound}
+            clearFilters={clearFilters}
           ></ProjectSizeDropdown>
         ) : filter.id === 'location' ? (
           <LocationDropdown

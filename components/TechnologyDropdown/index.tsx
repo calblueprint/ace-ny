@@ -5,8 +5,8 @@ import {
   FilterCategoryText1,
   FilterHeadingUnused,
 } from '@/styles/texts';
-import { FilterType } from '@/types/schema';
-import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
+import { Filters, FilterType } from '@/types/schema';
+import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
   GeothermalIcon,
@@ -32,29 +32,37 @@ import {
 } from './styles';
 
 export default function TechnologyDropdown({
+  tempFilters,
   selectedTechnologies,
   setSelectedTechnologies,
   handleButtonClick,
   icon,
   label,
   currFilter,
-  handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
+  setLastAppliedFilter,
 }: {
+  tempFilters: Filters;
   selectedTechnologies: string[];
-  setSelectedTechnologies: (technologies: string[]) => void;
+  setSelectedTechnologies: (args: { value: string[]; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  handleFilterButtonClick: () => void;
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+  const applyButtonHandler = () => {
+    setSelectedTechnologies({ value: tempFilters.technology, isTemp: false });
     setActiveFilter(null);
+    setLastAppliedFilter('technology');
+  };
+
+  const clearButtonHandler = () => {
+    clearFilters('technology');
+    setLastAppliedFilter('technology');
   };
 
   const filter = {
@@ -147,6 +155,13 @@ export default function TechnologyDropdown({
   };
   const isApplyButtonActive = selectedTechnologies.length > 0;
 
+  function checkBoxClickHandler(title: string): void {
+    const value = selectedTechnologies.includes(title)
+      ? selectedTechnologies.filter(o => o !== title)
+      : [...selectedTechnologies, title];
+    setSelectedTechnologies({ value: value, isTemp: true });
+  }
+
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
@@ -157,7 +172,7 @@ export default function TechnologyDropdown({
           <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
             <FilterHeadingUnused>{label}</FilterHeadingUnused>
             <ExitStyles>
-              <ExitIcon />
+              <CollapseIcon />
             </ExitStyles>
           </ButtonStyles>
         </ButtonWithIconStyles>
@@ -171,13 +186,7 @@ export default function TechnologyDropdown({
                 <CheckboxStyles
                   type="checkbox"
                   checked={selectedTechnologies.includes(option.title)}
-                  onChange={() => {
-                    setSelectedTechnologies(
-                      selectedTechnologies.includes(option.title)
-                        ? selectedTechnologies.filter(o => o !== option.title)
-                        : [...selectedTechnologies, option.title],
-                    );
-                  }}
+                  onChange={() => checkBoxClickHandler(option.title)}
                 />
               </CheckboxContainer>
             ))}
@@ -185,13 +194,13 @@ export default function TechnologyDropdown({
         ))}
         <ApplyButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={handleApplyButtonClick}
+          onClick={applyButtonHandler}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={clearFilters}
+          onClick={clearButtonHandler}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>

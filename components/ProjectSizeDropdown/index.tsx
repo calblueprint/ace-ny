@@ -1,13 +1,18 @@
 import { useState } from 'react';
-import { ApplyFiltersText, FilterHeadingUnused } from '@/styles/texts';
-import { FilterType, projectSizeType } from '@/types/schema';
-import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
+import {
+  ApplyFiltersText,
+  ClearFiltersText,
+  FilterHeadingUnused,
+} from '@/styles/texts';
+import { Filters, FilterType, ProjectSizeType } from '@/types/schema';
+import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import ProjectSizeHistogram from '../ProjectSizeHistogram';
 import {
   ApplyButtonStyles,
   BlueTextStyles,
   ButtonStyles,
   ButtonWithIconStyles,
+  ClearButtonStyles,
   ExitStyles,
   FilterCategoryText1WithPadding,
   FilterContentDiv,
@@ -20,33 +25,41 @@ import {
 } from './styles';
 
 interface ProjectSizeDropdownProps {
-  setSelectedSize: (projectSize: projectSizeType) => void;
+  tempFilters: Filters;
+  setSelectedSize: (args: { value: ProjectSizeType; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  handleFilterButtonClick: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   projectSizes: number[];
-  minRange: number;
-  setMinRange: (value: number) => void;
-  maxRange: number;
-  setMaxRange: (value: number) => void;
+  minDefault: number;
+  setMinDefault: (value: number) => void;
+  maxDefault: number;
+  setMaxDefault: (value: number) => void;
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
+  minBound: number;
+  maxBound: number;
+  clearFilters: (filterName?: keyof Filters) => void;
 }
 
 export default function ProjectSizeDropdown({
+  tempFilters,
   setSelectedSize,
   handleButtonClick,
   icon,
   label,
   currFilter,
-  handleFilterButtonClick,
   setActiveFilter,
   projectSizes,
-  minRange,
-  setMinRange,
-  maxRange,
-  setMaxRange,
+  minDefault,
+  setMinDefault,
+  maxDefault,
+  setMaxDefault,
+  setLastAppliedFilter,
+  minBound,
+  maxBound,
+  clearFilters,
 }: ProjectSizeDropdownProps) {
   const [minSize, setMinSize] = useState(Math.min(...projectSizes));
   const [maxSize, setMaxSize] = useState(Math.max(...projectSizes));
@@ -55,9 +68,17 @@ export default function ProjectSizeDropdown({
     projectSizes.reduce((a, b) => a + b) / projectSizes.length
   ).toFixed(2);
 
-  const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+  const applyButtonHandler = () => {
+    setSelectedSize({ value: tempFilters.projectSize, isTemp: false });
     setActiveFilter(null);
+    setLastAppliedFilter('projectSize');
+  };
+
+  const clearButtonHandler = () => {
+    setMinDefault(minBound);
+    setMaxDefault(maxBound);
+    clearFilters('projectSize');
+    setLastAppliedFilter('projectSize');
   };
 
   return (
@@ -69,7 +90,7 @@ export default function ProjectSizeDropdown({
             <FilterHeadingUnused>{label}</FilterHeadingUnused>
           </ButtonStyles>
           <ExitStyles>
-            <ExitIcon />
+            <CollapseIcon />
           </ExitStyles>
         </ButtonWithIconStyles>
 
@@ -82,11 +103,13 @@ export default function ProjectSizeDropdown({
           projectSizes={projectSizes}
           setMinSize={setMinSize}
           setMaxSize={setMaxSize}
-          minRange={minRange}
-          setMinRange={setMinRange}
-          maxRange={maxRange}
-          setMaxRange={setMaxRange}
+          minDefault={minDefault}
+          setMinDefault={setMinDefault}
+          maxDefault={maxDefault}
+          setMaxDefault={setMaxDefault}
           setSelectedSize={setSelectedSize}
+          minBound={minBound}
+          maxBound={maxBound}
         ></ProjectSizeHistogram>
 
         <MinMaxBoxContainer>
@@ -100,9 +123,13 @@ export default function ProjectSizeDropdown({
           </MinMaxBox>
         </MinMaxBoxContainer>
 
-        <ApplyButtonStyles $isActive={true} onClick={handleApplyButtonClick}>
+        <ApplyButtonStyles $isActive={true} onClick={applyButtonHandler}>
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
+
+        <ClearButtonStyles $isActive={true} onClick={clearButtonHandler}>
+          <ClearFiltersText>CLEAR</ClearFiltersText>
+        </ClearButtonStyles>
       </FilterContentDiv>
     </FilterDropdownStyles>
   );

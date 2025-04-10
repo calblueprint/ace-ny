@@ -1,5 +1,5 @@
-import { FilterType } from '@/types/schema';
-import { ExitIcon } from '../../assets/Dropdown-Icons/icons';
+import { Filters, FilterType } from '@/types/schema';
+import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
   ApplyFiltersText,
@@ -22,29 +22,37 @@ import {
 } from './styles';
 
 export default function StatusDropdown({
+  tempFilters,
   selectedStatus,
   setSelectedStatus,
   handleButtonClick,
   icon,
   label,
   currFilter,
-  handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
+  setLastAppliedFilter,
 }: {
+  tempFilters: Filters;
   selectedStatus: string[];
-  setSelectedStatus: (status: string[]) => void;
+  setSelectedStatus: (args: { value: string[]; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  handleFilterButtonClick: () => void;
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+  const applyButtonHandler = () => {
+    setSelectedStatus({ value: tempFilters.status, isTemp: false });
     setActiveFilter(null);
+    setLastAppliedFilter('status');
+  };
+
+  const clearButtonHandler = () => {
+    clearFilters('status');
+    setLastAppliedFilter('status');
   };
 
   const filterOptions = [
@@ -53,7 +61,8 @@ export default function StatusDropdown({
   ];
 
   const handleStatusChange = (status: string) => {
-    setSelectedStatus(selectedStatus[0] === status ? [] : [status]);
+    const value = selectedStatus[0] === status ? [] : [status];
+    setSelectedStatus({ value: value, isTemp: true });
   };
 
   const isApplyButtonActive = selectedStatus.length > 0;
@@ -68,8 +77,8 @@ export default function StatusDropdown({
           <ButtonStyles>
             <FilterNameText>{label}</FilterNameText>
           </ButtonStyles>
-          <ExitStyles onClick={clearFilters}>
-            <ExitIcon />
+          <ExitStyles>
+            <CollapseIcon />
           </ExitStyles>
         </ButtonWithIconStyles>
         <div>
@@ -91,13 +100,13 @@ export default function StatusDropdown({
         </div>
         <ApplyButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={handleApplyButtonClick}
+          onClick={applyButtonHandler}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={clearFilters}
+          onClick={clearButtonHandler}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>
