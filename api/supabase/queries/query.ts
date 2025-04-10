@@ -41,3 +41,29 @@ export async function queryDefaultImages(category: string) {
 
   return defaultImage;
 }
+
+export async function queryOptionsForCategory(category: string) {
+  const tableMap: Record<string, string> = {
+    County: 'Counties',
+    Region: 'Regions',
+    'Utility Service Territory': 'Utility Service Territories',
+    'State Senate District': 'State Senate Districts',
+    'Assembly District': 'Assembly Districts',
+    Town: 'Towns',
+  };
+
+  const tableName = tableMap[category];
+
+  if (!tableName) {
+    return [];
+  }
+
+  const { data, error } = await supabase.from(tableName).select('*');
+
+  if (error) {
+    console.error(`Error fetching ${category}:`, error.message);
+    return [];
+  }
+
+  return data.map(row => Object.values(row)[1]); // gets column of values associated for the option
+}
