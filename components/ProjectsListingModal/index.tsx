@@ -141,7 +141,12 @@ export default function ProjectsListingModal({
                   ) : (
                     <NoProjectsDiv>
                       <NoProjectsFound />
-                      <SubHeading1 style={{ color: 'rgba(46, 58, 89, 0.85)' }}>
+                      <SubHeading1
+                        style={{
+                          color: 'rgba(46, 58, 89, 0.85)',
+                          marginTop: '1.319rem',
+                        }}
+                      >
                         NO PROJECTS FOUND
                       </SubHeading1>
                       <NoProjectsFoundText>

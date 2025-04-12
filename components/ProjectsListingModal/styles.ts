@@ -68,8 +68,8 @@ export const NoProjectsDiv = styled.div`
   justify-content: center;
   text-align: center;
   flex: 1;
-  padding: 9.125rem 1rem;
-  gap: 1.25rem;
+  padding-top: 10.563rem;
+  gap: 0.625rem;
 `;
 
 export const NoProjectsFoundText = styled.div`
