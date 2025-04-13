@@ -1,34 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { InfoModalTriangle } from '@/assets/InfoModal-Icons/icons';
 import {
-  InfoModalArrow,
-  InfoModalCircle,
-  InfoModalTriangle,
-} from '@/assets/InfoModal-Icons/icons';
-import COLORS from '@/styles/colors';
-import {
-  EnergyStorageIcon,
-  GeothermalIcon,
-  HydroelectricIcon,
-  LandBasedWindIcon,
-  OffshoreWindIcon,
-  PumpedStorageIcon,
-  SolarPvIcon,
-} from '../../assets/Technology-Tag-Icons/icons';
-import {
-  HeaderStyles,
   InfoModalBoldedText,
-  InfoModalBoldedUnderlinedText,
-  InfoModalCircleWrapper,
-  InfoModalLeftArrowStyles,
-  InfoModalLegendContent,
-  InfoModalRightArrowStyles,
   InfoModalStyles,
   InfoModalText,
   InfoModalTriangleStyles,
-  InfoModalWrapper,
-  TechnologyStyles,
-  TechnologyWrapperStyles,
-  TitleStyles,
 } from './styles';
 
 export default function InfoModal() {
