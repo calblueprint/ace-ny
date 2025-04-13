@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Project } from '@/types/schema';
 import AggregationFilter from '../AggregationFilter';
 import AggregationFilterButton from '../AggregationFilterButton';
 import InfoModalButton from '../InfoModalButton';
+import LegendButton from '../LegendButton';
 import { BottomBarContainer } from './styles';
 
 interface BottomBarProps {
@@ -42,6 +43,7 @@ export default function BottomBar({ projects }: BottomBarProps) {
 
   const [aggFilterisVisible, setAggFilterisVisible] = useState(false);
   const [infoModalisVisible, setInfoModalisVisible] = useState(false);
+  const [legendIsVisible, setLegendIsVisible] = useState(false);
 
   const numProjects = intToString(projects.length);
   const totalEnergy = intToString(
@@ -74,6 +76,8 @@ export default function BottomBar({ projects }: BottomBarProps) {
           setAggFilterisVisible={setAggFilterisVisible}
           infoModalisVisible={infoModalisVisible}
           setInfoModalisVisible={setInfoModalisVisible}
+          legendIsVisible={legendIsVisible}
+          setLegendIsVisible={setLegendIsVisible}
           numProjects={numProjects}
           totalEnergy={totalEnergy}
         />
@@ -89,12 +93,21 @@ export default function BottomBar({ projects }: BottomBarProps) {
           projects={projects}
         />
       )}
-
+      <LegendButton
+        aggFilterisVisible={aggFilterisVisible}
+        setAggFilterisVisible={setAggFilterisVisible}
+        infoModalisVisible={infoModalisVisible}
+        setInfoModalisVisible={setInfoModalisVisible}
+        legendIsVisible={legendIsVisible}
+        setLegendIsVisible={setLegendIsVisible}
+      ></LegendButton>
       <InfoModalButton
         aggFilterisVisible={aggFilterisVisible}
         setAggFilterisVisible={setAggFilterisVisible}
         infoModalisVisible={infoModalisVisible}
         setInfoModalisVisible={setInfoModalisVisible}
+        legendIsVisible={legendIsVisible}
+        setLegendIsVisible={setLegendIsVisible}
       ></InfoModalButton>
     </BottomBarContainer>
   );

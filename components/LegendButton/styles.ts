@@ -2,12 +2,30 @@ import { styled } from 'styled-components';
 import COLORS from '@/styles/colors';
 import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
 
+export const InfoModalButtonBackground = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(250, 250, 250, 0.32) 0%,
+    rgba(238, 238, 238, 0.65) 100%
+  );
+  backdrop-filter: blur(7.5px);
+  cursor: pointer;
+`;
+
 export const InfoModalStyles = styled.div`
   position: absolute;
   bottom: 60px;
-  right: 2px;
-  width: 13.5rem;
-  padding: 20px;
+  right: 5px;
+  width: 14.6875rem;
+  height: 20.625rem;
+  padding: 16px 16px;
   justify-content: center;
   display: flex;
   flex-direction: column;
@@ -27,22 +45,30 @@ export const InfoModalText = styled.div`
   justify-content: center;
   color: ${COLORS.navy75};
   font-family: ${CoinbaseText.style};
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 250;
   line-height: 16px;
+  padding: 5px 16px;
   white-space: normal;
   display: inline;
+  padding-bottom: 15px;
+  margin-top: -5px;
 `;
 
 export const InfoModalBoldedText = styled.div`
   color: ${COLORS.electricBlue};
   font-family: ${CoinbaseText.style};
-  font-size: 0.625rem;
+  font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
   display: inline;
+`;
+
+export const InfoModalBoldedUnderlinedText = styled(InfoModalBoldedText)`
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 export const InfoModalTriangleStyles = styled.div`
@@ -52,7 +78,7 @@ export const InfoModalTriangleStyles = styled.div`
   flex-shrink: 0;
   z-index: 100;
   bottom: 53px;
-  right: 13px;
+  right: 15px;
 `;
 
 export const InfoModalRightArrowStyles = styled.div`
