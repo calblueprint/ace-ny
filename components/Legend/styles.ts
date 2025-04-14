@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import COLORS from '@/styles/colors';
-import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
+import { CoinbaseMono, CoinbaseText } from '@/styles/fonts';
 
 export const LegendStyles = styled.div`
   position: absolute;
@@ -31,15 +31,6 @@ export const LegendTriangleStyles = styled.div`
   right: 71px;
 `;
 
-export const HeaderStyles = styled.div`
-  color: ${COLORS.navy85};
-  font-family: ${CoinbaseSans.style};
-  font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
-
 export const TitleStyles = styled.div`
   color: ${COLORS.navy50};
   font-family: ${CoinbaseMono.style};
@@ -52,7 +43,6 @@ export const LineStyles = styled.div`
   padding-right: 10px;
   padding-left: 10px;
 `;
-export const IconStyles = styled.div``;
 
 export const TechnologyStyles = styled.div`
   display: flex;

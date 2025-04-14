@@ -1,9 +1,8 @@
-import React from 'react';
 import { LegendButtonIcon } from '@/assets/Legend-Icons/icons';
 import Legend from '../Legend';
 import { LegendButtonBackground, LegendButtonWhiteBackground } from './styles';
 
-interface InfoModalButtonProps {
+interface LegendButtonProps {
   aggFilterisVisible: boolean;
   setAggFilterisVisible: (isVisible: boolean) => void;
   infoModalisVisible: boolean;
@@ -19,7 +18,7 @@ export default function LegendButton({
   setInfoModalisVisible,
   legendIsVisible,
   setLegendIsVisible,
-}: InfoModalButtonProps) {
+}: LegendButtonProps) {
   function handleClick() {
     setLegendIsVisible(!legendIsVisible);
     if (aggFilterisVisible) {

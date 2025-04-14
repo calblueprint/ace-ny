@@ -5,8 +5,8 @@ export const LegendButtonBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
   background: linear-gradient(
     180deg,
@@ -22,8 +22,8 @@ export const LegendButtonWhiteBackground = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background: #fff;
   backdrop-filter: blur(7.5px);

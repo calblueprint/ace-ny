@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Project } from '@/types/schema';
 import AggregationFilter from '../AggregationFilter';
 import AggregationFilterButton from '../AggregationFilterButton';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { InfoModalTriangle } from '@/assets/InfoModal-Icons/icons';
 import {
   InfoModalBoldedText,
