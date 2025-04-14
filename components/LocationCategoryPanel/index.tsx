@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { queryOptionsForCategory } from '@/api/supabase/queries/query';
+import React, { useState } from 'react';
 import {
   ApplyFiltersText,
   ClearFiltersText,
@@ -39,6 +38,7 @@ export default function LocationCategoryPanel({
   clearFilters,
   setSelectedLocationFilters,
   setActiveFilter,
+  categoryOptionsMap,
 }: {
   onBack: () => void;
   category: string;
@@ -49,21 +49,13 @@ export default function LocationCategoryPanel({
   clearFilters: () => void;
   setSelectedLocationFilters: (value: string[]) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
+  categoryOptionsMap: Record<string, string[]>;
 }) {
   const [selectedItem, setSelectedItem] = useState<string | null>(
     selectedLocationFilters[0] ?? null,
   );
 
-  const [options, setOptions] = useState<string[]>([]);
-
-  useEffect(() => {
-    async function fetchOptions() {
-      const result = await queryOptionsForCategory(category);
-      setOptions((result as string[]) ?? []);
-    }
-
-    fetchOptions();
-  }, [category]);
+  const options = categoryOptionsMap[category];
 
   const handleApplyButtonClick = () => {
     handleFilterButtonClick();

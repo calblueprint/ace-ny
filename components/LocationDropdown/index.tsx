@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { queryOptionsForCategory } from '@/api/supabase/queries/query';
 import { FilterType } from '@/types/schema';
 import { UpIcon } from '../../assets/Dropdown-Icons/icons';
 import {
@@ -50,7 +51,33 @@ export default function LocationDropdown({
     React.SetStateAction<string | null>
   >;
 }) {
+  const locationCategories = [
+    'County',
+    'Town',
+    'Region',
+    'Utility Service Territory',
+    'State Senate District',
+    'Assembly District',
+  ];
+
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const [categoryOptionsMap, setCategoryOptionsMap] = useState({});
+
+  useEffect(() => {
+    const fetchAllCategoryOptions = async () => {
+      const results = await Promise.all(
+        locationCategories.map(async category => {
+          const data = await queryOptionsForCategory(category);
+          return [category, data];
+        }),
+      );
+      const resultObj = Object.fromEntries(results);
+      setCategoryOptionsMap(resultObj);
+    };
+
+    fetchAllCategoryOptions();
+  }, []);
 
   return activeCategory === null ? (
     <LocationStyleDiv>
@@ -130,6 +157,7 @@ export default function LocationDropdown({
       selectedLocationFilters={selectedLocationFilters}
       setSelectedLocationFilters={setSelectedLocationFilters}
       setActiveFilter={setActiveFilter}
+      categoryOptionsMap={categoryOptionsMap}
     />
   );
 }
