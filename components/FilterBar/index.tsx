@@ -15,6 +15,9 @@ interface FilterBarProps {
   handleFilterButtonClick: () => void;
   clearFilters: (filterName?: keyof Filters) => void;
   projectSizes: number[];
+  setActiveLocationCategory: React.Dispatch<
+    React.SetStateAction<string | null>
+  >;
 }
 
 export const FilterBar = ({
@@ -24,6 +27,7 @@ export const FilterBar = ({
   handleFilterButtonClick,
   clearFilters,
   projectSizes,
+  setActiveLocationCategory,
 }: FilterBarProps) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
@@ -79,6 +83,7 @@ export const FilterBar = ({
           clearFilters={clearFilters}
           setActiveFilter={setActiveFilter}
           projectSizes={projectSizes}
+          setActiveLocationCategory={setActiveLocationCategory}
         />
       ))}
     </FilterContainerStyles>

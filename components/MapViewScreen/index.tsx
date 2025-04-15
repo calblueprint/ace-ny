@@ -22,6 +22,15 @@ function getProjectsSize(projects: Project[]) {
   return projects.map(project => project.size);
 }
 
+const locationCategoryKeyMap: Record<string, keyof Project> = {
+  Region: 'region',
+  County: 'county',
+  Town: 'town',
+  'State Senate District': 'state_senate_district',
+  'Assembly District': 'assembly_district',
+  'Utility Service Territory': 'utility',
+};
+
 export default function MapViewScreen({
   projects,
   filteredProjects,
@@ -113,8 +122,12 @@ export default function MapViewScreen({
     setSelectedFilters(tempFilters);
   };
 
+  const [activeLocationCategory, setActiveLocationCategory] = useState<
+    string | null
+  >(null);
+
   useEffect(() => {
-    const { status, technology, projectSize } = selectedFilters;
+    const { status, technology, projectSize, location } = selectedFilters;
     let filteredProjects = projects;
 
     // add all filtering logic here
@@ -128,6 +141,44 @@ export default function MapViewScreen({
       filteredProjects = filteredProjects.filter(project =>
         status.includes(project.project_status),
       );
+    }
+
+    if (location.length > 0 && activeLocationCategory) {
+      const key = locationCategoryKeyMap[activeLocationCategory];
+
+      if (key) {
+        filteredProjects = filteredProjects.filter(project => {
+          const value = String(project[key]);
+          if (activeLocationCategory === 'County') {
+            return location.map(l => l.replace(' County', '')).includes(value);
+          }
+          if (
+            activeLocationCategory === 'State Senate District' ||
+            activeLocationCategory === 'Assembly District'
+          ) {
+            return location
+              .map(l => parseInt(l.split(' ').at(-1) || ''))
+              .includes(Number(value));
+          }
+          if (activeLocationCategory === 'Utility Service Territory') {
+            const utilityShortNamesMap: Record<string, string> = {
+              'National Grid': 'NGRID',
+              'Rochester Gas and Electric': 'RGE',
+              'NYS Electric and Gas': 'NYSEG',
+              'Central Hudson Gas and Electric': 'CHGE',
+              'Orange and Rockland Utilities': 'ORU',
+              'Long Island Power Authority': 'LIPA',
+              'Consolidated Edison': 'ConEd',
+              Municipal: 'Municipal',
+            };
+
+            return location
+              .map(name => utilityShortNamesMap[name])
+              .includes(value);
+          }
+          return location.includes(value);
+        });
+      }
     }
 
     filteredProjects = filteredProjects.filter(
@@ -180,6 +231,7 @@ export default function MapViewScreen({
         handleFilterButtonClick={handleFilterButtonClick}
         clearFilters={clearFilters}
         projectSizes={getProjectsSize(projects)}
+        setActiveLocationCategory={setActiveLocationCategory}
       />
       <Map
         projects={projects}
