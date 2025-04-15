@@ -13,7 +13,7 @@ interface FilterBarProps {
   selectedFilters: Filters;
   setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
   handleFilterButtonClick: () => void;
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   projectSizes: number[];
 }
 

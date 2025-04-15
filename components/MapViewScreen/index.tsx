@@ -2,9 +2,13 @@ import { useEffect, useState } from 'react';
 //import { useMap } from '@vis.gl/react-google-maps';
 import {
   LocationIcon,
+  LocationIconApplied,
   ProjectSizeIcon,
+  ProjectSizeIconApplied,
   StatusIcon,
+  StatusIconApplied,
   TechnologyIcon,
+  TechnologyIconApplied,
 } from '@/assets/Dropdown-Icons/icons';
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
@@ -32,21 +36,25 @@ export default function MapViewScreen({
       id: 'status',
       label: 'STATUS',
       icon: <StatusIcon />,
+      iconApplied: <StatusIconApplied />,
     },
     {
       id: 'technology',
       label: 'TECHNOLOGY',
       icon: <TechnologyIcon />,
+      iconApplied: <TechnologyIconApplied />,
     },
     {
       id: 'location',
       label: 'LOCATION',
       icon: <LocationIcon />,
+      iconApplied: <LocationIconApplied />,
     },
     {
       id: 'projectSize',
       label: 'PROJECT SIZE',
       icon: <ProjectSizeIcon />,
+      iconApplied: <ProjectSizeIconApplied />,
     },
   ];
 
@@ -80,12 +88,24 @@ export default function MapViewScreen({
   const [filteredProjectsFromSearch, setFilteredProjectsFromSearch] =
     useState<Project[]>(projects);
 
-  // clear filters
-  const clearFilters = () => {
-    setSelectedFilters(defaultFilters);
-    setTempFilters(defaultFilters);
-    setFilteredProjects(projects);
-    setFilteredProjectsFromDropdowns(projects);
+  const clearFilters = (filterName?: keyof Filters) => {
+    if (filterName) {
+      // Clear specific filter
+      setSelectedFilters(prev => ({
+        ...prev,
+        [filterName]: defaultFilters[filterName],
+      }));
+      setTempFilters(prev => ({
+        ...prev,
+        [filterName]: defaultFilters[filterName],
+      }));
+    } else {
+      // Clear all filters if no argument is passed
+      setSelectedFilters(defaultFilters);
+      setTempFilters(defaultFilters);
+      setFilteredProjects(projects);
+      setFilteredProjectsFromDropdowns(projects);
+    }
   };
 
   // show projects based on selected filters
