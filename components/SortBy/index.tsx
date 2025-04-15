@@ -9,11 +9,13 @@ export default function SortBy({
   category,
   setSortedProjects,
   toggleSortBy,
+  setSortCategory,
 }: {
   projects: Project[] | null;
   category: string;
   setSortedProjects: (projects: Project[] | null) => void;
   toggleSortBy: () => void;
+  setSortCategory: (category: string) => void;
 }) {
   let filteredProjects: Project[] | null;
 
@@ -52,6 +54,7 @@ export default function SortBy({
     <SortByItem
       onClick={() => {
         setSortedProjects(filteredProjects);
+        setSortCategory(category);
         toggleSortBy();
       }}
     >
