@@ -24,6 +24,7 @@ export const CategoryComponentContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 0.188rem;
+  cursor: pointer;
 `;
 
 export const ButtonStyles = styled.button`

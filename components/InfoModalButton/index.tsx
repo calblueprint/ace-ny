@@ -3,22 +3,29 @@ import InfoModal from '../InfoModal';
 import { InfoModalButtonBackground } from './styles';
 
 interface InfoModalButtonProps {
-  infoModalisVisible: boolean;
-  setInfoModalisVisible: (isVisible: boolean) => void;
   aggFilterisVisible: boolean;
   setAggFilterisVisible: (isVisible: boolean) => void;
+  infoModalisVisible: boolean;
+  setInfoModalisVisible: (isVisible: boolean) => void;
+  legendIsVisible: boolean;
+  setLegendIsVisible: (isVisible: boolean) => void;
 }
 
 export default function InfoModalButton({
-  infoModalisVisible,
-  setInfoModalisVisible,
   aggFilterisVisible,
   setAggFilterisVisible,
+  infoModalisVisible,
+  setInfoModalisVisible,
+  legendIsVisible,
+  setLegendIsVisible,
 }: InfoModalButtonProps) {
   function handleClick() {
     setInfoModalisVisible(!infoModalisVisible);
     if (aggFilterisVisible) {
       setAggFilterisVisible(false);
+    }
+    if (legendIsVisible) {
+      setLegendIsVisible(false);
     }
   }
 

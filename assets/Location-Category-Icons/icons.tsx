@@ -254,3 +254,73 @@ export const ArrowIcon = () => (
     />
   </svg>
 );
+
+export const BackArrowIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="13"
+    height="7"
+    viewBox="0 0 13 7"
+    fill="none"
+  >
+    <path
+      d="M2.33487 4.2L3.90784 6.013L3.0482 7L-0.000189094 3.5L3.0482 -9.17939e-07L3.90784 0.986999L2.33487 2.8L12.1934 2.8L12.1934 4.2L2.33487 4.2Z"
+      fill="#4974E0"
+    />
+  </svg>
+);
+
+export const UpArrowIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="12"
+    height="8"
+    viewBox="0 0 12 8"
+    fill="none"
+  >
+    <path
+      d="M5.89458 0.287524L9.93035e-05 6.29752L1.38594 7.71252L5.89458 3.11252L10.4022 7.71252L11.7891 6.29852L5.89458 0.287524Z"
+      fill="#4974E0"
+    />
+  </svg>
+);
+
+export const SearchIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="15.4"
+    height="16.5"
+    viewBox="0 0 14 15"
+    fill="none"
+  >
+    <path
+      d="M12.8063 14.5L7.98867 9.68149C5.84552 11.2052 2.89234 10.8325 1.19493 8.82411C-0.502472 6.81577 -0.377837 3.84178 1.48166 1.9825C3.34066 0.122407 6.31494 -0.00276828 8.32366 1.69455C10.3324 3.39187 10.7053 6.34533 9.18149 8.48867L13.9992 13.3072L12.8072 14.4992L12.8063 14.5ZM5.0576 2.18649C3.45905 2.18613 2.07992 3.30824 1.75518 4.87347C1.43045 6.43869 2.24937 8.01682 3.71614 8.65241C5.18291 9.28799 6.89438 8.80633 7.81437 7.49904C8.73436 6.19176 8.61 4.41815 7.51659 3.25204L8.0266 3.75783L7.45168 3.1846L7.44157 3.17448C6.81083 2.53986 5.95234 2.18408 5.0576 2.18649Z"
+      fill="#2E3A59"
+      fill-opacity="0.35"
+    />
+  </svg>
+);
+
+export const SelectedRadioIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="12"
+    height="13"
+    viewBox="0 0 12 13"
+    fill="none"
+  >
+    <circle cx="6" cy="6.5" r="5.5" stroke="#4974E0" />
+    <circle cx="6" cy="6.5" r="2.5" fill="#4974E0" stroke="#4974E0" />
+  </svg>
+);
+export const UnselectedRadioIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="12"
+    height="13"
+    viewBox="0 0 12 13"
+    fill="none"
+  >
+    <circle cx="6" cy="6.5" r="5.5" stroke="#2E3A59" stroke-opacity="0.5" />
+  </svg>
+);

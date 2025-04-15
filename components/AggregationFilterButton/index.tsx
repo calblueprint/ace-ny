@@ -16,6 +16,8 @@ interface AggregationFilterButtonProps {
   setAggFilterisVisible: (visible: boolean) => void;
   infoModalisVisible: boolean;
   setInfoModalisVisible: (visible: boolean) => void;
+  legendIsVisible: boolean;
+  setLegendIsVisible: (isVisible: boolean) => void;
   numProjects: string;
   totalEnergy: string;
 }
@@ -25,6 +27,8 @@ export default function AggregationFilterButton({
   setAggFilterisVisible,
   infoModalisVisible,
   setInfoModalisVisible,
+  legendIsVisible,
+  setLegendIsVisible,
   numProjects,
   totalEnergy,
 }: AggregationFilterButtonProps) {
@@ -32,6 +36,9 @@ export default function AggregationFilterButton({
     setAggFilterisVisible(!aggFilterisVisible);
     if (infoModalisVisible) {
       setInfoModalisVisible(false);
+    }
+    if (legendIsVisible) {
+      setLegendIsVisible(false);
     }
   }
   return (
