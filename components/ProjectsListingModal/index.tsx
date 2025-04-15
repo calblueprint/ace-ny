@@ -46,7 +46,7 @@ export default function ProjectsListingModal({
   const [sortedProjects, setSortedProjects] = useState<Project[] | null>(
     projects,
   );
-  const [sortCategory, setSortCategory] = useState<string>('Name A-Z');
+  // const [sortCategory, setSortCategory] = useState<string>('Name A-Z');
 
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
@@ -54,60 +54,20 @@ export default function ProjectsListingModal({
   const [isSortByOpen, setIsSortByOpen] = useState(false);
   const toggleSortBy = () => setIsSortByOpen(prev => !prev);
 
-  const projectItems = sortedProjects?.map((project: Project) => {
-    return (
-      <ProjectItem
-        key={project.id}
-        project_id={project.id}
-        setSelectedProjectId={setSelectedProjectId}
-        map={map}
-        project={project}
-      />
-    );
-  });
+  const [projectItems, setProjectItems] = useState<Project[]>([]);
 
   useEffect(() => {
-    if (!projects) return;
+    if (!sortedProjects) return;
 
-    const filtered = projects.filter(project =>
-      project.project_name
-        .toLowerCase()
-        .includes(searchTerm?.toLowerCase() || ''),
-    );
+    const filtered =
+      sortedProjects?.filter(project =>
+        project.project_name
+          .toLowerCase()
+          .includes(searchTerm?.toLowerCase() || ''),
+      ) || [];
 
-    let sorted: Project[] = filtered;
-
-    switch (sortCategory) {
-      case 'Name A-Z':
-        sorted = filtered.toSorted((a, b) =>
-          a.project_name.localeCompare(b.project_name),
-        );
-        break;
-      case 'Name Z-A':
-        sorted = filtered.toSorted((a, b) =>
-          b.project_name.localeCompare(a.project_name),
-        );
-        break;
-      case 'Size Ascending':
-        sorted = filtered.toSorted((a, b) => a.size - b.size);
-        break;
-      case 'Size Descending':
-        sorted = filtered.toSorted((a, b) => b.size - a.size);
-        break;
-      case 'COD Ascending':
-        sorted = filtered.toSorted((a, b) =>
-          a.proposed_cod.toString().localeCompare(b.proposed_cod.toString()),
-        );
-        break;
-      case 'COD Descending':
-        sorted = filtered.toSorted((a, b) =>
-          b.proposed_cod.toString().localeCompare(a.proposed_cod.toString()),
-        );
-        break;
-    }
-
-    setSortedProjects(sorted);
-  }, [searchTerm, projects, sortCategory]);
+    setProjectItems(filtered);
+  }, [searchTerm, sortedProjects]);
 
   return (
     <>
@@ -159,48 +119,52 @@ export default function ProjectsListingModal({
                           projects={projects}
                           setSortedProjects={setSortedProjects}
                           toggleSortBy={toggleSortBy}
-                          setSortCategory={setSortCategory}
                         />
                         <SortBy
                           category="Name Z-A"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
                           toggleSortBy={toggleSortBy}
-                          setSortCategory={setSortCategory}
                         />
                         <SortBy
                           category="Size Ascending"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
                           toggleSortBy={toggleSortBy}
-                          setSortCategory={setSortCategory}
                         />
                         <SortBy
                           category="Size Descending"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
                           toggleSortBy={toggleSortBy}
-                          setSortCategory={setSortCategory}
                         />
                         <SortBy
                           category="COD Ascending"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
                           toggleSortBy={toggleSortBy}
-                          setSortCategory={setSortCategory}
                         />
                         <SortBy
                           category="COD Descending"
                           projects={projects}
                           setSortedProjects={setSortedProjects}
                           toggleSortBy={toggleSortBy}
-                          setSortCategory={setSortCategory}
                         />
                       </SortByMenu>
                     )}
                   </SortByDiv>
                 </Headers>
-                <ProjectItemsDiv>{projectItems}</ProjectItemsDiv>
+                <ProjectItemsDiv>
+                  {projectItems?.map((project: Project) => (
+                    <ProjectItem
+                      key={project.id}
+                      project_id={project.id}
+                      setSelectedProjectId={setSelectedProjectId}
+                      map={map}
+                      project={project}
+                    />
+                  ))}
+                </ProjectItemsDiv>
               </ModalContents>
             </ProjectDetails>
           </Modal>
