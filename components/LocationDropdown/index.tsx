@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { queryOptionsForCategory } from '@/api/supabase/queries/query';
-import { FilterType } from '@/types/schema';
+import { Filters, FilterType } from '@/types/schema';
 import { UpIcon } from '../../assets/Dropdown-Icons/icons';
 import {
   AssemblyDistrictIcon,
