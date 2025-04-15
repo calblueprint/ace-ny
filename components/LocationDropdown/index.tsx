@@ -43,7 +43,7 @@ export default function LocationDropdown({
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   selectedLocationFilters: string[];
   setSelectedLocationFilters: (value: string[]) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
