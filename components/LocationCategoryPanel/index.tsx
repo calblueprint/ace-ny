@@ -47,7 +47,7 @@ export default function LocationCategoryPanel({
   handleButtonClick: (filter: FilterType) => void;
   currFilter: FilterType;
   selectedLocationFilters: string[];
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   setSelectedLocationFilters: (args: {
     value: string[];
     isTemp: boolean;
@@ -62,9 +62,14 @@ export default function LocationCategoryPanel({
 
   const options = categoryOptionsMap[category];
 
-  const handleApplyButtonClick = () => {
+  const applyButtonHandler = () => {
     setSelectedLocationFilters({ value: tempFilters.location, isTemp: false });
     setActiveFilter(null);
+    setLastAppliedFilter('location');
+  };
+
+  const clearButtonHandler = () => {
+    clearFilters('location');
     setLastAppliedFilter('location');
   };
 
@@ -117,7 +122,7 @@ export default function LocationCategoryPanel({
           $isActive={selectedItem !== null}
           onClick={() => {
             if (selectedItem) {
-              handleApplyButtonClick();
+              applyButtonHandler();
             }
           }}
         >
@@ -125,7 +130,7 @@ export default function LocationCategoryPanel({
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={selectedItem !== null}
-          onClick={clearFilters}
+          onClick={clearButtonHandler}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>
