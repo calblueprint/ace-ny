@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Bar, BarChart, ResponsiveContainer } from 'recharts';
 import COLORS from '@/styles/colors';
-import { projectSizeType } from '@/types/schema';
+import { ProjectSizeType } from '@/types/schema';
 import ProjectSizeSlider from '../ProjectSizeSlider';
 import { HistogramContainer } from './styles';
 
@@ -13,7 +13,7 @@ interface HistogramProps {
   setMinDefault: (value: number) => void;
   maxDefault: number;
   setMaxDefault: (value: number) => void;
-  setSelectedSize: (value: projectSizeType) => void;
+  setSelectedSize: (value: ProjectSizeType) => void;
   minBound: number;
   maxBound: number;
 }

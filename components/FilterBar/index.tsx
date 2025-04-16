@@ -4,7 +4,7 @@ import {
   FilterChangeHandlers,
   Filters,
   FilterType,
-  projectSizeType,
+  ProjectSizeType,
 } from '@/types/schema';
 import { FilterContainerStyles } from './styles';
 
@@ -35,7 +35,7 @@ export const FilterBar = ({
     setActiveFilter(activeFilter?.id === filter.id ? null : filter);
   };
 
-  const handleProjectSizeChange = (projectSize: projectSizeType) => {
+  const handleProjectSizeChange = (projectSize: ProjectSizeType) => {
     setSelectedFilters(prevFilters => ({
       ...prevFilters,
       projectSize: projectSize,
