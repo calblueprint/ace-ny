@@ -64,11 +64,17 @@ export default function TechnologyDropdown({
   technologyFiltersApplied: boolean;
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const handleApplyButtonClick = () => {
+  const applyButtonHandler = () => {
     setSelectedTechnologies({ value: tempFilters.technology, isTemp: false });
     setActiveFilter(null);
     setTechnologyFiltersApplied(true);
     setLastAppliedFilter('technology');
+  };
+
+  const clearButtonHandler = () => {
+    clearFilters('technology');
+    setLastAppliedFilter('technology');
+    setTechnologyFiltersApplied(false);
   };
 
   const filter = {
@@ -222,16 +228,13 @@ export default function TechnologyDropdown({
         ))}
         <ApplyButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={handleApplyButtonClick}
+          onClick={applyButtonHandler}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={() => {
-            clearFilters('technology');
-            setTechnologyFiltersApplied(false);
-          }}
+          onClick={clearButtonHandler}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>
