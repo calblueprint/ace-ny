@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Modal from 'react-modal';
 import { CloseIcon, OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
@@ -46,7 +46,6 @@ export default function ProjectsListingModal({
   const [sortedProjects, setSortedProjects] = useState<Project[] | null>(
     projects,
   );
-  // const [sortCategory, setSortCategory] = useState<string>('Name A-Z');
 
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
@@ -54,20 +53,11 @@ export default function ProjectsListingModal({
   const [isSortByOpen, setIsSortByOpen] = useState(false);
   const toggleSortBy = () => setIsSortByOpen(prev => !prev);
 
-  const [projectItems, setProjectItems] = useState<Project[]>([]);
-
-  useEffect(() => {
-    if (!sortedProjects) return;
-
-    const filtered =
-      sortedProjects?.filter(project =>
-        project.project_name
-          .toLowerCase()
-          .includes(searchTerm?.toLowerCase() || ''),
-      ) || [];
-
-    setProjectItems(filtered);
-  }, [searchTerm, sortedProjects]);
+  const projectItems = sortedProjects?.filter(project =>
+    project.project_name
+      .toLowerCase()
+      .includes(searchTerm?.toLowerCase() || ''),
+  );
 
   return (
     <>
