@@ -121,11 +121,6 @@ export default function MapViewScreen({
     getProjectsSize(projects),
   );
 
-  // show projects based on selected filters
-  const handleFilterButtonClick = () => {
-    setSelectedFilters(tempFilters);
-  };
-
   const [activeLocationCategory, setActiveLocationCategory] = useState<
     string | null
   >(null);
