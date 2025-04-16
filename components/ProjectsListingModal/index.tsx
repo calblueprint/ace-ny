@@ -6,10 +6,10 @@ import { CloseIcon, OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
 import { SearchIcon } from '@/assets/SearchBar-Icons/icons';
 import { FilterNameText, SubHeading2 } from '@/styles/texts';
-import { SortByText } from '../../styles/texts';
 import { Project } from '../../types/schema';
 import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
+import SortBy from '../SortBy/index';
 import {
   AllProjectsHeader,
   CloseModalButton,
@@ -22,9 +22,8 @@ import {
   SearchButton,
   SearchButtonBackground,
   SearchIconStyles,
-  SortBy,
   SortByButton,
-  SortByItem,
+  SortByDiv,
   SortByMenu,
 } from './styles';
 
@@ -44,6 +43,9 @@ export default function ProjectsListingModal({
   selectedProjectId: number | null;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
+  const [sortedProjects, setSortedProjects] = useState<Project[] | null>(
+    projects,
+  );
 
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
@@ -51,17 +53,11 @@ export default function ProjectsListingModal({
   const [isSortByOpen, setIsSortByOpen] = useState(false);
   const toggleSortBy = () => setIsSortByOpen(prev => !prev);
 
-  const projectItems = projects?.map((project: Project) => {
-    return (
-      <ProjectItem
-        key={project.id}
-        project_id={project.id}
-        setSelectedProjectId={setSelectedProjectId}
-        map={map}
-        project={project}
-      />
-    );
-  });
+  const projectItems = sortedProjects?.filter(project =>
+    project.project_name
+      .toLowerCase()
+      .includes(searchTerm?.toLowerCase() || ''),
+  );
 
   return (
     <>
@@ -97,7 +93,7 @@ export default function ProjectsListingModal({
                     <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
                     <SubHeading2>ALL PROJECTS</SubHeading2>
                   </AllProjectsHeader>
-                  <SortBy>
+                  <SortByDiv>
                     <SortByButton onClick={toggleSortBy}>
                       <SubHeading2>SORT BY</SubHeading2>
                       {isSortByOpen ? (
@@ -108,29 +104,57 @@ export default function ProjectsListingModal({
                     </SortByButton>
                     {isSortByOpen && (
                       <SortByMenu>
-                        <SortByItem onClick={() => {}}>
-                          <SortByText>Name A-Z</SortByText>
-                        </SortByItem>
-                        <SortByItem onClick={() => {}}>
-                          <SortByText>Name Z-A</SortByText>
-                        </SortByItem>
-                        <SortByItem onClick={() => {}}>
-                          <SortByText>Size Ascending</SortByText>
-                        </SortByItem>
-                        <SortByItem onClick={() => {}}>
-                          <SortByText>Size Descending</SortByText>
-                        </SortByItem>
-                        <SortByItem onClick={() => {}}>
-                          <SortByText>COD Ascending</SortByText>
-                        </SortByItem>
-                        <SortByItem onClick={() => {}}>
-                          <SortByText>COD Descending</SortByText>
-                        </SortByItem>
+                        <SortBy
+                          category="Name A-Z"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
+                        />
+                        <SortBy
+                          category="Name Z-A"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
+                        />
+                        <SortBy
+                          category="Size Ascending"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
+                        />
+                        <SortBy
+                          category="Size Descending"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
+                        />
+                        <SortBy
+                          category="COD Ascending"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
+                        />
+                        <SortBy
+                          category="COD Descending"
+                          projects={projects}
+                          setSortedProjects={setSortedProjects}
+                          toggleSortBy={toggleSortBy}
+                        />
                       </SortByMenu>
                     )}
-                  </SortBy>
+                  </SortByDiv>
                 </Headers>
-                <ProjectItemsDiv>{projectItems}</ProjectItemsDiv>
+                <ProjectItemsDiv>
+                  {projectItems?.map((project: Project) => (
+                    <ProjectItem
+                      key={project.id}
+                      project_id={project.id}
+                      setSelectedProjectId={setSelectedProjectId}
+                      map={map}
+                      project={project}
+                    />
+                  ))}
+                </ProjectItemsDiv>
               </ModalContents>
             </ProjectDetails>
           </Modal>
