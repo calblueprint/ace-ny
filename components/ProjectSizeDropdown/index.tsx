@@ -61,12 +61,17 @@ export default function ProjectSizeDropdown({
   maxBound,
   clearFilters,
 }: ProjectSizeDropdownProps) {
-  const [minSize, setMinSize] = useState(Math.min(...projectSizes));
-  const [maxSize, setMaxSize] = useState(Math.max(...projectSizes));
+  const [minSize, setMinSize] = useState(
+    projectSizes.length > 0 ? Math.min(...projectSizes) : 0,
+  );
+  const [maxSize, setMaxSize] = useState(
+    projectSizes.length > 0 ? Math.max(...projectSizes) : 0,
+  );
 
-  const averageProjectSize = (
-    projectSizes.reduce((a, b) => a + b) / projectSizes.length
-  ).toFixed(2);
+  const averageProjectSize =
+    projectSizes.length > 0
+      ? (projectSizes.reduce((a, b) => a + b) / projectSizes.length).toFixed(2)
+      : '0.00';
 
   const applyButtonHandler = () => {
     setSelectedSize({ value: tempFilters.projectSize, isTemp: false });
