@@ -49,6 +49,7 @@ export default function ProjectSizeHistogram({
       setMinSize(minSize);
       setMaxSize(maxSize);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [minDefault, maxDefault, projectSizes, setMinSize, setMaxSize]);
 
   projectSizes.forEach(value => {
