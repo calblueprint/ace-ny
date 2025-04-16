@@ -36,6 +36,7 @@ import {
 } from './styles';
 
 export default function TechnologyDropdown({
+  tempFilters,
   selectedTechnologies,
   setSelectedTechnologies,
   handleButtonClick,
@@ -43,21 +44,20 @@ export default function TechnologyDropdown({
   iconApplied,
   label,
   currFilter,
-  handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
   setTechnologyFiltersApplied,
   technologyFiltersApplied,
   setLastAppliedFilter,
 }: {
+  tempFilters: Filters;
   selectedTechnologies: string[];
-  setSelectedTechnologies: (technologies: string[]) => void;
+  setSelectedTechnologies: (args: { value: string[]; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   iconApplied: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  handleFilterButtonClick: () => void;
   clearFilters: (filterName?: keyof Filters) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setTechnologyFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
@@ -65,7 +65,8 @@ export default function TechnologyDropdown({
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+    // handleFilterButtonClick();
+    setSelectedTechnologies({ value: tempFilters.technology, isTemp: false });
     setActiveFilter(null);
     setTechnologyFiltersApplied(true);
     setLastAppliedFilter('technology');
@@ -162,11 +163,10 @@ export default function TechnologyDropdown({
   const isApplyButtonActive = selectedTechnologies.length > 0;
 
   function checkBoxClickHandler(title: string): void {
-    setSelectedTechnologies(
-      selectedTechnologies.includes(title)
-        ? selectedTechnologies.filter(o => o !== title)
-        : [...selectedTechnologies, title],
-    );
+    const value = selectedTechnologies.includes(title)
+      ? selectedTechnologies.filter(o => o !== title)
+      : [...selectedTechnologies, title];
+    setSelectedTechnologies({ value: value, isTemp: true });
   }
 
   return (

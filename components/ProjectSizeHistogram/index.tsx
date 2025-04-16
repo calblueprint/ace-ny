@@ -13,7 +13,7 @@ interface HistogramProps {
   setMinDefault: (value: number) => void;
   maxDefault: number;
   setMaxDefault: (value: number) => void;
-  setSelectedSize: (value: ProjectSizeType) => void;
+  setSelectedSize: (args: { value: ProjectSizeType; isTemp: boolean }) => void;
   minBound: number;
   maxBound: number;
 }

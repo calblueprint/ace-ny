@@ -4,7 +4,7 @@ import {
   ClearFiltersText,
   FilterHeadingUnused,
 } from '@/styles/texts';
-import { FilterType, ProjectSizeType } from '@/types/schema';
+import { Filters, FilterType, ProjectSizeType } from '@/types/schema';
 import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
 import ProjectSizeHistogram from '../ProjectSizeHistogram';
 import {
@@ -25,12 +25,12 @@ import {
 } from './styles';
 
 interface ProjectSizeDropdownProps {
-  setSelectedSize: (projectSize: ProjectSizeType) => void;
+  tempFilters: Filters;
+  setSelectedSize: (args: { value: ProjectSizeType; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  handleFilterButtonClick: () => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   projectSizes: number[];
   minDefault: number;
@@ -43,12 +43,12 @@ interface ProjectSizeDropdownProps {
 }
 
 export default function ProjectSizeDropdown({
+  tempFilters,
   setSelectedSize,
   handleButtonClick,
   icon,
   label,
   currFilter,
-  handleFilterButtonClick,
   setActiveFilter,
   projectSizes,
   minDefault,
@@ -67,7 +67,7 @@ export default function ProjectSizeDropdown({
   ).toFixed(2);
 
   const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+    setSelectedSize({ value: tempFilters.projectSize, isTemp: false });
     setActiveFilter(null);
     setLastAppliedFilter('projectSize');
   };

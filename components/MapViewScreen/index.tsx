@@ -82,12 +82,8 @@ export default function MapViewScreen({
     null,
   );
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedFilters, setSelectedFilters] = useState<Filters>({
-    status: [],
-    technology: [],
-    projectSize: { min: 0, max: 0 },
-    location: [],
-  });
+  const [selectedFilters, setSelectedFilters] =
+    useState<Filters>(defaultFilters);
 
   const [tempFilters, setTempFilters] = useState<Filters>(defaultFilters);
 
@@ -243,9 +239,9 @@ export default function MapViewScreen({
     <>
       <FilterBar
         filters={filters}
-        selectedFilters={tempFilters}
-        setSelectedFilters={setTempFilters}
-        handleFilterButtonClick={handleFilterButtonClick}
+        setSelectedFilters={setSelectedFilters}
+        tempFilters={tempFilters}
+        setTempFilters={setTempFilters}
         clearFilters={clearFilters}
         setActiveLocationCategory={setActiveLocationCategory}
         projectSizes={projectSizes}

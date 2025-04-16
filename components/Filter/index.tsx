@@ -16,7 +16,7 @@ import {
 interface FilterProps {
   filter: FilterType;
   isActive: boolean;
-  selectedFilters: Filters;
+  tempFilters: Filters;
   filterChangeHandlers: FilterChangeHandlers;
   handleButtonClick: (filter: FilterType) => void;
   handleFilterButtonClick: () => void;
@@ -38,10 +38,9 @@ interface FilterProps {
 export default function Filter({
   filter,
   isActive,
-  selectedFilters,
+  tempFilters,
   filterChangeHandlers,
   handleButtonClick,
-  handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
   projectSizes,
@@ -63,14 +62,14 @@ export default function Filter({
       {isActive ? (
         filter.id === 'technology' ? (
           <TechnologyDropdown
-            selectedTechnologies={selectedFilters.technology}
+            tempFilters={tempFilters}
+            selectedTechnologies={tempFilters.technology}
             setSelectedTechnologies={filterChangeHandlers.technology}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
             iconApplied={filter.iconApplied}
             label={filter.label}
             currFilter={filter}
-            handleFilterButtonClick={handleFilterButtonClick}
             clearFilters={clearFilters}
             setActiveFilter={setActiveFilter}
             setTechnologyFiltersApplied={setTechnologyFiltersApplied}
@@ -79,14 +78,14 @@ export default function Filter({
           />
         ) : filter.id === 'status' ? (
           <StatusDropdown
-            selectedStatus={selectedFilters.status}
+            tempFilters={tempFilters}
+            selectedStatus={tempFilters.status}
             setSelectedStatus={filterChangeHandlers.status}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
             iconApplied={filter.iconApplied}
             label={filter.label}
             currFilter={filter}
-            handleFilterButtonClick={handleFilterButtonClick}
             clearFilters={clearFilters}
             setActiveFilter={setActiveFilter}
             setStatusFiltersApplied={setStatusFiltersApplied}
@@ -95,12 +94,12 @@ export default function Filter({
           />
         ) : filter.id === 'projectSize' ? (
           <ProjectSizeDropdown
+            tempFilters={tempFilters}
             setSelectedSize={filterChangeHandlers.projectSize}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
-            handleFilterButtonClick={handleFilterButtonClick}
             setActiveFilter={setActiveFilter}
             projectSizes={projectSizes}
             minDefault={minDefault}
@@ -113,16 +112,17 @@ export default function Filter({
           ></ProjectSizeDropdown>
         ) : filter.id === 'location' ? (
           <LocationDropdown
+            tempFilters={tempFilters}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
             label={filter.label}
             currFilter={filter}
             clearFilters={clearFilters}
-            handleFilterButtonClick={handleFilterButtonClick}
             setActiveFilter={setActiveFilter}
-            selectedLocationFilters={selectedFilters.location}
+            selectedLocationFilters={tempFilters.location}
             setSelectedLocationFilters={filterChangeHandlers.location}
             setActiveLocationCategory={setActiveLocationCategory}
+            setLastAppliedFilter={setLastAppliedFilter}
           ></LocationDropdown>
         ) : // Add other filter dropdown components here
         null

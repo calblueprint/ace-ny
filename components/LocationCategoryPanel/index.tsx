@@ -5,7 +5,7 @@ import {
   PanelTitle,
   SearchInput,
 } from '@/styles/texts';
-import { FilterType } from '@/types/schema';
+import { Filters, FilterType } from '@/types/schema';
 import {
   BackArrowIcon,
   SearchIcon,
@@ -29,27 +29,32 @@ import {
 } from './styles';
 
 export default function LocationCategoryPanel({
+  tempFilters,
   onBack,
   category,
   handleButtonClick,
-  handleFilterButtonClick,
   currFilter,
   selectedLocationFilters,
   clearFilters,
   setSelectedLocationFilters,
   setActiveFilter,
   categoryOptionsMap,
+  setLastAppliedFilter,
 }: {
+  tempFilters: Filters;
   onBack: () => void;
   category: string;
   handleButtonClick: (filter: FilterType) => void;
-  handleFilterButtonClick: () => void;
   currFilter: FilterType;
   selectedLocationFilters: string[];
   clearFilters: () => void;
-  setSelectedLocationFilters: (value: string[]) => void;
+  setSelectedLocationFilters: (args: {
+    value: string[];
+    isTemp: boolean;
+  }) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   categoryOptionsMap: Record<string, string[]>;
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const [selectedItem, setSelectedItem] = useState<string | null>(
     selectedLocationFilters[0] ?? null,
@@ -58,9 +63,15 @@ export default function LocationCategoryPanel({
   const options = categoryOptionsMap[category];
 
   const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+    setSelectedLocationFilters({ value: tempFilters.location, isTemp: false });
     setActiveFilter(null);
+    setLastAppliedFilter('location');
   };
+
+  function checkBoxClickHandler(item: string): void {
+    setSelectedLocationFilters({ value: [item], isTemp: true });
+    setSelectedItem(item);
+  }
 
   return (
     <PanelContainer>
@@ -95,10 +106,7 @@ export default function LocationCategoryPanel({
               key={item}
               label={item}
               selected={selectedItem === item}
-              onClick={() => {
-                setSelectedLocationFilters([item]);
-                setSelectedItem(item);
-              }}
+              onClick={() => checkBoxClickHandler(item)}
             />
           ))}
         </ItemContainer>

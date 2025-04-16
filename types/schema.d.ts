@@ -64,7 +64,10 @@ export type Milestone = {
 };
 
 type FilterHandlerArgs = {
-  [K in keyof Filters]: Filters[K];
+  [K in keyof Filters]: {
+    value: Filters[K];
+    isTemp: boolean;
+  };
 };
 
 export type FilterChangeHandlers = {

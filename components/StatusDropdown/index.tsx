@@ -26,6 +26,7 @@ import {
 } from './styles';
 
 export default function StatusDropdown({
+  tempFilters,
   selectedStatus,
   setSelectedStatus,
   handleButtonClick,
@@ -33,21 +34,20 @@ export default function StatusDropdown({
   iconApplied,
   label,
   currFilter,
-  handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
   setStatusFiltersApplied,
   statusFiltersApplied,
   setLastAppliedFilter,
 }: {
+  tempFilters: Filters;
   selectedStatus: string[];
-  setSelectedStatus: (status: string[]) => void;
+  setSelectedStatus: (args: { value: string[]; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   iconApplied: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  handleFilterButtonClick: () => void;
   clearFilters: (filterName?: keyof Filters) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setStatusFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
@@ -55,7 +55,8 @@ export default function StatusDropdown({
   setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+    // handleFilterButtonClick();
+    setSelectedStatus({ value: tempFilters.status, isTemp: false });
     setActiveFilter(null);
     setStatusFiltersApplied(true);
     setLastAppliedFilter('status');
@@ -67,7 +68,8 @@ export default function StatusDropdown({
   ];
 
   const handleStatusChange = (status: string) => {
-    setSelectedStatus(selectedStatus[0] === status ? [] : [status]);
+    const value = selectedStatus[0] === status ? [] : [status];
+    setSelectedStatus({ value: value, isTemp: true });
   };
 
   const isApplyButtonActive = selectedStatus.length > 0;

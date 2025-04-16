@@ -10,21 +10,21 @@ import { FilterContainerStyles } from './styles';
 
 interface FilterBarProps {
   filters: FilterType[];
-  selectedFilters: Filters;
   setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
-  handleFilterButtonClick: () => void;
-  clearFilters: (filterName?: keyof Filters) => void;
-  projectSizes: number[];
   setActiveLocationCategory: React.Dispatch<
     React.SetStateAction<string | null>
   >;
+  tempFilters: Filters;
+  setTempFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  clearFilters: () => void;
+  projectSizes: number[];
 }
 
 export const FilterBar = ({
   filters,
-  selectedFilters,
   setSelectedFilters,
-  handleFilterButtonClick,
+  tempFilters,
+  setTempFilters,
   clearFilters,
   projectSizes,
   setActiveLocationCategory,
@@ -35,29 +35,59 @@ export const FilterBar = ({
     setActiveFilter(activeFilter?.id === filter.id ? null : filter);
   };
 
-  const handleProjectSizeChange = (projectSize: ProjectSizeType) => {
-    setSelectedFilters(prevFilters => ({
+  const handleProjectSizeChange = ({
+    value,
+    isTemp,
+  }: {
+    value: ProjectSizeType;
+    isTemp: boolean;
+  }) => {
+    const setter = isTemp ? setTempFilters : setSelectedFilters;
+    setter(prevFilters => ({
       ...prevFilters,
-      projectSize: projectSize,
+      projectSize: value,
     }));
   };
 
-  const handleTechnologyChange = (options: string[]) => {
-    setSelectedFilters(prevFilters => ({
+  const handleTechnologyChange = ({
+    value,
+    isTemp,
+  }: {
+    value: string[];
+    isTemp: boolean;
+  }) => {
+    const setter = isTemp ? setTempFilters : setSelectedFilters;
+    setter(prevFilters => ({
       ...prevFilters,
-      technology: options,
+      technology: value,
     }));
   };
-  const handleStatusChange = (options: string[]) => {
-    setSelectedFilters(prevFilters => ({
+
+  const handleStatusChange = ({
+    value,
+    isTemp,
+  }: {
+    value: string[];
+    isTemp: boolean;
+  }) => {
+    const setter = isTemp ? setTempFilters : setSelectedFilters;
+    setter(prevFilters => ({
       ...prevFilters,
-      status: options,
+      status: value,
     }));
   };
-  const handleLocationChange = (options: string[]) => {
-    setSelectedFilters(prevFilters => ({
+
+  const handleLocationChange = ({
+    value,
+    isTemp,
+  }: {
+    value: string[];
+    isTemp: boolean;
+  }) => {
+    const setter = isTemp ? setTempFilters : setSelectedFilters;
+    setter(prevFilters => ({
       ...prevFilters,
-      location: options,
+      location: value,
     }));
   };
 
@@ -85,6 +115,10 @@ export const FilterBar = ({
       const padding = range * 0.25;
       setMinBound(minValue - padding);
       setMaxBound(maxValue + padding);
+
+      // if old slider positions are outside of the new range, update slider positions
+      setMinDefault(Math.min(maxValue + padding - 1, minDefault));
+      setMaxDefault(Math.min(maxValue + padding, maxDefault));
     }
   }, [lastAppliedFilter, projectSizes]);
 
@@ -95,10 +129,9 @@ export const FilterBar = ({
           key={filter.label}
           filter={filter}
           isActive={activeFilter?.id === filter.id}
-          selectedFilters={selectedFilters}
+          tempFilters={tempFilters}
           filterChangeHandlers={filterChangeHandlers}
           handleButtonClick={handleButtonClick}
-          handleFilterButtonClick={handleFilterButtonClick}
           clearFilters={clearFilters}
           setActiveFilter={setActiveFilter}
           projectSizes={projectSizes}
