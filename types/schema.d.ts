@@ -50,20 +50,6 @@ export interface Filters {
   location: string[];
 }
 
-export interface FiltersApplied {
-  status: boolean;
-  technology: boolean;
-  projectSize: boolean;
-  // location: boolean;
-}
-
-export interface FiltersApplied {
-  status: boolean;
-  technology: boolean;
-  projectSize: boolean;
-  // location: boolean;
-}
-
 export interface FilterType {
   id: keyof Filters;
   label: string;
