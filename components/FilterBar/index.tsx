@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Filter from '@/components/Filter';
 import {
   FilterChangeHandlers,
@@ -69,6 +69,27 @@ export const FilterBar = ({
     projectSize: handleProjectSizeChange,
   };
 
+  const [lastAppliedFilter, setLastAppliedFilter] = useState('');
+  const maxSize = Math.max(...projectSizes);
+  const [minBound, setMinBound] = useState(-100);
+  const [maxBound, setMaxBound] = useState(maxSize + 100);
+  const [minDefault, setMinDefault] = useState(-100);
+  const [maxDefault, setMaxDefault] = useState(maxSize + 100);
+
+  useEffect(() => {
+    // updates the min and max bounds and default slider positions when the histogram changes aka when dropdown filters except project size are applied
+    if (lastAppliedFilter !== 'projectSize') {
+      const maxValue = Math.max(...projectSizes);
+      const minValue = Math.min(...projectSizes);
+      const range = maxValue - minValue;
+      const padding = range * 0.25;
+      setMinBound(minValue - padding);
+      setMaxBound(maxValue + padding);
+      setMinDefault(minValue - padding);
+      setMaxDefault(maxValue + padding);
+    }
+  }, [lastAppliedFilter, projectSizes]);
+
   return (
     <FilterContainerStyles>
       {filters.map(filter => (
@@ -84,6 +105,13 @@ export const FilterBar = ({
           setActiveFilter={setActiveFilter}
           projectSizes={projectSizes}
           setActiveLocationCategory={setActiveLocationCategory}
+          setLastAppliedFilter={setLastAppliedFilter}
+          minBound={minBound}
+          maxBound={maxBound}
+          minDefault={minDefault}
+          maxDefault={maxDefault}
+          setMinDefault={setMinDefault}
+          setMaxDefault={setMaxDefault}
         />
       ))}
     </FilterContainerStyles>

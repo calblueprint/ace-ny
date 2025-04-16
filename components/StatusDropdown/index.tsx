@@ -35,6 +35,7 @@ export default function StatusDropdown({
   setActiveFilter,
   setStatusFiltersApplied,
   statusFiltersApplied,
+  setLastAppliedFilter,
 }: {
   selectedStatus: string[];
   setSelectedStatus: (status: string[]) => void;
@@ -48,11 +49,13 @@ export default function StatusDropdown({
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setStatusFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
   statusFiltersApplied: boolean;
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const handleApplyButtonClick = () => {
     handleFilterButtonClick();
     setActiveFilter(null);
     setStatusFiltersApplied(true);
+    setLastAppliedFilter('status');
   };
 
   const filterOptions = [

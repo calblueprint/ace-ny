@@ -45,6 +45,7 @@ export default function TechnologyDropdown({
   setActiveFilter,
   setTechnologyFiltersApplied,
   technologyFiltersApplied,
+  setLastAppliedFilter,
 }: {
   selectedTechnologies: string[];
   setSelectedTechnologies: (technologies: string[]) => void;
@@ -58,11 +59,13 @@ export default function TechnologyDropdown({
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setTechnologyFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
   technologyFiltersApplied: boolean;
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
   const handleApplyButtonClick = () => {
     handleFilterButtonClick();
     setActiveFilter(null);
     setTechnologyFiltersApplied(true);
+    setLastAppliedFilter('technology');
   };
 
   const filter = {
@@ -155,6 +158,14 @@ export default function TechnologyDropdown({
   };
   const isApplyButtonActive = selectedTechnologies.length > 0;
 
+  function checkBoxClickHandler(title: string): void {
+    setSelectedTechnologies(
+      selectedTechnologies.includes(title)
+        ? selectedTechnologies.filter(o => o !== title)
+        : [...selectedTechnologies, title],
+    );
+  }
+
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
@@ -201,13 +212,7 @@ export default function TechnologyDropdown({
                 <CheckboxStyles
                   type="checkbox"
                   checked={selectedTechnologies.includes(option.title)}
-                  onChange={() => {
-                    setSelectedTechnologies(
-                      selectedTechnologies.includes(option.title)
-                        ? selectedTechnologies.filter(o => o !== option.title)
-                        : [...selectedTechnologies, option.title],
-                    );
-                  }}
+                  onChange={() => checkBoxClickHandler(option.title)}
                 />
               </CheckboxContainer>
             ))}
