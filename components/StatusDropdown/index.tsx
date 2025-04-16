@@ -1,5 +1,8 @@
 import { Filters, FilterType } from '@/types/schema';
-import { ExitIconApplied, UpIcon } from '../../assets/Dropdown-Icons/icons';
+import {
+  CollapseIcon,
+  ExitIconApplied,
+} from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
   ApplyFiltersText,
@@ -103,7 +106,7 @@ export default function StatusDropdown({
                 </FilterNameText>
               </ButtonStyles>
               <ExitStyles>
-                <UpIcon />
+                <CollapseIcon />
               </ExitStyles>
             </>
           )}

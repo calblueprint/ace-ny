@@ -81,16 +81,16 @@ export const DropIcon = () => (
   </svg>
 );
 
-export const UpIcon = () => (
+export const CollapseIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="12"
+    width="13"
     height="8"
-    viewBox="0 0 12 8"
+    viewBox="0 0 13 8"
     fill="none"
   >
     <path
-      d="M6.10552 0.287524L0.211037 6.29752L1.59688 7.71252L6.10552 3.11252L10.6132 7.71252L12 6.29852L6.10552 0.287524Z"
+      d="M6.01002 0.287501L1.91972e-05 6.2975L1.41302 7.7125L6.01002 3.1125L10.606 7.7125L12.02 6.2985L6.01002 0.287501Z"
       fill="#949AA9"
     />
   </svg>
