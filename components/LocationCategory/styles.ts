@@ -6,6 +6,7 @@ export const LocationCategoryContent = styled.div`
   align-items: center;
   width: 100%;
   height: 1.25rem;
+  cursor: pointer;
 `;
 
 export const IconTextContainer = styled.div`
