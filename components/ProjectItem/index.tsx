@@ -47,6 +47,7 @@ export default function ProjectItem({
 }) {
   //const [project, setProject] = useState<Project | null>(null);
   const [defaultImage, setDefaultImage] = useState<string | null>(null);
+  const zoomThreshold = 11;
 
   /*useEffect(() => {
     queryProjectbyId(project_id).then(data => {
@@ -151,10 +152,17 @@ export default function ProjectItem({
   };
 
   const handleProjectClick = () => {
+    if (!map) return;
     const position = new google.maps.LatLng(latitude ?? 0, longitude ?? 0);
-    const mapZoom = (map?.getZoom() ?? 0) + 3;
-    map?.setZoom(mapZoom);
-    map?.panTo(position);
+    const currZoom = map?.getZoom() ?? 0;
+
+    map.panTo(position);
+    if (currZoom < zoomThreshold) {
+      google.maps.event.addListenerOnce(map, 'idle', () => {
+        map.setZoom(zoomThreshold);
+      });
+    }
+
     setSelectedProjectId(project_id);
   };
 
