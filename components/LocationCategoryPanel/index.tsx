@@ -126,7 +126,7 @@ export default function LocationCategoryPanel({
           $isActive={selectedItem !== null}
           onClick={() => {
             clearFilters('location');
-            setSelectedLocationFilters(['']);
+            setSelectedLocationFilters([]);
             setSelectedItem(null);
           }}
         >
