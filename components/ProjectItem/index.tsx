@@ -152,6 +152,8 @@ export default function ProjectItem({
 
   const handleProjectClick = () => {
     const position = new google.maps.LatLng(latitude ?? 0, longitude ?? 0);
+    const mapZoom = (map?.getZoom() ?? 0) + 3;
+    map?.setZoom(mapZoom);
     map?.panTo(position);
     setSelectedProjectId(project_id);
   };
