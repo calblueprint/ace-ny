@@ -78,7 +78,7 @@ export const SearchBar = styled.div`
 
 export const ItemContainer = styled.div`
   display: flex;
-  max-height: 14rem;
+  height: 14rem;
   width: 100%;
   overflow-y: auto;
   flex-direction: column;
