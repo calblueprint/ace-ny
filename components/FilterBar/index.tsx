@@ -119,6 +119,10 @@ export const FilterBar = ({
       // if old slider positions are outside of the new range, update slider positions
       setMinDefault(Math.min(maxValue + padding - 1, minDefault));
       setMaxDefault(Math.min(maxValue + padding, maxDefault));
+
+      // reset slider positions when non-project size dropdown filters are applied
+      setMinDefault(minValue - padding);
+      setMaxDefault(maxValue + padding);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lastAppliedFilter, projectSizes]);
