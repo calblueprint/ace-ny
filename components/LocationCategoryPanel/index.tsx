@@ -5,7 +5,7 @@ import {
   PanelTitle,
   SearchInput,
 } from '@/styles/texts';
-import { FilterType } from '@/types/schema';
+import { Filters, FilterType } from '@/types/schema';
 import {
   BackArrowIcon,
   SearchIcon,
@@ -46,7 +46,7 @@ export default function LocationCategoryPanel({
   handleFilterButtonClick: () => void;
   currFilter: FilterType;
   selectedLocationFilters: string[];
-  clearFilters: () => void;
+  clearFilters: (filterName?: keyof Filters) => void;
   setSelectedLocationFilters: (value: string[]) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   categoryOptionsMap: Record<string, string[]>;
@@ -54,8 +54,17 @@ export default function LocationCategoryPanel({
   const [selectedItem, setSelectedItem] = useState<string | null>(
     selectedLocationFilters[0] ?? null,
   );
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const options = categoryOptionsMap[category];
+  const options: string[] | null = categoryOptionsMap[category] ?? null;
+
+  const uniqueOptions = options
+    ? Array.from(new Set(options.map(item => item.trim())))
+    : [];
+
+  const filteredOptions = uniqueOptions?.filter(item =>
+    item.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
 
   const handleApplyButtonClick = () => {
     handleFilterButtonClick();
@@ -82,15 +91,13 @@ export default function LocationCategoryPanel({
             <SearchInput
               type="text"
               placeholder="Search"
-              // onChange={(e) => {
-              //   // handle search input change implement later
-              // }}
+              onChange={e => setSearchTerm(e.target.value)}
             />
           </SearchIconWithTextContainer>
           <Underline />
         </SearchBar>
         <ItemContainer>
-          {options.map(item => (
+          {filteredOptions?.map(item => (
             <LocationCategoryOption
               key={item}
               label={item}
@@ -117,7 +124,11 @@ export default function LocationCategoryPanel({
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={selectedItem !== null}
-          onClick={clearFilters}
+          onClick={() => {
+            clearFilters('location');
+            setSelectedLocationFilters(['']);
+            setSelectedItem(null);
+          }}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>

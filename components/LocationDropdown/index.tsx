@@ -96,6 +96,14 @@ export default function LocationDropdown({
 
         <CategoryComponentContainer>
           <LocationCategory
+            icon={<RegionIcon />}
+            name="Region"
+            onClick={() => {
+              setActiveLocationCategory('Region');
+              setActiveCategory('Region');
+            }}
+          />
+          <LocationCategory
             icon={<CountyIcon />}
             name="County"
             onClick={() => {
@@ -109,14 +117,6 @@ export default function LocationDropdown({
             onClick={() => {
               setActiveLocationCategory('Town');
               setActiveCategory('Town');
-            }}
-          />
-          <LocationCategory
-            icon={<RegionIcon />}
-            name="Region"
-            onClick={() => {
-              setActiveLocationCategory('Region');
-              setActiveCategory('Region');
             }}
           />
           <LocationCategory
