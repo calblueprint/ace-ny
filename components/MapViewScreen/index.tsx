@@ -82,12 +82,8 @@ export default function MapViewScreen({
     null,
   );
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedFilters, setSelectedFilters] = useState<Filters>({
-    status: [],
-    technology: [],
-    projectSize: { min: 0, max: 0 },
-    location: [],
-  });
+  const [selectedFilters, setSelectedFilters] =
+    useState<Filters>(defaultFilters);
 
   const [tempFilters, setTempFilters] = useState<Filters>(defaultFilters);
 
