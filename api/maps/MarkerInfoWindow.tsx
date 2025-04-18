@@ -9,9 +9,11 @@ import {
 } from '@vis.gl/react-google-maps';
 import { MarkerInfoWindowText1 } from '@/styles/texts';
 import energyStorage from '../../assets/Custom-Markers/energy_storage.svg';
+// import energyStorage from '../../assets/Custom-Markers/energy_storage.png';
 import geothermal from '../../assets/Custom-Markers/geothermal.svg';
 import hydroelectric from '../../assets/Custom-Markers/hydroelectric.svg';
 import landbased_wind from '../../assets/Custom-Markers/landbased_wind.svg';
+// import landbased_wind from '../../assets/Custom-Markers/landbased_wind.png';
 import offshore_wind from '../../assets/Custom-Markers/offshore_wind.svg';
 import pumped_storage from '../../assets/Custom-Markers/pumped_storage.svg';
 import solarPower from '../../assets/Custom-Markers/solar_power.svg';
@@ -28,6 +30,7 @@ const technologyToPin: Record<string, string> = {
 };
 
 export const MarkerInfoWindow = ({
+  map,
   position,
   projectId,
   projectName,
@@ -37,6 +40,7 @@ export const MarkerInfoWindow = ({
   selectedProjectId,
   markerMap,
 }: {
+  map: google.maps.Map | null;
   position: { lat: number; lng: number };
   projectId: number;
   projectName: string;
@@ -86,7 +90,20 @@ export const MarkerInfoWindow = ({
     }
   }, [selectedProjectId, projectId]);
 
+  const [mapReady, setMapReady] = useState(false);
   useEffect(() => {
+    if (!map) return;
+    const listener = google.maps.event.addListenerOnce(map, 'idle', () => {
+      setMapReady(true);
+    });
+
+    return () => {
+      google.maps.event.removeListener(listener);
+    };
+  });
+
+  useEffect(() => {
+    if (!mapReady) return;
     if (marker && clusterer) {
       clusterer.addMarker(marker);
       markerMap.set(projectId, marker as unknown as google.maps.Marker);
@@ -98,7 +115,7 @@ export const MarkerInfoWindow = ({
         markerMap.delete(projectId);
       }
     };
-  }, [marker, clusterer, projectId, markerMap]);
+  }, [marker, clusterer, projectId, markerMap, mapReady]);
 
   return (
     <>

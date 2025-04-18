@@ -1,6 +1,10 @@
-import { useEffect, useMemo, useRef } from 'react';
-import ReactDOM from 'react-dom/client';
-import { Cluster, MarkerClusterer } from '@googlemaps/markerclusterer';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import {
+  Cluster,
+  GridAlgorithm,
+  MarkerClusterer,
+} from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';
 import { ClusterIcon } from '@/assets/Clusters/icons';
 import { Project } from '../../types/schema';
@@ -92,6 +96,22 @@ export default function AddMarker({
     return mapZoom;
   };
 */
+  // cache cluster numbers to svg strings
+  const svgStringCache = new Map<number, string>();
+
+  function getSVGString(count: number): string {
+    if (!svgStringCache.has(count)) {
+      const svg = renderToStaticMarkup(<ClusterIcon count={count} />);
+      svgStringCache.set(count, svg);
+    }
+    return svgStringCache.get(count)!;
+  }
+  // defines how close markers need to be to each other to cluster
+  // used to minimize the number of clusters for performance
+  const algorithm = new GridAlgorithm({
+    gridSize: 60,
+    maxZoom: 18,
+  });
 
   const clusterer = useMemo(() => {
     if (!map) return null;
@@ -101,10 +121,9 @@ export default function AddMarker({
         const count = cluster.markers?.length ?? 0;
         const position = cluster.position;
 
-        // create a container for the custom icon
+        // create a container for each cluster's icon
         const container = document.createElement('div');
-        const root = ReactDOM.createRoot(container);
-        root.render(<ClusterIcon count={count} />);
+        container.innerHTML = getSVGString(count);
         return new google.maps.marker.AdvancedMarkerElement({
           position: position,
           content: container,
@@ -128,6 +147,7 @@ export default function AddMarker({
       map,
       renderer,
       onClusterClick: clusterHandler,
+      algorithm,
     });
 
     return setClusterer;
@@ -163,25 +183,41 @@ export default function AddMarker({
     });
   }, [filteredProjects, map, projects]);
 
+  // Check if map is rendered
+  const [mapReady, setMapReady] = useState(false);
+  useEffect(() => {
+    if (!map) return;
+    const listener = google.maps.event.addListenerOnce(map, 'idle', () => {
+      setMapReady(true);
+    });
+
+    return () => {
+      google.maps.event.removeListener(listener);
+    };
+  });
+
   // Re-rendering clusters based on filtered projects
   useEffect(() => {
-    if (!clusterer || !map) return;
+    if (!clusterer || !map || !mapReady) return;
 
     clusterer.clearMarkers();
 
+    const markersToAdd: google.maps.Marker[] = [];
+
     filteredProjects?.forEach(project => {
       const marker = markerMap.current.get(project.id);
-      if (marker) {
-        clusterer.addMarker(marker);
-      }
+      if (marker) markersToAdd.push(marker);
     });
-  }, [filteredProjects, clusterer, map]);
+
+    clusterer.addMarkers(markersToAdd);
+  }, [filteredProjects, clusterer, map, mapReady]);
 
   return (
     <>
       {projects?.map((project: Project) => {
         return (
           <MarkerInfoWindow
+            map={map}
             key={project.id}
             position={{
               lat: project.latitude,
