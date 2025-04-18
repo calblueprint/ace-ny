@@ -217,6 +217,7 @@ export default function AddMarker({
             onMarkerClick={handleMarkerClick}
             selectedProjectId={selectedProjectId}
             markerMap={markerMap.current}
+            filteredProjects={filteredProjects}
           />
         );
       })}
