@@ -217,7 +217,7 @@ export default function AddMarker({
       {projects?.map((project: Project) => {
         return (
           <MarkerInfoWindow
-            map={map}
+            mapReady={mapReady}
             key={project.id}
             position={{
               lat: project.latitude,

@@ -28,7 +28,7 @@ const technologyToPin: Record<string, string> = {
 };
 
 export const MarkerInfoWindow = ({
-  map,
+  mapReady,
   position,
   projectId,
   projectName,
@@ -38,7 +38,7 @@ export const MarkerInfoWindow = ({
   selectedProjectId,
   markerMap,
 }: {
-  map: google.maps.Map | null;
+  mapReady: boolean;
   position: { lat: number; lng: number };
   projectId: number;
   projectName: string;
@@ -87,18 +87,6 @@ export const MarkerInfoWindow = ({
       setInfoWindowShown(true);
     }
   }, [selectedProjectId, projectId]);
-
-  const [mapReady, setMapReady] = useState(false);
-  useEffect(() => {
-    if (!map) return;
-    const listener = google.maps.event.addListenerOnce(map, 'idle', () => {
-      setMapReady(true);
-    });
-
-    return () => {
-      google.maps.event.removeListener(listener);
-    };
-  });
 
   useEffect(() => {
     if (!mapReady) return;
