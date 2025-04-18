@@ -194,6 +194,7 @@ export default function AddMarker({
             clusterer={clusterer}
             selectedProjectId={selectedProjectId}
             markerMap={markerMap.current}
+            filteredProjects={filteredProjects}
           />
         );
       })}

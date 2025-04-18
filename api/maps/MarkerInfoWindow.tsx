@@ -15,6 +15,7 @@ import landbased_wind from '../../assets/Custom-Markers/landbased_wind.svg';
 import offshore_wind from '../../assets/Custom-Markers/offshore_wind.svg';
 import pumped_storage from '../../assets/Custom-Markers/pumped_storage.svg';
 import solarPower from '../../assets/Custom-Markers/solar_power.svg';
+import { Project } from '../../types/schema';
 import { InfoWindowStyle } from './style';
 
 const technologyToPin: Record<string, string> = {
@@ -36,6 +37,7 @@ export const MarkerInfoWindow = ({
   clusterer,
   selectedProjectId,
   markerMap,
+  filteredProjects,
 }: {
   position: { lat: number; lng: number };
   projectId: number;
@@ -48,6 +50,7 @@ export const MarkerInfoWindow = ({
   clusterer: MarkerClusterer | null;
   selectedProjectId: number | null;
   markerMap: Map<number, google.maps.Marker>;
+  filteredProjects: Project[] | null;
 }) => {
   const [markerRef, marker] = useAdvancedMarkerRef();
   const [infoWindowShown, setInfoWindowShown] = useState(false);
@@ -76,6 +79,14 @@ export const MarkerInfoWindow = ({
       setInfoWindowShown(false);
     }
   };
+
+  // hide infowindow if marker is not in filtered projects
+  useEffect(() => {
+    const isInFiltered = filteredProjects?.some(p => p.id === projectId);
+    if (!isInFiltered) {
+      setInfoWindowShown(false);
+    }
+  }, [filteredProjects, projectId]);
 
   useEffect(() => {
     // close infowindow and modal if new marker is clicked
