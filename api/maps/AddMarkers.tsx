@@ -187,14 +187,8 @@ export default function AddMarker({
   const [mapReady, setMapReady] = useState(false);
   useEffect(() => {
     if (!map) return;
-    const listener = google.maps.event.addListenerOnce(map, 'idle', () => {
-      setMapReady(true);
-    });
-
-    return () => {
-      google.maps.event.removeListener(listener);
-    };
-  });
+    setMapReady(true);
+  }, [map]);
 
   // Re-rendering clusters based on filtered projects
   useEffect(() => {
