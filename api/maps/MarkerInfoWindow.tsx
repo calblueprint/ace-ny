@@ -28,6 +28,7 @@ const technologyToPin: Record<string, string> = {
 };
 
 export const MarkerInfoWindow = ({
+  mapReady,
   position,
   projectId,
   projectName,
@@ -37,6 +38,7 @@ export const MarkerInfoWindow = ({
   selectedProjectId,
   markerMap,
 }: {
+  mapReady: boolean;
   position: { lat: number; lng: number };
   projectId: number;
   projectName: string;
@@ -87,6 +89,7 @@ export const MarkerInfoWindow = ({
   }, [selectedProjectId, projectId]);
 
   useEffect(() => {
+    if (!mapReady) return;
     if (marker && clusterer) {
       clusterer.addMarker(marker);
       markerMap.set(projectId, marker as unknown as google.maps.Marker);
@@ -98,7 +101,7 @@ export const MarkerInfoWindow = ({
         markerMap.delete(projectId);
       }
     };
-  }, [marker, clusterer, projectId, markerMap]);
+  }, [marker, clusterer, projectId, markerMap, mapReady]);
 
   return (
     <>

@@ -3,9 +3,12 @@ import supabase from '../createClient';
 
 export default async function queryProjects(): Promise<Project[]> {
   const { data: projects, error } = await supabase
-    .from('Projects_user_testing')
+    .from('Projects_test_deena')
+    // .from('Projects_user_testing')
     .select('*')
-    .eq('approved', true);
+    .not('longitude', 'is', null)
+    .not('latitude', 'is', null);
+  // .eq('approved', true);
 
   if (error) {
     throw new Error(`Error fetching projects: ${error.message}`);
@@ -16,7 +19,8 @@ export default async function queryProjects(): Promise<Project[]> {
 
 export async function queryProjectbyId(id: number): Promise<Project> {
   const { data: project, error } = await supabase
-    .from('Projects_user_testing')
+    .from('Projects_test_deena')
+    // .from('Projects_user_testing')
     .select('*')
     .eq('id', id)
     .single();
