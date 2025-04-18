@@ -9,11 +9,9 @@ import {
 } from '@vis.gl/react-google-maps';
 import { MarkerInfoWindowText1 } from '@/styles/texts';
 import energyStorage from '../../assets/Custom-Markers/energy_storage.svg';
-// import energyStorage from '../../assets/Custom-Markers/energy_storage.png';
 import geothermal from '../../assets/Custom-Markers/geothermal.svg';
 import hydroelectric from '../../assets/Custom-Markers/hydroelectric.svg';
 import landbased_wind from '../../assets/Custom-Markers/landbased_wind.svg';
-// import landbased_wind from '../../assets/Custom-Markers/landbased_wind.png';
 import offshore_wind from '../../assets/Custom-Markers/offshore_wind.svg';
 import pumped_storage from '../../assets/Custom-Markers/pumped_storage.svg';
 import solarPower from '../../assets/Custom-Markers/solar_power.svg';
