@@ -24,7 +24,10 @@ export const CategoryComponentContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 0.188rem;
+<<<<<<< HEAD
   cursor: pointer;
+=======
+>>>>>>> 22825f1 (fixed merge conflict)
 `;
 
 export const ButtonStyles = styled.button`

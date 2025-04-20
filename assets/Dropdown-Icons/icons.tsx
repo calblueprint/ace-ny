@@ -67,31 +67,32 @@ export const LocationIcon = () => (
 
 export const DropIcon = () => (
   <svg
+    xmlns="http://www.w3.org/2000/svg"
     width="13"
     height="8"
     viewBox="0 0 13 8"
     fill="none"
-    xmlns="http://www.w3.org/2000/svg"
   >
     <path
       opacity="0.5"
-      d="M6.69671 7.71248L12.7067 1.70248L11.2937 0.287476L6.69671 4.88748L2.10071 0.287476L0.686707 1.70148L6.69671 7.71248Z"
+      d="M6.4099 7.7125L12.4199 1.7025L11.0069 0.287498L6.4099 4.8875L1.8139 0.287498L0.399902 1.7015L6.4099 7.7125Z"
       fill="#2E3A59"
     />
   </svg>
 );
 
-export const UpIcon = () => (
+export const CollapseIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="12"
+    width="13"
     height="8"
-    viewBox="0 0 12 8"
+    viewBox="0 0 13 8"
     fill="none"
   >
     <path
-      d="M6.10552 0.287524L0.211037 6.29752L1.59688 7.71252L6.10552 3.11252L10.6132 7.71252L12 6.29852L6.10552 0.287524Z"
-      fill="#949AA9"
+      d="M6.01002 0.287501L1.91972e-05 6.2975L1.41302 7.7125L6.01002 3.1125L10.606 7.7125L12.02 6.2985L6.01002 0.287501Z"
+      fill="#2E3A59"
+      fill-opacity="0.5"
     />
   </svg>
 );
