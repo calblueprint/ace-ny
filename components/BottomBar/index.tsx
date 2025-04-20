@@ -73,15 +73,9 @@ export default function BottomBar({
   }
 
   useEffect(() => {
-    if (legendIsVisible) {
-      setLegendIsVisible(false);
-    }
-    if (aggFilterisVisible) {
-      setAggFilterisVisible(false);
-    }
-    if (infoModalisVisible) {
-      setInfoModalisVisible(false);
-    }
+    setLegendIsVisible(false);
+    setAggFilterisVisible(false);
+    setInfoModalisVisible(false);
   }, [selectedProjectId]);
 
   return (
