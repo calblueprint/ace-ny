@@ -38,6 +38,7 @@ export const ProjectDetails = styled.div`
   background: ${COLORS.white};
   width: 21.6rem;
   overflow-y: auto;
+  overflow-x: hidden;
   gap: 0.75rem;
 `;
 
@@ -55,8 +56,8 @@ export const ModalContents = styled.div`
   flex-direction: column;
   align-items: center;
   justify-self: center;
-  justify-content: space-between;
-  height: 100%
+  justify-content: flex-start;
+  height: 100%;
   gap: 1.2rem;
   padding: 0.93rem 0.625rem 0.625rem 0.8125rem;
 `;
@@ -68,20 +69,20 @@ export const NoProjectsDiv = styled.div`
   justify-content: center;
   text-align: center;
   flex: 1;
-  padding-top: 10.563rem;
-  gap: 0.625rem;
+  padding-bottom: 9.375rem;
 `;
 
 export const NoProjectsFoundText = styled.div`
   ${CoinbaseText.style}
-  color: var(--navy-85, #4C5671);
-  font-size: 14px;
+  color: COLORS.navy85;
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 300;
   line-height: normal;
 
-  max-width: 273px;
-  max-height: 49px;
+  text-align: center;
+  max-width: 17.063rem;
+  max-height: 3.063rem;
   flex-shrink: 0;
 `;
 
@@ -92,6 +93,7 @@ export const ProjectItemsDiv = styled.div`
   justify-self: center;
   justify-content: space-between;
   gap: 0.75rem;
+  flex: 1;
 `;
 
 export const SortByButton = styled.button`
@@ -111,7 +113,7 @@ export const Headers = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 102%;
+  width: 100%;
 `;
 
 export const SortBy = styled.div`
