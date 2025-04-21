@@ -1,30 +1,30 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Filter from '@/components/Filter';
 import {
   FilterChangeHandlers,
   Filters,
   FilterType,
-  projectSizeType,
+  ProjectSizeType,
 } from '@/types/schema';
 import { FilterContainerStyles } from './styles';
 
 interface FilterBarProps {
   filters: FilterType[];
-  selectedFilters: Filters;
   setSelectedFilters: React.Dispatch<React.SetStateAction<Filters>>;
-  handleFilterButtonClick: () => void;
-  clearFilters: (filterName?: keyof Filters) => void;
-  projectSizes: number[];
   setActiveLocationCategory: React.Dispatch<
     React.SetStateAction<string | null>
   >;
+  tempFilters: Filters;
+  setTempFilters: React.Dispatch<React.SetStateAction<Filters>>;
+  clearFilters: () => void;
+  projectSizes: number[];
 }
 
 export const FilterBar = ({
   filters,
-  selectedFilters,
   setSelectedFilters,
-  handleFilterButtonClick,
+  tempFilters,
+  setTempFilters,
   clearFilters,
   projectSizes,
   setActiveLocationCategory,
@@ -35,29 +35,59 @@ export const FilterBar = ({
     setActiveFilter(activeFilter?.id === filter.id ? null : filter);
   };
 
-  const handleProjectSizeChange = (projectSize: projectSizeType) => {
-    setSelectedFilters(prevFilters => ({
+  const handleProjectSizeChange = ({
+    value,
+    isTemp,
+  }: {
+    value: ProjectSizeType;
+    isTemp: boolean;
+  }) => {
+    const setter = isTemp ? setTempFilters : setSelectedFilters;
+    setter(prevFilters => ({
       ...prevFilters,
-      projectSize: projectSize,
+      projectSize: value,
     }));
   };
 
-  const handleTechnologyChange = (options: string[]) => {
-    setSelectedFilters(prevFilters => ({
+  const handleTechnologyChange = ({
+    value,
+    isTemp,
+  }: {
+    value: string[];
+    isTemp: boolean;
+  }) => {
+    const setter = isTemp ? setTempFilters : setSelectedFilters;
+    setter(prevFilters => ({
       ...prevFilters,
-      technology: options,
+      technology: value,
     }));
   };
-  const handleStatusChange = (options: string[]) => {
-    setSelectedFilters(prevFilters => ({
+
+  const handleStatusChange = ({
+    value,
+    isTemp,
+  }: {
+    value: string[];
+    isTemp: boolean;
+  }) => {
+    const setter = isTemp ? setTempFilters : setSelectedFilters;
+    setter(prevFilters => ({
       ...prevFilters,
-      status: options,
+      status: value,
     }));
   };
-  const handleLocationChange = (options: string[]) => {
-    setSelectedFilters(prevFilters => ({
+
+  const handleLocationChange = ({
+    value,
+    isTemp,
+  }: {
+    value: string[];
+    isTemp: boolean;
+  }) => {
+    const setter = isTemp ? setTempFilters : setSelectedFilters;
+    setter(prevFilters => ({
       ...prevFilters,
-      location: options,
+      location: value,
     }));
   };
 
@@ -69,6 +99,34 @@ export const FilterBar = ({
     projectSize: handleProjectSizeChange,
   };
 
+  const [lastAppliedFilter, setLastAppliedFilter] = useState('');
+  const maxSize = Math.max(...projectSizes);
+  const [minBound, setMinBound] = useState(-100);
+  const [maxBound, setMaxBound] = useState(maxSize + 100);
+  const [minDefault, setMinDefault] = useState(-100);
+  const [maxDefault, setMaxDefault] = useState(maxSize + 100);
+
+  useEffect(() => {
+    // updates the min and max bounds and default slider positions when the histogram changes (i.e when dropdown filters except project size are applied)
+    if (lastAppliedFilter !== 'projectSize') {
+      const maxValue = Math.max(...projectSizes);
+      const minValue = Math.min(...projectSizes);
+      const range = maxValue - minValue;
+      const padding = range * 0.25;
+      setMinBound(minValue - padding);
+      setMaxBound(maxValue + padding);
+
+      // if old slider positions are outside of the new range, update slider positions
+      setMinDefault(Math.min(maxValue + padding - 1, minDefault));
+      setMaxDefault(Math.min(maxValue + padding, maxDefault));
+
+      // reset slider positions when non-project size dropdown filters are applied
+      setMinDefault(minValue - padding);
+      setMaxDefault(maxValue + padding);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastAppliedFilter, projectSizes]);
+
   return (
     <FilterContainerStyles>
       {filters.map(filter => (
@@ -76,14 +134,20 @@ export const FilterBar = ({
           key={filter.label}
           filter={filter}
           isActive={activeFilter?.id === filter.id}
-          selectedFilters={selectedFilters}
+          tempFilters={tempFilters}
           filterChangeHandlers={filterChangeHandlers}
           handleButtonClick={handleButtonClick}
-          handleFilterButtonClick={handleFilterButtonClick}
           clearFilters={clearFilters}
           setActiveFilter={setActiveFilter}
           projectSizes={projectSizes}
           setActiveLocationCategory={setActiveLocationCategory}
+          setLastAppliedFilter={setLastAppliedFilter}
+          minBound={minBound}
+          maxBound={maxBound}
+          minDefault={minDefault}
+          maxDefault={maxDefault}
+          setMinDefault={setMinDefault}
+          setMaxDefault={setMaxDefault}
         />
       ))}
     </FilterContainerStyles>

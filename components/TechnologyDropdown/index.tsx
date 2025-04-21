@@ -7,7 +7,10 @@ import {
   FilterHeadingUnused,
 } from '@/styles/texts';
 import { Filters, FilterType } from '@/types/schema';
-import { ExitIconApplied, UpIcon } from '../../assets/Dropdown-Icons/icons';
+import {
+  CollapseIcon,
+  ExitIconApplied,
+} from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
   GeothermalIcon,
@@ -33,6 +36,7 @@ import {
 } from './styles';
 
 export default function TechnologyDropdown({
+  tempFilters,
   selectedTechnologies,
   setSelectedTechnologies,
   handleButtonClick,
@@ -40,29 +44,37 @@ export default function TechnologyDropdown({
   iconApplied,
   label,
   currFilter,
-  handleFilterButtonClick,
   clearFilters,
   setActiveFilter,
   setTechnologyFiltersApplied,
   technologyFiltersApplied,
+  setLastAppliedFilter,
 }: {
+  tempFilters: Filters;
   selectedTechnologies: string[];
-  setSelectedTechnologies: (technologies: string[]) => void;
+  setSelectedTechnologies: (args: { value: string[]; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   iconApplied: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  handleFilterButtonClick: () => void;
   clearFilters: (filterName?: keyof Filters) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setTechnologyFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
   technologyFiltersApplied: boolean;
+  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
 }) {
-  const handleApplyButtonClick = () => {
-    handleFilterButtonClick();
+  const applyButtonHandler = () => {
+    setSelectedTechnologies({ value: tempFilters.technology, isTemp: false });
     setActiveFilter(null);
     setTechnologyFiltersApplied(true);
+    setLastAppliedFilter('technology');
+  };
+
+  const clearButtonHandler = () => {
+    clearFilters('technology');
+    setLastAppliedFilter('technology');
+    setTechnologyFiltersApplied(false);
   };
 
   const filter = {
@@ -155,6 +167,13 @@ export default function TechnologyDropdown({
   };
   const isApplyButtonActive = selectedTechnologies.length > 0;
 
+  function checkBoxClickHandler(title: string): void {
+    const value = selectedTechnologies.includes(title)
+      ? selectedTechnologies.filter(o => o !== title)
+      : [...selectedTechnologies, title];
+    setSelectedTechnologies({ value: value, isTemp: true });
+  }
+
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
@@ -184,7 +203,7 @@ export default function TechnologyDropdown({
               <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
                 <FilterHeadingUnused>{label}</FilterHeadingUnused>
                 <ExitStyles>
-                  <UpIcon />
+                  <CollapseIcon />
                 </ExitStyles>
               </ButtonStyles>
             </>
@@ -201,13 +220,7 @@ export default function TechnologyDropdown({
                 <CheckboxStyles
                   type="checkbox"
                   checked={selectedTechnologies.includes(option.title)}
-                  onChange={() => {
-                    setSelectedTechnologies(
-                      selectedTechnologies.includes(option.title)
-                        ? selectedTechnologies.filter(o => o !== option.title)
-                        : [...selectedTechnologies, option.title],
-                    );
-                  }}
+                  onChange={() => checkBoxClickHandler(option.title)}
                 />
               </CheckboxContainer>
             ))}
@@ -215,16 +228,13 @@ export default function TechnologyDropdown({
         ))}
         <ApplyButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={handleApplyButtonClick}
+          onClick={applyButtonHandler}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={() => {
-            clearFilters('technology');
-            setTechnologyFiltersApplied(false);
-          }}
+          onClick={clearButtonHandler}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>
