@@ -4,7 +4,7 @@ import { CoinbaseMono, CoinbaseSans, CoinbaseText } from '@/styles/fonts';
 
 export const AggregationFilterBackground = styled.div`
   width: 20.6875rem;
-  height: 14.6875rem;
+  height: 16.875rem;
   background: linear-gradient(
     180deg,
     rgba(250, 250, 250, 0.32) 0%,
@@ -12,11 +12,20 @@ export const AggregationFilterBackground = styled.div`
   );
   backdrop-filter: blur(2.5px);
   z-index: 5;
-  border-radius: 16px;
+  border-radius: 12px;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const AggregationFilterText = styled.div`
+  color: rgba(46, 58, 89, 0.85);
+  font-family: ${CoinbaseSans.style};
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 `;
 
 export const AggregationFilterStyles = styled.div`
@@ -30,16 +39,18 @@ export const AggregationFilterStyles = styled.div`
   gap: 0.625rem;
   border-radius: 12px;
   width: 20.1875rem;
-  height: 14.125rem;
+  height: 16.3125rem;
 `;
 
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 10px;
-  margin-top: 10px;
-  margin-left: 15px;
+  margin-top: 12px;
+  margin-left: 16px;
+  padding: 0 16px;
 `;
 
 export const Header = styled.div`
@@ -53,16 +64,17 @@ export const Header = styled.div`
   border-bottom: 1px solid ${COLORS.navy1A};
   border-left: 0.5px solid ${COLORS.navy1A};
   background: #fff;
-  width: 15.6875rem;
-  height: 2.5rem;
-  gap: 0px;
+  width: 16.813rem;
+  height: 1.625rem;
   overflow: hidden;
+  align-self: center;
 `;
 
 export const Tab = styled.div<{ $isActive: boolean }>`
   display: flex;
   height: 2.5rem;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   border-radius: 40px;
   padding: 0 18px;
@@ -70,14 +82,16 @@ export const Tab = styled.div<{ $isActive: boolean }>`
     $isActive ? COLORS.electricBlue05 : COLORS.white};
   cursor: pointer;
   color: ${({ $isActive }) => ($isActive ? COLORS.electricBlue : COLORS.navy)};
+  font-weight: ${({ $isActive }) => ($isActive ? 600 : 400)};
   transition:
     background 0.2s ease-in-out,
     color 0.2s ease-in-out;
+  flex: 1;
 `;
 
 export const HeaderText = styled.div`
-  font-family: ${CoinbaseSans.style};
-  font-size: 14px;
+  font-family: ${CoinbaseText.style};
+  font-size: 11px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -92,8 +106,9 @@ export const UpsideDownArrow = styled.div`
 export const ContentContainer = styled.div`
   display: flex;
   align-self: center;
-  width: 15.625rem;
+  width: 16.813rem;
   height: 9.3125rem;
+  gap: 14px;
   flex-direction: column;
 `;
 
@@ -103,7 +118,6 @@ export const ContentContainerHeader = styled.div`
   justify-content: space-between;
   width: 100%;
   padding-top: 2px;
-  padding-bottom: 9px;
 `;
 
 export const TotalText = styled.div`
@@ -117,7 +131,9 @@ export const TotalText = styled.div`
 
 export const TechnologyStyles = styled.div`
   display: flex;
-  gap: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 12px;
   line-height: normal;
   align-items: center;
   justify-content: center;
