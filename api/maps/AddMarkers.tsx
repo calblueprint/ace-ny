@@ -163,8 +163,22 @@ export default function AddMarker({
     marker.setMap(map);
   };
 
+  // Check if map is rendered
+  const [mapReady, setMapReady] = useState(false);
   useEffect(() => {
-    // Iterate through the filtered projects to update the visibility of each marker
+    if (!map) return;
+    setTimeout(() => setMapReady(true), 500);
+  }, [map]);
+
+  useEffect(() => {
+    // Iterates through the filtered projects to update the visibility of each marker
+    // Re-rendering clusters based on filtered projects
+    if (!clusterer || !map || !mapReady) return;
+
+    clusterer.clearMarkers();
+
+    const markersToAdd: google.maps.Marker[] = [];
+
     projects?.forEach(project => {
       const marker = markerMap.current.get(project.id);
 
@@ -176,35 +190,15 @@ export default function AddMarker({
 
         if (isInFilteredProjects && map) {
           showMarker(marker, map);
+          markersToAdd.push(marker);
         } else {
           hideMarker(marker);
         }
       }
     });
-  }, [filteredProjects, map, projects]);
-
-  // Check if map is rendered
-  const [mapReady, setMapReady] = useState(false);
-  useEffect(() => {
-    if (!map) return;
-    setMapReady(true);
-  }, [map]);
-
-  // Re-rendering clusters based on filtered projects
-  useEffect(() => {
-    if (!clusterer || !map || !mapReady) return;
-
-    clusterer.clearMarkers();
-
-    const markersToAdd: google.maps.Marker[] = [];
-
-    filteredProjects?.forEach(project => {
-      const marker = markerMap.current.get(project.id);
-      if (marker) markersToAdd.push(marker);
-    });
 
     clusterer.addMarkers(markersToAdd);
-  }, [filteredProjects, clusterer, map, mapReady]);
+  }, [filteredProjects, map, projects, mapReady, clusterer]);
 
   return (
     <>

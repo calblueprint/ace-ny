@@ -25,6 +25,7 @@ const technologyToPin: Record<string, string> = {
   'Offshore Wind': offshore_wind,
   'Pumped Storage': pumped_storage,
   'Solar PV': solarPower,
+  Solar: solarPower,
 };
 
 export const MarkerInfoWindow = ({
