@@ -57,7 +57,6 @@ export const ModalContents = styled.div`
   align-items: center;
   justify-self: center;
   justify-content: flex-start;
-  height: 100%;
   gap: 1.2rem;
   padding: 0.93rem 0.625rem 0.625rem 0.8125rem;
 `;
@@ -66,10 +65,8 @@ export const NoProjectsDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  flex: 1;
-  padding-bottom: 9.375rem;
+  margin-top: 10.625rem;
+  gap: 1rem;
 `;
 
 export const NoProjectsFoundText = styled.div`
@@ -79,7 +76,6 @@ export const NoProjectsFoundText = styled.div`
   font-style: normal;
   font-weight: 300;
   line-height: normal;
-
   text-align: center;
   max-width: 17.063rem;
   max-height: 3.063rem;
@@ -89,11 +85,7 @@ export const NoProjectsFoundText = styled.div`
 export const ProjectItemsDiv = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-self: center;
-  justify-content: space-between;
   gap: 0.75rem;
-  flex: 1;
 `;
 
 export const SortByButton = styled.button`

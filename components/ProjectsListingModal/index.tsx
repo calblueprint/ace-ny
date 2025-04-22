@@ -5,6 +5,7 @@ import Modal from 'react-modal';
 import { CloseIcon, OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
 import { NoProjectsFound, SearchIcon } from '@/assets/SearchBar-Icons/icons';
+import COLORS from '@/styles/colors';
 import { FilterNameText, SubHeading1, SubHeading2 } from '@/styles/texts';
 import { SortByText } from '../../styles/texts';
 import { Project } from '../../types/schema';
@@ -143,8 +144,7 @@ export default function ProjectsListingModal({
                       <NoProjectsFound />
                       <SubHeading1
                         style={{
-                          color: 'rgba(46, 58, 89, 0.85)',
-                          marginTop: '1.319rem',
+                          color: COLORS.navy85,
                         }}
                       >
                         NO PROJECTS FOUND
