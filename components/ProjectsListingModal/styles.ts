@@ -1,6 +1,7 @@
 import { CSSProperties } from 'react';
 import styled from 'styled-components';
 import COLORS from '@/styles/colors';
+import { CoinbaseText } from '@/styles/fonts';
 
 export const modalOverlayStyles: CSSProperties = {
   width: '21.25rem',
@@ -55,17 +56,35 @@ export const ModalContents = styled.div`
   flex-direction: column;
   align-items: center;
   justify-self: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1.2rem;
   padding: 0.93rem 0.625rem 0.625rem 0.8125rem;
+`;
+
+export const NoProjectsDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10.625rem;
+  gap: 1rem;
+`;
+
+export const NoProjectsFoundText = styled.div`
+  ${CoinbaseText.style}
+  color: COLORS.navy85;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  text-align: center;
+  max-width: 17.063rem;
+  max-height: 3.063rem;
+  flex-shrink: 0;
 `;
 
 export const ProjectItemsDiv = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-self: center;
-  justify-content: space-between;
   gap: 0.75rem;
 `;
 
@@ -86,7 +105,7 @@ export const Headers = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  width: 102%;
+  width: 100%;
 `;
 
 export const SortBy = styled.div`
