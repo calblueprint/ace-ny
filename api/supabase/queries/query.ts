@@ -2,17 +2,12 @@ import { Project } from '../../../types/schema';
 import supabase from '../createClient';
 
 export default async function queryProjects(): Promise<Project[]> {
-  const tableName =
-    process.env.NODE_ENV === 'development'
-      ? 'Projects_user_testing'
-      : 'Projects_test_deena';
-
   const { data: projects, error } = await supabase
-    .from(tableName)
+    .from('Projects_user_testing')
     .select('*')
     .not('longitude', 'is', null)
-    .not('latitude', 'is', null);
-  // .eq('approved', true);
+    .not('latitude', 'is', null)
+    .eq('approved', true);
 
   if (error) {
     throw new Error(`Error fetching projects: ${error.message}`);
@@ -23,8 +18,7 @@ export default async function queryProjects(): Promise<Project[]> {
 
 export async function queryProjectbyId(id: number): Promise<Project> {
   const { data: project, error } = await supabase
-    .from('Projects_test_deena')
-    // .from('Projects_user_testing')
+    .from('Projects_user_testing')
     .select('*')
     .eq('id', id)
     .single();

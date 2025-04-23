@@ -168,7 +168,7 @@ export default function AddMarker({
   const [mapReady, setMapReady] = useState(false);
   useEffect(() => {
     if (!map) return;
-    setTimeout(() => setMapReady(true), 100);
+    setTimeout(() => setMapReady(true), 500);
   }, [map]);
 
   useEffect(() => {
