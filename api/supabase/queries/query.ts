@@ -2,9 +2,13 @@ import { Project } from '../../../types/schema';
 import supabase from '../createClient';
 
 export default async function queryProjects(): Promise<Project[]> {
+  const tableName =
+    process.env.NODE_ENV === 'development'
+      ? 'Projects_user_testing'
+      : 'Projects_test_deena';
+
   const { data: projects, error } = await supabase
-    .from('Projects_test_deena')
-    // .from('Projects_user_testing')
+    .from(tableName)
     .select('*')
     .not('longitude', 'is', null)
     .not('latitude', 'is', null);

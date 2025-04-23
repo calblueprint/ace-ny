@@ -96,25 +96,26 @@ export default function AddMarker({
     return mapZoom;
   };
 */
-  // cache cluster numbers to svg strings
-  const svgStringCache = new Map<number, string>();
-
-  function getSVGString(count: number): string {
-    if (!svgStringCache.has(count)) {
-      const svg = renderToStaticMarkup(<ClusterIcon count={count} />);
-      svgStringCache.set(count, svg);
-    }
-    return svgStringCache.get(count)!;
-  }
-  // defines how close markers need to be to each other to cluster
-  // used to minimize the number of clusters for performance
-  const algorithm = new GridAlgorithm({
-    gridSize: 60,
-    maxZoom: 18,
-  });
 
   const clusterer = useMemo(() => {
     if (!map) return null;
+
+    // cache cluster numbers to svg strings
+    const svgStringCache = new Map<number, string>();
+
+    function getSVGString(count: number): string {
+      if (!svgStringCache.has(count)) {
+        const svg = renderToStaticMarkup(<ClusterIcon count={count} />);
+        svgStringCache.set(count, svg);
+      }
+      return svgStringCache.get(count)!;
+    }
+    // defines how close markers need to be to each other to cluster
+    // used to minimize the number of clusters for performance
+    const algorithm = new GridAlgorithm({
+      gridSize: 60,
+      maxZoom: 18,
+    });
 
     const renderer = {
       render(cluster: Cluster) {
@@ -167,7 +168,7 @@ export default function AddMarker({
   const [mapReady, setMapReady] = useState(false);
   useEffect(() => {
     if (!map) return;
-    setTimeout(() => setMapReady(true), 500);
+    setTimeout(() => setMapReady(true), 100);
   }, [map]);
 
   useEffect(() => {
@@ -205,7 +206,6 @@ export default function AddMarker({
       {projects?.map((project: Project) => {
         return (
           <MarkerInfoWindow
-            mapReady={mapReady}
             key={project.id}
             position={{
               lat: project.latitude,
@@ -215,7 +215,6 @@ export default function AddMarker({
             technology={project.renewable_energy_technology}
             projectId={project.id}
             onMarkerClick={handleMarkerClick}
-            clusterer={clusterer}
             selectedProjectId={selectedProjectId}
             markerMap={markerMap.current}
           />
