@@ -169,7 +169,7 @@ export default function LocationDropdown({
           $isActive={selectedItem !== null}
           onClick={() => {
             clearFilters('location');
-            setSelectedLocationFilters([]);
+            setSelectedLocationFilters({ value: [], isTemp: false });
             setSelectedItem(null);
             setAppliedCategory(null);
           }}
