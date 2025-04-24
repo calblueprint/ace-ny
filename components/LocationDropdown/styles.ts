@@ -63,3 +63,21 @@ export const IconStyles = styled.div`
   width: '3rem',
   height: '3rem',
 `;
+
+export const ClearButtonStyles = styled.button<{ $isActive: boolean }>`
+  width: 100%;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 0.09rem;
+  border-color: ${COLORS.electricBlue};
+  opacity: ${({ $isActive }) => ($isActive ? '1' : '0.5')};
+  background: ${COLORS.white};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.5rem auto auto auto;
+  pointer-events: ${({ $isActive }) => ($isActive ? 'auto' : 'none')};
+  cursor: ${({ $isActive }) => ($isActive ? 'pointer' : 'not-allowed')};
+`;

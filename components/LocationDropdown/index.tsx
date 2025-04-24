@@ -11,6 +11,7 @@ import {
   UtilityServiceTerritoryIcon,
 } from '../../assets/Location-Category-Icons/icons';
 import {
+  ClearFiltersText,
   FilterHeadingUnused,
   FilterLocationText,
   FilterNameText,
@@ -21,6 +22,7 @@ import {
   ButtonStyles,
   ButtonWithIconStyles,
   CategoryComponentContainer,
+  ClearButtonStyles,
   LocationContentDiv,
   LocationIconWithTestContainer,
   LocationStyleDiv,
@@ -59,6 +61,10 @@ export default function LocationDropdown({
     'State Senate District',
     'Assembly District',
   ];
+
+  const [selectedItem, setSelectedItem] = useState<string | null>(
+    selectedLocationFilters[0] ?? null,
+  );
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
@@ -144,6 +150,16 @@ export default function LocationDropdown({
             }}
           />
         </CategoryComponentContainer>
+        <ClearButtonStyles
+          $isActive={selectedItem !== null}
+          onClick={() => {
+            clearFilters('location');
+            setSelectedLocationFilters([]);
+            setSelectedItem(null);
+          }}
+        >
+          <ClearFiltersText>CLEAR</ClearFiltersText>
+        </ClearButtonStyles>
       </LocationContentDiv>
     </LocationStyleDiv>
   ) : (
