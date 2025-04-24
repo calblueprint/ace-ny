@@ -39,6 +39,8 @@ export default function LocationCategoryPanel({
   setSelectedLocationFilters,
   setActiveFilter,
   categoryOptionsMap,
+  activeCategory,
+  setAppliedCategory,
 }: {
   onBack: () => void;
   category: string;
@@ -50,6 +52,8 @@ export default function LocationCategoryPanel({
   setSelectedLocationFilters: (value: string[]) => void;
   setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   categoryOptionsMap: Record<string, string[]>;
+  activeCategory: string | null;
+  setAppliedCategory: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   const [selectedItem, setSelectedItem] = useState<string | null>(
     selectedLocationFilters[0] ?? null,
@@ -69,6 +73,7 @@ export default function LocationCategoryPanel({
   const handleApplyButtonClick = () => {
     handleFilterButtonClick();
     setActiveFilter(null);
+    setAppliedCategory(activeCategory);
   };
 
   return (
@@ -128,6 +133,7 @@ export default function LocationCategoryPanel({
             clearFilters('location');
             setSelectedLocationFilters([]);
             setSelectedItem(null);
+            setAppliedCategory(null);
           }}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>

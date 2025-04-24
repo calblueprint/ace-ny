@@ -39,6 +39,8 @@ export default function LocationDropdown({
   setSelectedLocationFilters,
   setActiveFilter,
   setActiveLocationCategory,
+  appliedCategory,
+  setAppliedCategory,
 }: {
   handleButtonClick: (filter: FilterType) => void;
   handleFilterButtonClick: () => void;
@@ -52,6 +54,8 @@ export default function LocationDropdown({
   setActiveLocationCategory: React.Dispatch<
     React.SetStateAction<string | null>
   >;
+  appliedCategory: string | null;
+  setAppliedCategory: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   const locationCategories = [
     'County',
@@ -108,6 +112,7 @@ export default function LocationDropdown({
               setActiveLocationCategory('Region');
               setActiveCategory('Region');
             }}
+            appliedCategory={appliedCategory}
           />
           <LocationCategory
             icon={<CountyIcon />}
@@ -116,6 +121,7 @@ export default function LocationDropdown({
               setActiveLocationCategory('County');
               setActiveCategory('County');
             }}
+            appliedCategory={appliedCategory}
           />
           <LocationCategory
             icon={<TownIcon />}
@@ -124,6 +130,7 @@ export default function LocationDropdown({
               setActiveLocationCategory('Town');
               setActiveCategory('Town');
             }}
+            appliedCategory={appliedCategory}
           />
           <LocationCategory
             icon={<UtilityServiceTerritoryIcon />}
@@ -132,6 +139,7 @@ export default function LocationDropdown({
               setActiveLocationCategory('Utility Service Territory');
               setActiveCategory('Utility Service Territory');
             }}
+            appliedCategory={appliedCategory}
           />
           <LocationCategory
             icon={<StateSenateDistrictIcon />}
@@ -140,6 +148,7 @@ export default function LocationDropdown({
               setActiveLocationCategory('State Senate District');
               setActiveCategory('State Senate District');
             }}
+            appliedCategory={appliedCategory}
           />
           <LocationCategory
             icon={<AssemblyDistrictIcon />}
@@ -148,6 +157,7 @@ export default function LocationDropdown({
               setActiveLocationCategory('Assembly District');
               setActiveCategory('Assembly District');
             }}
+            appliedCategory={appliedCategory}
           />
         </CategoryComponentContainer>
         <ClearButtonStyles
@@ -156,6 +166,7 @@ export default function LocationDropdown({
             clearFilters('location');
             setSelectedLocationFilters([]);
             setSelectedItem(null);
+            setAppliedCategory(null);
           }}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
@@ -174,6 +185,8 @@ export default function LocationDropdown({
       setSelectedLocationFilters={setSelectedLocationFilters}
       setActiveFilter={setActiveFilter}
       categoryOptionsMap={categoryOptionsMap}
+      activeCategory={activeCategory}
+      setAppliedCategory={setAppliedCategory}
     />
   );
 }

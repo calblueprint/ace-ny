@@ -47,7 +47,7 @@ export default function Filter({
   const [statusFiltersApplied, setStatusFiltersApplied] = useState(false);
   const [technologyFiltersApplied, setTechnologyFiltersApplied] =
     useState(false);
-
+  const [appliedCategory, setAppliedCategory] = useState<string | null>(null);
   return (
     <FilterBackgroundStyles $isActive={isActive}>
       {isActive ? (
@@ -108,6 +108,8 @@ export default function Filter({
             selectedLocationFilters={selectedFilters.location}
             setSelectedLocationFilters={filterChangeHandlers.location}
             setActiveLocationCategory={setActiveLocationCategory}
+            appliedCategory={appliedCategory}
+            setAppliedCategory={setAppliedCategory}
           ></LocationDropdown>
         ) : // Add other filter dropdown components here
         null

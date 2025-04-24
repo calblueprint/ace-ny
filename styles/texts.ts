@@ -8,6 +8,13 @@ interface TextProps {
   $align?: 'left' | 'right' | 'center' | 'end' | 'justify' | 'start';
 }
 
+interface LocationTextProps {
+  selected?: boolean;
+  $color?: string;
+  $fontWeight?: number | string;
+  $align?: 'left' | 'right' | 'center' | 'end' | 'justify' | 'start';
+}
+
 const TextStylesCoinbaseMono = css<TextProps>`
   ${CoinbaseMono.style}
   font-weight: ${({ $fontWeight }) => $fontWeight || '700'};
@@ -265,14 +272,14 @@ export const ClearFiltersText = styled.p<TextProps>`
   color: ${COLORS.electricBlue};
 `;
 
-export const LocationCategoryText = styled.p<TextProps>`
+export const LocationCategoryText = styled.p<LocationTextProps>`
   ${TextStylesCoinbaseText}
   text-align: center;
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 250;
   line-height: normal;
-  color: ${COLORS.navy};
+  color: ${({ selected }) => (selected ? COLORS.electricBlue : COLORS.navy)};
 `;
 
 export const LocationOptionText = styled.p<TextProps>`
