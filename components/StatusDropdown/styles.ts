@@ -54,11 +54,10 @@ export const ButtonStyles = styled.button`
   cursor: pointer;
 `;
 
-export const ExitStyles = styled.div`
+export const CollapseStyles = styled.div`
   margin-left: auto;
   display: flex;
   align-self: center;
-  padding-bottom: 0.125rem;
 `;
 
 export const ButtonWithIconStyles = styled.div`

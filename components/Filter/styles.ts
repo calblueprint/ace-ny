@@ -40,9 +40,8 @@ export const IconStyle = styled.div`
   height: 0.8rem;
 `;
 
-export const ExitIconStyle = styled.div`
+export const ClearIconStyle = styled.div`
   margin-left: auto;
   display: flex;
   align-self: center;
-  padding-bottom: 0.125rem;
 `;

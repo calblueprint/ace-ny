@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { queryOptionsForCategory } from '@/api/supabase/queries/query';
 import { Filters, FilterType } from '@/types/schema';
-import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
+import {
+  CollapseIcon,
+  CollapseIconApplied,
+} from '../../assets/Dropdown-Icons/icons';
 import {
   AssemblyDistrictIcon,
   CountyIcon,
@@ -12,6 +15,7 @@ import {
 } from '../../assets/Location-Category-Icons/icons';
 import {
   ClearFiltersText,
+  FilterHeadingInUse,
   FilterHeadingUnused,
   FilterLocationText,
   FilterNameText,
@@ -29,38 +33,38 @@ import {
 } from './styles';
 
 export default function LocationDropdown({
-  tempFilters,
   handleButtonClick,
   icon,
   label,
   currFilter,
-  clearFilters,
+  clearButtonHandler,
   selectedLocationFilters,
   setSelectedLocationFilters,
-  setActiveFilter,
   setActiveLocationCategory,
-  setLastAppliedFilter,
+  applyButtonHandler,
   appliedCategory,
   setAppliedCategory,
+  iconApplied,
+  locationFiltersApplied,
 }: {
-  tempFilters: Filters;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  clearFilters: (filterName?: keyof Filters) => void;
+  clearButtonHandler: (filter: keyof Filters) => void;
   selectedLocationFilters: string[];
   setSelectedLocationFilters: (args: {
     value: string[];
     isTemp: boolean;
   }) => void;
-  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setActiveLocationCategory: React.Dispatch<
     React.SetStateAction<string | null>
   >;
   appliedCategory: string | null;
   setAppliedCategory: React.Dispatch<React.SetStateAction<string | null>>;
-  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
+  applyButtonHandler: (filter: keyof Filters) => void;
+  iconApplied: React.ReactNode;
+  locationFiltersApplied: boolean;
 }) {
   const locationCategories = [
     'County',
@@ -100,13 +104,21 @@ export default function LocationDropdown({
         <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
           <LocationIconWithTestContainer>
             <FilterNameText>
-              <FilterHeadingUnused>{icon}</FilterHeadingUnused>
+              {locationFiltersApplied ? (
+                <FilterHeadingInUse>{iconApplied}</FilterHeadingInUse>
+              ) : (
+                <FilterHeadingUnused>{icon}</FilterHeadingUnused>
+              )}
             </FilterNameText>
             <ButtonStyles>
-              <FilterLocationText>{label}</FilterLocationText>
+              {locationFiltersApplied ? (
+                <FilterHeadingInUse>{label}</FilterHeadingInUse>
+              ) : (
+                <FilterLocationText>{label}</FilterLocationText>
+              )}
             </ButtonStyles>
           </LocationIconWithTestContainer>
-          <CollapseIcon />
+          {locationFiltersApplied ? <CollapseIconApplied /> : <CollapseIcon />}
         </ButtonWithIconStyles>
 
         <CategoryComponentContainer>
@@ -168,10 +180,8 @@ export default function LocationDropdown({
         <ClearButtonStyles
           $isActive={selectedItem !== null}
           onClick={() => {
-            clearFilters('location');
-            setLastAppliedFilter('location');
+            clearButtonHandler('location');
             setSelectedItem(null);
-            setAppliedCategory(null);
           }}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
@@ -180,19 +190,17 @@ export default function LocationDropdown({
     </LocationStyleDiv>
   ) : (
     <LocationCategoryPanel
-      tempFilters={tempFilters}
       category={activeCategory}
       onBack={() => setActiveCategory(null)}
       handleButtonClick={handleButtonClick}
       currFilter={currFilter}
-      clearFilters={clearFilters}
+      clearButtonHandler={clearButtonHandler}
       selectedLocationFilters={selectedLocationFilters}
       setSelectedLocationFilters={setSelectedLocationFilters}
-      setActiveFilter={setActiveFilter}
       categoryOptionsMap={categoryOptionsMap}
       activeCategory={activeCategory}
       setAppliedCategory={setAppliedCategory}
-      setLastAppliedFilter={setLastAppliedFilter}
+      applyButtonHandler={applyButtonHandler}
     />
   );
 }

@@ -24,10 +24,7 @@ export const CategoryComponentContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 0.188rem;
-<<<<<<< HEAD
   cursor: pointer;
-=======
->>>>>>> 22825f1 (fixed merge conflict)
 `;
 
 export const ButtonStyles = styled.button`
@@ -65,6 +62,12 @@ export const FilterIconStyles = styled.div`
 export const IconStyles = styled.div`
   width: '3rem',
   height: '3rem',
+`;
+
+export const CollapseStyles = styled.div`
+  display: flex;
+  padding-left: 1.5rem;
+  padding-bottom: 0.125rem;
 `;
 
 export const ClearButtonStyles = styled.button<{ $isActive: boolean }>`

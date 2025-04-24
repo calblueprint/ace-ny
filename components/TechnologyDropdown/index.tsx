@@ -9,7 +9,7 @@ import {
 import { Filters, FilterType } from '@/types/schema';
 import {
   CollapseIcon,
-  ExitIconApplied,
+  CollapseIconApplied,
 } from '../../assets/Dropdown-Icons/icons';
 import {
   EnergyStorageIcon,
@@ -28,7 +28,7 @@ import {
   CheckboxContainer,
   CheckboxStyles,
   ClearButtonStyles,
-  ExitStyles,
+  CollapseStyles,
   FilterContentDiv,
   FilterDropdownStyles,
   FilterIconStyles,
@@ -36,7 +36,6 @@ import {
 } from './styles';
 
 export default function TechnologyDropdown({
-  tempFilters,
   selectedTechnologies,
   setSelectedTechnologies,
   handleButtonClick,
@@ -44,13 +43,10 @@ export default function TechnologyDropdown({
   iconApplied,
   label,
   currFilter,
-  clearFilters,
-  setActiveFilter,
-  setTechnologyFiltersApplied,
+  clearButtonHandler,
   technologyFiltersApplied,
-  setLastAppliedFilter,
+  applyButtonHandler,
 }: {
-  tempFilters: Filters;
   selectedTechnologies: string[];
   setSelectedTechnologies: (args: { value: string[]; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
@@ -58,25 +54,10 @@ export default function TechnologyDropdown({
   iconApplied: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  clearFilters: (filterName?: keyof Filters) => void;
-  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
-  setTechnologyFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
+  clearButtonHandler: (filter: keyof Filters) => void;
   technologyFiltersApplied: boolean;
-  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
+  applyButtonHandler: (filter: keyof Filters) => void;
 }) {
-  const applyButtonHandler = () => {
-    setSelectedTechnologies({ value: tempFilters.technology, isTemp: false });
-    setActiveFilter(null);
-    setTechnologyFiltersApplied(true);
-    setLastAppliedFilter('technology');
-  };
-
-  const clearButtonHandler = () => {
-    clearFilters('technology');
-    setLastAppliedFilter('technology');
-    setTechnologyFiltersApplied(false);
-  };
-
   const filter = {
     categories: [
       {
@@ -185,14 +166,9 @@ export default function TechnologyDropdown({
               </FilterIconStyles>
               <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
                 <FilterHeadingInUse>{label}</FilterHeadingInUse>
-                <ExitStyles
-                  onClick={() => {
-                    clearFilters('technology');
-                    setTechnologyFiltersApplied(false);
-                  }}
-                >
-                  <ExitIconApplied />
-                </ExitStyles>
+                <CollapseStyles>
+                  <CollapseIconApplied />
+                </CollapseStyles>
               </ButtonStyles>
             </>
           ) : (
@@ -202,9 +178,9 @@ export default function TechnologyDropdown({
               </FilterIconStyles>
               <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
                 <FilterHeadingUnused>{label}</FilterHeadingUnused>
-                <ExitStyles>
+                <CollapseStyles>
                   <CollapseIcon />
-                </ExitStyles>
+                </CollapseStyles>
               </ButtonStyles>
             </>
           )}
@@ -228,13 +204,13 @@ export default function TechnologyDropdown({
         ))}
         <ApplyButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={applyButtonHandler}
+          onClick={() => applyButtonHandler('technology')}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={clearButtonHandler}
+          onClick={() => clearButtonHandler('technology')}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>

@@ -29,36 +29,32 @@ import {
 } from './styles';
 
 export default function LocationCategoryPanel({
-  tempFilters,
   onBack,
   category,
   handleButtonClick,
   currFilter,
   selectedLocationFilters,
-  clearFilters,
+  clearButtonHandler,
   setSelectedLocationFilters,
-  setActiveFilter,
   categoryOptionsMap,
   activeCategory,
   setAppliedCategory,
-  setLastAppliedFilter,
+  applyButtonHandler,
 }: {
-  tempFilters: Filters;
   onBack: () => void;
   category: string;
   handleButtonClick: (filter: FilterType) => void;
   currFilter: FilterType;
   selectedLocationFilters: string[];
-  clearFilters: (filterName?: keyof Filters) => void;
+  clearButtonHandler: (filter: keyof Filters) => void;
   setSelectedLocationFilters: (args: {
     value: string[];
     isTemp: boolean;
   }) => void;
-  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   categoryOptionsMap: Record<string, string[]>;
   activeCategory: string | null;
   setAppliedCategory: React.Dispatch<React.SetStateAction<string | null>>;
-  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
+  applyButtonHandler: (filter: keyof Filters) => void;
 }) {
   const [selectedItem, setSelectedItem] = useState<string | null>(
     selectedLocationFilters[0] ?? null,
@@ -75,18 +71,14 @@ export default function LocationCategoryPanel({
     item.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  const applyButtonHandler = () => {
-    setSelectedLocationFilters({ value: tempFilters.location, isTemp: false });
-    setActiveFilter(null);
+  const applyButtonHandlerLocation = () => {
     setAppliedCategory(activeCategory);
-    setLastAppliedFilter('location');
+    applyButtonHandler('location');
   };
 
-  const clearButtonHandler = () => {
-    clearFilters('location');
-    setLastAppliedFilter('location');
+  const clearButtonHandlerLocation = () => {
+    clearButtonHandler('location');
     setSelectedItem(null);
-    setAppliedCategory(null);
   };
 
   function checkBoxClickHandler(item: string): void {
@@ -136,7 +128,7 @@ export default function LocationCategoryPanel({
           $isActive={selectedItem !== null}
           onClick={() => {
             if (selectedItem) {
-              applyButtonHandler();
+              applyButtonHandlerLocation();
             }
           }}
         >
@@ -144,7 +136,7 @@ export default function LocationCategoryPanel({
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={selectedItem !== null}
-          onClick={clearButtonHandler}
+          onClick={clearButtonHandlerLocation}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>
