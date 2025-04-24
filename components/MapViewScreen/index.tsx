@@ -82,17 +82,18 @@ export default function MapViewScreen({
     null,
   );
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedFilters, setSelectedFilters] = useState<Filters>({
-    status: [],
-    technology: [],
-    projectSize: { min: 0, max: 0 },
-    location: [],
-  });
+  const [selectedFilters, setSelectedFilters] =
+    useState<Filters>(defaultFilters);
 
   const [tempFilters, setTempFilters] = useState<Filters>(defaultFilters);
 
   const [filteredProjectsFromDropdowns, setFilteredProjectsFromDropdowns] =
     useState<Project[]>(projects);
+
+  const [
+    filteredProjectsFromDropdownNoSize,
+    setFilteredProjectsFromDropdownNoSize,
+  ] = useState<Project[]>(projects);
 
   const [filteredProjectsFromSearch, setFilteredProjectsFromSearch] =
     useState<Project[]>(projects);
@@ -116,11 +117,9 @@ export default function MapViewScreen({
       setFilteredProjectsFromDropdowns(projects);
     }
   };
-
-  // show projects based on selected filters
-  const handleFilterButtonClick = () => {
-    setSelectedFilters(tempFilters);
-  };
+  const [projectSizes, setProjectSizes] = useState<number[]>(
+    getProjectsSize(projects),
+  );
 
   const [activeLocationCategory, setActiveLocationCategory] = useState<
     string | null
@@ -181,12 +180,15 @@ export default function MapViewScreen({
       }
     }
 
+    setFilteredProjectsFromDropdownNoSize(filteredProjects);
+
     filteredProjects = filteredProjects.filter(
       project =>
         project.size >= projectSize.min && project.size <= projectSize.max,
     );
 
     setFilteredProjectsFromDropdowns(filteredProjects);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFilters, projects]);
 
   // search within all projects or filtered projects from dropdowns
@@ -212,11 +214,17 @@ export default function MapViewScreen({
       ) ?? [];
 
     setFilteredProjectsFromSearch(searchedProjects);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projects, searchTerm, filteredProjectsFromDropdowns]);
 
   useEffect(() => {
     setFilteredProjects(filteredProjectsFromDropdowns);
-  }, [filteredProjectsFromDropdowns, setFilteredProjects]);
+    setProjectSizes(getProjectsSize(filteredProjectsFromDropdownNoSize));
+  }, [
+    filteredProjectsFromDropdowns,
+    filteredProjectsFromDropdownNoSize,
+    setFilteredProjects,
+  ]);
 
   useEffect(() => {
     setFilteredProjects(filteredProjectsFromSearch);
@@ -226,12 +234,12 @@ export default function MapViewScreen({
     <>
       <FilterBar
         filters={filters}
-        selectedFilters={tempFilters}
-        setSelectedFilters={setTempFilters}
-        handleFilterButtonClick={handleFilterButtonClick}
+        setSelectedFilters={setSelectedFilters}
+        tempFilters={tempFilters}
+        setTempFilters={setTempFilters}
         clearFilters={clearFilters}
-        projectSizes={getProjectsSize(projects)}
         setActiveLocationCategory={setActiveLocationCategory}
+        projectSizes={projectSizes}
       />
       <Map
         projects={projects}

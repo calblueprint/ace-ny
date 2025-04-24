@@ -7,7 +7,7 @@ export const FilterDropdownStyles = styled.div`
   display: flex;
   background: #fff;
   width: 18.5rem;
-  height: 16.25rem;
+  height: 18.5rem;
   border-radius: 0.5rem;
   justify-content: center;
   padding-top: 1rem;
@@ -111,4 +111,22 @@ export const ApplyButtonStyles = styled.button<{ $isActive: boolean }>`
   pointer-events: ${({ $isActive }) => ($isActive ? 'auto' : 'none')};
   padding-left: 0rem;
   padding-right: 0rem;
+`;
+
+export const ClearButtonStyles = styled.button<{ $isActive: boolean }>`
+  display: flex;
+  width: 15.625rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-width: 0.09rem;
+  border-color: ${COLORS.electricBlue};
+  opacity: ${({ $isActive }) => ($isActive ? '1' : '0.5')};
+  background: ${COLORS.white};
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  pointer-events: ${({ $isActive }) => ($isActive ? 'auto' : 'none')};
+  cursor: ${({ $isActive }) => ($isActive ? 'pointer' : 'not-allowed')};
 `;
