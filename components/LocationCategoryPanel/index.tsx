@@ -85,7 +85,6 @@ export default function LocationCategoryPanel({
   const clearButtonHandler = () => {
     clearFilters('location');
     setLastAppliedFilter('location');
-    setSelectedLocationFilters({ value: [], isTemp: false });
     setSelectedItem(null);
     setAppliedCategory(null);
   };
