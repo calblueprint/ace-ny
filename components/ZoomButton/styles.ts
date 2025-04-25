@@ -17,4 +17,5 @@ export const ZoomContainer = styled.div`
 export const ZoomButtonStyled = styled.button`
   background-color: white;
   border: none;
+  cursor: pointer;
 `;
