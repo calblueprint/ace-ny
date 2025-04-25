@@ -4,7 +4,6 @@ export const ZoomContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-
   width: 0.438rem;
   height: 3.125rem;
   padding: 14px 16px 14px 16px;
