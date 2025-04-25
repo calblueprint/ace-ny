@@ -1,0 +1,6 @@
+COUNTY_DATA_URL = 'https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Civil_Boundaries/FeatureServer/2/query?where=1%3D1&outFields=NAME&outSR=4326&f=json'
+TOWN_DATA_URL = 'https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Civil_Boundaries/FeatureServer/5/query?where=1%3D1&outFields=NAME&outSR=4326&f=json'
+REGION_DATA_URL = 'https://gisservices.its.ny.gov/arcgis/rest/services/Regional_Economic_Development_Councils/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json'
+UTILITY_DATA_URL = 'https://data.ny.gov/resource/awza-4vgu.json?$select=comp_full,the_geom'
+STATE_SENATE_DATA_URL = 'https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Senate_Districts/FeatureServer/0/query?where=1%3D1&outFields=DISTRICT&outSR=4326&f=json'
+ASSEMBLY_DATA_URL = 'https://services6.arcgis.com/EbVsqZ18sv1kVJ3k/arcgis/rest/services/NYS_Senate_Districts/FeatureServer/0/query?where=1%3D1&outFields=DISTRICT&outSR=4326&f=json'
