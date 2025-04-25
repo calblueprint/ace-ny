@@ -196,7 +196,12 @@ export default function Filter({
               <IconStyle>{filter.iconApplied}</IconStyle>
               <FilterHeadingInUse>{filter.label}</FilterHeadingInUse>
               <ClearIconStyle>
-                <div onClick={() => clearButtonHandler(filter.id)}>
+                <div
+                  onClick={e => {
+                    e.stopPropagation();
+                    clearButtonHandler(filter.id);
+                  }}
+                >
                   <ClearIcon />
                 </div>
               </ClearIconStyle>
