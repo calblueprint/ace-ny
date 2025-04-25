@@ -88,7 +88,7 @@ export default function TechnologyDropdown({
               <IconStyles>
                 <LandBasedWindIcon
                   fill={COLORS.grey}
-                  width={'10'}
+                  width={'14'}
                   height={'13'}
                 />
               </IconStyles>
@@ -113,7 +113,7 @@ export default function TechnologyDropdown({
                 <OffshoreWindIcon
                   fill={COLORS.grey}
                   stroke={COLORS.veryLightGrey}
-                  width={'12'}
+                  width={'14'}
                   height={'14'}
                 />
               </IconStyles>
@@ -147,7 +147,7 @@ export default function TechnologyDropdown({
                 <EnergyStorageIcon
                   fill={COLORS.grey}
                   stroke={COLORS.veryLightGrey}
-                  width={'13'}
+                  width="14"
                   height="9"
                 />
               </IconStyles>
@@ -157,7 +157,7 @@ export default function TechnologyDropdown({
             title: 'Pumped Storage',
             icon: (
               <IconStyles>
-                <PumpedStorageIcon fill={COLORS.grey} width="12" height="11" />
+                <PumpedStorageIcon fill={COLORS.grey} width="14" height="11" />
               </IconStyles>
             ),
           },
@@ -214,13 +214,15 @@ export default function TechnologyDropdown({
           <div key={category.category}>
             <FilterCategoryLabel>{category.category}</FilterCategoryLabel>
             {category.options.map(option => (
-              <CheckboxContainer key={option.title}>
+              <CheckboxContainer
+                key={option.title}
+                onClick={() => checkBoxClickHandler(option.title)}
+              >
                 {option.icon}
                 <FilterCategoryText1>{option.title}</FilterCategoryText1>
                 <CheckboxStyles
                   type="checkbox"
                   checked={selectedTechnologies.includes(option.title)}
-                  onChange={() => checkBoxClickHandler(option.title)}
                 />
               </CheckboxContainer>
             ))}
