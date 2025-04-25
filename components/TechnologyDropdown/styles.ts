@@ -61,11 +61,7 @@ export const ButtonStyles = styled.button`
 
 export const CollapseStyles = styled.div`
   display: flex;
-<<<<<<< HEAD
   padding-left: 2.21rem;
-=======
-  padding-left: 1.5rem;
->>>>>>> e1561588222e6ebed41bd6da4781ddbe1566d5a0
 `;
 
 export const ButtonWithIconStyles = styled.div`
