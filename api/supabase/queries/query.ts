@@ -5,6 +5,8 @@ export default async function queryProjects(): Promise<Project[]> {
   const { data: projects, error } = await supabase
     .from('Projects_user_testing')
     .select('*')
+    .not('longitude', 'is', null)
+    .not('latitude', 'is', null)
     .eq('approved', true);
 
   if (error) {
