@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { MarkerClusterer } from '@googlemaps/markerclusterer';
 import {
   AdvancedMarker,
   InfoWindow,
@@ -25,6 +24,7 @@ const technologyToPin: Record<string, string> = {
   'Offshore Wind': offshore_wind,
   'Pumped Storage': pumped_storage,
   'Solar PV': solarPower,
+  Solar: solarPower,
 };
 
 export const MarkerInfoWindow = ({
@@ -33,7 +33,6 @@ export const MarkerInfoWindow = ({
   projectName,
   technology,
   onMarkerClick,
-  clusterer,
   selectedProjectId,
   markerMap,
 }: {
@@ -45,7 +44,6 @@ export const MarkerInfoWindow = ({
     projectId: number,
     position: { lat: number; lng: number },
   ) => void;
-  clusterer: MarkerClusterer | null;
   selectedProjectId: number | null;
   markerMap: Map<number, google.maps.Marker>;
 }) => {
@@ -87,18 +85,17 @@ export const MarkerInfoWindow = ({
   }, [selectedProjectId, projectId]);
 
   useEffect(() => {
-    if (marker && clusterer) {
-      clusterer.addMarker(marker);
+    // add project id and marker to markerMap when visible and remove when component unmounts
+    if (marker) {
       markerMap.set(projectId, marker as unknown as google.maps.Marker);
     }
 
     return () => {
-      if (marker && clusterer) {
-        clusterer.removeMarker(marker);
+      if (marker) {
         markerMap.delete(projectId);
       }
     };
-  }, [marker, clusterer, projectId, markerMap]);
+  }, [marker, projectId, markerMap]);
 
   return (
     <>

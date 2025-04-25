@@ -2,10 +2,14 @@ import { useState } from 'react';
 import {
   ApplyFiltersText,
   ClearFiltersText,
+  FilterHeadingInUse,
   FilterHeadingUnused,
 } from '@/styles/texts';
 import { Filters, FilterType, ProjectSizeType } from '@/types/schema';
-import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
+import {
+  CollapseIcon,
+  CollapseIconApplied,
+} from '../../assets/Dropdown-Icons/icons';
 import ProjectSizeHistogram from '../ProjectSizeHistogram';
 import {
   ApplyButtonStyles,
@@ -13,7 +17,7 @@ import {
   ButtonStyles,
   ButtonWithIconStyles,
   ClearButtonStyles,
-  ExitStyles,
+  CollapseStyles,
   FilterCategoryText1WithPadding,
   FilterContentDiv,
   FilterDropdownStyles,
@@ -25,41 +29,41 @@ import {
 } from './styles';
 
 interface ProjectSizeDropdownProps {
-  tempFilters: Filters;
   setSelectedSize: (args: { value: ProjectSizeType; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
+  iconApplied: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   projectSizes: number[];
   minDefault: number;
   setMinDefault: (value: number) => void;
   maxDefault: number;
   setMaxDefault: (value: number) => void;
-  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
   minBound: number;
   maxBound: number;
-  clearFilters: (filterName?: keyof Filters) => void;
+  clearButtonHandler: (filter: keyof Filters) => void;
+  projectSizeFiltersApplied: boolean;
+  applyButtonHandler: (filter: keyof Filters) => void;
 }
 
 export default function ProjectSizeDropdown({
-  tempFilters,
   setSelectedSize,
   handleButtonClick,
   icon,
+  iconApplied,
   label,
   currFilter,
-  setActiveFilter,
   projectSizes,
   minDefault,
   setMinDefault,
   maxDefault,
   setMaxDefault,
-  setLastAppliedFilter,
   minBound,
   maxBound,
-  clearFilters,
+  clearButtonHandler,
+  projectSizeFiltersApplied,
+  applyButtonHandler,
 }: ProjectSizeDropdownProps) {
   const [minSize, setMinSize] = useState(
     projectSizes.length > 0 ? Math.min(...projectSizes) : 0,
@@ -73,30 +77,35 @@ export default function ProjectSizeDropdown({
       ? (projectSizes.reduce((a, b) => a + b) / projectSizes.length).toFixed(2)
       : '0.00';
 
-  const applyButtonHandler = () => {
-    setSelectedSize({ value: tempFilters.projectSize, isTemp: false });
-    setActiveFilter(null);
-    setLastAppliedFilter('projectSize');
-  };
-
-  const clearButtonHandler = () => {
-    setMinDefault(minBound);
-    setMaxDefault(maxBound);
-    clearFilters('projectSize');
-    setLastAppliedFilter('projectSize');
-  };
-
   return (
     <FilterDropdownStyles>
       <FilterContentDiv>
         <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-          <FilterIconStyles>{icon}</FilterIconStyles>
-          <ButtonStyles>
-            <FilterHeadingUnused>{label}</FilterHeadingUnused>
-          </ButtonStyles>
-          <ExitStyles>
-            <CollapseIcon />
-          </ExitStyles>
+          {projectSizeFiltersApplied ? (
+            <>
+              <FilterIconStyles onClick={() => handleButtonClick(currFilter)}>
+                {iconApplied}
+              </FilterIconStyles>
+              <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
+                <FilterHeadingInUse>{label}</FilterHeadingInUse>
+                <CollapseStyles>
+                  <CollapseIconApplied />
+                </CollapseStyles>
+              </ButtonStyles>
+            </>
+          ) : (
+            <>
+              <FilterIconStyles onClick={() => handleButtonClick(currFilter)}>
+                {icon}
+              </FilterIconStyles>
+              <ButtonStyles onClick={() => handleButtonClick(currFilter)}>
+                <FilterHeadingUnused>{label}</FilterHeadingUnused>
+                <CollapseStyles>
+                  <CollapseIcon />
+                </CollapseStyles>
+              </ButtonStyles>
+            </>
+          )}
         </ButtonWithIconStyles>
 
         <FilterCategoryText1WithPadding>
@@ -128,11 +137,17 @@ export default function ProjectSizeDropdown({
           </MinMaxBox>
         </MinMaxBoxContainer>
 
-        <ApplyButtonStyles $isActive={true} onClick={applyButtonHandler}>
+        <ApplyButtonStyles
+          $isActive={true}
+          onClick={() => applyButtonHandler('projectSize')}
+        >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
 
-        <ClearButtonStyles $isActive={true} onClick={clearButtonHandler}>
+        <ClearButtonStyles
+          $isActive={true}
+          onClick={() => clearButtonHandler('projectSize')}
+        >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>
       </FilterContentDiv>

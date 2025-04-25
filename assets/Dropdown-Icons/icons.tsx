@@ -111,21 +111,6 @@ export const CollapseIcon = () => (
   </svg>
 );
 
-export const ExitIcon = () => (
-  <svg
-    width="10"
-    height="10"
-    viewBox="0 0 10 10"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M8.99286 0L5 3.99286L1.00714 0L0 1.00714L3.99286 5L0 8.99286L1.00714 10L5 6.00714L8.99286 10L10 8.99286L6.00714 5L10 1.00714L8.99286 0Z"
-      fill="#2E3A59"
-    />
-  </svg>
-);
-
 export const StatusIconApplied = () => (
   <svg
     width="12"
@@ -207,7 +192,22 @@ export const LocationIconApplied = () => (
   </svg>
 );
 
-export const ExitIconApplied = () => (
+export const CollapseIconApplied = () => (
+  <svg
+    width="13"
+    height="8"
+    viewBox="0 0 13 8"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M6.01002 0.287501L1.91972e-05 6.2975L1.41302 7.7125L6.01002 3.1125L10.606 7.7125L12.02 6.2985L6.01002 0.287501Z"
+      fill="#4974E0"
+    />
+  </svg>
+);
+
+export const ClearIcon = () => (
   <svg
     width="10"
     height="10"
