@@ -12,14 +12,18 @@ interface LocationCategoryProps {
   icon: React.ReactNode;
   name: string;
   onClick: () => void;
+  appliedCategory: string | null;
 }
 
 export default function LocationCategory(props: LocationCategoryProps) {
+  console.log('selected?', props.name === props.appliedCategory);
   return (
     <LocationCategoryContent onClick={props.onClick}>
       <IconTextContainer>
         <LocationCategoryIcon>{props.icon}</LocationCategoryIcon>
-        <LocationCategoryText>{props.name}</LocationCategoryText>
+        <LocationCategoryText selected={props.name === props.appliedCategory}>
+          {props.name}
+        </LocationCategoryText>
       </IconTextContainer>
       <Arrow>
         <ArrowIcon />

@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { queryOptionsForCategory } from '@/api/supabase/queries/query';
 import { Filters, FilterType } from '@/types/schema';
-import { CollapseIcon } from '../../assets/Dropdown-Icons/icons';
+import {
+  CollapseIcon,
+  CollapseIconApplied,
+} from '../../assets/Dropdown-Icons/icons';
 import {
   AssemblyDistrictIcon,
   CountyIcon,
@@ -11,6 +14,8 @@ import {
   UtilityServiceTerritoryIcon,
 } from '../../assets/Location-Category-Icons/icons';
 import {
+  ClearFiltersText,
+  FilterHeadingInUse,
   FilterHeadingUnused,
   FilterLocationText,
   FilterNameText,
@@ -21,40 +26,45 @@ import {
   ButtonStyles,
   ButtonWithIconStyles,
   CategoryComponentContainer,
+  ClearButtonStyles,
   LocationContentDiv,
   LocationIconWithTestContainer,
   LocationStyleDiv,
 } from './styles';
 
 export default function LocationDropdown({
-  tempFilters,
   handleButtonClick,
   icon,
   label,
   currFilter,
-  clearFilters,
+  clearButtonHandler,
   selectedLocationFilters,
   setSelectedLocationFilters,
-  setActiveFilter,
   setActiveLocationCategory,
-  setLastAppliedFilter,
+  applyButtonHandler,
+  appliedCategory,
+  setAppliedCategory,
+  iconApplied,
+  locationFiltersApplied,
 }: {
-  tempFilters: Filters;
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  clearFilters: (filterName?: keyof Filters) => void;
+  clearButtonHandler: (filter: keyof Filters) => void;
   selectedLocationFilters: string[];
   setSelectedLocationFilters: (args: {
     value: string[];
     isTemp: boolean;
   }) => void;
-  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
   setActiveLocationCategory: React.Dispatch<
     React.SetStateAction<string | null>
   >;
-  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
+  appliedCategory: string | null;
+  setAppliedCategory: React.Dispatch<React.SetStateAction<string | null>>;
+  applyButtonHandler: (filter: keyof Filters) => void;
+  iconApplied: React.ReactNode;
+  locationFiltersApplied: boolean;
 }) {
   const locationCategories = [
     'County',
@@ -64,6 +74,10 @@ export default function LocationDropdown({
     'State Senate District',
     'Assembly District',
   ];
+
+  const [selectedItem, setSelectedItem] = useState<string | null>(
+    selectedLocationFilters[0] ?? null,
+  );
 
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
@@ -90,16 +104,33 @@ export default function LocationDropdown({
         <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
           <LocationIconWithTestContainer>
             <FilterNameText>
-              <FilterHeadingUnused>{icon}</FilterHeadingUnused>
+              {locationFiltersApplied ? (
+                <FilterHeadingInUse>{iconApplied}</FilterHeadingInUse>
+              ) : (
+                <FilterHeadingUnused>{icon}</FilterHeadingUnused>
+              )}
             </FilterNameText>
             <ButtonStyles>
-              <FilterLocationText>{label}</FilterLocationText>
+              {locationFiltersApplied ? (
+                <FilterHeadingInUse>{label}</FilterHeadingInUse>
+              ) : (
+                <FilterLocationText>{label}</FilterLocationText>
+              )}
             </ButtonStyles>
           </LocationIconWithTestContainer>
-          <CollapseIcon />
+          {locationFiltersApplied ? <CollapseIconApplied /> : <CollapseIcon />}
         </ButtonWithIconStyles>
 
         <CategoryComponentContainer>
+          <LocationCategory
+            icon={<RegionIcon />}
+            name="Region"
+            onClick={() => {
+              setActiveLocationCategory('Region');
+              setActiveCategory('Region');
+            }}
+            appliedCategory={appliedCategory}
+          />
           <LocationCategory
             icon={<CountyIcon />}
             name="County"
@@ -107,6 +138,7 @@ export default function LocationDropdown({
               setActiveLocationCategory('County');
               setActiveCategory('County');
             }}
+            appliedCategory={appliedCategory}
           />
           <LocationCategory
             icon={<TownIcon />}
@@ -115,14 +147,7 @@ export default function LocationDropdown({
               setActiveLocationCategory('Town');
               setActiveCategory('Town');
             }}
-          />
-          <LocationCategory
-            icon={<RegionIcon />}
-            name="Region"
-            onClick={() => {
-              setActiveLocationCategory('Region');
-              setActiveCategory('Region');
-            }}
+            appliedCategory={appliedCategory}
           />
           <LocationCategory
             icon={<UtilityServiceTerritoryIcon />}
@@ -131,6 +156,7 @@ export default function LocationDropdown({
               setActiveLocationCategory('Utility Service Territory');
               setActiveCategory('Utility Service Territory');
             }}
+            appliedCategory={appliedCategory}
           />
           <LocationCategory
             icon={<StateSenateDistrictIcon />}
@@ -139,6 +165,7 @@ export default function LocationDropdown({
               setActiveLocationCategory('State Senate District');
               setActiveCategory('State Senate District');
             }}
+            appliedCategory={appliedCategory}
           />
           <LocationCategory
             icon={<AssemblyDistrictIcon />}
@@ -147,23 +174,33 @@ export default function LocationDropdown({
               setActiveLocationCategory('Assembly District');
               setActiveCategory('Assembly District');
             }}
+            appliedCategory={appliedCategory}
           />
         </CategoryComponentContainer>
+        <ClearButtonStyles
+          $isActive={selectedItem !== null}
+          onClick={() => {
+            clearButtonHandler('location');
+            setSelectedItem(null);
+          }}
+        >
+          <ClearFiltersText>CLEAR</ClearFiltersText>
+        </ClearButtonStyles>
       </LocationContentDiv>
     </LocationStyleDiv>
   ) : (
     <LocationCategoryPanel
-      tempFilters={tempFilters}
       category={activeCategory}
       onBack={() => setActiveCategory(null)}
       handleButtonClick={handleButtonClick}
       currFilter={currFilter}
-      clearFilters={clearFilters}
+      clearButtonHandler={clearButtonHandler}
       selectedLocationFilters={selectedLocationFilters}
       setSelectedLocationFilters={setSelectedLocationFilters}
-      setActiveFilter={setActiveFilter}
       categoryOptionsMap={categoryOptionsMap}
-      setLastAppliedFilter={setLastAppliedFilter}
+      activeCategory={activeCategory}
+      setAppliedCategory={setAppliedCategory}
+      applyButtonHandler={applyButtonHandler}
     />
   );
 }

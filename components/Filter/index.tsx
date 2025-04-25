@@ -4,10 +4,10 @@ import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
 import { FilterHeadingInUse, FilterHeadingUnused } from '@/styles/texts';
 import { FilterChangeHandlers, Filters, FilterType } from '@/types/schema';
-import { DropIcon, ExitIconApplied } from '../../assets/Dropdown-Icons/icons';
+import { ClearIcon, DropIcon } from '../../assets/Dropdown-Icons/icons';
 import LocationDropdown from '../LocationDropdown';
 import {
-  ExitIconStyle,
+  ClearIconStyle,
   FilterBackgroundStyles,
   FilterButtonStyles,
   IconStyle,
@@ -56,12 +56,75 @@ export default function Filter({
   const [technologyFiltersApplied, setTechnologyFiltersApplied] =
     useState(false);
 
+  const [projectSizeFiltersApplied, setProjectSizeFiltersApplied] =
+    useState(false);
+
+  const [locationFiltersApplied, setLocationFiltersApplied] = useState(false);
+
+  const [appliedCategory, setAppliedCategory] = useState<string | null>(null);
+
+  const applyButtonHandler = (filter: keyof Filters) => {
+    switch (filter) {
+      case 'technology':
+        filterChangeHandlers.technology({
+          value: tempFilters.technology,
+          isTemp: false,
+        });
+        setTechnologyFiltersApplied(true);
+        break;
+      case 'status':
+        filterChangeHandlers.status({
+          value: tempFilters.status,
+          isTemp: false,
+        });
+        setStatusFiltersApplied(true);
+        break;
+      case 'projectSize':
+        filterChangeHandlers.projectSize({
+          value: tempFilters.projectSize,
+          isTemp: false,
+        });
+        setProjectSizeFiltersApplied(true);
+        break;
+      case 'location':
+        filterChangeHandlers.location({
+          value: tempFilters.location,
+          isTemp: false,
+        });
+        setLocationFiltersApplied(true);
+        break;
+    }
+
+    setActiveFilter(null);
+    setLastAppliedFilter(filter);
+  };
+
+  const clearButtonHandler = (filter: keyof Filters) => {
+    clearFilters(filter);
+    setLastAppliedFilter(filter);
+    switch (filter) {
+      case 'projectSize':
+        setMinDefault(minBound);
+        setMaxDefault(maxBound);
+        setProjectSizeFiltersApplied(false);
+        break;
+      case 'technology':
+        setTechnologyFiltersApplied(false);
+        break;
+      case 'status':
+        setStatusFiltersApplied(false);
+        break;
+      case 'location':
+        setLocationFiltersApplied(false);
+        setAppliedCategory(null);
+        break;
+    }
+  };
   return (
     <FilterBackgroundStyles $isActive={isActive}>
       {isActive ? (
         filter.id === 'technology' ? (
           <TechnologyDropdown
-            tempFilters={tempFilters}
             selectedTechnologies={tempFilters.technology}
             setSelectedTechnologies={filterChangeHandlers.technology}
             handleButtonClick={handleButtonClick}
@@ -69,15 +132,12 @@ export default function Filter({
             iconApplied={filter.iconApplied}
             label={filter.label}
             currFilter={filter}
-            clearFilters={clearFilters}
-            setActiveFilter={setActiveFilter}
-            setTechnologyFiltersApplied={setTechnologyFiltersApplied}
+            clearButtonHandler={clearButtonHandler}
             technologyFiltersApplied={technologyFiltersApplied}
-            setLastAppliedFilter={setLastAppliedFilter}
+            applyButtonHandler={applyButtonHandler}
           />
         ) : filter.id === 'status' ? (
           <StatusDropdown
-            tempFilters={tempFilters}
             selectedStatus={tempFilters.status}
             setSelectedStatus={filterChangeHandlers.status}
             handleButtonClick={handleButtonClick}
@@ -85,57 +145,66 @@ export default function Filter({
             iconApplied={filter.iconApplied}
             label={filter.label}
             currFilter={filter}
-            clearFilters={clearFilters}
-            setActiveFilter={setActiveFilter}
-            setStatusFiltersApplied={setStatusFiltersApplied}
+            clearButtonHandler={clearButtonHandler}
             statusFiltersApplied={statusFiltersApplied}
-            setLastAppliedFilter={setLastAppliedFilter}
+            applyButtonHandler={applyButtonHandler}
           />
         ) : filter.id === 'projectSize' ? (
           <ProjectSizeDropdown
-            tempFilters={tempFilters}
             setSelectedSize={filterChangeHandlers.projectSize}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
+            iconApplied={filter.iconApplied}
             label={filter.label}
             currFilter={filter}
-            setActiveFilter={setActiveFilter}
             projectSizes={projectSizes}
             minDefault={minDefault}
             setMinDefault={setMinDefault}
             maxDefault={maxDefault}
             setMaxDefault={setMaxDefault}
-            setLastAppliedFilter={setLastAppliedFilter}
             minBound={minBound}
             maxBound={maxBound}
-            clearFilters={clearFilters}
+            clearButtonHandler={clearButtonHandler}
+            projectSizeFiltersApplied={projectSizeFiltersApplied}
+            applyButtonHandler={applyButtonHandler}
           ></ProjectSizeDropdown>
         ) : filter.id === 'location' ? (
           <LocationDropdown
-            tempFilters={tempFilters}
             handleButtonClick={handleButtonClick}
             icon={filter.icon}
+            iconApplied={filter.iconApplied}
             label={filter.label}
             currFilter={filter}
-            clearFilters={clearFilters}
-            setActiveFilter={setActiveFilter}
+            clearButtonHandler={clearButtonHandler}
             selectedLocationFilters={tempFilters.location}
             setSelectedLocationFilters={filterChangeHandlers.location}
             setActiveLocationCategory={setActiveLocationCategory}
-            setLastAppliedFilter={setLastAppliedFilter}
+            appliedCategory={appliedCategory}
+            setAppliedCategory={setAppliedCategory}
+            applyButtonHandler={applyButtonHandler}
+            locationFiltersApplied={locationFiltersApplied}
           ></LocationDropdown>
         ) : // Add other filter dropdown components here
         null
       ) : (
         <FilterButtonStyles onClick={() => handleButtonClick(filter)}>
           {(filter.id === 'status' && statusFiltersApplied) ||
-          (filter.id === 'technology' && technologyFiltersApplied) ? (
+          (filter.id === 'technology' && technologyFiltersApplied) ||
+          (filter.id === 'projectSize' && projectSizeFiltersApplied) ||
+          (filter.id === 'location' && locationFiltersApplied) ? (
             <>
               <IconStyle>{filter.iconApplied}</IconStyle>
               <FilterHeadingInUse>{filter.label}</FilterHeadingInUse>
-              <ExitIconStyle>
-                <ExitIconApplied />
-              </ExitIconStyle>
+              <ClearIconStyle>
+                <div
+                  onClick={e => {
+                    e.stopPropagation();
+                    clearButtonHandler(filter.id);
+                  }}
+                >
+                  <ClearIcon />
+                </div>
+              </ClearIconStyle>
             </>
           ) : (
             <>

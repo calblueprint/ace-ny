@@ -1,7 +1,7 @@
 import { Filters, FilterType } from '@/types/schema';
 import {
   CollapseIcon,
-  ExitIconApplied,
+  CollapseIconApplied,
 } from '../../assets/Dropdown-Icons/icons';
 import COLORS from '../../styles/colors';
 import {
@@ -19,14 +19,13 @@ import {
   CheckboxContainer,
   CheckboxStyles,
   ClearButtonStyles,
-  ExitStyles,
+  CollapseStyles,
   FilterContentDiv,
   FilterDropdownStyles,
   OptionTitleStyles,
 } from './styles';
 
 export default function StatusDropdown({
-  tempFilters,
   selectedStatus,
   setSelectedStatus,
   handleButtonClick,
@@ -34,13 +33,10 @@ export default function StatusDropdown({
   iconApplied,
   label,
   currFilter,
-  clearFilters,
-  setActiveFilter,
-  setStatusFiltersApplied,
+  clearButtonHandler,
   statusFiltersApplied,
-  setLastAppliedFilter,
+  applyButtonHandler,
 }: {
-  tempFilters: Filters;
   selectedStatus: string[];
   setSelectedStatus: (args: { value: string[]; isTemp: boolean }) => void;
   handleButtonClick: (filter: FilterType) => void;
@@ -48,25 +44,10 @@ export default function StatusDropdown({
   iconApplied: React.ReactNode;
   label: string;
   currFilter: FilterType;
-  clearFilters: (filterName?: keyof Filters) => void;
-  setActiveFilter: React.Dispatch<React.SetStateAction<FilterType | null>>;
-  setStatusFiltersApplied: React.Dispatch<React.SetStateAction<boolean>>;
+  clearButtonHandler: (filter: keyof Filters) => void;
   statusFiltersApplied: boolean;
-  setLastAppliedFilter: React.Dispatch<React.SetStateAction<string>>;
+  applyButtonHandler: (filter: keyof Filters) => void;
 }) {
-  const applyButtonHandler = () => {
-    setSelectedStatus({ value: tempFilters.status, isTemp: false });
-    setActiveFilter(null);
-    setStatusFiltersApplied(true);
-    setLastAppliedFilter('status');
-  };
-
-  const clearButtonHandler = () => {
-    clearFilters('status');
-    setLastAppliedFilter('status');
-    setStatusFiltersApplied(false);
-  };
-
   const filterOptions = [
     { title: 'Proposed', color: `${COLORS.ashGrey}` },
     { title: 'Operational', color: `${COLORS.chateauGreen}` },
@@ -83,7 +64,7 @@ export default function StatusDropdown({
     <FilterDropdownStyles>
       <FilterContentDiv>
         <ButtonWithIconStyles onClick={() => handleButtonClick(currFilter)}>
-          {statusFiltersApplied ? ( // If the filter is applied
+          {statusFiltersApplied ? (
             <>
               <FilterNameText>
                 <FilterHeadingInUse>{iconApplied}</FilterHeadingInUse>
@@ -93,14 +74,9 @@ export default function StatusDropdown({
                   <FilterHeadingInUse>{label}</FilterHeadingInUse>
                 </FilterNameText>
               </ButtonStyles>
-              <ExitStyles
-                onClick={() => {
-                  clearFilters('status');
-                  setStatusFiltersApplied(false);
-                }}
-              >
-                <ExitIconApplied />
-              </ExitStyles>
+              <CollapseStyles>
+                <CollapseIconApplied />
+              </CollapseStyles>
             </>
           ) : (
             <>
@@ -112,9 +88,9 @@ export default function StatusDropdown({
                   <FilterHeadingUnused>{label}</FilterHeadingUnused>
                 </FilterNameText>
               </ButtonStyles>
-              <ExitStyles>
+              <CollapseStyles>
                 <CollapseIcon />
-              </ExitStyles>
+              </CollapseStyles>
             </>
           )}
         </ButtonWithIconStyles>
@@ -138,13 +114,13 @@ export default function StatusDropdown({
         </div>
         <ApplyButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={applyButtonHandler}
+          onClick={() => applyButtonHandler('status')}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
         <ClearButtonStyles
           $isActive={isApplyButtonActive}
-          onClick={clearButtonHandler}
+          onClick={() => clearButtonHandler('status')}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>
