@@ -240,6 +240,7 @@ export default function MapViewScreen({
         clearFilters={clearFilters}
         setActiveLocationCategory={setActiveLocationCategory}
         projectSizes={projectSizes}
+        selectedProjectId={selectedProjectId}
       />
       <Map
         projects={projects}
@@ -264,7 +265,10 @@ export default function MapViewScreen({
           project={projects.find(i => i.id === selectedProjectId)}
         />
       )}
-      <BottomBar projects={filteredProjects}></BottomBar>
+      <BottomBar
+        projects={filteredProjects}
+        selectedProjectId={selectedProjectId}
+      ></BottomBar>
     </>
   );
 }
