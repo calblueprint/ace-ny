@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Project } from '@/types/schema';
 import AggregationFilter from '../AggregationFilter';
 import AggregationFilterButton from '../AggregationFilterButton';
@@ -72,10 +72,18 @@ export default function BottomBar({
     totalEnergyArr[i] = totalEnergyArr[i] + ' MW';
   }
 
+  const prevSelectedProjectId = useRef<number | null>(null);
+
   useEffect(() => {
-    setLegendIsVisible(false);
-    setAggFilterisVisible(false);
-    setInfoModalisVisible(false);
+    if (
+      selectedProjectId !== null &&
+      selectedProjectId !== prevSelectedProjectId.current
+    ) {
+      setLegendIsVisible(false);
+      setAggFilterisVisible(false);
+      setInfoModalisVisible(false);
+    }
+    prevSelectedProjectId.current = selectedProjectId;
   }, [selectedProjectId]);
 
   return (

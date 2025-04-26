@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ProjectSizeDropdown from '@/components/ProjectSizeDropdown';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
@@ -122,13 +122,18 @@ export default function Filter({
         break;
     }
   };
+  const prevSelectedProjectId = useRef<number | null>(null);
+
   useEffect(() => {
     if (
+      prevSelectedProjectId.current !== selectedProjectId &&
+      selectedProjectId !== null &&
       isActive &&
       ['technology', 'status', 'projectSize', 'location'].includes(filter.id)
     ) {
       setActiveFilter(null);
     }
+    prevSelectedProjectId.current = selectedProjectId;
   }, [selectedProjectId]);
 
   return (
