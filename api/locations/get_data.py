@@ -80,11 +80,13 @@ def query_assembly_locations() -> Optional[List[dict]]:
     return []
 
 if __name__ == "__main__":
-    data = query_county_locations()
+    data = query_region_locations()
     print(len(data))
-    for i in range(len(data)):
-        print(data[i]["attributes"]["NAME"])
-    # print(data[0].keys())
-    # print(data[0]["attributes"]["NAME"])
+    
+    print(data[0].keys())
+    # print(data[0]["comp_full"])
+    # print(data[0]['the_geom']['coordinates'])
+    print(data[0]["attributes"].keys())
+    print(data[0]['geometry'].keys())
     # print(data[0]['geometry']['rings'])
     

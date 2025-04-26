@@ -10,44 +10,87 @@ url: str = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key: str = os.environ.get("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 supabase_client: Client = create_client(url, key)
 
-def update_location_data():
-  county_data = query_county_locations()
+def update_table_data(data, table_name, column_name, batch_size=100):
+    """
+    Updates the location data of table_name.
 
-  if not county_data:
-        print("No county data found.")
+    data: output of one of the query functions in get_data.py
+    table_name: name of the table to update
+    column_name: name of the column to match for upsert
+    """
+    if not data:
+        print(f"No data found to update: {table_name}")
         return
   
-  updates = []
+    updates = []
+    if table_name in ["Counties", "Counties Test", "Towns", "Towns Test", "State Senate Districts", "State Senate Districts Test", "Assembly Districts", "Assembly Districts Test"]:
+      for i, item in enumerate(data):
+          id = i+1
+          name = item["attributes"]["NAME"]
+          coordinates = item["geometry"]["rings"]
+          coordinates_json = json.dumps(coordinates)
+          updates.append({
+              "id": id,
+              column_name: name,
+              "coordinates": coordinates_json,
+          })
+    
+    if table_name in ["Regions", "Regions Test"]:
+      for i, item in enumerate(data):
+          id = i+1
+          name = item["attributes"]["REDC"]
+          coordinates = item["geometry"]["rings"]
+          coordinates_json = json.dumps(coordinates)
+          updates.append({
+              "id": id,
+              column_name: name,
+              "coordinates": coordinates_json,
+          })
+    
+    if table_name in ["Utility Service Territories", "Utility Service Territories Test"]:
+        for i, item in enumerate(data):
+          id = i+1
+          name = item["comp_full"]
+          coordinates = item['the_geom']['coordinates']
+          coordinates_json = json.dumps(coordinates)
+          updates.append({
+              "id": id,
+              column_name: name,
+              "coordinates": coordinates_json,
+          })
+    
+    for i in range(0, len(updates), batch_size):
+      batch = updates[i:i+batch_size]
 
-  for county in county_data:
-      name = county["attributes"]["NAME"]
-      coordinates = county["geometry"]["rings"]
-      
-      coordinates_json = json.dumps(coordinates)
-      
-      updates.append({
-          "county": name,
-          "coordinates": coordinates_json
-      })
-  
-  try:
-      response = supabase_client.table("Counties").upsert(updates, on_conflict=["county"]).execute()
-      if response.data:
-          print("Successfully updated county coordinates")
-      else:
-          print("Failed to update county coordinates")
-  except Exception as e:
-      print("HII")
-      print(f"Failed to update county coordinates: {e}")
-      return
+      try:
+        response = supabase_client.table(table_name).upsert(batch, on_conflict=['id']).execute()
+        if response.data:
+            print(f"Batch {i//batch_size + 1}: Successfully updated {len(batch)} rows in {table_name}")
+        else:
+            print(f"Batch {i//batch_size + 1}: No data returned for {table_name}")
+      except Exception as e:
+        print(f"Batch {i//batch_size + 1}: Failed to update {table_name} coordinates: {e}")
+        return
+    
+def update_location_data():
+    """
+    Updates the coordinates of all location data in the database
+    """
+    county_data = query_county_locations()
+    # town_data = query_town_locations()
+    region_data = query_region_locations()
+    # utility_data = query_utility_locations()
+    # state_senate_data = query_state_senate_locations()
+    # assembly_data = query_assembly_locations()
 
-  # town_data = query_town_locations()
-  # region_data = query_region_locations()
-  # utility_data = query_utility_locations()
-  # state_data = query_state_senate_locations()
-  # assembly_data = query_assembly_locations()
-
-
+    # utilities data is from nyserda, everything else is from arc_gis
+    update_table_data(county_data, "Counties Test", "county")
+    # update_table_data(town_data, "Towns Test", "town")
+    update_table_data(region_data, "Regions Test", "region")
+    # update_table_data(utility_data, "Utilities Test", "utility")
+    # update_table_data(state_senate_data, "State Senate Test", "state_senate")
+    # update_table_data(assembly_data, "Assembly Test", "assembly")
+    print("All location data updated successfully")
 
 if __name__ == "__main__":
   update_location_data()
