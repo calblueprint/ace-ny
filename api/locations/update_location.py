@@ -1,3 +1,5 @@
+# to update the location data, simply run this file (`python update_location.py`)
+
 import os
 from supabase import create_client, Client
 from dotenv import load_dotenv
@@ -23,7 +25,7 @@ def update_table_data(data, table_name, column_name, batch_size=100):
         return
   
     updates = []
-    if table_name in ["Counties", "Counties Test", "Towns", "Towns Test", "State Senate Districts", "State Senate Districts Test", "Assembly Districts", "Assembly Districts Test"]:
+    if table_name in ["Counties", "Counties Test", "Towns", "Towns Test"]:
       for i, item in enumerate(data):
           id = i+1
           name = item["attributes"]["NAME"]
@@ -35,6 +37,18 @@ def update_table_data(data, table_name, column_name, batch_size=100):
               "coordinates": coordinates_json,
           })
     
+    if table_name in ["State Senate Districts", "State Senate Districts Test", "Assembly Districts", "Assembly Districts Test"]:
+        for i, item in enumerate(data):
+            id = i+1
+            name = item["attributes"]["DISTRICT"]
+            coordinates = item["geometry"]["rings"]
+            coordinates_json = json.dumps(coordinates)
+            updates.append({
+                "id": id,
+                column_name: name,
+                "coordinates": coordinates_json,
+            })
+
     if table_name in ["Regions", "Regions Test"]:
       for i, item in enumerate(data):
           id = i+1
@@ -77,19 +91,18 @@ def update_location_data():
     Updates the coordinates of all location data in the database
     """
     county_data = query_county_locations()
-    # town_data = query_town_locations()
+    town_data = query_town_locations()
     region_data = query_region_locations()
-    # utility_data = query_utility_locations()
-    # state_senate_data = query_state_senate_locations()
-    # assembly_data = query_assembly_locations()
+    utility_data = query_utility_locations()
+    state_senate_data = query_state_senate_locations()
+    assembly_data = query_assembly_locations()
 
-    # utilities data is from nyserda, everything else is from arc_gis
     update_table_data(county_data, "Counties Test", "county")
-    # update_table_data(town_data, "Towns Test", "town")
+    update_table_data(town_data, "Towns Test", "town")
     update_table_data(region_data, "Regions Test", "region")
-    # update_table_data(utility_data, "Utilities Test", "utility")
-    # update_table_data(state_senate_data, "State Senate Test", "state_senate")
-    # update_table_data(assembly_data, "Assembly Test", "assembly")
+    update_table_data(utility_data, "Utilities Service Territories Test", "utility_service_territories")
+    update_table_data(state_senate_data, "State Senate Districts Test", "state_senate_district")
+    update_table_data(assembly_data, "Assembly Districts Test", "assembly_district")
     print("All location data updated successfully")
 
 if __name__ == "__main__":
