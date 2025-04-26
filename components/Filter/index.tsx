@@ -134,7 +134,7 @@ export default function Filter({
       setActiveFilter(null);
     }
     prevSelectedProjectId.current = selectedProjectId;
-  }, [selectedProjectId]);
+  }, [selectedProjectId, setActiveFilter, isActive, filter.id]);
 
   return (
     <FilterBackgroundStyles $isActive={isActive}>
