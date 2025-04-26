@@ -18,6 +18,7 @@ interface FilterBarProps {
   setTempFilters: React.Dispatch<React.SetStateAction<Filters>>;
   clearFilters: () => void;
   projectSizes: number[];
+  selectedProjectId: number | null;
 }
 
 export const FilterBar = ({
@@ -28,6 +29,7 @@ export const FilterBar = ({
   clearFilters,
   projectSizes,
   setActiveLocationCategory,
+  selectedProjectId,
 }: FilterBarProps) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
@@ -148,6 +150,7 @@ export const FilterBar = ({
           maxDefault={maxDefault}
           setMinDefault={setMinDefault}
           setMaxDefault={setMaxDefault}
+          selectedProjectId={selectedProjectId}
         />
       ))}
     </FilterContainerStyles>

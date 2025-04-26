@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProjectSizeDropdown from '@/components/ProjectSizeDropdown';
 import StatusDropdown from '@/components/StatusDropdown';
 import TechnologyDropdown from '@/components/TechnologyDropdown';
@@ -32,6 +32,7 @@ interface FilterProps {
   setMinDefault: React.Dispatch<React.SetStateAction<number>>;
   maxDefault: number;
   setMaxDefault: React.Dispatch<React.SetStateAction<number>>;
+  selectedProjectId: number | null;
 }
 
 export default function Filter({
@@ -51,6 +52,7 @@ export default function Filter({
   setMinDefault,
   maxDefault,
   setMaxDefault,
+  selectedProjectId,
 }: FilterProps) {
   const [statusFiltersApplied, setStatusFiltersApplied] = useState(false);
   const [technologyFiltersApplied, setTechnologyFiltersApplied] =
@@ -120,6 +122,15 @@ export default function Filter({
         break;
     }
   };
+  useEffect(() => {
+    if (
+      isActive &&
+      ['technology', 'status', 'projectSize', 'location'].includes(filter.id)
+    ) {
+      setActiveFilter(null);
+    }
+  }, [selectedProjectId]);
+
   return (
     <FilterBackgroundStyles $isActive={isActive}>
       {isActive ? (

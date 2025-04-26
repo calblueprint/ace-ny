@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Project } from '@/types/schema';
 import AggregationFilter from '../AggregationFilter';
 import AggregationFilterButton from '../AggregationFilterButton';
@@ -8,9 +8,13 @@ import { BottomBarContainer } from './styles';
 
 interface BottomBarProps {
   projects: Project[];
+  selectedProjectId: number | null;
 }
 
-export default function BottomBar({ projects }: BottomBarProps) {
+export default function BottomBar({
+  projects,
+  selectedProjectId,
+}: BottomBarProps) {
   function intToString(num: number) {
     return num.toLocaleString();
   }
@@ -67,6 +71,18 @@ export default function BottomBar({ projects }: BottomBarProps) {
   for (let i = 0; i < totalEnergyArr.length; i++) {
     totalEnergyArr[i] = totalEnergyArr[i] + ' MW';
   }
+
+  useEffect(() => {
+    if (legendIsVisible) {
+      setLegendIsVisible(false);
+    }
+    if (aggFilterisVisible) {
+      setAggFilterisVisible(false);
+    }
+    if (infoModalisVisible) {
+      setInfoModalisVisible(false);
+    }
+  }, [selectedProjectId]);
 
   return (
     <BottomBarContainer>
