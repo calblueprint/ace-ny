@@ -116,6 +116,9 @@ def update_table_data(data, table_name, column_name, batch_size=100):
           name = item["comp_full"]
           coordinates = item['the_geom']['coordinates']
           coordinates_json = json.dumps(coordinates)
+          if "Municipal Utility:" in name:
+            municipal_subname = name[19:].lower().title()
+            name = "Municipal Utility: " + municipal_subname
           updates.append({
               "id": id,
               column_name: name,
@@ -141,24 +144,24 @@ def update_location_data():
     """
     Updates the coordinates of all location data in the database
     """
-    county_data = query_county_locations()
-    town_data = query_town_locations()
-    region_data = query_region_locations()
+    # county_data = query_county_locations()
+    # town_data = query_town_locations()
+    # region_data = query_region_locations()
     utility_data = query_utility_locations()
-    state_senate_data = query_state_senate_locations()
-    assembly_data = query_assembly_locations()
+    # state_senate_data = query_state_senate_locations()
+    # assembly_data = query_assembly_locations()
 
-    county_data_updated = update_table_data(county_data, "Counties Test", "county")
-    town_data_updated = update_table_data(town_data, "Towns Test", "town")
-    region_data_updated = update_table_data(region_data, "Regions Test", "region")
+    # county_data_updated = update_table_data(county_data, "Counties Test", "county")
+    # town_data_updated = update_table_data(town_data, "Towns Test", "town")
+    # region_data_updated = update_table_data(region_data, "Regions Test", "region")
     utility_data_updated = update_table_data(utility_data, "Utility Service Territories Test", "utility_service_territories")
-    state_senate_data_updated = update_table_data(state_senate_data, "State Senate Districts Test", "state_senate_district")
-    assembly_data_updated = update_table_data(assembly_data, "Assembly Districts Test", "assembly_district")
+    # state_senate_data_updated = update_table_data(state_senate_data, "State Senate Districts Test", "state_senate_district")
+    # assembly_data_updated = update_table_data(assembly_data, "Assembly Districts Test", "assembly_district")
     
-    if county_data_updated and town_data_updated and region_data_updated and utility_data_updated and state_senate_data_updated and assembly_data_updated:
-        print("All location data updated successfully!")
-    else:
-        print("Failed to update all location data.")
+    # if county_data_updated and town_data_updated and region_data_updated and utility_data_updated and state_senate_data_updated and assembly_data_updated:
+    #     print("All location data updated successfully!")
+    # else:
+    #     print("Failed to update all location data.")
 
 if __name__ == "__main__":
   update_location_data()
