@@ -44,7 +44,7 @@ export async function queryDefaultImages(category: string) {
   return defaultImage;
 }
 
-export async function queryOptionsForCategory(category: string) {
+export async function queryNamesForCategory(category: string) {
   const tableMap: Record<string, string> = {
     County: 'Counties Test',
     Region: 'Regions Test',
