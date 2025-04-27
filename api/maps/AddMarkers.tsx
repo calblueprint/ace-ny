@@ -2,8 +2,8 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import {
   Cluster,
-  GridAlgorithm,
   MarkerClusterer,
+  SuperClusterAlgorithm,
 } from '@googlemaps/markerclusterer';
 import { useMap } from '@vis.gl/react-google-maps';
 import { ClusterIcon } from '@/assets/Clusters/icons';
@@ -110,11 +110,11 @@ export default function AddMarker({
       }
       return svgStringCache.get(count)!;
     }
+
     // defines how close markers need to be to each other to cluster
     // used to minimize the number of clusters for performance
-    const algorithm = new GridAlgorithm({
-      gridSize: 60,
-      maxZoom: 18,
+    const algorithm = new SuperClusterAlgorithm({
+      radius: 200,
     });
 
     const renderer = {
