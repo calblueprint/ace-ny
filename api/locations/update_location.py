@@ -74,10 +74,22 @@ def update_table_data(data, table_name, column_name, batch_size=100):
             # Increment the count for this name
             count_names[name] = count_names.get(name, 0) + 1
     
-    if table_name in ["State Senate Districts", "State Senate Districts Test", "Assembly Districts", "Assembly Districts Test"]:
+    if table_name in ["State Senate Districts", "State Senate Districts Test"]:
         for i, item in enumerate(data):
             id = i+1
-            name = item["attributes"]["DISTRICT"]
+            name = f"State Senate District {item['attributes']['DISTRICT']}"
+            coordinates = item["geometry"]["rings"]
+            coordinates_json = json.dumps(coordinates)
+            updates.append({
+                "id": id,
+                column_name: name,
+                "coordinates": coordinates_json,
+            })
+    
+    if table_name in ["Assembly Districts", "Assembly Districts Test"]:
+        for i, item in enumerate(data):
+            id = i+1
+            name = f"Assembly District {item['attributes']['District']}"
             coordinates = item["geometry"]["rings"]
             coordinates_json = json.dumps(coordinates)
             updates.append({
@@ -121,7 +133,9 @@ def update_table_data(data, table_name, column_name, batch_size=100):
             print(f"Batch {i//batch_size + 1}: No data returned for {table_name}")
       except Exception as e:
         print(f"Batch {i//batch_size + 1}: Failed to update {table_name} coordinates: {e}")
-        return
+        return False
+
+    return True
     
 def update_location_data():
     """
@@ -134,13 +148,17 @@ def update_location_data():
     state_senate_data = query_state_senate_locations()
     assembly_data = query_assembly_locations()
 
-    update_table_data(county_data, "Counties Test", "county")
-    update_table_data(town_data, "Towns Test", "town")
-    update_table_data(region_data, "Regions Test", "region")
-    update_table_data(utility_data, "Utility Service Territories Test", "utility_service_territories")
-    update_table_data(state_senate_data, "State Senate Districts Test", "state_senate_district")
-    update_table_data(assembly_data, "Assembly Districts Test", "assembly_district")
-    print("All location data updated successfully")
+    county_data_updated = update_table_data(county_data, "Counties Test", "county")
+    town_data_updated = update_table_data(town_data, "Towns Test", "town")
+    region_data_updated = update_table_data(region_data, "Regions Test", "region")
+    utility_data_updated = update_table_data(utility_data, "Utility Service Territories Test", "utility_service_territories")
+    state_senate_data_updated = update_table_data(state_senate_data, "State Senate Districts Test", "state_senate_district")
+    assembly_data_updated = update_table_data(assembly_data, "Assembly Districts Test", "assembly_district")
+    
+    if county_data_updated and town_data_updated and region_data_updated and utility_data_updated and state_senate_data_updated and assembly_data_updated:
+        print("All location data updated successfully!")
+    else:
+        print("Failed to update all location data.")
 
 if __name__ == "__main__":
   update_location_data()
