@@ -64,7 +64,9 @@ export default function LocationCategoryPanel({
   const options: string[] | null = categoryOptionsMap[category] ?? null;
 
   const uniqueOptions = options
-    ? Array.from(new Set(options.map(item => item.trim())))
+    ? Array.from(new Set(options.map(item => item.trim()))).sort((a, b) =>
+        a.localeCompare(b, 'en-US', { numeric: true, sensitivity: 'base' }),
+      )
     : [];
 
   const filteredOptions = uniqueOptions?.filter(item =>
