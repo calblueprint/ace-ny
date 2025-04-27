@@ -137,7 +137,7 @@ def update_location_data():
     update_table_data(county_data, "Counties Test", "county")
     update_table_data(town_data, "Towns Test", "town")
     update_table_data(region_data, "Regions Test", "region")
-    update_table_data(utility_data, "Utilities Service Territories Test", "utility_service_territories")
+    update_table_data(utility_data, "Utility Service Territories Test", "utility_service_territories")
     update_table_data(state_senate_data, "State Senate Districts Test", "state_senate_district")
     update_table_data(assembly_data, "Assembly Districts Test", "assembly_district")
     print("All location data updated successfully")
