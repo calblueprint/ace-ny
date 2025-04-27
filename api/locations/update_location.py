@@ -25,7 +25,7 @@ def update_table_data(data, table_name, column_name, batch_size=100):
         return
   
     updates = []
-    if table_name in ["Counties", "Counties Test", "Towns", "Towns Test"]:
+    if table_name in ["Counties", "Counties Test"]:
       for i, item in enumerate(data):
           id = i+1
           name = item["attributes"]["NAME"]
@@ -36,6 +36,43 @@ def update_table_data(data, table_name, column_name, batch_size=100):
               column_name: name,
               "coordinates": coordinates_json,
           })
+    
+    # need to check for duplicate town names
+    # if the previous name is the same as the current name, add the county name to the current name
+    # ex. "Albion" -> "Albion (Oswego)"
+    if table_name in ["Towns", "Towns Test"]:
+        town_to_county = {} # maps from town name to county name
+        count_names = {} # maps from name to number of times it was seen
+        for i, item in enumerate(data):
+            id = i + 1
+            name = item["attributes"]["NAME"]
+            county = item["attributes"]["COUNTY"]
+            coordinates = item["geometry"]["rings"]
+            coordinates_json = json.dumps(coordinates)
+
+            # Check if we've already seen this name
+            if name in town_to_county:
+                # if first time seeing this duplicate name, need to modify the previous instance
+                if count_names[name] == 1:
+                    prev_county = town_to_county[name]
+                    updates[-1][column_name] = f"{updates[-1][column_name]} ({prev_county})"
+
+                # modify the current name
+                updated_name = f"{name} ({county})"
+            else:
+                # first time seeing this name
+                updated_name = name
+                town_to_county[name] = county
+
+            # Add the update (with the right name)
+            updates.append({
+                "id": id,
+                column_name: updated_name,
+                "coordinates": coordinates_json,
+            })
+
+            # Increment the count for this name
+            count_names[name] = count_names.get(name, 0) + 1
     
     if table_name in ["State Senate Districts", "State Senate Districts Test", "Assembly Districts", "Assembly Districts Test"]:
         for i, item in enumerate(data):
