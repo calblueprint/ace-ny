@@ -245,6 +245,15 @@ export const FilterNameText = styled.p<TextProps>`
   color: rgba(46, 58, 89, 0.85);
 `;
 
+export const FilterTagText = styled.p<TextProps>`
+  ${TextStylesCoinbaseSans}
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: ${COLORS.electricBlue};
+`;
+
 export const FilterOptionsText = styled.p<TextProps>`
   ${TextStylesCoinbaseText}
   font-size: 0.75rem;

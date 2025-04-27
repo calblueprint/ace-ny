@@ -8,7 +8,8 @@ import { NoProjectsFound, SearchIcon } from '@/assets/SearchBar-Icons/icons';
 import COLORS from '@/styles/colors';
 import { FilterNameText, SubHeading1, SubHeading2 } from '@/styles/texts';
 import { SortByText } from '../../styles/texts';
-import { Project } from '../../types/schema';
+import { Filters, Project } from '../../types/schema';
+import FilterTags from '../FilterTags';
 import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
 import {
@@ -39,6 +40,10 @@ export default function ProjectsListingModal({
   setSearchTerm,
   selectedProjectId,
   clearFilters,
+  selectedFilters,
+  defaultProjectSize,
+  minBound,
+  maxBound,
 }: {
   projects: Project[] | null;
   map: google.maps.Map | null;
@@ -47,6 +52,13 @@ export default function ProjectsListingModal({
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   selectedProjectId: number | null;
   clearFilters: () => void;
+  selectedFilters: Filters;
+  defaultProjectSize: {
+    min: number;
+    max: number;
+  };
+  minBound: number;
+  maxBound: number;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isSortByOpen, setIsSortByOpen] = useState(false);
@@ -64,6 +76,16 @@ export default function ProjectsListingModal({
       project={project}
     />
   ));
+
+  const hasActiveFilters = () => {
+    return (
+      selectedFilters.status.length > 0 ||
+      selectedFilters.technology.length > 0 ||
+      selectedFilters.location.length > 0 ||
+      selectedFilters.projectSize.min > defaultProjectSize.min ||
+      selectedFilters.projectSize.max < defaultProjectSize.max
+    );
+  };
 
   const hasProjects = projects && projects.length > 0;
 
@@ -144,6 +166,14 @@ export default function ProjectsListingModal({
                   </Headers>
                 )}
 
+                {hasActiveFilters() && (
+                  <FilterTags
+                    selectedFilters={selectedFilters}
+                    defaultProjectSize={defaultProjectSize}
+                    minBound={minBound}
+                    maxBound={maxBound}
+                  />
+                )}
                 <ProjectItemsDiv>
                   {hasProjects ? (
                     projectItems

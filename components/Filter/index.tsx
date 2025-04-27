@@ -218,7 +218,7 @@ export default function Filter({
                     clearButtonHandler(filter.id);
                   }}
                 >
-                  <ClearIcon />
+                  <ClearIcon width={'10'} height={'10'} />
                 </div>
               </ClearIconStyle>
             </>

@@ -179,10 +179,13 @@ export const CollapseIconApplied = () => (
   </svg>
 );
 
-export const ClearIcon = () => (
+export const ClearIcon = (props: {
+  width: string | undefined;
+  height: string | undefined;
+}) => (
   <svg
-    width="10"
-    height="10"
+    width={props.width}
+    height={props.height}
     viewBox="0 0 10 10"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
