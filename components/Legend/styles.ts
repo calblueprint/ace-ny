@@ -4,8 +4,8 @@ import { CoinbaseMono, CoinbaseText } from '@/styles/fonts';
 
 export const LegendStyles = styled.div`
   position: absolute;
-  bottom: 60px;
-  right: 60px;
+  bottom: 3.75rem;
+  right: 6.875rem;
   width: 19.85rem;
   padding: 16px;
   justify-content: center;
@@ -27,8 +27,8 @@ export const LegendTriangleStyles = styled.div`
   height: 0.7719rem;
   flex-shrink: 0;
   z-index: 100;
-  bottom: 53px;
-  right: 71px;
+  bottom: 3.313rem;
+  right: 7.563rem;
 `;
 
 export const TitleStyles = styled.div`

@@ -26,6 +26,25 @@ export const LineIcon = () => (
   </svg>
 );
 
+export const ZoomLineIcon = () => (
+  <svg
+    width="21"
+    height="1"
+    viewBox="0 0 21 1"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <line
+      x1="0.684326"
+      y1="0.5"
+      x2="20.6843"
+      y2="0.5"
+      stroke="#2E3A59"
+      stroke-opacity="0.075"
+    />
+  </svg>
+);
+
 export const LandBasedWindIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
