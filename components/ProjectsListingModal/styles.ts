@@ -46,7 +46,7 @@ export const AllProjectsHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 13rem;
+  width: 9.5rem;
   gap: 0.4rem;
   align-items: center;
 `;

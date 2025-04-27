@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { CloseIcon, OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
@@ -38,6 +38,7 @@ export default function ProjectsListingModal({
   searchTerm,
   setSearchTerm,
   selectedProjectId,
+  clearFilters,
 }: {
   projects: Project[] | null;
   map: google.maps.Map | null;
@@ -45,6 +46,7 @@ export default function ProjectsListingModal({
   searchTerm: string | null;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   selectedProjectId: number | null;
+  clearFilters: () => void;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isSortByOpen, setIsSortByOpen] = useState(false);
@@ -101,6 +103,12 @@ export default function ProjectsListingModal({
                       <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
                       <SubHeading2>ALL PROJECTS</SubHeading2>
                     </AllProjectsHeader>
+
+                    {/* fix the clear */}
+                    <SortByButton onClick={() => clearFilters()}>
+                      <SubHeading2>CLEAR</SubHeading2>
+                    </SortByButton>
+
                     <SortBy>
                       <SortByButton onClick={toggleSortBy}>
                         <SubHeading2>SORT BY</SubHeading2>

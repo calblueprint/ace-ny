@@ -257,6 +257,7 @@ export default function MapViewScreen({
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         selectedProjectId={selectedProjectId}
+        clearFilters={clearFilters}
       />
       {selectedProjectId && (
         <ProjectModal
