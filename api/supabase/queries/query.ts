@@ -46,26 +46,36 @@ export async function queryDefaultImages(category: string) {
 
 export async function queryOptionsForCategory(category: string) {
   const tableMap: Record<string, string> = {
-    County: 'Counties',
-    Region: 'Regions',
-    'Utility Service Territory': 'Utility Service Territories',
-    'State Senate District': 'State Senate Districts',
-    'Assembly District': 'Assembly Districts',
-    Town: 'Towns',
+    County: 'Counties Test',
+    Region: 'Regions Test',
+    'Utility Service Territory': 'Utility Service Territories Test',
+    'State Senate District': 'State Senate Districts Test',
+    'Assembly District': 'Assembly Districts Test',
+    Town: 'Towns Test',
+  };
+
+  const columnMap: Record<string, string> = {
+    County: 'county',
+    Region: 'region',
+    'Utility Service Territory': 'utility_service_territories',
+    'State Senate District': 'state_senate_district',
+    'Assembly District': 'assembly_district',
+    Town: 'town',
   };
 
   const tableName = tableMap[category];
+  const columnName = columnMap[category];
 
-  if (!tableName) {
+  if (!tableName || !columnName) {
     return [];
   }
 
-  const { data, error } = await supabase.from(tableName).select('*');
+  const { data, error } = await supabase.from(tableName).select(columnName);
 
   if (error) {
     console.error(`Error fetching ${category}:`, error.message);
     return [];
   }
 
-  return data.map(row => Object.values(row)[1]); // gets column of values associated for the option
+  return data.map(row => Object.values(row)[0]); // gets column of values associated for the option
 }
