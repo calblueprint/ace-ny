@@ -121,7 +121,8 @@ export default function AggregationFilter({
           <ContentContainerHeader>
             <TotalText>
               {activeTab === 'PROJECTS' ? numProjects : totalEnergy}
-              &nbsp; PROJECTS
+              &nbsp;
+              {activeTab === 'PROJECTS' ? 'PROJECTS' : 'MW'}
             </TotalText>
 
             <DownloadData filteredProjects={projects} />
