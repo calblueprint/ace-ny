@@ -1,9 +1,9 @@
 import requests
 from typing import List, Optional
-from constants import COUNTY_DATA_URL, TOWN_DATA_URL, REGION_DATA_URL, UTILITY_DATA_URL, STATE_SENATE_DATA_URL, ASSEMBLY_DATA_URL
+from constants import COUNTY_COORDS_URL, TOWN_COORDS_URL, REGION_COORDS_URL, UTILITY_COORDS_URL, STATE_SENATE_COORDS_URL, ASSEMBLY_COORDS_URL
 
 def query_county_locations() -> Optional[List[dict]]:
-    url = COUNTY_DATA_URL
+    url = COUNTY_COORDS_URL
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -16,7 +16,7 @@ def query_county_locations() -> Optional[List[dict]]:
     return []
 
 def query_town_locations() -> Optional[List[dict]]:
-    url = TOWN_DATA_URL
+    url = TOWN_COORDS_URL
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -29,7 +29,7 @@ def query_town_locations() -> Optional[List[dict]]:
     return []
 
 def query_region_locations() -> Optional[List[dict]]:
-    url = REGION_DATA_URL
+    url = REGION_COORDS_URL
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -42,7 +42,7 @@ def query_region_locations() -> Optional[List[dict]]:
     return []
 
 def query_utility_locations() -> Optional[List[dict]]:
-    url = UTILITY_DATA_URL
+    url = UTILITY_COORDS_URL
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -54,7 +54,7 @@ def query_utility_locations() -> Optional[List[dict]]:
     return []
 
 def query_state_senate_locations() -> Optional[List[dict]]:
-    url = STATE_SENATE_DATA_URL
+    url = STATE_SENATE_COORDS_URL
     try:
         response = requests.get(url)
         response.raise_for_status()
@@ -67,7 +67,7 @@ def query_state_senate_locations() -> Optional[List[dict]]:
     return []
 
 def query_assembly_locations() -> Optional[List[dict]]:
-    url = ASSEMBLY_DATA_URL
+    url = ASSEMBLY_COORDS_URL
     try:
         response = requests.get(url)
         response.raise_for_status()

@@ -4,7 +4,7 @@ import os
 from supabase import create_client, Client
 from dotenv import load_dotenv
 import json
-from get_data import query_county_locations, query_town_locations, query_region_locations, query_utility_locations, query_state_senate_locations, query_assembly_locations
+from api.locations.get_coords import query_county_locations, query_town_locations, query_region_locations, query_utility_locations, query_state_senate_locations, query_assembly_locations
 
 load_dotenv(os.path.join(os.path.dirname(__file__), "../../.env.local"))
 
