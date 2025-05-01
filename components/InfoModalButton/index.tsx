@@ -1,6 +1,8 @@
 import { InfoModalIcon } from '@/assets/InfoModal-Icons/icons';
+import COLORS from '@/styles/colors';
+import { TagText1 } from '../../styles/texts';
 import InfoModal from '../InfoModal';
-import { InfoModalButtonBackground } from './styles';
+import { InfoHoverText, InfoModalButtonBackground } from './styles';
 
 interface InfoModalButtonProps {
   aggFilterisVisible: boolean;
@@ -34,6 +36,14 @@ export default function InfoModalButton({
       {infoModalisVisible && <InfoModal />}
       <InfoModalButtonBackground onClick={handleClick}>
         <InfoModalIcon />
+        {!infoModalisVisible && (
+          <InfoHoverText>
+            <TagText1 $color={COLORS.navy75}>
+              Learn more about this map, how it was created, and how to report
+              updates or corrections.
+            </TagText1>
+          </InfoHoverText>
+        )}
       </InfoModalButtonBackground>
     </>
   );

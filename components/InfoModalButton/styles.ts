@@ -15,4 +15,37 @@ export const InfoModalButtonBackground = styled.div`
   );
   backdrop-filter: blur(7.5px);
   cursor: pointer;
+  z-index: 9999;
+
+  &:hover > div {
+    visibility: visible;
+    opacity: 1;
+  }
+`;
+
+export const InfoHoverText = styled.div`
+  visibility: hidden;
+  background-color: white;
+  position: absolute;
+  bottom: 120%;
+  white-space: normal;
+  box-shadow:
+    0px 16px 20px 0px rgba(46, 58, 89, 0.1),
+    0px 1px 1px 0px rgba(46, 58, 89, 0.15);
+
+  width: 11.75rem;
+  padding: 1rem;
+  border-radius: 12px;
+  right: 0.625rem;
+
+  /* Tooltip arrow */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 0.65rem;
+    border-width: 0.313rem;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+  }
 `;

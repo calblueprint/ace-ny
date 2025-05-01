@@ -4,16 +4,19 @@ import AggregationFilter from '../AggregationFilter';
 import AggregationFilterButton from '../AggregationFilterButton';
 import InfoModalButton from '../InfoModalButton';
 import LegendButton from '../LegendButton';
+import ZoomButton from '../ZoomButton';
 import { BottomBarContainer } from './styles';
 
 interface BottomBarProps {
   projects: Project[];
   selectedProjectId: number | null;
+  map: google.maps.Map | null;
 }
 
 export default function BottomBar({
   projects,
   selectedProjectId,
+  map,
 }: BottomBarProps) {
   function intToString(num: number) {
     return num.toLocaleString();
@@ -127,6 +130,7 @@ export default function BottomBar({
         legendIsVisible={legendIsVisible}
         setLegendIsVisible={setLegendIsVisible}
       ></InfoModalButton>
+      <ZoomButton map={map}></ZoomButton>
     </BottomBarContainer>
   );
 }

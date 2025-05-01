@@ -268,6 +268,7 @@ export default function MapViewScreen({
       <BottomBar
         projects={filteredProjects}
         selectedProjectId={selectedProjectId}
+        map={map}
       ></BottomBar>
     </>
   );

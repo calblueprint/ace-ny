@@ -1,6 +1,12 @@
 import { LegendButtonIcon } from '@/assets/Legend-Icons/icons';
+import COLORS from '@/styles/colors';
+import { TagText1 } from '../../styles/texts';
 import Legend from '../Legend';
-import { LegendButtonBackground, LegendButtonWhiteBackground } from './styles';
+import {
+  InfoHoverText,
+  LegendButtonBackground,
+  LegendButtonWhiteBackground,
+} from './styles';
 
 interface LegendButtonProps {
   aggFilterisVisible: boolean;
@@ -36,6 +42,14 @@ export default function LegendButton({
         <LegendButtonWhiteBackground>
           <LegendButtonIcon />
         </LegendButtonWhiteBackground>
+        {!legendIsVisible && (
+          <InfoHoverText>
+            <TagText1 $color={COLORS.navy75}>
+              View the map key, which explains the symbols for technology type
+              and energy source.
+            </TagText1>
+          </InfoHoverText>
+        )}
       </LegendButtonBackground>
     </>
   );
