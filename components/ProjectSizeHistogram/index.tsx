@@ -31,10 +31,14 @@ export default function ProjectSizeHistogram({
   maxBound,
 }: HistogramProps) {
   const numBins = 10;
-  const maxBinCutoff = 10; // Change value depending on what we want the cutoff to be
-  const filteredForRange = projectSizes.filter(val => val <= maxBinCutoff);
-  const minSize = Math.min(...filteredForRange);
-  const maxSize = Math.max(...filteredForRange);
+
+  const logProjectSizes = projectSizes.map(x => Math.log10(x + 1));
+  const logMinSize = Math.min(...logProjectSizes);
+  const logMaxSize = Math.max(...logProjectSizes);
+  const logBinSize = (logMaxSize - logMinSize) / numBins;
+
+  const minSize = Math.min(...projectSizes);
+  const maxSize = Math.max(...projectSizes);
   const binSize = (maxSize - minSize) / numBins;
   const bins = Array(numBins).fill(0);
 
@@ -54,19 +58,14 @@ export default function ProjectSizeHistogram({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [minDefault, maxDefault, projectSizes, setMinSize, setMaxSize]);
 
-  if (projectSizes.length === 1) {
+  if (logProjectSizes.length === 1) {
     bins[0] = 1;
   } else {
-    projectSizes.forEach(value => {
-      let binIndex;
-      if (value > maxBinCutoff) {
-        binIndex = numBins - 1;
-      } else {
-        binIndex = Math.min(
-          Math.floor((value - minSize) / binSize),
-          numBins - 1,
-        );
-      }
+    logProjectSizes.forEach(value => {
+      const binIndex = Math.min(
+        Math.floor((value - logMinSize) / logBinSize),
+        numBins - 1,
+      );
       bins[binIndex]++;
     });
   }
