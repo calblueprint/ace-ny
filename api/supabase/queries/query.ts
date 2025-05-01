@@ -21,11 +21,11 @@ const columnMap: Record<string, string> = {
 
 export default async function queryProjects(): Promise<Project[]> {
   const { data: projects, error } = await supabase
-    .from('Projects_user_testing')
+    .from('Projects_test_deena')
     .select('*')
     .not('longitude', 'is', null)
-    .not('latitude', 'is', null)
-    .eq('approved', true);
+    .not('latitude', 'is', null);
+  // .eq('approved', true);
 
   if (error) {
     throw new Error(`Error fetching projects: ${error.message}`);
@@ -36,7 +36,7 @@ export default async function queryProjects(): Promise<Project[]> {
 
 export async function queryProjectbyId(id: number): Promise<Project> {
   const { data: project, error } = await supabase
-    .from('Projects_user_testing')
+    .from('Projects_test_deena')
     .select('*')
     .eq('id', id)
     .single();
