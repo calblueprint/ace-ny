@@ -102,4 +102,14 @@ export async function queryCoordsForName(category: string, name: string) {
   }
 
   return data.map(row => Object.values(row)[0]);
+  // return data.map(row => ({
+  //   name:
+  //     row.town ??
+  //     row.county ??
+  //     row.region ??
+  //     row['utility_service_territories'] ??
+  //     row['state_senate_district'] ??
+  //     row['assembly_district'],
+  //   coordinates: row.coordinates,
+  // }));
 }

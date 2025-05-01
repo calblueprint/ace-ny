@@ -33,6 +33,8 @@ interface FilterProps {
   maxDefault: number;
   setMaxDefault: React.Dispatch<React.SetStateAction<number>>;
   selectedProjectId: number | null;
+  map: google.maps.Map | null;
+  setMap: React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
 }
 
 export default function Filter({
@@ -53,6 +55,7 @@ export default function Filter({
   maxDefault,
   setMaxDefault,
   selectedProjectId,
+  map,
 }: FilterProps) {
   const [statusFiltersApplied, setStatusFiltersApplied] = useState(false);
   const [technologyFiltersApplied, setTechnologyFiltersApplied] =
@@ -64,6 +67,9 @@ export default function Filter({
   const [locationFiltersApplied, setLocationFiltersApplied] = useState(false);
 
   const [appliedCategory, setAppliedCategory] = useState<string | null>(null);
+
+  const [currentPolygon, setCurrentPolygon] =
+    useState<google.maps.Polygon | null>(null);
 
   const applyButtonHandler = (filter: keyof Filters) => {
     switch (filter) {
@@ -119,6 +125,8 @@ export default function Filter({
       case 'location':
         setLocationFiltersApplied(false);
         setAppliedCategory(null);
+        currentPolygon?.setMap(null);
+        setCurrentPolygon(null);
         break;
     }
   };
@@ -199,6 +207,9 @@ export default function Filter({
             setAppliedCategory={setAppliedCategory}
             applyButtonHandler={applyButtonHandler}
             locationFiltersApplied={locationFiltersApplied}
+            map={map}
+            currentPolygon={currentPolygon}
+            setCurrentPolygon={setCurrentPolygon}
           ></LocationDropdown>
         ) : // Add other filter dropdown components here
         null
