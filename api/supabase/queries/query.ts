@@ -101,5 +101,13 @@ export async function queryCoordsForName(category: string, name: string) {
     return [];
   }
 
+  // special case for the Capital Region
+  // currently there are 3 lists of coordinates for the Capital Region, and the final one is the one we want
+  if (name == 'Capital Region') {
+    const coordsStr = data.map(row => Object.values(row)[0])[0];
+    const coordJson = JSON.parse(coordsStr)[2];
+    return JSON.stringify([coordJson]);
+  }
+
   return data.map(row => Object.values(row)[0])[0];
 }
