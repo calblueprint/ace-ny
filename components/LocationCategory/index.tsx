@@ -16,7 +16,6 @@ interface LocationCategoryProps {
 }
 
 export default function LocationCategory(props: LocationCategoryProps) {
-  console.log('selected?', props.name === props.appliedCategory);
   return (
     <LocationCategoryContent onClick={props.onClick}>
       <IconTextContainer>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { queryOptionsForCategory } from '@/api/supabase/queries/query';
+import { queryNamesForCategory } from '@/api/supabase/queries/query';
 import { Filters, FilterType } from '@/types/schema';
 import {
   CollapseIcon,
@@ -87,7 +87,7 @@ export default function LocationDropdown({
     const fetchAllCategoryOptions = async () => {
       const results = await Promise.all(
         locationCategories.map(async category => {
-          const data = await queryOptionsForCategory(category);
+          const data = await queryNamesForCategory(category);
           return [category, data];
         }),
       );
