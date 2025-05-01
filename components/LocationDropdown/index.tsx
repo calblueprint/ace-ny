@@ -209,9 +209,9 @@ export default function LocationDropdown({
       activeCategory={activeCategory}
       setAppliedCategory={setAppliedCategory}
       applyButtonHandler={applyButtonHandler}
-      map={map}
-      currentPolygon={currentPolygon}
-      setCurrentPolygon={setCurrentPolygon}
+      // map={map}
+      // currentPolygon={currentPolygon}
+      // setCurrentPolygon={setCurrentPolygon}
       appliedCategory={appliedCategory}
     />
   );
