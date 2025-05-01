@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { queryCoordsForName } from '@/api/supabase/queries/query';
 import {
   ApplyFiltersText,
   ClearFiltersText,
@@ -28,11 +29,6 @@ import {
   Underline,
 } from './styles';
 
-// interface LocationOption {
-//   name: string;
-//   coordinates: string;
-// }
-
 export default function LocationCategoryPanel({
   onBack,
   category,
@@ -45,9 +41,9 @@ export default function LocationCategoryPanel({
   activeCategory,
   setAppliedCategory,
   applyButtonHandler,
-  // map,
-  // currentPolygon,
-  // setCurrentPolygon,
+  map,
+  currentPolygon,
+  setCurrentPolygon,
   appliedCategory,
 }: {
   onBack: () => void;
@@ -64,29 +60,15 @@ export default function LocationCategoryPanel({
   activeCategory: string | null;
   setAppliedCategory: React.Dispatch<React.SetStateAction<string | null>>;
   applyButtonHandler: (filter: keyof Filters) => void;
-  // map: google.maps.Map | null;
-  // currentPolygon: google.maps.Polygon | null;
-  // setCurrentPolygon: React.Dispatch<
-  //   React.SetStateAction<google.maps.Polygon | null>
-  // >;
+  map: google.maps.Map | null;
+  currentPolygon: google.maps.Polygon | null;
+  setCurrentPolygon: React.Dispatch<
+    React.SetStateAction<google.maps.Polygon | null>
+  >;
   appliedCategory: string | null;
 }) {
   const [searchTerm, setSearchTerm] = useState('');
-  console.log('categoryOptionsMap: ', categoryOptionsMap);
   const options: string[] | null = categoryOptionsMap[category] ?? null;
-
-  // const uniqueOptions = options
-  //   ? Array.from(new Set(options.map(item => item.trim()))).sort((a, b) =>
-  //       a.localeCompare(b, 'en-US', { numeric: true, sensitivity: 'base' }),
-  //     )
-  //   : [];
-
-  // const filteredOptions = uniqueOptions?.filter(item =>
-  //   item.toLowerCase().includes(searchTerm.toLowerCase()),
-  // const options: LocationOption[] | null = categoryOptionsMap[category] ?? null;
-  // const [selectedItem, setSelectedItem] = useState<LocationOption | null>(
-  //   options?.find(option => option.name === selectedLocationFilters[0]) ?? null,
-  // );
   const [selectedItem, setSelectedItem] = useState<string | null>(
     selectedLocationFilters[0] ?? null,
   );
@@ -102,19 +84,19 @@ export default function LocationCategoryPanel({
     return false;
   });
 
-  // sort filteredOptions alphabetically
+  // sort alphabetically
   filteredOptions?.sort((a, b) =>
     a.localeCompare(b, 'en-US', { numeric: true, sensitivity: 'base' }),
   );
 
-  console.log('filteredOptions: ', filteredOptions);
-
   const applyButtonHandlerLocation = () => {
     setAppliedCategory(activeCategory);
     applyButtonHandler('location');
-    // if (selectedItem && map) {
-    //   drawPolygonFromSelectedItemAndZoom(selectedItem, map);
-    // }
+    if (selectedItem && map) {
+      getCoords(selectedItem).then(coords => {
+        drawPolygonFromSelectedItemAndZoom(selectedItem, map, coords);
+      });
+    }
   };
 
   const clearButtonHandlerLocation = () => {
@@ -127,71 +109,74 @@ export default function LocationCategoryPanel({
     setSelectedItem(option);
   }
 
-  // function drawPolygonFromSelectedItemAndZoom(
-  //   selectedItem: string | null,
-  //   mapInstance: google.maps.Map | null,
-  // ): google.maps.Polygon | null {
-  //   const bounds = new google.maps.LatLngBounds();
-  //   if (!selectedItem) {
-  //     console.error('No selected item to draw.');
-  //     return null;
-  //   }
+  async function getCoords(name: string) {
+    const coords = await queryCoordsForName(category, name);
+    return coords;
+  }
 
-  //   if (!mapInstance) {
-  //     console.error('No selected map.');
-  //     return null;
-  //   }
+  function drawPolygonFromSelectedItemAndZoom(
+    selectedItem: string | null,
+    mapInstance: google.maps.Map | null,
+    coords: string,
+  ): google.maps.Polygon | null {
+    const bounds = new google.maps.LatLngBounds();
+    if (!selectedItem) {
+      console.error('No selected item to draw.');
+      return null;
+    }
 
-  //   try {
-  //     const coordsArray = JSON.parse(selectedItem.coordinates);
-  //     // const center = getPolygonCenter(coordsArray);
-  //     // mapInstance?.setCenter(center);
-  //     // mapInstance?.setZoom(7);
+    if (!mapInstance) {
+      console.error('No selected map.');
+      return null;
+    }
 
-  //     const points = coordsArray[0];
+    try {
+      const coordsArray = JSON.parse(coords);
 
-  //     for (const [lng, lat] of points) {
-  //       bounds.extend({ lat, lng });
-  //     }
+      const points = coordsArray[0];
 
-  //     mapInstance?.fitBounds(bounds);
-  //     const currentZoom = mapInstance?.getZoom();
-  //     if (currentZoom !== undefined && currentZoom !== null) {
-  //       mapInstance?.setZoom(currentZoom - 1.5);
-  //     }
+      for (const [lng, lat] of points) {
+        bounds.extend({ lat, lng });
+      }
 
-  //     if (!Array.isArray(coordsArray) || !Array.isArray(coordsArray[0])) {
-  //       console.error('Invalid coordinates format.');
-  //       return null;
-  //     }
+      mapInstance?.fitBounds(bounds);
+      const currentZoom = mapInstance?.getZoom();
+      if (currentZoom !== undefined && currentZoom !== null) {
+        mapInstance?.setZoom(currentZoom - 1.5);
+      }
 
-  //     const path = coordsArray[0].map(([lng, lat]: [number, number]) => ({
-  //       lat,
-  //       lng,
-  //     }));
+      if (!Array.isArray(coordsArray) || !Array.isArray(coordsArray[0])) {
+        console.error('Invalid coordinates format.');
+        return null;
+      }
 
-  //     const polygon = new google.maps.Polygon({
-  //       paths: path,
-  //       strokeColor: '#0000FF',
-  //       strokeOpacity: 0.8,
-  //       strokeWeight: 3,
-  //       fillColor: '#90D5FF',
-  //       fillOpacity: 0.35,
-  //     });
-  //     if (currentPolygon) {
-  //       currentPolygon.setMap(null);
-  //     }
-  //     if (polygon) {
-  //       setCurrentPolygon(polygon);
-  //     }
-  //     polygon.setMap(mapInstance);
+      const path = coordsArray[0].map(([lng, lat]: [number, number]) => ({
+        lat,
+        lng,
+      }));
 
-  //     return polygon;
-  //   } catch (error) {
-  //     console.error('Error parsing coordinates:', error);
-  //     return null;
-  //   }
-  // }
+      const polygon = new google.maps.Polygon({
+        paths: path,
+        strokeColor: '#0000FF',
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
+        fillColor: '#90D5FF',
+        fillOpacity: 0.35,
+      });
+      if (currentPolygon) {
+        currentPolygon.setMap(null);
+      }
+      if (polygon) {
+        setCurrentPolygon(polygon);
+      }
+      polygon.setMap(mapInstance);
+
+      return polygon;
+    } catch (error) {
+      console.error('Error parsing coordinates:', error);
+      return null;
+    }
+  }
 
   return (
     <PanelContainer>

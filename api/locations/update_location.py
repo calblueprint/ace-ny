@@ -114,7 +114,8 @@ def update_table_data(data, table_name, column_name, batch_size=100):
         for i, item in enumerate(data):
           id = i+1
           name = item["comp_full"]
-          coordinates = item['the_geom']['coordinates']
+          # the coordinates are wrapped in an additional list
+          coordinates = item['the_geom']['coordinates'][0]
           coordinates_json = json.dumps(coordinates)
           if "Municipal Utility:" in name:
             municipal_subname = name[19:].lower().title()
