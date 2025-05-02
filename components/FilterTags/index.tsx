@@ -7,16 +7,12 @@ import { TagButtonContainer, TagButtonStyles } from './styles';
 export default function FilterTags({
   selectedFilters,
   defaultProjectSize,
-  minBound,
-  maxBound,
 }: {
   selectedFilters: Filters;
   defaultProjectSize: {
     min: number;
     max: number;
   };
-  minBound: number;
-  maxBound: number;
 }) {
   const { status, technology, location, projectSize } = selectedFilters;
 
@@ -26,7 +22,10 @@ export default function FilterTags({
     ...location.map(l => ({ type: 'Location', value: l })),
   ];
 
-  if (projectSize.min > minBound || projectSize.max < maxBound) {
+  if (
+    projectSize.min > defaultProjectSize.min ||
+    projectSize.max < defaultProjectSize.max
+  ) {
     selectedItems.push({
       type: 'Project Size',
       value: `${projectSize.min} - ${projectSize.max}`,

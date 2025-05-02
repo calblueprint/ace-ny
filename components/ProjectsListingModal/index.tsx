@@ -42,8 +42,6 @@ export default function ProjectsListingModal({
   clearFilters,
   selectedFilters,
   defaultProjectSize,
-  minBound,
-  maxBound,
 }: {
   projects: Project[] | null;
   map: google.maps.Map | null;
@@ -57,8 +55,6 @@ export default function ProjectsListingModal({
     min: number;
     max: number;
   };
-  minBound: number;
-  maxBound: number;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isSortByOpen, setIsSortByOpen] = useState(false);
@@ -170,8 +166,6 @@ export default function ProjectsListingModal({
                   <FilterTags
                     selectedFilters={selectedFilters}
                     defaultProjectSize={defaultProjectSize}
-                    minBound={minBound}
-                    maxBound={maxBound}
                   />
                 )}
                 <ProjectItemsDiv>

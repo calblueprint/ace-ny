@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 //import { useMap } from '@vis.gl/react-google-maps';
 import {
   LocationIcon,
@@ -125,10 +125,6 @@ export default function MapViewScreen({
     string | null
   >(null);
 
-  const maxSize = Math.max(...projectSizes);
-  const [minBound, setMinBound] = useState(-100);
-  const [maxBound, setMaxBound] = useState(maxSize + 100);
-
   useEffect(() => {
     const { status, technology, projectSize, location } = selectedFilters;
     let filteredProjects = projects;
@@ -245,11 +241,6 @@ export default function MapViewScreen({
         setActiveLocationCategory={setActiveLocationCategory}
         projectSizes={projectSizes}
         selectedProjectId={selectedProjectId}
-        minBound={minBound}
-        setMinBound={setMinBound}
-        maxBound={maxBound}
-        setMaxBound={setMaxBound}
-        maxSize={maxSize}
       />
       <Map
         projects={projects}
@@ -268,12 +259,7 @@ export default function MapViewScreen({
         selectedProjectId={selectedProjectId}
         clearFilters={clearFilters}
         selectedFilters={selectedFilters}
-        defaultProjectSize={{
-          min: Math.min(...getProjectsSize(projects)),
-          max: Math.max(...getProjectsSize(projects)),
-        }}
-        minBound={minBound}
-        maxBound={maxBound}
+        defaultProjectSize={defaultFilters.projectSize}
       />
       {selectedProjectId && (
         <ProjectModal

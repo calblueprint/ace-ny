@@ -19,11 +19,6 @@ interface FilterBarProps {
   clearFilters: () => void;
   projectSizes: number[];
   selectedProjectId: number | null;
-  minBound: number;
-  setMinBound: React.Dispatch<React.SetStateAction<number>>;
-  maxBound: number;
-  setMaxBound: React.Dispatch<React.SetStateAction<number>>;
-  maxSize: number;
 }
 
 export const FilterBar = ({
@@ -35,11 +30,6 @@ export const FilterBar = ({
   projectSizes,
   setActiveLocationCategory,
   selectedProjectId,
-  minBound,
-  setMinBound,
-  maxBound,
-  setMaxBound,
-  maxSize,
 }: FilterBarProps) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
@@ -112,6 +102,9 @@ export const FilterBar = ({
   };
 
   const [lastAppliedFilter, setLastAppliedFilter] = useState('');
+  const maxSize = Math.max(...projectSizes);
+  const [minBound, setMinBound] = useState(-100);
+  const [maxBound, setMaxBound] = useState(maxSize + 100);
   const [minDefault, setMinDefault] = useState(-100);
   const [maxDefault, setMaxDefault] = useState(maxSize + 100);
 
