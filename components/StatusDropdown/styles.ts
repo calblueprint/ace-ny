@@ -75,6 +75,7 @@ export const CheckboxContainer = styled.div`
   gap: 0.5rem;
   margin-bottom: -1.5rem;
 `;
+
 export const IconStyles = styled.div`
   width: 3rem;
   height: 3rem;

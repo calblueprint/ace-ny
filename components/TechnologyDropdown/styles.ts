@@ -22,6 +22,7 @@ export const CheckboxContainer = styled.div`
   align-self: center;
   column-gap: 0.875rem;
   margin-top: 0.35rem;
+  cursor: pointer;
 `;
 
 export const CheckboxStyles = styled.input`
@@ -60,13 +61,13 @@ export const ButtonStyles = styled.button`
 
 export const CollapseStyles = styled.div`
   display: flex;
-  padding-left: 1.5rem;
+  padding-left: 2.21rem;
 `;
 
 export const ButtonWithIconStyles = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.09rem;
   flex-direction: row;
   justify-content: space-between;
   cursor: pointer;
