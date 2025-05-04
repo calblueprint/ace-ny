@@ -19,6 +19,10 @@ interface FilterBarProps {
   clearFilters: () => void;
   projectSizes: number[];
   selectedProjectId: number | null;
+  minSize: number;
+  setMinSize: React.Dispatch<React.SetStateAction<number>>;
+  maxSize: number;
+  setMaxSize: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const FilterBar = ({
@@ -30,6 +34,10 @@ export const FilterBar = ({
   projectSizes,
   setActiveLocationCategory,
   selectedProjectId,
+  minSize,
+  setMinSize,
+  maxSize,
+  setMaxSize,
 }: FilterBarProps) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
@@ -102,11 +110,11 @@ export const FilterBar = ({
   };
 
   const [lastAppliedFilter, setLastAppliedFilter] = useState('');
-  const maxSize = Math.max(...projectSizes);
+  const maxTempSize = Math.max(...projectSizes);
   const [minBound, setMinBound] = useState(-100);
-  const [maxBound, setMaxBound] = useState(maxSize + 100);
+  const [maxBound, setMaxBound] = useState(maxTempSize + 100);
   const [minDefault, setMinDefault] = useState(-100);
-  const [maxDefault, setMaxDefault] = useState(maxSize + 100);
+  const [maxDefault, setMaxDefault] = useState(maxTempSize + 100);
 
   useEffect(() => {
     // updates the min and max bounds and default slider positions when the histogram changes (i.e when dropdown filters except project size are applied)
@@ -151,6 +159,10 @@ export const FilterBar = ({
           setMinDefault={setMinDefault}
           setMaxDefault={setMaxDefault}
           selectedProjectId={selectedProjectId}
+          minSize={minSize}
+          setMinSize={setMinSize}
+          maxSize={maxSize}
+          setMaxSize={setMaxSize}
         />
       ))}
     </FilterContainerStyles>

@@ -121,6 +121,13 @@ export default function MapViewScreen({
     getProjectsSize(projects),
   );
 
+  const [minSize, setMinSize] = useState(
+    projectSizes.length > 0 ? Math.min(...projectSizes) : 0,
+  );
+  const [maxSize, setMaxSize] = useState(
+    projectSizes.length > 0 ? Math.max(...projectSizes) : 0,
+  );
+
   const [activeLocationCategory, setActiveLocationCategory] = useState<
     string | null
   >(null);
@@ -241,6 +248,10 @@ export default function MapViewScreen({
         setActiveLocationCategory={setActiveLocationCategory}
         projectSizes={projectSizes}
         selectedProjectId={selectedProjectId}
+        minSize={minSize}
+        setMinSize={setMinSize}
+        maxSize={maxSize}
+        setMaxSize={setMaxSize}
       />
       <Map
         projects={projects}
@@ -260,6 +271,8 @@ export default function MapViewScreen({
         clearFilters={clearFilters}
         selectedFilters={selectedFilters}
         defaultProjectSize={defaultFilters.projectSize}
+        minSize={minSize}
+        maxSize={maxSize}
       />
       {selectedProjectId && (
         <ProjectModal

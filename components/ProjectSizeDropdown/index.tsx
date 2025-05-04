@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   ApplyFiltersText,
   ClearFiltersText,
@@ -45,6 +45,10 @@ interface ProjectSizeDropdownProps {
   clearButtonHandler: (filter: keyof Filters) => void;
   projectSizeFiltersApplied: boolean;
   applyButtonHandler: (filter: keyof Filters) => void;
+  minSize: number;
+  setMinSize: React.Dispatch<React.SetStateAction<number>>;
+  maxSize: number;
+  setMaxSize: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function ProjectSizeDropdown({
@@ -64,14 +68,11 @@ export default function ProjectSizeDropdown({
   clearButtonHandler,
   projectSizeFiltersApplied,
   applyButtonHandler,
+  minSize,
+  setMinSize,
+  maxSize,
+  setMaxSize,
 }: ProjectSizeDropdownProps) {
-  const [minSize, setMinSize] = useState(
-    projectSizes.length > 0 ? Math.min(...projectSizes) : 0,
-  );
-  const [maxSize, setMaxSize] = useState(
-    projectSizes.length > 0 ? Math.max(...projectSizes) : 0,
-  );
-
   const averageProjectSize =
     projectSizes.length > 0
       ? (projectSizes.reduce((a, b) => a + b) / projectSizes.length).toFixed(2)

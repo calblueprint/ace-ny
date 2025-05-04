@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FilterTagText } from '@/styles/texts';
 import { ClearIcon } from '../../assets/Dropdown-Icons/icons';
 import { Filters } from '../../types/schema';
@@ -7,15 +7,20 @@ import { TagButtonContainer, TagButtonStyles } from './styles';
 export default function FilterTags({
   selectedFilters,
   defaultProjectSize,
+  minSize,
+  maxSize,
 }: {
   selectedFilters: Filters;
   defaultProjectSize: {
     min: number;
     max: number;
   };
+  minSize: number;
+  maxSize: number;
 }) {
   const { status, technology, location, projectSize } = selectedFilters;
 
+  console.log('selectedFilters', selectedFilters);
   const selectedItems = [
     ...status.map(s => ({ type: 'Status', value: s })),
     ...technology.map(t => ({ type: 'Technology', value: t })),
@@ -28,7 +33,7 @@ export default function FilterTags({
   ) {
     selectedItems.push({
       type: 'Project Size',
-      value: `${projectSize.min} - ${projectSize.max}`,
+      value: `${minSize} - ${maxSize}`,
     });
   }
   return (

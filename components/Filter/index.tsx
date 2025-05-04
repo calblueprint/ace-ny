@@ -33,6 +33,10 @@ interface FilterProps {
   maxDefault: number;
   setMaxDefault: React.Dispatch<React.SetStateAction<number>>;
   selectedProjectId: number | null;
+  minSize: number;
+  setMinSize: React.Dispatch<React.SetStateAction<number>>;
+  maxSize: number;
+  setMaxSize: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export default function Filter({
@@ -53,6 +57,10 @@ export default function Filter({
   maxDefault,
   setMaxDefault,
   selectedProjectId,
+  minSize,
+  setMinSize,
+  maxSize,
+  setMaxSize,
 }: FilterProps) {
   const [statusFiltersApplied, setStatusFiltersApplied] = useState(false);
   const [technologyFiltersApplied, setTechnologyFiltersApplied] =
@@ -183,6 +191,10 @@ export default function Filter({
             clearButtonHandler={clearButtonHandler}
             projectSizeFiltersApplied={projectSizeFiltersApplied}
             applyButtonHandler={applyButtonHandler}
+            minSize={minSize}
+            setMinSize={setMinSize}
+            maxSize={maxSize}
+            setMaxSize={setMaxSize}
           ></ProjectSizeDropdown>
         ) : filter.id === 'location' ? (
           <LocationDropdown
