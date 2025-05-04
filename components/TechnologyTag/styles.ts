@@ -7,7 +7,5 @@ export const TechnologyTagStyles = styled.div<{ $backgroundColor: string }>`
   height: 1.2rem;
   padding: 0.1rem 0.625rem;
   align-items: center;
-  flex-direction: row;
-  justify-content: center;
   gap: 0.375rem;
 `;

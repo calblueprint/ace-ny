@@ -34,10 +34,12 @@ export const FilterButtonStyles = styled.button`
   height: 2.2rem;
 `;
 
-export const IconStyle = styled.div`
+export const IconStyle = styled.div<{ $filterType: string }>`
   align-self: center;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: ${({ $filterType }) =>
+    $filterType === 'technology' ? '0.9rem' : '0.8rem'};
+  height: ${({ $filterType }) =>
+    $filterType === 'technology' ? '0.9rem' : '0.7rem'};
 `;
 
 export const ClearIconStyle = styled.div`
