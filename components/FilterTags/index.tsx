@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { FilterTagText } from '@/styles/texts';
 import { ClearIcon } from '../../assets/Dropdown-Icons/icons';
 import { Filters } from '../../types/schema';
