@@ -68,8 +68,12 @@ export default function Filter({
 
   const [appliedCategory, setAppliedCategory] = useState<string | null>(null);
 
-  const [currentPolygon, setCurrentPolygon] =
-    useState<google.maps.Polygon | null>(null);
+  // const [currentPolygon, setCurrentPolygon] =
+  //   useState<google.maps.Polygon | null>(null);
+
+  const [currentPolygons, setCurrentPolygons] = useState<
+    google.maps.Polygon[] | null
+  >([]);
 
   const applyButtonHandler = (filter: keyof Filters) => {
     switch (filter) {
@@ -125,8 +129,11 @@ export default function Filter({
       case 'location':
         setLocationFiltersApplied(false);
         setAppliedCategory(null);
-        currentPolygon?.setMap(null);
-        setCurrentPolygon(null);
+        // remove all polygons from map
+        currentPolygons?.forEach(polygon => {
+          polygon.setMap(null);
+        });
+        setCurrentPolygons([]);
         break;
     }
   };
@@ -208,8 +215,8 @@ export default function Filter({
             applyButtonHandler={applyButtonHandler}
             locationFiltersApplied={locationFiltersApplied}
             map={map}
-            currentPolygon={currentPolygon}
-            setCurrentPolygon={setCurrentPolygon}
+            currentPolygons={currentPolygons}
+            setCurrentPolygons={setCurrentPolygons}
           ></LocationDropdown>
         ) : // Add other filter dropdown components here
         null

@@ -6,7 +6,13 @@ import {
   PanelTitle,
   SearchInput,
 } from '@/styles/texts';
-import { Filters, FilterType } from '@/types/schema';
+import {
+  Coord,
+  Filters,
+  FilterType,
+  MultiPolygonCoords,
+  PolygonCoords,
+} from '@/types/schema';
 import {
   BackArrowIcon,
   SearchIcon,
@@ -29,6 +35,63 @@ import {
   Underline,
 } from './styles';
 
+async function getCoords(
+  category: string,
+  name: string,
+): Promise<(PolygonCoords[] | MultiPolygonCoords)[]> {
+  const coords = await queryCoordsForName(category, name);
+  return coords;
+}
+
+function isMultiPolygon(
+  coords: PolygonCoords[] | MultiPolygonCoords,
+): coords is MultiPolygonCoords {
+  return Array.isArray(coords[0]) && Array.isArray((coords[0] as Coord[])[0]);
+}
+
+function drawPolygonsFromCoords(
+  mapInstance: google.maps.Map,
+  coords: PolygonCoords[] | MultiPolygonCoords,
+  bounds: google.maps.LatLngBounds,
+): google.maps.Polygon[] {
+  const polygons: google.maps.Polygon[] = [];
+
+  // wrap single polygon in array
+  const polygonSets = isMultiPolygon(coords) ? coords : [coords];
+
+  // create path for each polygon and extend bounds
+  // need to add all latLngs to path in order to allow for holes in polygons
+  const path = [];
+  for (const poly of polygonSets) {
+    const subPath = [];
+    for (const [lng, lat] of poly) {
+      const latLng: google.maps.LatLngLiteral = {
+        lat: Number(lat),
+        lng: Number(lng),
+      };
+      bounds.extend(latLng);
+      subPath.push(latLng);
+    }
+    path.push(subPath);
+  }
+
+  const polygon = new google.maps.Polygon({
+    paths: path,
+    strokeColor: '#0000FF',
+    strokeOpacity: 0.8,
+    strokeWeight: 3,
+    fillColor: '#90D5FF',
+    fillOpacity: 0.35,
+  });
+
+  if (!polygon) return [];
+
+  polygon.setMap(mapInstance);
+  polygons.push(polygon);
+
+  return polygons;
+}
+
 export default function LocationCategoryPanel({
   onBack,
   category,
@@ -42,8 +105,8 @@ export default function LocationCategoryPanel({
   setAppliedCategory,
   applyButtonHandler,
   map,
-  currentPolygon,
-  setCurrentPolygon,
+  currentPolygons,
+  setCurrentPolygons,
   appliedCategory,
 }: {
   onBack: () => void;
@@ -61,9 +124,9 @@ export default function LocationCategoryPanel({
   setAppliedCategory: React.Dispatch<React.SetStateAction<string | null>>;
   applyButtonHandler: (filter: keyof Filters) => void;
   map: google.maps.Map | null;
-  currentPolygon: google.maps.Polygon | null;
-  setCurrentPolygon: React.Dispatch<
-    React.SetStateAction<google.maps.Polygon | null>
+  currentPolygons: google.maps.Polygon[] | null;
+  setCurrentPolygons: React.Dispatch<
+    React.SetStateAction<google.maps.Polygon[] | null>
   >;
   appliedCategory: string | null;
 }) {
@@ -72,6 +135,16 @@ export default function LocationCategoryPanel({
   const [selectedItem, setSelectedItem] = useState<string | null>(
     selectedLocationFilters[0] ?? null,
   );
+
+  const clearButtonHandlerLocation = () => {
+    clearButtonHandler('location');
+    setSelectedItem(null);
+  };
+
+  function checkBoxClickHandler(option: string): void {
+    setSelectedLocationFilters({ value: [option], isTemp: true });
+    setSelectedItem(option);
+  }
 
   const seen = new Set();
   const filteredOptions = options?.filter(option => {
@@ -84,7 +157,6 @@ export default function LocationCategoryPanel({
     return false;
   });
 
-  // sort alphabetically
   filteredOptions?.sort((a, b) =>
     a.localeCompare(b, 'en-US', { numeric: true, sensitivity: 'base' }),
   );
@@ -92,91 +164,33 @@ export default function LocationCategoryPanel({
   const applyButtonHandlerLocation = () => {
     setAppliedCategory(activeCategory);
     applyButtonHandler('location');
-    if (selectedItem && map) {
-      getCoords(selectedItem).then(coords => {
-        drawPolygonFromSelectedItemAndZoom(selectedItem, map, coords);
-      });
-    }
-  };
 
-  const clearButtonHandlerLocation = () => {
-    clearButtonHandler('location');
-    setSelectedItem(null);
-  };
+    if (!selectedItem || !map) return;
 
-  function checkBoxClickHandler(option: string): void {
-    setSelectedLocationFilters({ value: [option], isTemp: true });
-    setSelectedItem(option);
-  }
-
-  async function getCoords(name: string) {
-    const coords = await queryCoordsForName(category, name);
-    return coords;
-  }
-
-  function drawPolygonFromSelectedItemAndZoom(
-    selectedItem: string | null,
-    mapInstance: google.maps.Map | null,
-    coords: string,
-  ): google.maps.Polygon | null {
-    const bounds = new google.maps.LatLngBounds();
-    if (!selectedItem) {
-      console.error('No selected item to draw.');
-      return null;
+    if ((currentPolygons?.length ?? 0) > 0) {
+      // remove all polygons from map
+      currentPolygons?.forEach(poly => poly.setMap(null));
+      setCurrentPolygons([]);
     }
 
-    if (!mapInstance) {
-      console.error('No selected map.');
-      return null;
-    }
+    getCoords(category, selectedItem).then(coordsList => {
+      const polygons: google.maps.Polygon[] = [];
+      const bounds = new google.maps.LatLngBounds();
 
-    try {
-      const coordsArray = JSON.parse(coords);
-
-      const points = coordsArray[0];
-
-      for (const [lng, lat] of points) {
-        bounds.extend({ lat, lng });
+      for (const coords of coordsList) {
+        const newPolygons = drawPolygonsFromCoords(map, coords, bounds);
+        polygons.push(...newPolygons);
       }
 
-      mapInstance?.fitBounds(bounds);
-      const currentZoom = mapInstance?.getZoom();
+      map.fitBounds(bounds);
+      const currentZoom = map.getZoom();
       if (currentZoom !== undefined && currentZoom !== null) {
-        mapInstance?.setZoom(currentZoom - 1.5);
+        map.setZoom(currentZoom - 1.5);
       }
 
-      if (!Array.isArray(coordsArray) || !Array.isArray(coordsArray[0])) {
-        console.error('Invalid coordinates format.');
-        return null;
-      }
-
-      const path = coordsArray[0].map(([lng, lat]: [number, number]) => ({
-        lat,
-        lng,
-      }));
-
-      const polygon = new google.maps.Polygon({
-        paths: path,
-        strokeColor: '#0000FF',
-        strokeOpacity: 0.8,
-        strokeWeight: 3,
-        fillColor: '#90D5FF',
-        fillOpacity: 0.35,
-      });
-      if (currentPolygon) {
-        currentPolygon.setMap(null);
-      }
-      if (polygon) {
-        setCurrentPolygon(polygon);
-      }
-      polygon.setMap(mapInstance);
-
-      return polygon;
-    } catch (error) {
-      console.error('Error parsing coordinates:', error);
-      return null;
-    }
-  }
+      setCurrentPolygons(polygons);
+    });
+  };
 
   return (
     <PanelContainer>
@@ -220,11 +234,7 @@ export default function LocationCategoryPanel({
           $isActive={
             selectedItem !== null || appliedCategory === activeCategory
           }
-          onClick={() => {
-            if (selectedItem) {
-              applyButtonHandlerLocation();
-            }
-          }}
+          onClick={applyButtonHandlerLocation}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>

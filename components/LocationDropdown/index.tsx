@@ -47,8 +47,8 @@ export default function LocationDropdown({
   iconApplied,
   locationFiltersApplied,
   map,
-  currentPolygon,
-  setCurrentPolygon,
+  currentPolygons,
+  setCurrentPolygons,
 }: {
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
@@ -69,9 +69,9 @@ export default function LocationDropdown({
   iconApplied: React.ReactNode;
   locationFiltersApplied: boolean;
   map: google.maps.Map | null;
-  currentPolygon: google.maps.Polygon | null;
-  setCurrentPolygon: React.Dispatch<
-    React.SetStateAction<google.maps.Polygon | null>
+  currentPolygons: google.maps.Polygon[] | null;
+  setCurrentPolygons: React.Dispatch<
+    React.SetStateAction<google.maps.Polygon[] | null>
   >;
 }) {
   const locationCategories = [
@@ -210,8 +210,8 @@ export default function LocationDropdown({
       setAppliedCategory={setAppliedCategory}
       applyButtonHandler={applyButtonHandler}
       map={map}
-      currentPolygon={currentPolygon}
-      setCurrentPolygon={setCurrentPolygon}
+      currentPolygons={currentPolygons}
+      setCurrentPolygons={setCurrentPolygons}
       appliedCategory={appliedCategory}
     />
   );

@@ -78,3 +78,17 @@ def query_assembly_locations() -> Optional[List[dict]]:
         print(f"Error fetching assembly location data at URL: {url}")
         print("Error:", e)
     return []
+
+if __name__ == "__main__":
+    feats = query_utility_locations()
+    print(len(feats))
+    yo = feats[0]
+    print(yo.keys())
+    yo1 = yo["the_geom"]['coordinates']
+    print(len(yo1))
+    print(len(yo1[0]))
+    print(len(yo1[0][0]))
+    # print(yo1[0][0])
+    
+
+    # ['the_geom']['coordinates']
