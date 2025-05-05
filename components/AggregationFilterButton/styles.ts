@@ -13,8 +13,8 @@ export const AggregationFilterButtonBackground = styled.button`
   z-index: 5;
   border-radius: 100px;
   border: none;
-  width: 19.5625rem;
-  height: 3.0625rem;
+  min-width: 19.5625rem;
+  min-height: 3.0625rem;
 `;
 
 export const AggregationFilterButtonStyles = styled.button`
@@ -29,8 +29,8 @@ export const AggregationFilterButtonStyles = styled.button`
   gap: 0.625rem;
   padding: 0.5rem 1rem;
   border-radius: 100px;
-  width: 19.0625rem;
-  height: 2.5rem;
+  min-width: 19.0625rem;
+  min-height: 2.5rem;
   justify-content: space-between;
 `;
 
@@ -41,4 +41,5 @@ export const TextStyles = styled.div`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  white-space: nowrap;
 `;

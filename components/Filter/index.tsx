@@ -209,7 +209,9 @@ export default function Filter({
           (filter.id === 'projectSize' && projectSizeFiltersApplied) ||
           (filter.id === 'location' && locationFiltersApplied) ? (
             <>
-              <IconStyle>{filter.iconApplied}</IconStyle>
+              <IconStyle $filterType={filter.id}>
+                {filter.iconApplied}
+              </IconStyle>
               <FilterHeadingInUse>{filter.label}</FilterHeadingInUse>
               <ClearIconStyle>
                 <div
@@ -224,7 +226,7 @@ export default function Filter({
             </>
           ) : (
             <>
-              <IconStyle>{filter.icon}</IconStyle>
+              <IconStyle $filterType={filter.id}>{filter.icon}</IconStyle>
               <FilterHeadingUnused>{filter.label}</FilterHeadingUnused>
               <DropIcon />
             </>
