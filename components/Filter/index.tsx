@@ -68,9 +68,6 @@ export default function Filter({
 
   const [appliedCategory, setAppliedCategory] = useState<string | null>(null);
 
-  // const [currentPolygon, setCurrentPolygon] =
-  //   useState<google.maps.Polygon | null>(null);
-
   const [currentPolygons, setCurrentPolygons] = useState<
     google.maps.Polygon[] | null
   >([]);
