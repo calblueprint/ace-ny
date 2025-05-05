@@ -60,7 +60,7 @@ function drawPolygonsFromCoords(
   const polygonSets = isMultiPolygon(coords) ? coords : [coords];
 
   // create path for each polygon and extend bounds
-  // need to add all latLngs to path in order to allow for holes in polygons
+  // need to add all latLngs to path to allow for holes in polygons
   const path = [];
   for (const poly of polygonSets) {
     const subPath = [];
