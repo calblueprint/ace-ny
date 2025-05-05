@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import {
-  Arrow,
-  LightningIcon,
-  WorldIcon,
-} from '@/assets/Aggregation-Filter-Icons/icons';
+import { Arrow, GraphIcon } from '@/assets/Aggregation-Filter-Icons/icons';
 import COLORS from '@/styles/colors';
 import { Project } from '@/types/schema';
 import {
@@ -17,6 +13,7 @@ import DownloadData from '../DownloadData';
 import {
   AggregationFilterBackground,
   AggregationFilterStyles,
+  AggregationFilterText,
   ContentContainer,
   ContentContainerHeader,
   Header,
@@ -94,30 +91,10 @@ export default function AggregationFilter({
     <AggregationFilterBackground>
       <AggregationFilterStyles>
         <HeaderContainer>
-          <Header>
-            <Tab
-              $isActive={activeTab === 'PROJECTS'}
-              onClick={() => setActiveTab('PROJECTS')}
-            >
-              <WorldIcon
-                stroke={
-                  activeTab === 'PROJECTS' ? COLORS.electricBlue : COLORS.navy
-                }
-              />
-              <HeaderText>PROJECTS</HeaderText>
-            </Tab>
-            <Tab
-              $isActive={activeTab === 'ENERGY'}
-              onClick={() => setActiveTab('ENERGY')}
-            >
-              <LightningIcon
-                stroke={
-                  activeTab === 'ENERGY' ? COLORS.electricBlue : COLORS.navy
-                }
-              />
-              <HeaderText>ENERGY</HeaderText>
-            </Tab>
-          </Header>
+          <TechnologyStyles>
+            <GraphIcon />
+            <AggregationFilterText>AGGREGATION</AggregationFilterText>
+          </TechnologyStyles>
           <UpsideDownArrow
             onClick={() => setAggFilterisVisible(!aggFilterisVisible)}
           >
@@ -125,11 +102,27 @@ export default function AggregationFilter({
           </UpsideDownArrow>
         </HeaderContainer>
 
+        <Header>
+          <Tab
+            $isActive={activeTab === 'PROJECTS'}
+            onClick={() => setActiveTab('PROJECTS')}
+          >
+            <HeaderText>PROJECTS</HeaderText>
+          </Tab>
+          <Tab
+            $isActive={activeTab === 'ENERGY'}
+            onClick={() => setActiveTab('ENERGY')}
+          >
+            <HeaderText>ENERGY</HeaderText>
+          </Tab>
+        </Header>
+
         <ContentContainer>
           <ContentContainerHeader>
             <TotalText>
-              TOTAL: &nbsp;{' '}
               {activeTab === 'PROJECTS' ? numProjects : totalEnergy}
+              &nbsp;
+              {activeTab === 'PROJECTS' ? 'PROJECTS' : 'MW'}
             </TotalText>
 
             <DownloadData filteredProjects={projects} />
