@@ -20,9 +20,9 @@ export const AggregationFilterBackground = styled.div`
 `;
 
 export const AggregationFilterText = styled.div`
-  color: rgba(46, 58, 89, 0.85);
+  color: ${COLORS.navy85};
   font-family: ${CoinbaseSans.style};
-  font-size: 14px;
+  font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -48,9 +48,9 @@ export const HeaderContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   gap: 10px;
-  margin-top: 12px;
-  margin-left: 16px;
-  padding: 0 16px;
+  margin-top: 0.75rem;
+  margin-left: 1rem;
+  padding: 0 1rem;
 `;
 
 export const Header = styled.div`
@@ -91,7 +91,7 @@ export const Tab = styled.div<{ $isActive: boolean }>`
 
 export const HeaderText = styled.div`
   font-family: ${CoinbaseText.style};
-  font-size: 11px;
+  font-size: 0.688rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;

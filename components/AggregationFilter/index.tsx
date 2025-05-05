@@ -91,7 +91,7 @@ export default function AggregationFilter({
     <AggregationFilterBackground>
       <AggregationFilterStyles>
         <HeaderContainer>
-          <TechnologyStyles style={{ justifyContent: 'flex-start', flex: 1 }}>
+          <TechnologyStyles>
             <GraphIcon />
             <AggregationFilterText>AGGREGATION</AggregationFilterText>
           </TechnologyStyles>
