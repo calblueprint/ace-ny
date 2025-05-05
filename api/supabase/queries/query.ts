@@ -21,11 +21,11 @@ const columnMap: Record<string, string> = {
 
 export default async function queryProjects(): Promise<Project[]> {
   const { data: projects, error } = await supabase
-    .from('Projects_user_testing')
+    .from('Projects')
     .select('*')
     .not('longitude', 'is', null)
-    .not('latitude', 'is', null)
-    .eq('approved', true);
+    .not('latitude', 'is', null);
+  // .eq('approved', true);
 
   if (error) {
     throw new Error(`Error fetching projects: ${error.message}`);
@@ -101,5 +101,10 @@ export async function queryCoordsForName(category: string, name: string) {
     return [];
   }
 
-  return data.map(row => Object.values(row)[0]);
+  if (!data[0]) {
+    return [];
+  }
+
+  const json_data = JSON.parse(data[0]['coordinates']);
+  return json_data;
 }

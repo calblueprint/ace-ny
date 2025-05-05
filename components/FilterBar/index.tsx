@@ -19,6 +19,8 @@ interface FilterBarProps {
   clearFilters: () => void;
   projectSizes: number[];
   selectedProjectId: number | null;
+  map: google.maps.Map | null;
+  setMap: React.Dispatch<React.SetStateAction<google.maps.Map | null>>;
 }
 
 export const FilterBar = ({
@@ -30,6 +32,8 @@ export const FilterBar = ({
   projectSizes,
   setActiveLocationCategory,
   selectedProjectId,
+  map,
+  setMap,
 }: FilterBarProps) => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
 
@@ -151,6 +155,8 @@ export const FilterBar = ({
           setMinDefault={setMinDefault}
           setMaxDefault={setMaxDefault}
           selectedProjectId={selectedProjectId}
+          map={map}
+          setMap={setMap}
         />
       ))}
     </FilterContainerStyles>

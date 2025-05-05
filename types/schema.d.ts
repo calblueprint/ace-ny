@@ -73,3 +73,7 @@ type FilterHandlerArgs = {
 export type FilterChangeHandlers = {
   [K in keyof FilterHandlerArgs]: (args: FilterHandlerArgs[K]) => void;
 };
+
+export type Coord = [number, number];
+export type PolygonCoords = Coord[];
+export type MultiPolygonCoords = PolygonCoords[][];
