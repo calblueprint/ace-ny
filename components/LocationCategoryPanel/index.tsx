@@ -174,6 +174,7 @@ export default function LocationCategoryPanel({
     }
 
     getCoords(category, selectedItem).then(coordsList => {
+      if (!coordsList || coordsList.length === 0) return;
       const polygons: google.maps.Polygon[] = [];
       const bounds = new google.maps.LatLngBounds();
 

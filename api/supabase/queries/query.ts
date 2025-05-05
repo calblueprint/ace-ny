@@ -101,6 +101,10 @@ export async function queryCoordsForName(category: string, name: string) {
     return [];
   }
 
+  if (!data[0]) {
+    return [];
+  }
+
   const json_data = JSON.parse(data[0]['coordinates']);
   return json_data;
 }
