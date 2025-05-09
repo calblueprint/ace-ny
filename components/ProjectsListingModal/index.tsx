@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { CloseIcon, OpenIcon } from '@/assets/KDM-Icons/icons';
 import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
@@ -8,7 +8,8 @@ import { NoProjectsFound, SearchIcon } from '@/assets/SearchBar-Icons/icons';
 import COLORS from '@/styles/colors';
 import { FilterNameText, SubHeading1, SubHeading2 } from '@/styles/texts';
 import { SortByText } from '../../styles/texts';
-import { Project } from '../../types/schema';
+import { Filters, Project } from '../../types/schema';
+import FilterTags from '../FilterTags';
 import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
 import {
@@ -38,6 +39,11 @@ export default function ProjectsListingModal({
   searchTerm,
   setSearchTerm,
   selectedProjectId,
+  clearFilters,
+  selectedFilters,
+  defaultProjectSize,
+  minSize,
+  maxSize,
 }: {
   projects: Project[] | null;
   map: google.maps.Map | null;
@@ -45,6 +51,14 @@ export default function ProjectsListingModal({
   searchTerm: string | null;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   selectedProjectId: number | null;
+  clearFilters: () => void;
+  selectedFilters: Filters;
+  defaultProjectSize: {
+    min: number;
+    max: number;
+  };
+  minSize: number;
+  maxSize: number;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const [isSortByOpen, setIsSortByOpen] = useState(false);
@@ -62,6 +76,16 @@ export default function ProjectsListingModal({
       project={project}
     />
   ));
+
+  const hasActiveFilters = () => {
+    return (
+      selectedFilters.status.length > 0 ||
+      selectedFilters.technology.length > 0 ||
+      selectedFilters.location.length > 0 ||
+      selectedFilters.projectSize.min > defaultProjectSize.min ||
+      selectedFilters.projectSize.max < defaultProjectSize.max
+    );
+  };
 
   const hasProjects = projects && projects.length > 0;
 
@@ -101,6 +125,12 @@ export default function ProjectsListingModal({
                       <GlobeIcon width={'0.5625rem'} height={'0.5625rem'} />
                       <SubHeading2>ALL PROJECTS</SubHeading2>
                     </AllProjectsHeader>
+
+                    {/* fix the clear */}
+                    <SortByButton onClick={() => clearFilters()}>
+                      <SubHeading2>CLEAR</SubHeading2>
+                    </SortByButton>
+
                     <SortBy>
                       <SortByButton onClick={toggleSortBy}>
                         <SubHeading2>SORT BY</SubHeading2>
@@ -136,6 +166,14 @@ export default function ProjectsListingModal({
                   </Headers>
                 )}
 
+                {hasActiveFilters() && (
+                  <FilterTags
+                    selectedFilters={selectedFilters}
+                    defaultProjectSize={defaultProjectSize}
+                    minSize={minSize}
+                    maxSize={maxSize}
+                  />
+                )}
                 <ProjectItemsDiv>
                   {hasProjects ? (
                     projectItems
