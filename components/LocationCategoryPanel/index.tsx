@@ -108,7 +108,8 @@ export default function LocationCategoryPanel({
   map,
   currentPolygons,
   setCurrentPolygons,
-  appliedCategory,
+  locationFieldClicked,
+  setLocationFieldClicked,
 }: {
   onBack: () => void;
   category: string;
@@ -129,7 +130,10 @@ export default function LocationCategoryPanel({
   setCurrentPolygons: React.Dispatch<
     React.SetStateAction<google.maps.Polygon[] | null>
   >;
-  appliedCategory: string | null;
+  locationFieldClicked: Record<string, boolean>;
+  setLocationFieldClicked: React.Dispatch<
+    React.SetStateAction<Record<string, boolean>>
+  >;
 }) {
   const [searchTerm, setSearchTerm] = useState('');
   const options: string[] | null = categoryOptionsMap[category] ?? null;
@@ -138,13 +142,19 @@ export default function LocationCategoryPanel({
   );
 
   const clearButtonHandlerLocation = () => {
+    if (!activeCategory) return;
     clearButtonHandler('location');
     setSelectedItem(null);
+    locationFieldClicked[activeCategory] = false;
+    setLocationFieldClicked(locationFieldClicked);
   };
 
   function checkBoxClickHandler(option: string): void {
+    if (!activeCategory) return;
     setSelectedLocationFilters({ value: [option], isTemp: true });
     setSelectedItem(option);
+    locationFieldClicked[activeCategory] = true;
+    setLocationFieldClicked(locationFieldClicked);
   }
 
   const seen = new Set();
@@ -163,6 +173,14 @@ export default function LocationCategoryPanel({
   );
 
   const applyButtonHandlerLocation = () => {
+    if (!activeCategory) return;
+    Object.keys(locationFieldClicked).forEach(key => {
+      if (key !== activeCategory) {
+        locationFieldClicked[key] = false;
+      }
+    });
+    setLocationFieldClicked(locationFieldClicked);
+
     setAppliedCategory(activeCategory);
     applyButtonHandler('location');
 
@@ -233,15 +251,17 @@ export default function LocationCategoryPanel({
 
       <ApplyClearButtonContainer>
         <ApplyButtonStyles
-          $isActive={
-            selectedItem !== null || appliedCategory === activeCategory
-          }
+          $isActive={Boolean(
+            activeCategory && locationFieldClicked[activeCategory],
+          )}
           onClick={applyButtonHandlerLocation}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
         <ClearButtonStyles
-          $isActive={selectedItem !== null}
+          $isActive={Boolean(
+            activeCategory && locationFieldClicked[activeCategory],
+          )}
           onClick={clearButtonHandlerLocation}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
