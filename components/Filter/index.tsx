@@ -72,6 +72,18 @@ export default function Filter({
     google.maps.Polygon[] | null
   >([]);
 
+  const locationFields: Record<string, boolean> = {
+    Region: false,
+    County: false,
+    Town: false,
+    'Utility Service Territory': false,
+    'State Senate District': false,
+    'Assembly District': false,
+  };
+
+  const [locationFieldClicked, setLocationFieldClicked] =
+    useState(locationFields);
+
   const applyButtonHandler = (filter: keyof Filters) => {
     switch (filter) {
       case 'technology':
@@ -148,6 +160,15 @@ export default function Filter({
     prevSelectedProjectId.current = selectedProjectId;
   }, [selectedProjectId, setActiveFilter, isActive, filter.id]);
 
+  // const locationFieldApplied : Record<string, boolean> = {
+  //   Region: false,
+  //   County: false,
+  //   Town: false,
+  //   'Utility Service Territory': false,
+  //   'State Senate District': false,
+  //   'Assembly District': false,
+  // };
+
   return (
     <FilterBackgroundStyles $isActive={isActive}>
       {isActive ? (
@@ -214,6 +235,8 @@ export default function Filter({
             map={map}
             currentPolygons={currentPolygons}
             setCurrentPolygons={setCurrentPolygons}
+            locationFieldClicked={locationFieldClicked}
+            setLocationFieldClicked={setLocationFieldClicked}
           ></LocationDropdown>
         ) : // Add other filter dropdown components here
         null
