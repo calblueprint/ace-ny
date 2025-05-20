@@ -72,9 +72,15 @@ export default function ProjectSizeDropdown({
     projectSizes.length > 0 ? Math.max(...projectSizes) : 0,
   );
 
+  const filteredSizes = projectSizes.filter(
+    size => size >= minSize && size <= maxSize,
+  );
+
   const averageProjectSize =
-    projectSizes.length > 0
-      ? (projectSizes.reduce((a, b) => a + b) / projectSizes.length).toFixed(2)
+    filteredSizes.length > 0
+      ? (filteredSizes.reduce((a, b) => a + b) / filteredSizes.length).toFixed(
+          2,
+        )
       : '0.00';
 
   return (
