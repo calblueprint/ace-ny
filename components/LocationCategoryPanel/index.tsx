@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { queryCoordsForName } from '@/api/supabase/queries/query';
+import COLORS from '@/styles/colors';
 import {
   ApplyFiltersText,
   ClearFiltersText,
@@ -77,11 +78,11 @@ function drawPolygonsFromCoords(
 
   const polygon = new google.maps.Polygon({
     paths: path,
-    strokeColor: '#0000FF',
-    strokeOpacity: 0.8,
-    strokeWeight: 3,
-    fillColor: '#90D5FF',
-    fillOpacity: 0.35,
+    strokeColor: COLORS.electricBlue,
+    strokeOpacity: 1,
+    strokeWeight: 2,
+    fillColor: COLORS.electricBlue,
+    fillOpacity: 0.15,
   });
 
   if (!polygon) return [];
