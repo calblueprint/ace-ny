@@ -106,6 +106,7 @@ export default function ProjectSizeHistogram({
         setMinDefault={setMinDefault}
         setMaxDefault={setMaxDefault}
         minSize={minSize}
+        maxSize={maxSize}
         minDefault={minDefault}
         maxDefault={maxDefault}
         minBound={minBound}
