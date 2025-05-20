@@ -241,6 +241,8 @@ export default function MapViewScreen({
         setActiveLocationCategory={setActiveLocationCategory}
         projectSizes={projectSizes}
         selectedProjectId={selectedProjectId}
+        map={map}
+        setMap={setMap}
       />
       <Map
         projects={projects}
