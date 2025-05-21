@@ -172,12 +172,14 @@ export default function MapViewScreen({
               'Orange and Rockland Utilities': 'ORU',
               'Long Island Power Authority': 'LIPA',
               'Consolidated Edison': 'ConEd',
-              Municipal: 'Municipal',
             };
 
-            return location
-              .map(name => utilityShortNamesMap[name])
-              .includes(value);
+            return (
+              location
+                // Municipal Utilities map to themselves
+                .map(name => utilityShortNamesMap[name] ?? name)
+                .includes(value)
+            );
           }
           if (activeLocationCategory === 'Region') {
             return location[0].toLowerCase() === value;
