@@ -43,6 +43,7 @@ export const InfoModalBoldedText = styled.div`
   font-weight: 500;
   line-height: 16px;
   display: inline;
+  cursor: pointer;
 `;
 
 export const InfoModalTriangleStyles = styled.div`
