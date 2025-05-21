@@ -1,8 +1,7 @@
 import React from 'react';
 import { FilterTagText } from '@/styles/texts';
-import { ClearIcon } from '../../assets/Dropdown-Icons/icons';
 import { Filters } from '../../types/schema';
-import { TagButtonContainer, TagButtonStyles } from './styles';
+import { TagContainer, TagStyles } from './styles';
 
 export default function FilterTags({
   selectedFilters,
@@ -37,13 +36,12 @@ export default function FilterTags({
     });
   }
   return (
-    <TagButtonContainer>
+    <TagContainer>
       {selectedItems.map((item, index) => (
-        <TagButtonStyles key={index}>
+        <TagStyles key={index}>
           <FilterTagText>{item.value}</FilterTagText>
-          <ClearIcon width={'7'} height={'7'} />
-        </TagButtonStyles>
+        </TagStyles>
       ))}
-    </TagButtonContainer>
+    </TagContainer>
   );
 }

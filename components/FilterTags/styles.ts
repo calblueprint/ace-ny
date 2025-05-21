@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import COLORS from '@/styles/colors';
 
-export const TagButtonStyles = styled.button`
+export const TagStyles = styled.div`
   display: flex;
   cursor: pointer;
   flex-direction: row;
@@ -14,7 +14,7 @@ export const TagButtonStyles = styled.button`
   margin-bottom: 3px;
 `;
 
-export const TagButtonContainer = styled.div`
+export const TagContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
