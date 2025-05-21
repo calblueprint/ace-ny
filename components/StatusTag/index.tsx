@@ -37,7 +37,7 @@ export default function StatusTag({
 }) {
   function convertDateToString() {
     if (!cod) return '';
-    const res = new Date(cod);
+    const res = new Date(cod + 'T00:00:00'); // prevent time zone shift
     const year = String(res.getFullYear()).slice(-2);
     const month = String(res.getMonth() + 1).padStart(2, '0');
     const day = String(res.getDate()).padStart(2, '0');
