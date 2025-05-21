@@ -147,12 +147,13 @@ export default function MapViewScreen({
 
       if (key) {
         filteredProjects = filteredProjects.filter(project => {
-          const value = String(project[key]);
+          const value = String(project[key]).toLowerCase();
+
           if (
             activeLocationCategory === 'County' ||
             activeLocationCategory === 'Town'
           ) {
-            return value.includes(location[0]);
+            return value.includes(location[0].toLowerCase());
           }
           if (
             activeLocationCategory === 'State Senate District' ||
@@ -179,7 +180,7 @@ export default function MapViewScreen({
               .includes(value);
           }
           if (activeLocationCategory === 'Region') {
-            return location.includes(value);
+            return location[0].toLowerCase() === value;
           }
         });
       }
