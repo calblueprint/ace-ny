@@ -1,41 +1,24 @@
-import { useEffect } from 'react';
 import MultiRangeSlider from 'multi-range-slider-react';
 import COLORS from '@/styles/colors';
 import './styles.css';
-import { ProjectSizeType } from '@/types/schema';
 
 interface ProjectSizeSliderProps {
   setMinDefault: (value: number) => void;
   setMaxDefault: (value: number) => void;
-  minSize: number;
-  maxSize: number;
   minDefault: number;
   maxDefault: number;
   minBound: number;
   maxBound: number;
-  setSelectedSize: (args: { value: ProjectSizeType; isTemp: boolean }) => void;
 }
 
 export default function ProjectSizeSlider({
   setMinDefault,
   setMaxDefault,
-  minSize,
-  maxSize,
   minDefault,
   maxDefault,
   minBound,
   maxBound,
-  setSelectedSize,
 }: ProjectSizeSliderProps) {
-  useEffect(() => {
-    const value = {
-      min: Math.max(0, minDefault),
-      max: Math.max(minSize, Math.min(maxSize, maxDefault)),
-    };
-    setSelectedSize({ value: value, isTemp: true });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [minDefault, maxDefault]);
-
   return (
     <MultiRangeSlider
       onInput={e => {
