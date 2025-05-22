@@ -30,7 +30,7 @@ export default function ProjectSizeSlider({
   useEffect(() => {
     const value = {
       min: Math.max(0, minDefault),
-      max: Math.max(minSize, maxSize),
+      max: Math.max(minSize, Math.min(maxSize, maxDefault)),
     };
     setSelectedSize({ value: value, isTemp: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
