@@ -39,8 +39,6 @@ export default function ProjectSizeHistogram({
 
   const minSize = Math.min(...projectSizes);
   const maxSize = Math.max(...projectSizes);
-  console.log('histogram minSize: ', minSize);
-  console.log('histogram maxSize: ', maxSize);
   const binSize = (maxSize - minSize) / numBins;
   const bins = Array(numBins).fill(0);
 
