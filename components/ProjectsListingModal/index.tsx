@@ -7,7 +7,8 @@ import { CloseModalIcon, GlobeIcon } from '@/assets/Project-Icons/icons';
 import { NoProjectsFound, SearchIcon } from '@/assets/SearchBar-Icons/icons';
 import COLORS from '@/styles/colors';
 import { FilterNameText, SubHeading1, SubHeading2 } from '@/styles/texts';
-import { Project } from '../../types/schema';
+import { Filters, Project } from '../../types/schema';
+import FilterTags from '../FilterTags';
 import ProjectItem from '../ProjectItem';
 import { SearchBar } from '../SearchBar';
 import SortBy from '../SortBy/index';
@@ -38,6 +39,8 @@ export default function ProjectsListingModal({
   searchTerm,
   setSearchTerm,
   selectedProjectId,
+  selectedFilters,
+  defaultProjectSize,
 }: {
   projects: Project[] | null;
   setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | []>>;
@@ -46,6 +49,11 @@ export default function ProjectsListingModal({
   searchTerm: string | null;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   selectedProjectId: number | null;
+  selectedFilters: Filters;
+  defaultProjectSize: {
+    min: number;
+    max: number;
+  };
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
 
@@ -62,6 +70,15 @@ export default function ProjectsListingModal({
   );
 
   const hasProjects = projects && projects.length > 0;
+  const hasActiveFilters = () => {
+    return (
+      selectedFilters.status.length > 0 ||
+      selectedFilters.technology.length > 0 ||
+      selectedFilters.location.length > 0 ||
+      selectedFilters.projectSize.min > defaultProjectSize.min ||
+      selectedFilters.projectSize.max < defaultProjectSize.max
+    );
+  };
 
   return (
     <>
@@ -150,6 +167,13 @@ export default function ProjectsListingModal({
                       )}
                     </SortByDiv>
                   </Headers>
+                )}
+
+                {hasActiveFilters() && (
+                  <FilterTags
+                    selectedFilters={selectedFilters}
+                    defaultProjectSize={defaultProjectSize}
+                  />
                 )}
 
                 <ProjectItemsDiv>
