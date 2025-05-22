@@ -36,7 +36,7 @@ export default async function queryProjects(): Promise<Project[]> {
 
 export async function queryProjectbyId(id: number): Promise<Project> {
   const { data: project, error } = await supabase
-    .from('Projects_user_testing')
+    .from('Projects')
     .select('*')
     .eq('id', id)
     .single();

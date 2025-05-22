@@ -23,6 +23,7 @@ export const StyledProjectItem = styled.button`
       0px 1px 4px 0px rgba(77, 87, 114, 0.4),
       0px -2px 6px 0px rgba(255, 255, 255, 0.1);
   }
+  cursor: pointer;
 `;
 
 export const projectImageDiv = styled.div`
