@@ -25,8 +25,8 @@ import StatusTags from '../StatusTag';
 import TechnologyTags from '../TechnologyTag';
 import {
   AdditionalInfo,
+  AdditionalInfoContainer,
   CloseButton,
-  DetailsContainer,
   Developer,
   DeveloperText,
   EconomicBenefits,
@@ -269,10 +269,10 @@ export default function ProjectModal({
         ) : null}
         {additional_information ? (
           <AdditionalInfo>
-            <DetailsContainer>
+            <AdditionalInfoContainer>
               <SubHeading2>DETAILS</SubHeading2>
               <BodyText1>{additional_information}</BodyText1>
-            </DetailsContainer>
+            </AdditionalInfoContainer>
           </AdditionalInfo>
         ) : null}
         <LastUpdatedDiv>

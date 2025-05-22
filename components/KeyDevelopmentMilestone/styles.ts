@@ -7,7 +7,6 @@ export const Milestone = styled.div<{ $completed: boolean }>`
   padding-top: 0.5rem;
   padding-left: 0.9375rem;
   width: 17rem;
-  height: 2.375rem;
   flex-shrink: 0;
   border-radius: 1rem 0.3125rem 0.3125rem 0.3125rem;
   border-top: ${props =>
