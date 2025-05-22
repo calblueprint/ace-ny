@@ -131,8 +131,12 @@ export default function MapViewScreen({
 
     // add all filtering logic here
     if (technology.length > 0) {
-      filteredProjects = filteredProjects.filter(project =>
-        technology.includes(project.renewable_energy_technology),
+      filteredProjects = filteredProjects.filter(
+        project =>
+          technology.includes(project.renewable_energy_technology) ||
+          (technology.includes('Energy Storage') &&
+            project.has_energy_storage) ||
+          (technology.includes('Pumped Storage') && project.has_pumped_storage),
       );
     }
 
