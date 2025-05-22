@@ -31,6 +31,7 @@ export const SearchExitButton = styled.button<{ $isZero?: boolean }>`
 
 export const SearchBarStyles = styled.input`
   width: 100%;
+  height: 100%;
   border: none;
   outline: none;
   box-shadow: none;
