@@ -31,8 +31,10 @@ export default function ProjectSizeHistogram({
   maxBound,
 }: HistogramProps) {
   const numBins = 10;
-  const minSize = Math.min(...projectSizes);
-  const maxSize = Math.max(...projectSizes);
+  const maxBinCutoff = 10; // Change value depending on what we want the cutoff to be
+  const filteredForRange = projectSizes.filter(val => val <= maxBinCutoff);
+  const minSize = Math.min(...filteredForRange);
+  const maxSize = Math.max(...filteredForRange);
   const binSize = (maxSize - minSize) / numBins;
   const bins = Array(numBins).fill(0);
 
@@ -56,10 +58,15 @@ export default function ProjectSizeHistogram({
     bins[0] = 1;
   } else {
     projectSizes.forEach(value => {
-      const binIndex = Math.min(
-        Math.floor((value - minSize) / binSize),
-        numBins - 1,
-      );
+      let binIndex;
+      if (value > maxBinCutoff) {
+        binIndex = numBins - 1;
+      } else {
+        binIndex = Math.min(
+          Math.floor((value - minSize) / binSize),
+          numBins - 1,
+        );
+      }
       bins[binIndex]++;
     });
   }
