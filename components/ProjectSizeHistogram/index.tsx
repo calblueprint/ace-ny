@@ -31,6 +31,12 @@ export default function ProjectSizeHistogram({
   maxBound,
 }: HistogramProps) {
   const numBins = 10;
+
+  const logProjectSizes = projectSizes.map(x => Math.log10(x + 1));
+  const logMinSize = Math.min(...logProjectSizes);
+  const logMaxSize = Math.max(...logProjectSizes);
+  const logBinSize = (logMaxSize - logMinSize) / numBins;
+
   const minSize = Math.min(...projectSizes);
   const maxSize = Math.max(...projectSizes);
   const binSize = (maxSize - minSize) / numBins;
@@ -52,12 +58,12 @@ export default function ProjectSizeHistogram({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [minDefault, maxDefault, projectSizes, setMinSize, setMaxSize]);
 
-  if (projectSizes.length === 1) {
+  if (logProjectSizes.length === 1) {
     bins[0] = 1;
   } else {
-    projectSizes.forEach(value => {
+    logProjectSizes.forEach(value => {
       const binIndex = Math.min(
-        Math.floor((value - minSize) / binSize),
+        Math.floor((value - logMinSize) / logBinSize),
         numBins - 1,
       );
       bins[binIndex]++;
@@ -100,6 +106,7 @@ export default function ProjectSizeHistogram({
         setMinDefault={setMinDefault}
         setMaxDefault={setMaxDefault}
         minSize={minSize}
+        maxSize={maxSize}
         minDefault={minDefault}
         maxDefault={maxDefault}
         minBound={minBound}

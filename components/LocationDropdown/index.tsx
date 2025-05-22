@@ -49,6 +49,8 @@ export default function LocationDropdown({
   map,
   currentPolygons,
   setCurrentPolygons,
+  locationFieldClicked,
+  setLocationFieldClicked,
 }: {
   handleButtonClick: (filter: FilterType) => void;
   icon: React.ReactNode;
@@ -73,6 +75,10 @@ export default function LocationDropdown({
   setCurrentPolygons: React.Dispatch<
     React.SetStateAction<google.maps.Polygon[] | null>
   >;
+  locationFieldClicked: Record<string, boolean>;
+  setLocationFieldClicked: React.Dispatch<
+    React.SetStateAction<Record<string, boolean>>
+  >;
 }) {
   const locationCategories = [
     'County',
@@ -90,6 +96,15 @@ export default function LocationDropdown({
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const [categoryOptionsMap, setCategoryOptionsMap] = useState({});
+
+  const clearButtonHandlerGlobalLocation = () => {
+    clearButtonHandler('location');
+    setSelectedItem(null);
+    Object.keys(locationFieldClicked).forEach(key => {
+      locationFieldClicked[key] = false;
+    });
+    setLocationFieldClicked(locationFieldClicked);
+  };
 
   useEffect(() => {
     const fetchAllCategoryOptions = async () => {
@@ -187,10 +202,7 @@ export default function LocationDropdown({
         </CategoryComponentContainer>
         <ClearButtonStyles
           $isActive={selectedItem !== null}
-          onClick={() => {
-            clearButtonHandler('location');
-            setSelectedItem(null);
-          }}
+          onClick={clearButtonHandlerGlobalLocation}
         >
           <ClearFiltersText>CLEAR</ClearFiltersText>
         </ClearButtonStyles>
@@ -212,7 +224,8 @@ export default function LocationDropdown({
       map={map}
       currentPolygons={currentPolygons}
       setCurrentPolygons={setCurrentPolygons}
-      appliedCategory={appliedCategory}
+      locationFieldClicked={locationFieldClicked}
+      setLocationFieldClicked={setLocationFieldClicked}
     />
   );
 }

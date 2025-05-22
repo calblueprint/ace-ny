@@ -131,8 +131,12 @@ export default function MapViewScreen({
 
     // add all filtering logic here
     if (technology.length > 0) {
-      filteredProjects = filteredProjects.filter(project =>
-        technology.includes(project.renewable_energy_technology),
+      filteredProjects = filteredProjects.filter(
+        project =>
+          technology.includes(project.renewable_energy_technology) ||
+          (technology.includes('Energy Storage') &&
+            project.has_energy_storage) ||
+          (technology.includes('Pumped Storage') && project.has_pumped_storage),
       );
     }
 
@@ -147,9 +151,13 @@ export default function MapViewScreen({
 
       if (key) {
         filteredProjects = filteredProjects.filter(project => {
-          const value = String(project[key]);
-          if (activeLocationCategory === 'County') {
-            return location.map(l => l.replace(' County', '')).includes(value);
+          const value = String(project[key]).toLowerCase();
+
+          if (
+            activeLocationCategory === 'County' ||
+            activeLocationCategory === 'Town'
+          ) {
+            return value.includes(location[0].toLowerCase());
           }
           if (
             activeLocationCategory === 'State Senate District' ||
@@ -159,23 +167,12 @@ export default function MapViewScreen({
               .map(l => parseInt(l.split(' ').at(-1) || ''))
               .includes(Number(value));
           }
-          if (activeLocationCategory === 'Utility Service Territory') {
-            const utilityShortNamesMap: Record<string, string> = {
-              'National Grid': 'NGRID',
-              'Rochester Gas and Electric': 'RGE',
-              'NYS Electric and Gas': 'NYSEG',
-              'Central Hudson Gas and Electric': 'CHGE',
-              'Orange and Rockland Utilities': 'ORU',
-              'Long Island Power Authority': 'LIPA',
-              'Consolidated Edison': 'ConEd',
-              Municipal: 'Municipal',
-            };
-
-            return location
-              .map(name => utilityShortNamesMap[name])
-              .includes(value);
+          if (
+            activeLocationCategory === 'Region' ||
+            activeLocationCategory === 'Utility Service Territory'
+          ) {
+            return location[0].toLowerCase() === value;
           }
-          return location.includes(value);
         });
       }
     }

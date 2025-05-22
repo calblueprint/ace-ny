@@ -24,8 +24,8 @@ import StatusTags from '../StatusTag';
 import TechnologyTags from '../TechnologyTag';
 import {
   AdditionalInfo,
+  AdditionalInfoContainer,
   CloseButton,
-  DetailsContainer,
   Developer,
   DeveloperText,
   EconomicBenefits,
@@ -215,11 +215,11 @@ export default function ProjectModal({
           </TechnologyLabel>
           <TechnologyInfo>
             <TechnologyTags technology={renewable_energy_technology} />
-            {has_pumped_storage ? (
-              <TechnologyTags technology={'Pumped Storage'} />
-            ) : null}
             {has_energy_storage ? (
               <TechnologyTags technology={'Energy Storage'} />
+            ) : null}
+            {has_pumped_storage ? (
+              <TechnologyTags technology={'Pumped Storage'} />
             ) : null}
           </TechnologyInfo>
         </TechnologyDiv>
@@ -238,10 +238,10 @@ export default function ProjectModal({
         ) : null}
         {additional_information ? (
           <AdditionalInfo>
-            <DetailsContainer>
+            <AdditionalInfoContainer>
               <SubHeading2>DETAILS</SubHeading2>
               <BodyText1>{additional_information}</BodyText1>
-            </DetailsContainer>
+            </AdditionalInfoContainer>
           </AdditionalInfo>
         ) : null}
         <LastUpdatedDiv>

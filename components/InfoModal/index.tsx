@@ -8,6 +8,7 @@ import {
 
 export default function InfoModal() {
   const ACENY = 'Alliance for Clean Energy New York';
+  const ACENYLink = 'https://www.aceny.org/';
   const email = 'map@aceny.org';
 
   return (
@@ -16,9 +17,11 @@ export default function InfoModal() {
         <InfoModalStyles>
           <InfoModalText>
             This map, created by the{' '}
-            <InfoModalBoldedText>{ACENY}</InfoModalBoldedText> highlights
-            renewable energy projects proposed, under construction, and in
-            operation across New York.
+            <InfoModalBoldedText onClick={() => window.open(ACENYLink)}>
+              {ACENY}
+            </InfoModalBoldedText>{' '}
+            highlights renewable energy projects proposed, under construction,
+            and in operation across New York.
             <p></p>
             The Alliance compiles and updates this map regularly using various
             public sources. While we strive for accuracy, some information may

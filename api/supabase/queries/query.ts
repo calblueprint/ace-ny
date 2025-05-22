@@ -2,12 +2,12 @@ import { Project } from '../../../types/schema';
 import supabase from '../createClient';
 
 const tableMap: Record<string, string> = {
-  County: 'Counties Test',
-  Region: 'Regions Test',
-  'Utility Service Territory': 'Utility Service Territories Test',
-  'State Senate District': 'State Senate Districts Test',
-  'Assembly District': 'Assembly Districts Test',
-  Town: 'Towns Test',
+  County: 'Counties',
+  Region: 'Regions',
+  'Utility Service Territory': 'Utility Service Territories',
+  'State Senate District': 'State Senate Districts',
+  'Assembly District': 'Assembly Districts',
+  Town: 'Towns',
 };
 
 const columnMap: Record<string, string> = {

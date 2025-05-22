@@ -53,7 +53,7 @@ export default function KeyDevelopmentMilestone({
 
   function getDate() {
     if (!date) return null;
-    const res = new Date(date);
+    const res = new Date(date + 'T00:00:00'); // prevent time zone shift
     return res;
   }
   // Sets status label to date of completion or 'Pending' if incomplete

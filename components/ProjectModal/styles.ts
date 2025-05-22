@@ -76,6 +76,7 @@ export const DeveloperText = styled.div<{ $isDeveloperEmpty: boolean }>`
   display: flex;
   visibility: ${({ $isDeveloperEmpty }) =>
     $isDeveloperEmpty ? 'hidden' : 'visible'};
+  width: 95%;
 `;
 
 export const ProjectName = styled.div`
@@ -187,9 +188,7 @@ export const AdditionalInfo = styled.div`
   padding: 1.25rem 1.4rem;
   border-radius: 8px 8px 12px 12px;
   border: 1px solid rgba(46, 58, 89, 0.05);
-  box-shadow:
-    0px 2px 4px 0px rgba(77, 87, 114, 0.08),
-    0px -2px 5px 0px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px -2px 5px 0px rgba(255, 255, 255, 0.1);
 `;
 
 export const EconomicBenefits = styled.div`
@@ -199,12 +198,10 @@ export const EconomicBenefits = styled.div`
   padding: 1.25rem 1.4rem;
   border-radius: 8px 8px 12px 12px;
   border: 1px solid rgba(46, 58, 89, 0.05);
-  box-shadow:
-    0px 2px 4px 0px rgba(77, 87, 114, 0.08),
-    0px -2px 5px 0px rgba(255, 255, 255, 0.1);
+  box-shadow: 0px -2px 5px 0px rgba(255, 255, 255, 0.1);
 `;
 
-export const DetailsContainer = styled.div`
+export const AdditionalInfoContainer = styled.div`
   display: flex;
   word-break: break-word;
   flex-direction: column;
