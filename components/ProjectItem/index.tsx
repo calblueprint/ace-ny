@@ -1,8 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { queryDefaultImages } from '@/api/supabase/queries/query';
 import { DeveloperIcon } from '@/assets/Project-Icons/icons';
 import { SmallSizeIcon } from '@/assets/Size-Icons/icons';
 import {
@@ -45,32 +43,7 @@ export default function ProjectItem({
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
   project: Project;
 }) {
-  //const [project, setProject] = useState<Project | null>(null);
-  const [defaultImage, setDefaultImage] = useState<string | null>(null);
   const zoomThreshold = 11;
-
-  /*useEffect(() => {
-    queryProjectbyId(project_id).then(data => {
-      setProject(data);
-    });
-  }, [project_id]);*/
-
-  useEffect(() => {
-    // Fetch default image when project data is available
-    const fetchDefaultImage = async () => {
-      if (!project?.project_image && project?.renewable_energy_technology) {
-        try {
-          const fetchedImage = await queryDefaultImages(
-            project.renewable_energy_technology,
-          );
-          setDefaultImage(fetchedImage.default_image);
-        } catch (error) {
-          console.error('Error fetching default image:', error);
-        }
-      }
-    };
-    fetchDefaultImage();
-  }, [project]);
 
   const {
     // id,
@@ -95,10 +68,6 @@ export default function ProjectItem({
     has_pumped_storage,
   } = project || {};
 
-  const getProjectImageSrc = () => {
-    return project_image || defaultImage || '';
-  };
-
   // Sets status label to "Operational" or "In Progress"
   let projectStatus = project_status;
   if (project_status !== 'Operational') {
@@ -110,12 +79,6 @@ export default function ProjectItem({
   if (project_status !== 'Operational') {
     statusIcon = <GreyDotInProgressIcon />;
   }
-
-  const projectImageAlt = project_image
-    ? `${project_name} project image`
-    : defaultImage
-      ? `${renewable_energy_technology} default image`
-      : 'No image available';
 
   const energyTypeIconMap: { [key: string]: JSX.Element } = {
     'Land-Based Wind': (
@@ -211,10 +174,12 @@ export default function ProjectItem({
       </ProjectInfo>
       <Image
         src={
-          getProjectImageSrc() ||
+          project_image ||
           'https://odgsveffrfpkumjyuere.supabase.co/storage/v1/object/public/project_images/blur_image.jpg'
         }
-        alt={projectImageAlt}
+        alt={
+          project_image ? `${project_name} project image` : 'No image available'
+        }
         width={340}
         height={250}
         style={projectImageStyles}

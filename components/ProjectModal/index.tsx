@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FiZap } from 'react-icons/fi';
 import Modal from 'react-modal';
 import Image from 'next/image';
@@ -10,7 +10,6 @@ import {
   OpenLinkIcon,
 } from '@/assets/Project-Icons/icons';
 import COLORS from '@/styles/colors';
-import { queryDefaultImages } from '../../api/supabase/queries/query';
 import {
   AccentText1,
   AccentText2,
@@ -59,33 +58,6 @@ export default function ProjectModal({
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
   project: Project | undefined;
 }) {
-  //const [project, setProject] = useState<Project | null>(null);
-  const [defaultImage, setDefaultImage] = useState<string | null>(null);
-
-  /*useEffect(() => {
-    queryProjectbyId(selectedProjectId ?? 0).then(data => {
-      setProject(data);
-    });
-  }, [selectedProjectId]);*/
-
-  useEffect(() => {
-    // Fetch default image when project data is available
-    const fetchDefaultImage = async () => {
-      if (!project?.project_image && project?.renewable_energy_technology) {
-        try {
-          const fetchedImage = await queryDefaultImages(
-            project.renewable_energy_technology,
-          );
-          setDefaultImage(fetchedImage.default_image);
-        } catch (error) {
-          console.error('Error fetching default image:', error);
-        }
-      }
-    };
-    document.title = 'Project - ' + project?.project_name;
-    fetchDefaultImage();
-  }, [project]);
-
   const {
     // id,
     project_name,
@@ -120,16 +92,6 @@ export default function ProjectModal({
 
   // Map KDMs
   const [isKDMOpen, setIsKDMOpen] = useState<boolean>(false);
-
-  const getProjectImageSrc = () => {
-    return project_image || defaultImage || '';
-  };
-
-  const projectImageAlt = project_image
-    ? `${project_name} project image`
-    : defaultImage
-      ? `${renewable_energy_technology} default image`
-      : 'No image available';
 
   const closeModal = () => {
     document.title = 'ACE NY';
@@ -167,8 +129,15 @@ export default function ProjectModal({
       </CloseButton>
       <ProjectDetails>
         <Image
-          src={getProjectImageSrc()}
-          alt={projectImageAlt}
+          src={
+            project_image ||
+            'https://odgsveffrfpkumjyuere.supabase.co/storage/v1/object/public/project_images/blur_image.jpg'
+          }
+          alt={
+            project_image
+              ? `${project_name} project image`
+              : 'No image available'
+          }
           width={340}
           height={250}
           style={projectImageStyles}

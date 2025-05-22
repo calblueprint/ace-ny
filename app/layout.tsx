@@ -10,7 +10,7 @@ const sans = Inter({
 // site metadata - what shows up on embeds
 export const metadata: Metadata = {
   title: 'ACE NY',
-  description: 'Description of project',
+  description: 'Alliance for Clean Energy New York',
 };
 
 export default function RootLayout({

@@ -48,18 +48,16 @@ export async function queryProjectbyId(id: number): Promise<Project> {
   return project;
 }
 
-export async function queryDefaultImages(category: string) {
-  const { data: defaultImage, error } = await supabase
+export async function queryDefaultImages() {
+  const { data: defaultImages, error } = await supabase
     .from('Renewable Energy Technology')
-    .select('*')
-    .eq('category', category)
-    .single();
+    .select('category, default_image');
 
   if (error) {
     throw new Error(`Error fetching default image: ${error.message}`);
   }
 
-  return defaultImage;
+  return defaultImages;
 }
 
 export async function queryNamesForCategory(category: string) {
