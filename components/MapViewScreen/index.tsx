@@ -163,25 +163,10 @@ export default function MapViewScreen({
               .map(l => parseInt(l.split(' ').at(-1) || ''))
               .includes(Number(value));
           }
-          if (activeLocationCategory === 'Utility Service Territory') {
-            const utilityShortNamesMap: Record<string, string> = {
-              'National Grid': 'NGRID',
-              'Rochester Gas and Electric': 'RGE',
-              'NYS Electric and Gas': 'NYSEG',
-              'Central Hudson Gas and Electric': 'CHGE',
-              'Orange and Rockland Utilities': 'ORU',
-              'Long Island Power Authority': 'LIPA',
-              'Consolidated Edison': 'ConEd',
-            };
-
-            return (
-              location
-                // Municipal Utilities map to themselves
-                .map(name => utilityShortNamesMap[name] ?? name)
-                .includes(value)
-            );
-          }
-          if (activeLocationCategory === 'Region') {
+          if (
+            activeLocationCategory === 'Region' ||
+            activeLocationCategory === 'Utility Service Territory'
+          ) {
             return location[0].toLowerCase() === value;
           }
         });
