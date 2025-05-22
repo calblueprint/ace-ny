@@ -12,21 +12,21 @@ export default function SortBy({
 }: {
   projects: Project[] | null;
   category: string;
-  setSortedProjects: (projects: Project[] | null) => void;
+  setSortedProjects: React.Dispatch<React.SetStateAction<Project[] | []>>;
   toggleSortBy: () => void;
 }) {
-  let sortedProjects: Project[] | null;
+  let sortedProjects: Project[] | [];
 
   if (projects) {
     switch (category) {
       case 'Name A-Z':
         sortedProjects = projects.toSorted((a, b) =>
-          a.project_name.localeCompare(b.project_name),
+          a.project_name?.localeCompare(b.project_name),
         );
         break;
       case 'Name Z-A':
         sortedProjects = projects.toSorted((a, b) =>
-          b.project_name.localeCompare(a.project_name),
+          b.project_name?.localeCompare(a.project_name),
         );
         break;
       case 'Size Ascending':
@@ -36,13 +36,17 @@ export default function SortBy({
         sortedProjects = projects.toSorted((a, b) => b.size - a.size);
         break;
       case 'COD Ascending':
-        sortedProjects = projects.toSorted((a, b) =>
-          a.proposed_cod.toString().localeCompare(b.proposed_cod.toString()),
+        sortedProjects = projects.toSorted(
+          (a, b) =>
+            new Date(a.proposed_cod)?.getTime() -
+            new Date(b.proposed_cod)?.getTime(),
         );
         break;
       case 'COD Descending':
-        sortedProjects = projects.toSorted((a, b) =>
-          b.proposed_cod.toString().localeCompare(a.proposed_cod.toString()),
+        sortedProjects = projects.toSorted(
+          (a, b) =>
+            new Date(b.proposed_cod)?.getTime() -
+            new Date(a.proposed_cod)?.getTime(),
         );
         break;
     }

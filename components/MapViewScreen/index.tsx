@@ -253,7 +253,8 @@ export default function MapViewScreen({
         setSelectedProjectId={setSelectedProjectId}
       />
       <ProjectsListingModal
-        projects={projects}
+        projects={filteredProjects}
+        setFilteredProjects={setFilteredProjects}
         map={map}
         setSelectedProjectId={setSelectedProjectId}
         searchTerm={searchTerm}

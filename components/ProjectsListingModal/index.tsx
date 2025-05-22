@@ -32,6 +32,7 @@ import {
 
 export default function ProjectsListingModal({
   projects,
+  setFilteredProjects,
   map,
   setSelectedProjectId,
   searchTerm,
@@ -39,6 +40,7 @@ export default function ProjectsListingModal({
   selectedProjectId,
 }: {
   projects: Project[] | null;
+  setFilteredProjects: React.Dispatch<React.SetStateAction<Project[] | []>>;
   map: google.maps.Map | null;
   setSelectedProjectId: React.Dispatch<React.SetStateAction<number | null>>;
   searchTerm: string | null;
@@ -46,9 +48,6 @@ export default function ProjectsListingModal({
   selectedProjectId: number | null;
 }) {
   const [isModalOpen, setIsModalOpen] = useState(true);
-  const [sortedProjects, setSortedProjects] = useState<Project[] | null>(
-    projects,
-  );
 
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
@@ -56,7 +55,7 @@ export default function ProjectsListingModal({
   const [isSortByOpen, setIsSortByOpen] = useState(false);
   const toggleSortBy = () => setIsSortByOpen(prev => !prev);
 
-  const projectItems = sortedProjects?.filter(project =>
+  const projectItems = projects?.filter(project =>
     project.project_name
       .toLowerCase()
       .includes(searchTerm?.toLowerCase() || ''),
@@ -114,37 +113,37 @@ export default function ProjectsListingModal({
                           <SortBy
                             category="Name A-Z"
                             projects={projects}
-                            setSortedProjects={setSortedProjects}
+                            setSortedProjects={setFilteredProjects}
                             toggleSortBy={toggleSortBy}
                           />
                           <SortBy
                             category="Name Z-A"
                             projects={projects}
-                            setSortedProjects={setSortedProjects}
+                            setSortedProjects={setFilteredProjects}
                             toggleSortBy={toggleSortBy}
                           />
                           <SortBy
                             category="Size Ascending"
                             projects={projects}
-                            setSortedProjects={setSortedProjects}
+                            setSortedProjects={setFilteredProjects}
                             toggleSortBy={toggleSortBy}
                           />
                           <SortBy
                             category="Size Descending"
                             projects={projects}
-                            setSortedProjects={setSortedProjects}
+                            setSortedProjects={setFilteredProjects}
                             toggleSortBy={toggleSortBy}
                           />
                           <SortBy
                             category="COD Ascending"
                             projects={projects}
-                            setSortedProjects={setSortedProjects}
+                            setSortedProjects={setFilteredProjects}
                             toggleSortBy={toggleSortBy}
                           />
                           <SortBy
                             category="COD Descending"
                             projects={projects}
-                            setSortedProjects={setSortedProjects}
+                            setSortedProjects={setFilteredProjects}
                             toggleSortBy={toggleSortBy}
                           />
                         </SortByMenu>
