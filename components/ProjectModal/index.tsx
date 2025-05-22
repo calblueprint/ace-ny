@@ -246,11 +246,11 @@ export default function ProjectModal({
           </TechnologyLabel>
           <TechnologyInfo>
             <TechnologyTags technology={renewable_energy_technology} />
-            {has_pumped_storage ? (
-              <TechnologyTags technology={'Pumped Storage'} />
-            ) : null}
             {has_energy_storage ? (
               <TechnologyTags technology={'Energy Storage'} />
+            ) : null}
+            {has_pumped_storage ? (
+              <TechnologyTags technology={'Pumped Storage'} />
             ) : null}
           </TechnologyInfo>
         </TechnologyDiv>
