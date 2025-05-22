@@ -14,6 +14,7 @@ export const SearchBarBackgroundStyles = styled.div`
 
 export const SearchBarWrapperDiv = styled.div`
   display: flex;
+  width: 100%;
   align-items: center;
   padding-left: 1rem;
   gap: 0.5rem;
@@ -29,6 +30,7 @@ export const SearchExitButton = styled.button<{ $isZero?: boolean }>`
 `;
 
 export const SearchBarStyles = styled.input`
+  width: 100%;
   border: none;
   outline: none;
   box-shadow: none;

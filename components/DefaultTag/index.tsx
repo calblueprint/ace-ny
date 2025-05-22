@@ -22,16 +22,6 @@ export default function DefaultTag({
     'Last Updated': <LastUpdatedIcon />,
   };
 
-  const utility_territories: { [key: string]: string } = {
-    NGRID: 'National Grid',
-    'RG&E': ' Rochester Gas & Electric',
-    NYSEG: 'NYS Electric & Gas',
-    'CHG&E': 'Central Hudson Gas & Electric',
-    ORU: 'Orange & Rockland Utilities',
-    LIPA: 'Long Island Power Authority',
-    ConEd: 'Consolidated Edison',
-  };
-
   const icon = icon_category ? categories[icon_category] : null;
 
   const getProjectScale = () => {
@@ -48,16 +38,6 @@ export default function DefaultTag({
   };
 
   const getContent = () => {
-    if (icon_category === 'Utility Service Territory') {
-      return (
-        <DefaultTagStyles>
-          {icon}{' '}
-          <TagText1 $color={COLORS.electricBlue}>
-            {content ? utility_territories[content] : null}
-          </TagText1>
-        </DefaultTagStyles>
-      );
-    }
     if (icon_category === 'Project Size') {
       const scale = getProjectScale();
       return scale ? (

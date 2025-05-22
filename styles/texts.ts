@@ -46,6 +46,7 @@ export const Heading1 = styled.h1<TextProps>`
   font-size: 1.375rem;
   font-style: normal;
   line-height: normal;
+  overflow-wrap: break-word;
 `;
 
 export const Heading2 = styled.h2<TextProps>`
@@ -83,6 +84,8 @@ export const BodyText1 = styled.p<TextProps>`
   font-weight: 300;
   line-height: 150%; /* 16.5px */
   letter-spacing: 0.25px;
+  overflow-wrap: break-word;
+  width: 100%;
 `;
 
 export const BodyText2 = styled.p<TextProps>`
