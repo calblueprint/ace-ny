@@ -15,6 +15,7 @@ import SortBy from '../SortBy/index';
 import {
   AllProjectsHeader,
   CloseModalButton,
+  FilterTagsWrapper,
   Headers,
   ModalContents,
   modalContentStyles,
@@ -168,13 +169,14 @@ export default function ProjectsListingModal({
                     </SortByDiv>
                   </Headers>
                 )}
-
-                {hasActiveFilters() && (
-                  <FilterTags
-                    selectedFilters={selectedFilters}
-                    defaultProjectSize={defaultProjectSize}
-                  />
-                )}
+                <FilterTagsWrapper>
+                  {hasActiveFilters() && (
+                    <FilterTags
+                      selectedFilters={selectedFilters}
+                      defaultProjectSize={defaultProjectSize}
+                    />
+                  )}
+                </FilterTagsWrapper>
 
                 <ProjectItemsDiv>
                   {projectItems && projectItems.length > 0 ? (

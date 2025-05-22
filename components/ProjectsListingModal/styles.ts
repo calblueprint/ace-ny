@@ -186,3 +186,8 @@ export const CloseModalButton = styled.button`
   border-radius: 5px;
   justify-content: center;
 `;
+
+export const FilterTagsWrapper = styled.div`
+  align-self: flex-start;
+  padding-left: 1.5rem;
+`;
