@@ -54,6 +54,12 @@ export default function ProjectSizeHistogram({
       const maxSize = Math.max(...filteredSizes);
       setMinSize(minSize);
       setMaxSize(maxSize);
+
+      const value = {
+        min: Math.max(0, minSize),
+        max: Math.max(minSize, maxSize),
+      };
+      setSelectedSize({ value: value, isTemp: true });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [minDefault, maxDefault, projectSizes, setMinSize, setMaxSize]);
@@ -105,13 +111,10 @@ export default function ProjectSizeHistogram({
       <ProjectSizeSlider
         setMinDefault={setMinDefault}
         setMaxDefault={setMaxDefault}
-        minSize={minSize}
-        maxSize={maxSize}
         minDefault={minDefault}
         maxDefault={maxDefault}
         minBound={minBound}
         maxBound={maxBound}
-        setSelectedSize={setSelectedSize}
       />
     </div>
   );
