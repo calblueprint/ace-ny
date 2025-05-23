@@ -13,6 +13,7 @@ import {
 import { FilterBar } from '@/components/FilterBar';
 import Map from '@/components/Map';
 import { Filters, FilterType } from '@/types/schema';
+import { FilterProvider } from '../../context/FilterContext';
 import { Project } from '../../types/schema';
 import BottomBar from '../BottomBar';
 import ProjectModal from '../ProjectModal';
@@ -229,47 +230,51 @@ export default function MapViewScreen({
 
   return (
     <>
-      <FilterBar
-        filters={filters}
-        setSelectedFilters={setSelectedFilters}
-        tempFilters={tempFilters}
-        setTempFilters={setTempFilters}
-        clearFilters={clearFilters}
-        setActiveLocationCategory={setActiveLocationCategory}
-        projectSizes={projectSizes}
-        selectedProjectId={selectedProjectId}
-        map={map}
-        setMap={setMap}
-      />
-      <Map
-        projects={projects}
-        filteredProjects={filteredProjects}
-        map={map}
-        setMap={setMap}
-        selectedProjectId={selectedProjectId}
-        setSelectedProjectId={setSelectedProjectId}
-      />
-      <ProjectsListingModal
-        projects={filteredProjects}
-        setFilteredProjects={setFilteredProjects}
-        map={map}
-        setSelectedProjectId={setSelectedProjectId}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        selectedProjectId={selectedProjectId}
-      />
-      {selectedProjectId && (
-        <ProjectModal
+      <FilterProvider>
+        <FilterBar
+          filters={filters}
+          setSelectedFilters={setSelectedFilters}
+          tempFilters={tempFilters}
+          setTempFilters={setTempFilters}
+          clearFilters={clearFilters}
+          setActiveLocationCategory={setActiveLocationCategory}
+          projectSizes={projectSizes}
+          selectedProjectId={selectedProjectId}
+          map={map}
+          setMap={setMap}
+        />
+        <Map
+          projects={projects}
+          filteredProjects={filteredProjects}
+          map={map}
+          setMap={setMap}
           selectedProjectId={selectedProjectId}
           setSelectedProjectId={setSelectedProjectId}
-          project={projects.find(i => i.id === selectedProjectId)}
         />
-      )}
-      <BottomBar
-        projects={filteredProjects}
-        selectedProjectId={selectedProjectId}
-        map={map}
-      ></BottomBar>
+        <ProjectsListingModal
+          projects={filteredProjects}
+          setFilteredProjects={setFilteredProjects}
+          map={map}
+          setSelectedProjectId={setSelectedProjectId}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          selectedProjectId={selectedProjectId}
+          selectedFilters={selectedFilters}
+          defaultProjectSize={defaultFilters.projectSize}
+        />
+        {selectedProjectId && (
+          <ProjectModal
+            selectedProjectId={selectedProjectId}
+            setSelectedProjectId={setSelectedProjectId}
+            project={projects.find(i => i.id === selectedProjectId)}
+          />
+        )}
+        <BottomBar
+          projects={filteredProjects}
+          selectedProjectId={selectedProjectId}
+          map={map}
+        ></BottomBar>
+      </FilterProvider>
     </>
   );
 }

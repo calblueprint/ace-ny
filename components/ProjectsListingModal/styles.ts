@@ -46,7 +46,7 @@ export const AllProjectsHeader = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  width: 13rem;
+  width: 9.5rem;
   gap: 0.4rem;
   align-items: center;
 `;
@@ -57,7 +57,7 @@ export const ModalContents = styled.div`
   align-items: center;
   justify-self: center;
   justify-content: flex-start;
-  gap: 1.2rem;
+  gap: 0.7rem;
   padding: 0.93rem 0.625rem 0.625rem 0.8125rem;
 `;
 
@@ -185,4 +185,10 @@ export const CloseModalButton = styled.button`
   align-items: center;
   border-radius: 5px;
   justify-content: center;
+`;
+
+export const FilterTagsWrapper = styled.div`
+  align-self: flex-start;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 `;

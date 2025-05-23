@@ -323,6 +323,16 @@ export const OptionText = styled.p<TextProps>`
   color: #4a4a4a;
   font-size: 0.95rem;
 `;
+
+export const FilterTagText = styled.p<TextProps>`
+  ${TextStylesCoinbaseSans}
+  font-size: 0.625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: ${COLORS.electricBlue};
+`;
+
 /*
 
 export const FilterFont = styled.h1`

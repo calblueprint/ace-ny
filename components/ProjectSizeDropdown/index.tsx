@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useFilterContext } from '@/context/FilterContext';
 import {
   ApplyFiltersText,
   ClearFiltersText,
@@ -65,6 +66,7 @@ export default function ProjectSizeDropdown({
   projectSizeFiltersApplied,
   applyButtonHandler,
 }: ProjectSizeDropdownProps) {
+  const { projectSizeFilterTagHandler } = useFilterContext();
   const [minSize, setMinSize] = useState(
     projectSizes.length > 0 ? Math.min(...projectSizes) : 0,
   );
@@ -145,7 +147,13 @@ export default function ProjectSizeDropdown({
 
         <ApplyButtonStyles
           $isActive={true}
-          onClick={() => applyButtonHandler('projectSize')}
+          onClick={() => {
+            projectSizeFilterTagHandler({
+              value: { min: minSize, max: maxSize },
+              isTemp: false,
+            });
+            applyButtonHandler('projectSize');
+          }}
         >
           <ApplyFiltersText>APPLY</ApplyFiltersText>
         </ApplyButtonStyles>
