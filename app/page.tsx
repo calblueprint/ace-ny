@@ -30,9 +30,9 @@ export default function Home() {
 
   useEffect(() => {
     projects?.forEach(project => {
-      project.project_image =
-        project.project_image ??
-        defaultImageMap[project.renewable_energy_technology];
+      project.project_image = project.project_image
+        ? project.project_image
+        : defaultImageMap[project.renewable_energy_technology];
     });
   }, [defaultImageMap, projects]);
 
