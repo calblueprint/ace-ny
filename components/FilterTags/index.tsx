@@ -30,7 +30,7 @@ export default function FilterTags({
   ) {
     selectedItems.push({
       type: 'Project Size',
-      value: `${selectedMin} - ${selectedMax}`,
+      value: `${selectedMin} MW - ${selectedMax} MW`,
     });
   }
   return (

@@ -3,7 +3,6 @@ import COLORS from '@/styles/colors';
 
 export const TagStyles = styled.div`
   display: flex;
-  cursor: pointer;
   flex-direction: row;
   align-items: center;
   border: none;

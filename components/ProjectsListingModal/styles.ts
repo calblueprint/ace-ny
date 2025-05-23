@@ -190,4 +190,5 @@ export const CloseModalButton = styled.button`
 export const FilterTagsWrapper = styled.div`
   align-self: flex-start;
   padding-left: 1.5rem;
+  padding-right: 1.5rem;
 `;

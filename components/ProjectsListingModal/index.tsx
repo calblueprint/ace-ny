@@ -169,14 +169,17 @@ export default function ProjectsListingModal({
                     </SortByDiv>
                   </Headers>
                 )}
-                <FilterTagsWrapper>
-                  {hasActiveFilters() && (
-                    <FilterTags
-                      selectedFilters={selectedFilters}
-                      defaultProjectSize={defaultProjectSize}
-                    />
-                  )}
-                </FilterTagsWrapper>
+
+                {hasProjects && (
+                  <FilterTagsWrapper>
+                    {hasActiveFilters() && (
+                      <FilterTags
+                        selectedFilters={selectedFilters}
+                        defaultProjectSize={defaultProjectSize}
+                      />
+                    )}
+                  </FilterTagsWrapper>
+                )}
 
                 <ProjectItemsDiv>
                   {projectItems && projectItems.length > 0 ? (
