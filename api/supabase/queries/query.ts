@@ -24,8 +24,8 @@ export default async function queryProjects(): Promise<Project[]> {
     .from('Projects')
     .select('*')
     .not('longitude', 'is', null)
-    .not('latitude', 'is', null);
-  // .eq('approved', true);
+    .not('latitude', 'is', null)
+    .eq('approved', true);
 
   if (error) {
     throw new Error(`Error fetching projects: ${error.message}`);
