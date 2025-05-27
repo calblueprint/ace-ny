@@ -29,7 +29,7 @@ export default function DownloadData({
           );
           row += `"${lastUpdatedStr}",`;
         } else {
-          row += `${project[header]},`;
+          row += `"${project[header]}",`;
         }
       }
       csvContent += row.slice(0, -1) + '\n';
@@ -44,6 +44,7 @@ export default function DownloadData({
     link.click();
     URL.revokeObjectURL(url);
   };
+
   return (
     <DownloadButton onClick={downloadFilteredProjects}>
       <DownloadText>DOWNLOAD</DownloadText>

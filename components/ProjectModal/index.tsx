@@ -109,9 +109,14 @@ export default function ProjectModal({
   function convertLastUpdatedDateToString() {
     if (!last_updated_display) return '';
     const res = new Date(last_updated_display);
-    const year = String(res.getFullYear());
-    const month = res.toLocaleString('default', { month: 'long' });
-    const day = String(res.getDate()).padStart(2, '0');
+
+    const year = String(res.getUTCFullYear());
+    const month = res.toLocaleString('default', {
+      month: 'long',
+      timeZone: 'UTC',
+    });
+    const day = String(res.getUTCDate()).padStart(2, '0');
+
     return `${month} ${day}, ${year}`;
   }
 
